@@ -2,6 +2,19 @@
 
 Każdy plik = dokładnie ta wersja, która jest zaplanowana albo opublikowana (IG + TikTok + FB + YT).
 
+## 01.11.2026 - rolki cmentarne (AI Producer)
+
+| Termin | Rolka | Plik | Status |
+|---|---|---|---|
+| 01.11 09:50 | handlarz pod cmentarzem | (stara wersja) | opublikowana - bez napisow w hooku, nie do podmiany |
+| 01.11 13:00 | znicz przy bramie | 2026-11-01_1300_znicze_v7.mp4 | zaplanowana (IG+TT, FB+YT) |
+| 01.11 18:00 | chryzantema 15 vs 70 zl | 2026-11-01_1800_chryzantemy_v7.mp4 | zaplanowana (IG+TT, FB+YT) |
+
+Wersja v7 = napisy od pierwszego slowa hooka + reakcje z tresci zamiast stockowych avatarow, glos -14,8 LUFS.
+Stare wersje rolek 13:00 i 18:00 leza w Metricoolu jako draft (nie publikuja sie).
+
+## Partia r70-r95 - WYCOFANA 31.10, ponizej tylko dla historii
+
 | Termin | Rolka | Status |
 |---|---|---|
 | 31.10 15:37 | r91 napis wyprzedaż | opublikowana |
