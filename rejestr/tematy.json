@@ -1,1 +1,551 @@
-[]
+[
+ {
+  "rolka": "-",
+  "data": "2026-10-20",
+  "godz": "12:00",
+  "status": "opublikowana",
+  "slug": "kotwica-cennik",
+  "zrodlo": "Tversky i Kahneman, 1974",
+  "mechanizm": "kotwica cenowa"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-20",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "ostatnie-dwie-minuty",
+  "zrodlo": "Kahneman i in., 1993",
+  "mechanizm": "regula szczytu i konca"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-21",
+  "godz": "12:00",
+  "status": "opublikowana",
+  "slug": "srodkowy-pakiet",
+  "zrodlo": "Simonson, 1989",
+  "mechanizm": "unikanie skrajnosci"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-21",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "dwa-terminy",
+  "zrodlo": "Worchel, Lee i Adewole, 1975",
+  "mechanizm": "niedobor"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-22",
+  "godz": "08:00",
+  "status": "opublikowana",
+  "slug": "dziewiec-dziewiecdziesiat",
+  "zrodlo": "Anderson i Simester, 2003",
+  "mechanizm": "koncowka ceny"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-22",
+  "godz": "13:00",
+  "status": "opublikowana",
+  "slug": "arbitralna-spojnosc",
+  "zrodlo": "Ariely, Loewenstein i Prelec, 2003",
+  "mechanizm": "kotwica losowa"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-22",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "dzemy",
+  "zrodlo": "Iyengar i Lepper, 2000",
+  "mechanizm": "paradoks wyboru"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-23",
+  "godz": "15:55",
+  "status": "opublikowana",
+  "slug": "kara-za-spoznienie",
+  "zrodlo": "Gneezy i Rustichini, 2000",
+  "mechanizm": "kara jako cena"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-23",
+  "godz": "22:02",
+  "status": "opublikowana",
+  "slug": "zgody-domyslne",
+  "zrodlo": "Johnson, Bellman i Lohse, 2002",
+  "mechanizm": "opcja domyslna"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-24",
+  "godz": "14:10",
+  "status": "opublikowana",
+  "slug": "wabik",
+  "zrodlo": "Ariely, Predictably Irrational, 2008",
+  "mechanizm": "efekt wabika"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-24",
+  "godz": "19:27",
+  "status": "opublikowana",
+  "slug": "dowod-spoleczny-hotel",
+  "zrodlo": "Goldstein, Cialdini i Griskevicius, 2008",
+  "mechanizm": "dowod spoleczny"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-25",
+  "godz": "11:30",
+  "status": "opublikowana",
+  "slug": "muzyka-w-sklepie",
+  "zrodlo": "North, Hargreaves i McKendrick, 1999",
+  "mechanizm": "muzyka steruje wyborem"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-25",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "karta-platnicza",
+  "zrodlo": "Prelec i Simester, 2001",
+  "mechanizm": "bol placenia"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-25",
+  "godz": "21:27",
+  "status": "opublikowana",
+  "slug": "muzyka-w-sklepie-2",
+  "zrodlo": "North, Hargreaves i McKendrick, 1999",
+  "mechanizm": "muzyka steruje wyborem"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-26",
+  "godz": "11:07",
+  "status": "opublikowana",
+  "slug": "limitowana-seria",
+  "zrodlo": "Barton, Zlatevska i Oppewal, 2022",
+  "mechanizm": "niedobor"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-26",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "ciemne-wzorce",
+  "zrodlo": "Luguri i Strahilevitz, 2021",
+  "mechanizm": "ciemne wzorce"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-27",
+  "godz": "12:30",
+  "status": "opublikowana",
+  "slug": "ekran-w-wozku",
+  "zrodlo": "Gottschalk i in., 2026",
+  "mechanizm": "kontrola budzetu"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-27",
+  "godz": "18:32",
+  "status": "opublikowana",
+  "slug": "doplata-w-kasie",
+  "zrodlo": "Blake, Moshary, Sweeney i Tadelis, 2021",
+  "mechanizm": "ukryte oplaty"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-28",
+  "godz": "06:00",
+  "status": "opublikowana",
+  "slug": "doplata-w-kasie-2",
+  "zrodlo": "Blake, Moshary, Sweeney i Tadelis, 2021",
+  "mechanizm": "ukryte oplaty"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-28",
+  "godz": "11:45",
+  "status": "opublikowana",
+  "slug": "wysokosc-oczu",
+  "zrodlo": "Chen, Burke, Hui i Leykin, 2021",
+  "mechanizm": "wzrok na polce"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-28",
+  "godz": "15:55",
+  "status": "opublikowana",
+  "slug": "dostawa-czy-zwroty",
+  "zrodlo": "-",
+  "mechanizm": "darmowa dostawa"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-28",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "nazwy-warzyw",
+  "zrodlo": "Turnwald i in., 2019",
+  "mechanizm": "nazwa zmienia smak"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-28",
+  "godz": "20:00",
+  "status": "opublikowana",
+  "slug": "dzien-czekania",
+  "zrodlo": "Fisher, Gallino i Xu, 2019",
+  "mechanizm": "czas dostawy"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-29",
+  "godz": "06:00",
+  "status": "opublikowana",
+  "slug": "certyfikat",
+  "zrodlo": "Coville i in., 2025",
+  "mechanizm": "zaufanie do certyfikatu"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-29",
+  "godz": "09:00",
+  "status": "opublikowana",
+  "slug": "jak-pokazac-ocene",
+  "zrodlo": "Jia i in., 2023",
+  "mechanizm": "prezentacja oceny"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-29",
+  "godz": "12:00",
+  "status": "opublikowana",
+  "slug": "kto-oglada-spot",
+  "zrodlo": "McGranaghan i in., 2022",
+  "mechanizm": "uwaga na reklame"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-29",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "jedna-liczba-na-ekranie",
+  "zrodlo": "Yu i in., 2022",
+  "mechanizm": "liczba odstrasza"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-30",
+  "godz": "06:00",
+  "status": "opublikowana",
+  "slug": "tabelka-z-danymi",
+  "zrodlo": "Dubois i in., 2021",
+  "mechanizm": "dane kontra historia"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-30",
+  "godz": "09:00",
+  "status": "opublikowana",
+  "slug": "najmocniejszy-argument",
+  "zrodlo": "Salvi i in., 2025",
+  "mechanizm": "sila argumentu"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-30",
+  "godz": "12:00",
+  "status": "opublikowana",
+  "slug": "jawne-koszty",
+  "zrodlo": "Mohan, Buell i John, 2020",
+  "mechanizm": "jawnosc kosztow"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-30",
+  "godz": "15:00",
+  "status": "opublikowana",
+  "slug": "piec-gwiazdek",
+  "zrodlo": "Filippas i in., 2022",
+  "mechanizm": "inflacja ocen"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-30",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "zysk-czy-problem",
+  "zrodlo": "Robertson i in., 2023",
+  "mechanizm": "ramowanie zysk-strata"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-31",
+  "godz": "15:37",
+  "status": "opublikowana",
+  "slug": "napis-wyprzedaz",
+  "zrodlo": "Anderson i Simester, 2001",
+  "mechanizm": "slowo wyprzedaz"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-10-31",
+  "godz": "22:39",
+  "status": "opublikowana",
+  "slug": "wino-dwa-razy-drozej",
+  "zrodlo": "Gneezy, Gneezy i Lauga, 2014",
+  "mechanizm": "cena jako jakosc"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-01",
+  "godz": "09:50",
+  "status": "opublikowana",
+  "slug": "handlarz-cmentarz",
+  "zrodlo": "Money.pl, 2026",
+  "mechanizm": "sezon cmentarny"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-01",
+  "godz": "13:00",
+  "status": "opublikowana",
+  "slug": "znicz-przy-bramie",
+  "zrodlo": "Murator.pl, 2026",
+  "mechanizm": "cena przy bramie"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-01",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "chryzantemy",
+  "zrodlo": "-",
+  "mechanizm": "marza sezonowa"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-02",
+  "godz": "08:00",
+  "status": "opublikowana",
+  "slug": "muzyka-w-restauracji",
+  "zrodlo": "Malcman i in., 2024",
+  "mechanizm": "muzyka steruje wyborem"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-02",
+  "godz": "12:00",
+  "status": "opublikowana",
+  "slug": "lopaty-po-sniezycy",
+  "zrodlo": "Kahneman, Knetsch i Thaler, 1986",
+  "mechanizm": "uczciwa cena"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-02",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "obnizki-czarny-piatek",
+  "zrodlo": "Komisja Europejska, 2026",
+  "mechanizm": "wiarygodnosc obnizki"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-02",
+  "godz": "20:30",
+  "status": "wycofana",
+  "slug": "tempo-muzyki",
+  "zrodlo": "Milliman, 1986",
+  "mechanizm": "muzyka steruje wyborem"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-03",
+  "godz": "08:00",
+  "status": "opublikowana",
+  "slug": "cukierek",
+  "zrodlo": "Strohmetz, Rind, Fisher i Lynn, 2002",
+  "mechanizm": "wzajemnosc"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-03",
+  "godz": "12:00",
+  "status": "opublikowana",
+  "slug": "pieczatki-myjnia",
+  "zrodlo": "Nunes i Dreze, 2006",
+  "mechanizm": "gradient celu"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-03",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "lawenda",
+  "zrodlo": "Gueguen i Petr, 2006",
+  "mechanizm": "zapach"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-04",
+  "godz": "08:00",
+  "status": "opublikowana",
+  "slug": "drzwi-przed-nosem",
+  "zrodlo": "Cialdini i in., 1975",
+  "mechanizm": "drzwiami w twarz"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-04",
+  "godz": "17:35",
+  "status": "opublikowana",
+  "slug": "naklejka-w-oknie",
+  "zrodlo": "Freedman i Fraser, 1966",
+  "mechanizm": "stopa w drzwiach"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-05",
+  "godz": "09:00",
+  "status": "opublikowana",
+  "slug": "powtarzanie",
+  "zrodlo": "Hasher, Goldstein i Toppino, 1977",
+  "mechanizm": "iluzja prawdy"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-05",
+  "godz": "13:00",
+  "status": "opublikowana",
+  "slug": "przerwana-rezerwacja",
+  "zrodlo": "Ghibellini i Meier, 2025",
+  "mechanizm": "niedokonczone zadanie"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-05",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "dwa-ciastka",
+  "zrodlo": "Worchel, Lee i Adewole, 1975",
+  "mechanizm": "niedobor"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-06",
+  "godz": "09:00",
+  "status": "opublikowana",
+  "slug": "czarny-piatek-ceny",
+  "zrodlo": "Which?, 2023",
+  "mechanizm": "wiarygodnosc obnizki"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-06",
+  "godz": "13:00",
+  "status": "opublikowana",
+  "slug": "chude-mieso",
+  "zrodlo": "Levin i Gaeth, 1988",
+  "mechanizm": "ramowanie atrybutu"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-06",
+  "godz": "18:00",
+  "status": "opublikowana",
+  "slug": "lista-5-dan",
+  "zrodlo": "Cai, Chen i Fang, 2009",
+  "mechanizm": "dowod spoleczny"
+ },
+ {
+  "rolka": "-",
+  "data": "2026-11-07",
+  "godz": "09:00",
+  "status": "opublikowana",
+  "slug": "pudelko-ikea",
+  "zrodlo": "Norton, Mochon i Ariely, 2012",
+  "mechanizm": "efekt IKEA"
+ },
+ {
+  "rolka": "r216",
+  "data": "2026-11-08",
+  "godz": "09:00",
+  "status": "opublikowana",
+  "slug": "wabik-2",
+  "zrodlo": "Ariely, Predictably Irrational, 2008",
+  "mechanizm": "efekt wabika"
+ },
+ {
+  "rolka": "r209",
+  "data": "2026-11-08",
+  "godz": "13:00",
+  "status": "opublikowana",
+  "slug": "kubek-nazwa",
+  "zrodlo": "McClure i in., 2004",
+  "mechanizm": "marka zmienia smak"
+ },
+ {
+  "rolka": "r213",
+  "data": "2026-11-13",
+  "godz": "09:00",
+  "status": "wycofana",
+  "slug": "dzemy-2",
+  "zrodlo": "Iyengar i Lepper, 2000",
+  "mechanizm": "paradoks wyboru"
+ },
+ {
+  "rolka": "r217",
+  "data": "2026-11-13",
+  "godz": "13:00",
+  "status": "wycofana",
+  "slug": "wino-muzyka",
+  "zrodlo": "North, Hargreaves i McKendrick, 1997",
+  "mechanizm": "muzyka steruje wyborem"
+ },
+ {
+  "rolka": "r215",
+  "data": "2026-11-09",
+  "godz": "09:00",
+  "status": "zaplanowana",
+  "slug": "czerwona-cena",
+  "zrodlo": "Puccinelli i in., 2013",
+  "mechanizm": "kolor ceny"
+ },
+ {
+  "rolka": "r208",
+  "data": "2026-11-09",
+  "godz": "13:00",
+  "status": "zaplanowana",
+  "slug": "czekoladka",
+  "zrodlo": "O'Brien i Ellsworth, 2012",
+  "mechanizm": "regula szczytu i konca"
+ },
+ {
+  "rolka": "r211",
+  "data": "2026-11-13",
+  "godz": "18:00",
+  "status": "wycofana",
+  "slug": "pieczatki-kawiarnia",
+  "zrodlo": "Kivetz, Urminsky i Zheng, 2006",
+  "mechanizm": "gradient celu"
+ },
+ {
+  "rolka": "r212",
+  "data": "2026-11-09",
+  "godz": "18:00",
+  "status": "zaplanowana",
+  "slug": "termin-5-dni",
+  "zrodlo": "Tversky i Shafir, 1992",
+  "mechanizm": "termin wymusza decyzje"
+ }
+]
