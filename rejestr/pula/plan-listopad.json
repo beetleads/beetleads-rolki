@@ -1,0 +1,524 @@
+[
+ {
+  "data": "2026-11-10",
+  "godz": "09:00",
+  "kod": "C1",
+  "filar": 1,
+  "okladka": "CENA BEZ WALUTY",
+  "zrodlo": "Yang, Kimes i Sessarego, 2009",
+  "mechanizm": "symbol waluty"
+ },
+ {
+  "data": "2026-11-10",
+  "godz": "13:00",
+  "kod": "L12",
+  "filar": 2,
+  "okladka": "TŁOK WŁĄCZA OSTROŻNOŚĆ",
+  "zrodlo": "Maeng, Tanner i Soman, 2013",
+  "mechanizm": "tlok wlacza ostroznosc"
+ },
+ {
+  "data": "2026-11-10",
+  "godz": "18:00",
+  "kod": "C5",
+  "filar": 1,
+  "okladka": "RYCZAŁT CZY LICZNIK",
+  "zrodlo": "Lambrecht i Skiera, 2006",
+  "mechanizm": "ryczalt zamiast licznika"
+ },
+ {
+  "data": "2026-11-11",
+  "godz": "09:00",
+  "kod": "D1",
+  "filar": 2,
+  "okladka": "ZDJĘCIA DAŁY 9%",
+  "zrodlo": "Zhang, Lee, Singh i Srinivasan, 2016",
+  "mechanizm": "realna waga zdjecia"
+ },
+ {
+  "data": "2026-11-11",
+  "godz": "13:00",
+  "kod": "C6",
+  "filar": 1,
+  "okladka": "DRUGA OD DOŁU",
+  "zrodlo": "de Meza i Pathania, 2021",
+  "mechanizm": "miejsce w cenniku"
+ },
+ {
+  "data": "2026-11-11",
+  "godz": "18:00",
+  "kod": "P10",
+  "filar": 3,
+  "okladka": "GRATIS NIE Z TEJ PÓŁKI",
+  "zrodlo": "Marchand, Paul, Hennig-Thurau i Puchner, 2017",
+  "mechanizm": "gratis z wlasnej polki"
+ },
+ {
+  "data": "2026-11-12",
+  "godz": "09:00",
+  "kod": "C8",
+  "filar": 1,
+  "okladka": "SZEROKI ROZRZUT CEN",
+  "zrodlo": "Cao i in., 2025",
+  "mechanizm": "rozrzut cen w ofercie"
+ },
+ {
+  "data": "2026-11-12",
+  "godz": "13:00",
+  "kod": "D3",
+  "filar": 2,
+  "okladka": "JEDNA OPINIA, -42%",
+  "zrodlo": "Varga i Albuquerque, 2024",
+  "mechanizm": "jedna opinia kontra srednia"
+ },
+ {
+  "data": "2026-11-12",
+  "godz": "18:00",
+  "kod": "C2",
+  "filar": 1,
+  "okladka": "LEWO CZY PRAWO",
+  "zrodlo": "Park i Jang, 2025",
+  "mechanizm": "kolejnosc czytania ceny"
+ },
+ {
+  "data": "2026-11-13",
+  "godz": "09:00",
+  "kod": "L13",
+  "filar": 2,
+  "okladka": "WŁASNA TORBA, DWA EFEKTY",
+  "zrodlo": "Karmarkar i Bollinger, 2015",
+  "mechanizm": "licencja moralna"
+ },
+ {
+  "data": "2026-11-13",
+  "godz": "13:00",
+  "kod": "C10",
+  "filar": 1,
+  "okladka": "PIĘĆ DZIENNIE",
+  "zrodlo": "Hershfield, Shu i Benartzi, 2019",
+  "mechanizm": "rozbicie kwoty na dni"
+ },
+ {
+  "data": "2026-11-13",
+  "godz": "18:00",
+  "kod": "U6",
+  "filar": 3,
+  "okladka": "POLECONY WART WIĘCEJ",
+  "zrodlo": "Schmitt, Skiera i Van den Bulte, 2011",
+  "mechanizm": "dopasowanie przez znajomego"
+ },
+ {
+  "data": "2026-11-14",
+  "godz": "09:00",
+  "kod": "C11",
+  "filar": 1,
+  "okladka": "WIDEŁKI ZAMIAST LICZBY",
+  "zrodlo": "Nukezhanov i Chung, 2019",
+  "mechanizm": "widelki obnizki"
+ },
+ {
+  "data": "2026-11-14",
+  "godz": "13:00",
+  "kod": "D2",
+  "filar": 2,
+  "okladka": "WIDEO SPRZEDAJE OBOK",
+  "zrodlo": "Kumar i Tan, 2015",
+  "mechanizm": "wideo sprzedaje zestaw"
+ },
+ {
+  "data": "2026-11-14",
+  "godz": "18:00",
+  "kod": "L10",
+  "filar": 1,
+  "okladka": "UDZIAŁ W KARCIE",
+  "zrodlo": "Garnett i in., 2019",
+  "mechanizm": "udzial opcji w karcie"
+ },
+ {
+  "data": "2026-11-15",
+  "godz": "09:00",
+  "kod": "D7",
+  "filar": 2,
+  "okladka": "PALEC KONTRA MYSZKA",
+  "zrodlo": "Shen, Zhang i Krishna, 2016",
+  "mechanizm": "dotyk ekranu"
+ },
+ {
+  "data": "2026-11-15",
+  "godz": "13:00",
+  "kod": "C3",
+  "filar": 1,
+  "okladka": "MAŁA CZCIONKA CENY",
+  "zrodlo": "Coulter i Coulter, 2005",
+  "mechanizm": "rozmiar czcionki ceny"
+ },
+ {
+  "data": "2026-11-15",
+  "godz": "18:00",
+  "kod": "U2",
+  "filar": 3,
+  "okladka": "DALEKI TERMIN PRZEPADA",
+  "zrodlo": "Shour i in., 2023",
+  "mechanizm": "dystans do terminu"
+ },
+ {
+  "data": "2026-11-16",
+  "godz": "09:00",
+  "kod": "C14",
+  "filar": 1,
+  "okladka": "PEWNOŚĆ ZAMIAST CENNIKA",
+  "zrodlo": "Dowling, Stich i Spann, 2021",
+  "mechanizm": "pewnosc co do wlasnego zuzycia"
+ },
+ {
+  "data": "2026-11-16",
+  "godz": "13:00",
+  "kod": "D6",
+  "filar": 2,
+  "okladka": "250 MS BEZ EFEKTU",
+  "zrodlo": "Kohavi, Deng, Longbotham i Xu, 2014",
+  "mechanizm": "krytyczna czesc strony"
+ },
+ {
+  "data": "2026-11-16",
+  "godz": "18:00",
+  "kod": "C13",
+  "filar": 1,
+  "okladka": "PROCENT CZY KWOTA",
+  "zrodlo": "Zong i Duan, 2021",
+  "mechanizm": "procent czy kwota"
+ },
+ {
+  "data": "2026-11-17",
+  "godz": "09:00",
+  "kod": "L1",
+  "filar": 2,
+  "okladka": "UCHWYT WÓZKA RZĄDZI",
+  "zrodlo": "Estes i Streicher, 2022",
+  "mechanizm": "napiecie miesni ramion"
+ },
+ {
+  "data": "2026-11-17",
+  "godz": "13:00",
+  "kod": "U4",
+  "filar": 1,
+  "okladka": "ZNIŻKA ZABIJA FREKWENCJĘ",
+  "zrodlo": "Arkes i Blumer, 1985",
+  "mechanizm": "koszt utopiony"
+ },
+ {
+  "data": "2026-11-17",
+  "godz": "18:00",
+  "kod": "D4",
+  "filar": 3,
+  "okladka": "ODPOWIEDŹ WARTA 0,12",
+  "zrodlo": "Proserpio i Zervas, 2017",
+  "mechanizm": "odpowiedz na opinie"
+ },
+ {
+  "data": "2026-11-18",
+  "godz": "09:00",
+  "kod": "C4",
+  "filar": 1,
+  "okladka": "JEDNOSTKA NA METCE",
+  "zrodlo": "Ohlwein, 2020",
+  "mechanizm": "jednostka miary ceny"
+ },
+ {
+  "data": "2026-11-18",
+  "godz": "13:00",
+  "kod": "L2",
+  "filar": 2,
+  "okladka": "EKRAN DZIAŁA DALEJ",
+  "zrodlo": "Nanni i Ordanini, 2024",
+  "mechanizm": "przypomnienie poza dzialem"
+ },
+ {
+  "data": "2026-11-18",
+  "godz": "18:00",
+  "kod": "U5",
+  "filar": 1,
+  "okladka": "PŁACĄ BEZ DECYZJI",
+  "zrodlo": "Einav, Klopack i Mahoney, 2023",
+  "mechanizm": "moment wymuszonej decyzji"
+ },
+ {
+  "data": "2026-11-19",
+  "godz": "09:00",
+  "kod": "D10",
+  "filar": 2,
+  "okladka": "1,2 SKLEPU",
+  "zrodlo": "De los Santos, Hortacsu i Wildenbeest, 2012",
+  "mechanizm": "brak porownania"
+ },
+ {
+  "data": "2026-11-19",
+  "godz": "13:00",
+  "kod": "U7",
+  "filar": 1,
+  "okladka": "BON WYBIERA ZA CIEBIE",
+  "zrodlo": "Reinholtz, Bartels i Parker, 2015",
+  "mechanizm": "bon prowadzi wybor"
+ },
+ {
+  "data": "2026-11-19",
+  "godz": "18:00",
+  "kod": "U3",
+  "filar": 3,
+  "okladka": "GODZINA KOSZTUJE",
+  "zrodlo": "Mangold i in., 2019",
+  "mechanizm": "zmeczenie dnia"
+ },
+ {
+  "data": "2026-11-20",
+  "godz": "09:00",
+  "kod": "P1",
+  "filar": 1,
+  "okladka": "RABAT LICZONY DWA RAZY",
+  "zrodlo": "Cheng i Cryder, 2018",
+  "mechanizm": "rabat liczony dwukrotnie"
+ },
+ {
+  "data": "2026-11-20",
+  "godz": "13:00",
+  "kod": "L3",
+  "filar": 2,
+  "okladka": "OSIEM METRÓW OD DRZWI",
+  "zrodlo": "Vogel i in., 2026",
+  "mechanizm": "odleglosc od wejscia"
+ },
+ {
+  "data": "2026-11-20",
+  "godz": "18:00",
+  "kod": "C7",
+  "filar": 1,
+  "okladka": "OKRĄGŁA CENA",
+  "zrodlo": "Wadhwa i Zhang, 2015",
+  "mechanizm": "gladkosc liczby"
+ },
+ {
+  "data": "2026-11-21",
+  "godz": "09:00",
+  "kod": "L4",
+  "filar": 2,
+  "okladka": "UBRANIA GINĄ W KABINIE",
+  "zrodlo": "Lee, Kesavan i Deshpande, 2021",
+  "mechanizm": "znikajacy towar z polki"
+ },
+ {
+  "data": "2026-11-21",
+  "godz": "13:00",
+  "kod": "U9",
+  "filar": 1,
+  "okladka": "40% PAKIETU PRZEPADA",
+  "zrodlo": "Liu, Zhang i Zou, 2026",
+  "mechanizm": "niewykorzystana przedplata"
+ },
+ {
+  "data": "2026-11-21",
+  "godz": "18:00",
+  "kod": "D8",
+  "filar": 3,
+  "okladka": "BOT Z IMIENIEM SZKODZI",
+  "zrodlo": "Crolic, Thomaz, Hadi i Stephen, 2022",
+  "mechanizm": "bot z ludzka twarza"
+ },
+ {
+  "data": "2026-11-22",
+  "godz": "09:00",
+  "kod": "P4",
+  "filar": 1,
+  "okladka": "RATA ROZLUŹNIA KOSZYK",
+  "zrodlo": "Maesen i Ang, 2025",
+  "mechanizm": "rata rozluznia budzet"
+ },
+ {
+  "data": "2026-11-22",
+  "godz": "13:00",
+  "kod": "L5",
+  "filar": 2,
+  "okladka": "PUSTE PÓŁKI PRZY KASIE",
+  "zrodlo": "Ejlerskov i in., 2018",
+  "mechanizm": "zasieg reki przy kasie"
+ },
+ {
+  "data": "2026-11-22",
+  "godz": "18:00",
+  "kod": "P2",
+  "filar": 1,
+  "okladka": "KUPON JAKO PRZYPOMNIENIE",
+  "zrodlo": "Sahni, Zou i Chintagunta, 2017",
+  "mechanizm": "kupon jako przypomnienie"
+ },
+ {
+  "data": "2026-11-23",
+  "godz": "09:00",
+  "kod": "L7",
+  "filar": 2,
+  "okladka": "KTOŚ STOI ZA TOBĄ",
+  "zrodlo": "Zhou i Soman, 2003",
+  "mechanizm": "kolejka za plecami"
+ },
+ {
+  "data": "2026-11-23",
+  "godz": "13:00",
+  "kod": "P6",
+  "filar": 1,
+  "okladka": "ZBYT CELNA REKLAMA",
+  "zrodlo": "Lambrecht i Tucker, 2013",
+  "mechanizm": "zbyt celna reklama"
+ },
+ {
+  "data": "2026-11-23",
+  "godz": "18:00",
+  "kod": "P5",
+  "filar": 3,
+  "okladka": "ODEBRANY STATUS BOLI",
+  "zrodlo": "Wagner, Hennig-Thurau i Rudolph, 2009",
+  "mechanizm": "odebrany status"
+ },
+ {
+  "data": "2026-11-24",
+  "godz": "09:00",
+  "kod": "P7",
+  "filar": 1,
+  "okladka": "PROMOCJA ŚCIĄGA ZWROTY",
+  "zrodlo": "Shehu, Papies i Neslin, 2020",
+  "mechanizm": "promocja sciaga zwroty"
+ },
+ {
+  "data": "2026-11-24",
+  "godz": "13:00",
+  "kod": "L8",
+  "filar": 2,
+  "okladka": "PRÓBKA ZAMIAST KOSZYKA",
+  "zrodlo": "Heilman, Lakishyk i Radas, 2011",
+  "mechanizm": "podmiana w koszyku"
+ },
+ {
+  "data": "2026-11-24",
+  "godz": "18:00",
+  "kod": "P11",
+  "filar": 1,
+  "okladka": "PRÓG ZABIJA ZAKUP",
+  "zrodlo": "Cheng i Stadler Blank, 2025",
+  "mechanizm": "prog zabija zakup"
+ },
+ {
+  "data": "2026-11-25",
+  "godz": "09:00",
+  "kod": "L6",
+  "filar": 2,
+  "okladka": "TELEFON ZJADA KASĘ",
+  "zrodlo": "Grewal i in., 2018",
+  "mechanizm": "uwaga zajeta przy kasie"
+ },
+ {
+  "data": "2026-11-25",
+  "godz": "13:00",
+  "kod": "P3",
+  "filar": 1,
+  "okladka": "ZWROT WRACA",
+  "zrodlo": "Vana, Lambrecht i Bertini, 2018",
+  "mechanizm": "wyplata jak premia"
+ },
+ {
+  "data": "2026-11-25",
+  "godz": "18:00",
+  "kod": "D9",
+  "filar": 3,
+  "okladka": "IMIĘ W TEMACIE",
+  "zrodlo": "Sahni, Wheeler i Chintagunta, 2018",
+  "mechanizm": "imie w temacie"
+ },
+ {
+  "data": "2026-11-26",
+  "godz": "09:00",
+  "kod": "P13",
+  "filar": 1,
+  "okladka": "GRATIS Z HACZYKIEM",
+  "zrodlo": "Dallas i Morwitz, 2018",
+  "mechanizm": "niedoszacowany koszt niepieniezny"
+ },
+ {
+  "data": "2026-11-26",
+  "godz": "13:00",
+  "kod": "L11",
+  "filar": 2,
+  "okladka": "OSIEM STOPNI WIĘCEJ",
+  "zrodlo": "Zwebner, Lee i Goldenberg, 2014",
+  "mechanizm": "cieplo podnosi wycene"
+ },
+ {
+  "data": "2026-11-26",
+  "godz": "18:00",
+  "kod": "P8",
+  "filar": 1,
+  "okladka": "DŁUŻSZY ZWROT, MNIEJ ZWROTÓW",
+  "zrodlo": "Janakiraman i Ordonez, 2012",
+  "mechanizm": "odkladanie zwrotu"
+ },
+ {
+  "data": "2026-11-27",
+  "godz": "09:00",
+  "kod": "U8",
+  "filar": 2,
+  "okladka": "PRZERWA DODAJE WARTOŚCI",
+  "zrodlo": "Nelson, Meyvis i Galak, 2009",
+  "mechanizm": "przerwa odswieza przyjemnosc"
+ },
+ {
+  "data": "2026-11-27",
+  "godz": "13:00",
+  "kod": "P12",
+  "filar": 1,
+  "okladka": "WYTRENOWANY ŁOWCA",
+  "zrodlo": "Elberg, Gardete, Macera i Noton, 2019",
+  "mechanizm": "trening lowcy promocji"
+ },
+ {
+  "data": "2026-11-27",
+  "godz": "18:00",
+  "kod": "U1",
+  "filar": 3,
+  "okladka": "JEDNO ZDANIE W SMS",
+  "zrodlo": "Hallsworth i in., 2015",
+  "mechanizm": "konkretna cudza strata"
+ },
+ {
+  "data": "2026-11-28",
+  "godz": "09:00",
+  "kod": "P9",
+  "filar": 1,
+  "okladka": "PREZENT TRACI WARTOŚĆ",
+  "zrodlo": "Waldfogel, 1993",
+  "mechanizm": "wycena przez biorce"
+ },
+ {
+  "data": "2026-11-28",
+  "godz": "13:00",
+  "kod": "D5",
+  "filar": 2,
+  "okladka": "FRAZA ZA KLIENTA",
+  "zrodlo": "Sun, 2025",
+  "mechanizm": "podpowiedz w wyszukiwarce"
+ },
+ {
+  "data": "2026-11-28",
+  "godz": "18:00",
+  "kod": "L9",
+  "filar": 1,
+  "okladka": "MARTWA STREFA KARTY",
+  "zrodlo": "Dayan i Bar-Hillel, 2011",
+  "mechanizm": "krance listy"
+ },
+ {
+  "data": "2026-11-29",
+  "godz": "09:00",
+  "kod": "C12",
+  "filar": 1,
+  "okladka": "WYJĘTE Z ZESTAWU",
+  "zrodlo": "Shaddy i Fishbach, 2017",
+  "mechanizm": "wyjecie z zestawu"
+ }
+]

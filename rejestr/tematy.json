@@ -495,24 +495,6 @@
   "mechanizm": "marka zmienia smak"
  },
  {
-  "rolka": "r213",
-  "data": "2026-11-13",
-  "godz": "09:00",
-  "status": "wycofana",
-  "slug": "dzemy-2",
-  "zrodlo": "Iyengar i Lepper, 2000",
-  "mechanizm": "paradoks wyboru"
- },
- {
-  "rolka": "r217",
-  "data": "2026-11-13",
-  "godz": "13:00",
-  "status": "wycofana",
-  "slug": "wino-muzyka",
-  "zrodlo": "North, Hargreaves i McKendrick, 1997",
-  "mechanizm": "muzyka steruje wyborem"
- },
- {
   "rolka": "r215",
   "data": "2026-11-09",
   "godz": "09:00",
@@ -531,15 +513,6 @@
   "mechanizm": "regula szczytu i konca"
  },
  {
-  "rolka": "r211",
-  "data": "2026-11-13",
-  "godz": "18:00",
-  "status": "wycofana",
-  "slug": "pieczatki-kawiarnia",
-  "zrodlo": "Kivetz, Urminsky i Zheng, 2006",
-  "mechanizm": "gradient celu"
- },
- {
   "rolka": "r212",
   "data": "2026-11-09",
   "godz": "18:00",
@@ -547,5 +520,527 @@
   "slug": "termin-5-dni",
   "zrodlo": "Tversky i Shafir, 1992",
   "mechanizm": "termin wymusza decyzje"
+ },
+ {
+  "rolka": "C1",
+  "data": "2026-11-10",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "cena-bez-waluty",
+  "zrodlo": "Yang, Kimes i Sessarego, 2009",
+  "mechanizm": "symbol waluty"
+ },
+ {
+  "rolka": "L12",
+  "data": "2026-11-10",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "tłok-włącza-ostrożność",
+  "zrodlo": "Maeng, Tanner i Soman, 2013",
+  "mechanizm": "tlok wlacza ostroznosc"
+ },
+ {
+  "rolka": "C5",
+  "data": "2026-11-10",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "ryczałt-czy-licznik",
+  "zrodlo": "Lambrecht i Skiera, 2006",
+  "mechanizm": "ryczalt zamiast licznika"
+ },
+ {
+  "rolka": "D1",
+  "data": "2026-11-11",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "zdjęcia-dały-9%",
+  "zrodlo": "Zhang, Lee, Singh i Srinivasan, 2016",
+  "mechanizm": "realna waga zdjecia"
+ },
+ {
+  "rolka": "C6",
+  "data": "2026-11-11",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "druga-od-dołu",
+  "zrodlo": "de Meza i Pathania, 2021",
+  "mechanizm": "miejsce w cenniku"
+ },
+ {
+  "rolka": "P10",
+  "data": "2026-11-11",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "gratis-nie-z-tej-półki",
+  "zrodlo": "Marchand, Paul, Hennig-Thurau i Puchner, 2017",
+  "mechanizm": "gratis z wlasnej polki"
+ },
+ {
+  "rolka": "C8",
+  "data": "2026-11-12",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "szeroki-rozrzut-cen",
+  "zrodlo": "Cao i in., 2025",
+  "mechanizm": "rozrzut cen w ofercie"
+ },
+ {
+  "rolka": "D3",
+  "data": "2026-11-12",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "jedna-opinia,--42%",
+  "zrodlo": "Varga i Albuquerque, 2024",
+  "mechanizm": "jedna opinia kontra srednia"
+ },
+ {
+  "rolka": "C2",
+  "data": "2026-11-12",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "lewo-czy-prawo",
+  "zrodlo": "Park i Jang, 2025",
+  "mechanizm": "kolejnosc czytania ceny"
+ },
+ {
+  "rolka": "L13",
+  "data": "2026-11-13",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "własna-torba,-dwa-efekty",
+  "zrodlo": "Karmarkar i Bollinger, 2015",
+  "mechanizm": "licencja moralna"
+ },
+ {
+  "rolka": "C10",
+  "data": "2026-11-13",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "pięć-dziennie",
+  "zrodlo": "Hershfield, Shu i Benartzi, 2019",
+  "mechanizm": "rozbicie kwoty na dni"
+ },
+ {
+  "rolka": "U6",
+  "data": "2026-11-13",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "polecony-wart-więcej",
+  "zrodlo": "Schmitt, Skiera i Van den Bulte, 2011",
+  "mechanizm": "dopasowanie przez znajomego"
+ },
+ {
+  "rolka": "C11",
+  "data": "2026-11-14",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "widełki-zamiast-liczby",
+  "zrodlo": "Nukezhanov i Chung, 2019",
+  "mechanizm": "widelki obnizki"
+ },
+ {
+  "rolka": "D2",
+  "data": "2026-11-14",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "wideo-sprzedaje-obok",
+  "zrodlo": "Kumar i Tan, 2015",
+  "mechanizm": "wideo sprzedaje zestaw"
+ },
+ {
+  "rolka": "L10",
+  "data": "2026-11-14",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "udział-w-karcie",
+  "zrodlo": "Garnett i in., 2019",
+  "mechanizm": "udzial opcji w karcie"
+ },
+ {
+  "rolka": "D7",
+  "data": "2026-11-15",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "palec-kontra-myszka",
+  "zrodlo": "Shen, Zhang i Krishna, 2016",
+  "mechanizm": "dotyk ekranu"
+ },
+ {
+  "rolka": "C3",
+  "data": "2026-11-15",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "mała-czcionka-ceny",
+  "zrodlo": "Coulter i Coulter, 2005",
+  "mechanizm": "rozmiar czcionki ceny"
+ },
+ {
+  "rolka": "U2",
+  "data": "2026-11-15",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "daleki-termin-przepada",
+  "zrodlo": "Shour i in., 2023",
+  "mechanizm": "dystans do terminu"
+ },
+ {
+  "rolka": "C14",
+  "data": "2026-11-16",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "pewność-zamiast-cennika",
+  "zrodlo": "Dowling, Stich i Spann, 2021",
+  "mechanizm": "pewnosc co do wlasnego zuzycia"
+ },
+ {
+  "rolka": "D6",
+  "data": "2026-11-16",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "250-ms-bez-efektu",
+  "zrodlo": "Kohavi, Deng, Longbotham i Xu, 2014",
+  "mechanizm": "krytyczna czesc strony"
+ },
+ {
+  "rolka": "C13",
+  "data": "2026-11-16",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "procent-czy-kwota",
+  "zrodlo": "Zong i Duan, 2021",
+  "mechanizm": "procent czy kwota"
+ },
+ {
+  "rolka": "L1",
+  "data": "2026-11-17",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "uchwyt-wózka-rządzi",
+  "zrodlo": "Estes i Streicher, 2022",
+  "mechanizm": "napiecie miesni ramion"
+ },
+ {
+  "rolka": "U4",
+  "data": "2026-11-17",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "zniżka-zabija-frekwencję",
+  "zrodlo": "Arkes i Blumer, 1985",
+  "mechanizm": "koszt utopiony"
+ },
+ {
+  "rolka": "D4",
+  "data": "2026-11-17",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "odpowiedź-warta-0,12",
+  "zrodlo": "Proserpio i Zervas, 2017",
+  "mechanizm": "odpowiedz na opinie"
+ },
+ {
+  "rolka": "C4",
+  "data": "2026-11-18",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "jednostka-na-metce",
+  "zrodlo": "Ohlwein, 2020",
+  "mechanizm": "jednostka miary ceny"
+ },
+ {
+  "rolka": "L2",
+  "data": "2026-11-18",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "ekran-działa-dalej",
+  "zrodlo": "Nanni i Ordanini, 2024",
+  "mechanizm": "przypomnienie poza dzialem"
+ },
+ {
+  "rolka": "U5",
+  "data": "2026-11-18",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "płacą-bez-decyzji",
+  "zrodlo": "Einav, Klopack i Mahoney, 2023",
+  "mechanizm": "moment wymuszonej decyzji"
+ },
+ {
+  "rolka": "D10",
+  "data": "2026-11-19",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "1,2-sklepu",
+  "zrodlo": "De los Santos, Hortacsu i Wildenbeest, 2012",
+  "mechanizm": "brak porownania"
+ },
+ {
+  "rolka": "U7",
+  "data": "2026-11-19",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "bon-wybiera-za-ciebie",
+  "zrodlo": "Reinholtz, Bartels i Parker, 2015",
+  "mechanizm": "bon prowadzi wybor"
+ },
+ {
+  "rolka": "U3",
+  "data": "2026-11-19",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "godzina-kosztuje",
+  "zrodlo": "Mangold i in., 2019",
+  "mechanizm": "zmeczenie dnia"
+ },
+ {
+  "rolka": "P1",
+  "data": "2026-11-20",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "rabat-liczony-dwa-razy",
+  "zrodlo": "Cheng i Cryder, 2018",
+  "mechanizm": "rabat liczony dwukrotnie"
+ },
+ {
+  "rolka": "L3",
+  "data": "2026-11-20",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "osiem-metrów-od-drzwi",
+  "zrodlo": "Vogel i in., 2026",
+  "mechanizm": "odleglosc od wejscia"
+ },
+ {
+  "rolka": "C7",
+  "data": "2026-11-20",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "okrągła-cena",
+  "zrodlo": "Wadhwa i Zhang, 2015",
+  "mechanizm": "gladkosc liczby"
+ },
+ {
+  "rolka": "L4",
+  "data": "2026-11-21",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "ubrania-giną-w-kabinie",
+  "zrodlo": "Lee, Kesavan i Deshpande, 2021",
+  "mechanizm": "znikajacy towar z polki"
+ },
+ {
+  "rolka": "U9",
+  "data": "2026-11-21",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "40%-pakietu-przepada",
+  "zrodlo": "Liu, Zhang i Zou, 2026",
+  "mechanizm": "niewykorzystana przedplata"
+ },
+ {
+  "rolka": "D8",
+  "data": "2026-11-21",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "bot-z-imieniem-szkodzi",
+  "zrodlo": "Crolic, Thomaz, Hadi i Stephen, 2022",
+  "mechanizm": "bot z ludzka twarza"
+ },
+ {
+  "rolka": "P4",
+  "data": "2026-11-22",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "rata-rozluźnia-koszyk",
+  "zrodlo": "Maesen i Ang, 2025",
+  "mechanizm": "rata rozluznia budzet"
+ },
+ {
+  "rolka": "L5",
+  "data": "2026-11-22",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "puste-półki-przy-kasie",
+  "zrodlo": "Ejlerskov i in., 2018",
+  "mechanizm": "zasieg reki przy kasie"
+ },
+ {
+  "rolka": "P2",
+  "data": "2026-11-22",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "kupon-jako-przypomnienie",
+  "zrodlo": "Sahni, Zou i Chintagunta, 2017",
+  "mechanizm": "kupon jako przypomnienie"
+ },
+ {
+  "rolka": "L7",
+  "data": "2026-11-23",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "ktoś-stoi-za-tobą",
+  "zrodlo": "Zhou i Soman, 2003",
+  "mechanizm": "kolejka za plecami"
+ },
+ {
+  "rolka": "P6",
+  "data": "2026-11-23",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "zbyt-celna-reklama",
+  "zrodlo": "Lambrecht i Tucker, 2013",
+  "mechanizm": "zbyt celna reklama"
+ },
+ {
+  "rolka": "P5",
+  "data": "2026-11-23",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "odebrany-status-boli",
+  "zrodlo": "Wagner, Hennig-Thurau i Rudolph, 2009",
+  "mechanizm": "odebrany status"
+ },
+ {
+  "rolka": "P7",
+  "data": "2026-11-24",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "promocja-ściąga-zwroty",
+  "zrodlo": "Shehu, Papies i Neslin, 2020",
+  "mechanizm": "promocja sciaga zwroty"
+ },
+ {
+  "rolka": "L8",
+  "data": "2026-11-24",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "próbka-zamiast-koszyka",
+  "zrodlo": "Heilman, Lakishyk i Radas, 2011",
+  "mechanizm": "podmiana w koszyku"
+ },
+ {
+  "rolka": "P11",
+  "data": "2026-11-24",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "próg-zabija-zakup",
+  "zrodlo": "Cheng i Stadler Blank, 2025",
+  "mechanizm": "prog zabija zakup"
+ },
+ {
+  "rolka": "L6",
+  "data": "2026-11-25",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "telefon-zjada-kasę",
+  "zrodlo": "Grewal i in., 2018",
+  "mechanizm": "uwaga zajeta przy kasie"
+ },
+ {
+  "rolka": "P3",
+  "data": "2026-11-25",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "zwrot-wraca",
+  "zrodlo": "Vana, Lambrecht i Bertini, 2018",
+  "mechanizm": "wyplata jak premia"
+ },
+ {
+  "rolka": "D9",
+  "data": "2026-11-25",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "imię-w-temacie",
+  "zrodlo": "Sahni, Wheeler i Chintagunta, 2018",
+  "mechanizm": "imie w temacie"
+ },
+ {
+  "rolka": "P13",
+  "data": "2026-11-26",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "gratis-z-haczykiem",
+  "zrodlo": "Dallas i Morwitz, 2018",
+  "mechanizm": "niedoszacowany koszt niepieniezny"
+ },
+ {
+  "rolka": "L11",
+  "data": "2026-11-26",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "osiem-stopni-więcej",
+  "zrodlo": "Zwebner, Lee i Goldenberg, 2014",
+  "mechanizm": "cieplo podnosi wycene"
+ },
+ {
+  "rolka": "P8",
+  "data": "2026-11-26",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "dłuższy-zwrot,-mniej-zwrotów",
+  "zrodlo": "Janakiraman i Ordonez, 2012",
+  "mechanizm": "odkladanie zwrotu"
+ },
+ {
+  "rolka": "U8",
+  "data": "2026-11-27",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "przerwa-dodaje-wartości",
+  "zrodlo": "Nelson, Meyvis i Galak, 2009",
+  "mechanizm": "przerwa odswieza przyjemnosc"
+ },
+ {
+  "rolka": "P12",
+  "data": "2026-11-27",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "wytrenowany-łowca",
+  "zrodlo": "Elberg, Gardete, Macera i Noton, 2019",
+  "mechanizm": "trening lowcy promocji"
+ },
+ {
+  "rolka": "U1",
+  "data": "2026-11-27",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "jedno-zdanie-w-sms",
+  "zrodlo": "Hallsworth i in., 2015",
+  "mechanizm": "konkretna cudza strata"
+ },
+ {
+  "rolka": "P9",
+  "data": "2026-11-28",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "prezent-traci-wartość",
+  "zrodlo": "Waldfogel, 1993",
+  "mechanizm": "wycena przez biorce"
+ },
+ {
+  "rolka": "D5",
+  "data": "2026-11-28",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "fraza-za-klienta",
+  "zrodlo": "Sun, 2025",
+  "mechanizm": "podpowiedz w wyszukiwarce"
+ },
+ {
+  "rolka": "L9",
+  "data": "2026-11-28",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "martwa-strefa-karty",
+  "zrodlo": "Dayan i Bar-Hillel, 2011",
+  "mechanizm": "krance listy"
+ },
+ {
+  "rolka": "C12",
+  "data": "2026-11-29",
+  "godz": "09:00",
+  "status": "planowana",
+  "slug": "wyjęte-z-zestawu",
+  "zrodlo": "Shaddy i Fishbach, 2017",
+  "mechanizm": "wyjecie z zestawu"
  }
 ]
