@@ -1,0 +1,110 @@
+[
+ {
+  "nr": "U1",
+  "filar": 3,
+  "hook": "Jedno zdanie dopisane do SMS-a zbiło nieodwołane wizyty z 11% do 8%.",
+  "okladka": "JEDNO ZDANIE W SMS",
+  "eksperyment": "10 111 umówionych osób, losowo jedna z czterech wersji SMS-a wysyłanego 5 dni przed terminem",
+  "zrodlo": "Hallsworth i in., 2015",
+  "liczby": "zwykły SMS 11,1% nieobecności; SMS z podaną kwotą straty 8,4%; powtórka na 9848 osobach dała 8,2%",
+  "mechanizm": "konkretna cudza strata",
+  "rada": "W przypomnieniu podaj jedną liczbę, ile traci firma, gdy termin przepada, zamiast pisać ogólnie o odwoływaniu.",
+  "link": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0137306"
+ },
+ {
+  "nr": "U2",
+  "filar": 3,
+  "hook": "Termin umówiony na ponad dwa miesiące naprzód przepada prawie dwa razy częściej niż bliski.",
+  "okladka": "DALEKI TERMIN PRZEPADA",
+  "eksperyment": "1 260 083 wizyty 263 464 osób; porównano frekwencję według odstępu między rezerwacją a terminem",
+  "zrodlo": "Shour i in., 2023",
+  "liczby": "0-15 dni: 4,31% nieobecności; 16-30 dni: 6,10%; 31-60 dni: 7,41%; powyżej 60 dni: 7,73%",
+  "mechanizm": "dystans do terminu",
+  "rada": "Nie zapisuj klienta na odległy termin, jeśli masz bliższy wolny - im dłuższy odstęp, tym częściej nie przyjdzie.",
+  "link": "https://dx.doi.org/10.1186/s12913-023-09969-5"
+ },
+ {
+  "nr": "U3",
+  "filar": 3,
+  "hook": "Terminy po południu przepadały w 29% przypadków, poranne w 25%, a piątkowe popołudnia w 32%.",
+  "okladka": "GODZINA KOSZTUJE",
+  "eksperyment": "136 531 umówionych terminów 17 978 osób; frekwencja według godziny i dnia tygodnia",
+  "zrodlo": "Mangold i in., 2019",
+  "liczby": "przed 12:00 - 25,0%; po 13:00 - 28,6%; piątek po południu 31,8%",
+  "mechanizm": "zmeczenie dnia",
+  "rada": "Najdroższe usługi i nowych klientów wstawiaj na rano, a popołudnia dopełniaj stałymi klientami.",
+  "link": "https://www.physicianleaders.org/articles/temporal-characteristics-missed-clinic-appointments-academic-center-west-texas"
+ },
+ {
+  "nr": "U4",
+  "filar": 1,
+  "hook": "Kto zapłacił pełną cenę za karnet, przyszedł na 4 z 5 spektakli. Kto dostał zniżkę - na 3.",
+  "okladka": "ZNIŻKA ZABIJA FREKWENCJĘ",
+  "eksperyment": "54 nabywców karnetów losowo dostawało pełną cenę, małą zniżkę albo dużą zniżkę; mierzono realną obecność",
+  "zrodlo": "Arkes i Blumer, 1985",
+  "liczby": "pełna cena 4,11 spektaklu; mała zniżka 3,32; duża zniżka 3,29",
+  "mechanizm": "koszt utopiony",
+  "rada": "Weź symboliczny zadatek zamiast dawać rabat na start - kto zapłacił pełną kwotę, po prostu przychodzi.",
+  "link": "https://cognition.aau.at/bg/BA/Arkes%20%26%20Blumer%201985.pdf"
+ },
+ {
+  "nr": "U5",
+  "filar": 1,
+  "hook": "W typowym miesiącu tylko 11% płacących abonament w ogóle zastanawia się, czy go zostawić.",
+  "okladka": "PŁACĄ BEZ DECYZJI",
+  "eksperyment": "800 545 kont kartowych i 10 usług abonamentowych; porównano rezygnacje w miesiącu wymiany karty z pozostałymi",
+  "zrodlo": "Einav, Klopack i Mahoney, 2023",
+  "liczby": "uwaga abonenta średnio 0,111 wobec 1,0 przy pełnej uwadze; nieuwaga podnosi przychód usług o 14% do ponad 200%",
+  "mechanizm": "moment wymuszonej decyzji",
+  "rada": "Nie licz, że abonament utrzyma się sam - raz na kwartał sam pokaż klientowi, co z niego wykorzystał.",
+  "link": "https://www.nber.org/system/files/working_papers/w31547/w31547.pdf"
+ },
+ {
+  "nr": "U6",
+  "filar": 3,
+  "hook": "Klient z polecenia był wart firmie o 16% więcej niż identyczny klient zdobyty inaczej.",
+  "okladka": "POLECONY WART WIĘCEJ",
+  "eksperyment": "blisko 10 000 klientów śledzonych prawie 3 lata; porównano osoby z programu poleceń z osobami o takich samych cechach",
+  "zrodlo": "Schmitt, Skiera i Van den Bulte, 2011",
+  "liczby": "wartość klienta wyższa o 16%; aktywnych po 33 miesiącach 82,0% poleconych wobec 79,2% pozostałych",
+  "mechanizm": "dopasowanie przez znajomego",
+  "rada": "Program poleceń to nie tani sposób na nowych klientów, tylko sposób na lepszych - polecony zostaje dłużej.",
+  "link": "https://faculty.wharton.upenn.edu/wp-content/uploads/2012/04/Schmitt-Skiera-vandenBulte-2011-Referral-Programs-Customer-Value.pdf"
+ },
+ {
+  "nr": "U7",
+  "filar": 1,
+  "hook": "Bon do konkretnego miejsca skierował wybór na jego typowy produkt u 68% osób. Bon na dowolne zakupy u 51%.",
+  "okladka": "BON WYBIERA ZA CIEBIE",
+  "eksperyment": "236 osób losowo dostawało bon do konkretnego sklepu albo bon uniwersalny o tej samej wartości i realnie wybierało towar",
+  "zrodlo": "Reinholtz, Bartels i Parker, 2015",
+  "liczby": "bon do miejsca: 68% wybrało produkt typowy dla tego miejsca; bon uniwersalny: 51%",
+  "mechanizm": "bon prowadzi wybor",
+  "rada": "Kartę podarunkową wystawiaj na swoje konkretne usługi, a nie na dowolną kwotę - obdarowany wybierze to, z czego jesteś znany.",
+  "link": "https://home.uchicago.edu/~bartels/papers/Reinholtz-Bartels-Parker-2015-JCR.pdf"
+ },
+ {
+  "nr": "U8",
+  "filar": 2,
+  "hook": "Za to samo nagranie przerwane w środku ludzie chcieli zapłacić więcej niż za wersję bez przerwy.",
+  "okladka": "PRZERWA DODAJE WARTOŚCI",
+  "eksperyment": "102 osoby losowo obejrzały ten sam materiał z jedną przerwą albo bez niej; mierzono ocenę i gotowość do zapłaty",
+  "zrodlo": "Nelson, Meyvis i Galak, 2009",
+  "liczby": "z przerwą ocena 5,38 i gotowość 5,42; bez przerwy 4,47 i 4,18; uczestnicy przewidywali odwrotnie",
+  "mechanizm": "przerwa odswieza przyjemnosc",
+  "rada": "Dłuższą usługę dziel na etapy z krótką przerwą zamiast prowadzić ją jednym ciągiem.",
+  "link": "https://interruptions.net/literature/Nelson-JConsumRes09.pdf"
+ },
+ {
+  "nr": "U9",
+  "filar": 1,
+  "hook": "Z przedpłaconych pakietów klienci nigdy nie wykorzystują około 40% wpłaconej wartości.",
+  "okladka": "40% PAKIETU PRZEPADA",
+  "eksperyment": "dane transakcyjne ponad 4 mln konsumentów programu przedpłat w gastronomii",
+  "zrodlo": "Liu, Zhang i Zou, 2026",
+  "liczby": "około 40% przedpłaconej wartości nigdy niewykorzystane; mediana lokalu zarabia 5,5 dolara na każdym dolarze bonusu",
+  "mechanizm": "niewykorzystana przedplata",
+  "rada": "Sprzedając pakiet wizyt, pilnuj, żeby klient go wykorzystał - niewykorzystane wizyty wyglądają na zysk, a są straconymi powrotami.",
+  "link": "https://www.nber.org/papers/w34918"
+ }
+]

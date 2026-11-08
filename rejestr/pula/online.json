@@ -1,0 +1,122 @@
+[
+ {
+  "nr": "D1",
+  "filar": 2,
+  "hook": "Platforma obiecywała 2,5 raza więcej rezerwacji za zdjęcia od fotografa. Pomiar dał 9%.",
+  "okladka": "ZDJĘCIA DAŁY 9%",
+  "eksperyment": "410 ofert ze zdjęciami od zawodowego fotografa kontra 12 224 oferty kontrolne, 17 800 pokoi, 7 miast",
+  "zrodlo": "Zhang, Lee, Singh i Srinivasan, 2016",
+  "liczby": "+9% rezerwacji; po uwzględnieniu opinii efekt spada o połowę i przestaje być istotny",
+  "mechanizm": "realna waga zdjecia",
+  "rada": "Zrób porządne zdjęcia, ale nie licz, że same pociągną sprzedaż - bez opinii ich efekt topnieje o połowę.",
+  "link": "https://core.ac.uk/download/301370269.pdf"
+ },
+ {
+  "nr": "D2",
+  "filar": 2,
+  "hook": "Wideo przy produkcie podniosło jego sprzedaż o 14%, a sprzedaż akcesoriów obok o 28%.",
+  "okladka": "WIDEO SPRZEDAJE OBOK",
+  "eksperyment": "sklep odzieżowy, wideo dodane losowo do 66 z 319 produktów, 28 tygodni sprzedaży",
+  "zrodlo": "Kumar i Tan, 2015",
+  "liczby": "produkt z wideo +14,5%; akcesoria obok +28,3%; efekt znika po usunięciu wideo",
+  "mechanizm": "wideo sprzedaje zestaw",
+  "rada": "Nagraj krótkie wideo pokazujące produkt albo usługę w zestawie z dodatkiem - dodatek zarobi więcej niż bohater nagrania.",
+  "link": "https://ceibs.edu/sites/portal.prod1.dpmgr.ceibs.edu/files/2015%20MS%20Online%20Video.pdf"
+ },
+ {
+  "nr": "D3",
+  "filar": 2,
+  "hook": "Jedna negatywna opinia przy wysokiej średniej obniżyła szansę zakupu o 42%.",
+  "okladka": "JEDNA OPINIA, -42%",
+  "eksperyment": "121 391 klientów sklepu, 400 126 wizyt na kartach produktów; nowa opinia wypycha najstarszą na drugą stronę",
+  "zrodlo": "Varga i Albuquerque, 2024",
+  "liczby": "-41,8% szansy zakupu; każda kolejna -26,9%; wizyty u konkurenta +9,65%",
+  "mechanizm": "jedna opinia kontra srednia",
+  "rada": "Nie zostawiaj jednej skargi bez odpowiedzi i bez naprawy - przy wysokiej średniej właśnie ona kosztuje najwięcej.",
+  "link": "https://iris.unibocconi.it/bitstream/11565/4059196/1/Negative_reviews_main_-_FINAL.pdf"
+ },
+ {
+  "nr": "D4",
+  "filar": 3,
+  "hook": "Firmy, które zaczęły odpowiadać na opinie, dostały 12% więcej opinii i 0,12 gwiazdki wyżej.",
+  "okladka": "ODPOWIEDŹ WARTA 0,12",
+  "eksperyment": "obiekty, które zaczęły odpowiadać na opinie, kontra te, które nie odpowiadały; dziesiątki tysięcy opinii",
+  "zrodlo": "Proserpio i Zervas, 2017",
+  "liczby": "ocena +0,12 gwiazdki; liczba opinii +12%; negatywnych mniej, ale dłuższe",
+  "mechanizm": "odpowiedz na opinie",
+  "rada": "Odpowiadaj na opinie publicznie i krótko - nie zmieniasz starych ocen, ale zmieniasz to, co napiszą następni.",
+  "link": "https://www.informs.org/News-Room/INFORMS-Releases/News-Releases/Want-to-improve-your-business-s-online-ratings-Make-sure-to-respond-to-reviews"
+ },
+ {
+  "nr": "D5",
+  "filar": 2,
+  "hook": "Wpisanie klientowi gotowej frazy w puste pole wyszukiwania podniosło zakupy o 21%.",
+  "okladka": "FRAZA ZA KLIENTA",
+  "eksperyment": "72 587 klientów aplikacji handlowej; w wyszukiwarce fraza modna, dopasowana, niszowa albo puste pole",
+  "zrodlo": "Sun, 2025",
+  "liczby": "fraza dopasowana: zakupy +21%, wydatki +17%; fraza modna +10,4%; niszowa bez efektu",
+  "mechanizm": "podpowiedz w wyszukiwarce",
+  "rada": "Nie zostawiaj pustej wyszukiwarki ani pustego formularza - wstaw przykład z historii klienta albo najczęstszą sprawę.",
+  "link": "https://www.informs.org/News-Room/INFORMS-Releases/News-Releases/Prepopulated-Search-Bars-Can-Significantly-Boost-Online-Sales-According-to-Research"
+ },
+ {
+  "nr": "D6",
+  "filar": 2,
+  "hook": "Opóźnienie bocznej części strony o 250 milisekund u 20 milionów osób okazało się niewykrywalne.",
+  "okladka": "250 MS BEZ EFEKTU",
+  "eksperyment": "duża wyszukiwarka; 10% użytkowników z opóźnieniem 100 ms, 10% z 250 ms; osobny test opóźniał prawy panel u 20 mln osób",
+  "zrodlo": "Kohavi, Deng, Longbotham i Xu, 2014",
+  "liczby": "100 ms szybciej = +0,6% przychodu; 250 ms w głównej części = -1,5%; 250 ms w bocznej = efekt niewykrywalny",
+  "mechanizm": "krytyczna czesc strony",
+  "rada": "Przyspieszaj to, na co klient patrzy w pierwszej sekundzie - mapka i widgety mogą doładować się później.",
+  "link": "https://exp-platform.com/Documents/2014%20experimentersRulesOfThumb.pdf"
+ },
+ {
+  "nr": "D7",
+  "filar": 2,
+  "hook": "Ten sam deser wybrało 95% osób dotykających ekranu i 73% klikających myszką.",
+  "okladka": "PALEC KONTRA MYSZKA",
+  "eksperyment": "85 osób wybierało sernik albo sałatkę owocową - 40 dotykiem na tablecie, 45 myszką; powtórzone w pięciu badaniach",
+  "zrodlo": "Shen, Zhang i Krishna, 2016",
+  "liczby": "95% kontra 73%; w powtórzeniu 83% kontra 66%; rysik 58%",
+  "mechanizm": "dotyk ekranu",
+  "rada": "Na telefonie wysuwaj na wierzch to, co kupuje się dla przyjemności, a na komputerze pakiety i porównania.",
+  "link": "https://www.bschool.cuhk.edu.hk/wp-content/uploads/computer-interfaces-and-the-direct-touch-effect-paper.pdf"
+ },
+ {
+  "nr": "D8",
+  "filar": 3,
+  "hook": "Nadanie botowi imienia i twarzy obniżyło chęć zakupu u zdenerwowanych klientów z 3,6 do 2,7.",
+  "okladka": "BOT Z IMIENIEM SZKODZI",
+  "eksperyment": "171 osób w reklamacji rozmawiało z botem z avatarem i imieniem albo z neutralnym; wcześniej 461 689 prawdziwych rozmów",
+  "zrodlo": "Crolic, Thomaz, Hadi i Stephen, 2022",
+  "liczby": "zdenerwowani: 2,73 kontra 3,57 na 7; spokojni bez różnicy; po uprzedzeniu o ograniczeniach różnica znika",
+  "mechanizm": "bot z ludzka twarza",
+  "rada": "Jeśli pierwszy kontakt obsługuje bot, nie przebieraj go za człowieka i napisz wprost, czego nie potrafi.",
+  "link": "https://ora.ox.ac.uk/objects/uuid:73d46bba-35d1-465c-be00-aa6f4f4ccb84/files/r5x21tf917"
+ },
+ {
+  "nr": "D9",
+  "filar": 3,
+  "hook": "Dodanie imienia do tematu maila, bez zmiany treści, podniosło liczbę leadów o 31%.",
+  "okladka": "IMIĘ W TEMACIE",
+  "eksperyment": "eksperymenty w trzech firmach, maile do milionów odbiorców; losowo temat z imieniem albo ten sam bez imienia",
+  "zrodlo": "Sahni, Wheeler i Chintagunta, 2018",
+  "liczby": "otwarcia +20%; leady +31%; wypisy -17%",
+  "mechanizm": "imie w temacie",
+  "rada": "Wstaw imię klienta w temat maila i SMS-a - sam ten zabieg, bez nowej oferty, podnosi liczbę leadów.",
+  "link": "https://econpapers.repec.org/paper/eclstabus/3409.htm"
+ },
+ {
+  "nr": "D10",
+  "filar": 2,
+  "hook": "Przed zakupem online klienci odwiedzali średnio 1,2 sklepu, a 76% kupowało po wizycie w jednym.",
+  "okladka": "1,2 SKLEPU",
+  "eksperyment": "7559 sesji zakupowych w jednym roku i 8002 w drugim; liczono, ile sklepów klient odwiedził przed zakupem",
+  "zrodlo": "De los Santos, Hortacsu i Wildenbeest, 2012",
+  "liczby": "średnio 1,27 i 1,30 sklepu; 76% transakcji po jednym sklepie; dla bestsellerów 75-85%",
+  "mechanizm": "brak porownania",
+  "rada": "Walcz o to, żeby klient trafił do Ciebie pierwszy, a nie o to, żeby wygrać porównanie - trzech z czterech nigdzie dalej nie zagląda.",
+  "link": "https://archive.nyu.edu/jspui/bitstream/2451/29518/2/DelosSantos_Hortacsu_Wildenbeest_09-23.pdf"
+ }
+]
