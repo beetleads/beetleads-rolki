@@ -24,6 +24,9 @@ RDZEN = ["wiecej", "niz", "opor", "zrodlo", "sprzedaz", "zakupow", "wiekszy",
 
 def bledy(nazwa, tekst, maks_zdanie=28):
     out = []
+    # Hasztagi pisze sie bez ogonkow z zalozenia (#sprzedaz, #zakupow),
+    # wiec nie ida do kontroli polskich znakow ani do liczenia zdan.
+    tekst = re.sub(r"#\w+", " ", tekst)
     if "—" in tekst or "–" in tekst:
         out.append(("BLAD", nazwa, "dlugi myslnik - ma byc zwykly '-'"))
     for a in ANGLICYZMY:
@@ -64,8 +67,12 @@ def zbierz(sciezka):
                 pary.append((f"{k}/element{i+1}", t))
     else:                                     # teksty do Metricoola
         for kod, v in d.items():
-            for pole in ("tytul", "hook", "badanie", "mechanizm", "rada", "pytanie"):
-                pary.append((f"{kod}/{pole}", v[pole]))
+            # Plik zrodlowy ma hook/badanie/mechanizm/rada, gotowy ma ig/fb.
+            # Brakujace pola pomijamy, zeby bramka dzialala na obu plikach.
+            for pole in ("tytul", "hook", "badanie", "mechanizm", "rada",
+                         "pytanie", "ig", "fb"):
+                if v.get(pole):
+                    pary.append((f"{kod}/{pole}", v[pole]))
     return pary
 
 if __name__ == "__main__":

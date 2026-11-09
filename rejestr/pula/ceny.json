@@ -154,5 +154,17 @@
   "mechanizm": "pewnosc co do wlasnego zuzycia",
   "rada": "Zanim pokażesz cennik, poproś klienta o oszacowanie, ile będzie korzystał - od tej prognozy zależy wybór taryfy.",
   "link": "https://link.springer.com/content/pdf/10.1007/s11846-020-00425-w.pdf"
+ },
+ {
+  "nr": "C15",
+  "filar": 1,
+  "hook": "Cena bluzy na sasiednim stoisku podniosla oferte za plyte z 7,29 na 9 dolarow.",
+  "okladka": "CENA OBOK PODNOSI TWOJĄ",
+  "eksperyment": "eksperyment polowy na plazy, 60 osob; obok stoiska z plytami stalo stoisko z bluza za 10 albo za 80 dolarow",
+  "zrodlo": "Nunes i Boatwright, 2004",
+  "liczby": "srednia oferta za plyte 7,29 dolara przy bluzie za 10 i 9,00 dolara przy bluzie za 80; aukcje aut: wspolczynnik kotwicy 0,15",
+  "mechanizm": "cena przypadkowa obok",
+  "rada": "Obok tego, co sprzedajesz, postaw rzecz drozsza - cena z sasiedztwa podnosi to, ile klient jest gotow zaplacic u Ciebie.",
+  "link": "https://msbfile03.usc.edu/digitalmeasures/jnunes/intellcont/Incidental%20Prices-1.pdf"
  }
 ]

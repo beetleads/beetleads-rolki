@@ -148,12 +148,11 @@
   "filar": 2,
   "hook": "Własna torba podniosła zakup produktów ekologicznych o 13%, ale słodyczy o 7%.",
   "okladka": "WŁASNA TORBA, DWA EFEKTY",
-  "eksperyment": "dane z kart lojalnościowych, 2 071 302 wizyty 59 659 gospodarstw; porównano wizyty z własną torbą i bez",
+  "eksperyment": "dane z kart lojalnosciowych jednego sklepu w Kalifornii, 2005-2007; 884 gospodarstwa i 142 938 wizyt w analizie; porownano wizyty z wlasna torba i bez",
   "zrodlo": "Karmarkar i Bollinger, 2015",
-  "liczby": "produkty ekologiczne +13,3% wizyt; słodycze, chipsy i lody +7,3%",
+  "liczby": "produkty ekologiczne 5,95% kontra 6,74% koszykow (+13,3%); produkty przyjemnosciowe 17,9% kontra 19,2% (+7,3%); 884 gospodarstwa, 142 938 wizyt",
   "mechanizm": "licencja moralna",
   "rada": "Po każdym dobrym wyborze klienta od razu podsuń przyjemność - poczucie, że zrobił coś słusznego, otwiera go na nagrodę.",
-  "link": "",
-  "uwaga": "link do potwierdzenia przed publikacja"
+  "link": "https://dash.harvard.edu/bitstream/1/28548033/1/karmarkar,bollinger_byob_2015_final.pdf"
  }
 ]

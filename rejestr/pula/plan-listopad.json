@@ -520,5 +520,14 @@
   "okladka": "WYJĘTE Z ZESTAWU",
   "zrodlo": "Shaddy i Fishbach, 2017",
   "mechanizm": "wyjecie z zestawu"
+ },
+ {
+  "data": "2026-11-29",
+  "godz": "18:00",
+  "kod": "C15",
+  "filar": 1,
+  "okladka": "CENA OBOK PODNOSI TWOJĄ",
+  "zrodlo": "Nunes i Boatwright, 2004",
+  "mechanizm": "cena przypadkowa obok"
  }
 ]

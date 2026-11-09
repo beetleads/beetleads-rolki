@@ -1042,5 +1042,14 @@
   "slug": "wyjęte-z-zestawu",
   "zrodlo": "Shaddy i Fishbach, 2017",
   "mechanizm": "wyjecie z zestawu"
+ },
+ {
+  "rolka": "C15",
+  "data": "2026-11-29",
+  "godz": "18:00",
+  "status": "planowana",
+  "slug": "cena-obok",
+  "zrodlo": "Nunes i Boatwright, 2004",
+  "mechanizm": "cena przypadkowa obok"
  }
 ]
