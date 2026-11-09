@@ -552,7 +552,7 @@
   "rolka": "D1",
   "data": "2026-11-11",
   "godz": "09:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "zdjęcia-dały-9%",
   "zrodlo": "Zhang, Lee, Singh i Srinivasan, 2016",
   "mechanizm": "realna waga zdjecia"
@@ -561,7 +561,7 @@
   "rolka": "C6",
   "data": "2026-11-11",
   "godz": "13:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "druga-od-dołu",
   "zrodlo": "de Meza i Pathania, 2021",
   "mechanizm": "miejsce w cenniku"
@@ -570,7 +570,7 @@
   "rolka": "P10",
   "data": "2026-11-11",
   "godz": "18:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "gratis-nie-z-tej-półki",
   "zrodlo": "Marchand, Paul, Hennig-Thurau i Puchner, 2017",
   "mechanizm": "gratis z wlasnej polki"
@@ -579,7 +579,7 @@
   "rolka": "C8",
   "data": "2026-11-12",
   "godz": "09:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "szeroki-rozrzut-cen",
   "zrodlo": "Cao i in., 2025",
   "mechanizm": "rozrzut cen w ofercie"
@@ -588,7 +588,7 @@
   "rolka": "D3",
   "data": "2026-11-12",
   "godz": "13:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "jedna-opinia,--42%",
   "zrodlo": "Varga i Albuquerque, 2024",
   "mechanizm": "jedna opinia kontra srednia"
@@ -597,7 +597,7 @@
   "rolka": "C2",
   "data": "2026-11-12",
   "godz": "18:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "lewo-czy-prawo",
   "zrodlo": "Park i Jang, 2025",
   "mechanizm": "kolejnosc czytania ceny"
@@ -615,7 +615,7 @@
   "rolka": "C10",
   "data": "2026-11-13",
   "godz": "13:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "pięć-dziennie",
   "zrodlo": "Hershfield, Shu i Benartzi, 2019",
   "mechanizm": "rozbicie kwoty na dni"
@@ -624,7 +624,7 @@
   "rolka": "U6",
   "data": "2026-11-13",
   "godz": "18:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "polecony-wart-więcej",
   "zrodlo": "Schmitt, Skiera i Van den Bulte, 2011",
   "mechanizm": "dopasowanie przez znajomego"
@@ -1020,7 +1020,7 @@
   "rolka": "D5",
   "data": "2026-11-13",
   "godz": "09:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "fraza-za-klienta",
   "zrodlo": "Sun, 2025",
   "mechanizm": "podpowiedz w wyszukiwarce"
