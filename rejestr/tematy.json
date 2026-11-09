@@ -633,7 +633,7 @@
   "rolka": "C11",
   "data": "2026-11-14",
   "godz": "09:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "widełki-zamiast-liczby",
   "zrodlo": "Nukezhanov i Chung, 2019",
   "mechanizm": "widelki obnizki"
@@ -642,7 +642,7 @@
   "rolka": "D2",
   "data": "2026-11-14",
   "godz": "13:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "wideo-sprzedaje-obok",
   "zrodlo": "Kumar i Tan, 2015",
   "mechanizm": "wideo sprzedaje zestaw"
@@ -651,7 +651,7 @@
   "rolka": "L10",
   "data": "2026-11-14",
   "godz": "18:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "udział-w-karcie",
   "zrodlo": "Garnett i in., 2019",
   "mechanizm": "udzial opcji w karcie"
@@ -660,7 +660,7 @@
   "rolka": "D7",
   "data": "2026-11-15",
   "godz": "09:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "palec-kontra-myszka",
   "zrodlo": "Shen, Zhang i Krishna, 2016",
   "mechanizm": "dotyk ekranu"
@@ -669,7 +669,7 @@
   "rolka": "C3",
   "data": "2026-11-15",
   "godz": "13:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "mała-czcionka-ceny",
   "zrodlo": "Coulter i Coulter, 2005",
   "mechanizm": "rozmiar czcionki ceny"
@@ -678,7 +678,7 @@
   "rolka": "U2",
   "data": "2026-11-15",
   "godz": "18:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "daleki-termin-przepada",
   "zrodlo": "Shour i in., 2023",
   "mechanizm": "dystans do terminu"
@@ -687,7 +687,7 @@
   "rolka": "C14",
   "data": "2026-11-16",
   "godz": "09:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "pewność-zamiast-cennika",
   "zrodlo": "Dowling, Stich i Spann, 2021",
   "mechanizm": "pewnosc co do wlasnego zuzycia"
@@ -696,7 +696,7 @@
   "rolka": "D6",
   "data": "2026-11-16",
   "godz": "13:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "250-ms-bez-efektu",
   "zrodlo": "Kohavi, Deng, Longbotham i Xu, 2014",
   "mechanizm": "krytyczna czesc strony"
@@ -705,7 +705,7 @@
   "rolka": "C13",
   "data": "2026-11-16",
   "godz": "18:00",
-  "status": "planowana",
+  "status": "zaplanowana",
   "slug": "procent-czy-kwota",
   "zrodlo": "Zong i Duan, 2021",
   "mechanizm": "procent czy kwota"
