@@ -11,6 +11,7 @@ Kolejność pracy nad partią dziewięciu rolek:
 | 5. czasy słów | `wymow.py public/gX.mp3 dane/n/X_slowa.json` | lokalnie, bez kredytów; sprawdzone na trzech rolkach wobec ElevenLabs (mediana różnicy 20-40 ms) |
 | 6. zdjęcia | `foto.py oryginal.jpg public/X_1.jpg` | kadr 9:16, jasność 45-90. Podłoga liczona NA ORYGINALE - ratowanie gotowego, przyciemnionego pliku rozwala cienie na pasy |
 | 7. powtórzenia | `rejestr/zdjecia.py`, `rejestr/sprawdz.py` | to samo zdjęcie pod dwoma tematami; powtórka źródła i mechanizmu |
+| 7a. cytowania | `rejestr/zrodla.py` | źródło w tekście posta musi być tym z rejestru, a wpis w puli musi mieć link do pełnego tekstu |
 | 8. montaż | `buduj.py dane/n/X.json dane/n/X_slowa.json` | ujęcia co ok. 2 s, elementy wiązane ze zdaniami |
 | 9. render + muzyka | `partia.sh X Y Z` (woła `produkuj.sh`) | render, podkład z doborem głośności do basu 9-15%, -14 LUFS, kontrola klatek i szczytu |
 

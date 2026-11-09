@@ -50,7 +50,12 @@ def bledy(nazwa, tekst, maks_zdanie=28):
     return out
 
 def zbierz(sciezka):
-    d = json.loads(pathlib.Path(sciezka).read_text(encoding="utf-8"))
+    # Skrypt do nagrania lezy w zwyklym .txt - bramka jezykowa ma go sprawdzic
+    # PRZED wyslaniem do ElevenLabs, bo poprawka po nagraniu to pelny koszt ujecia.
+    sc = pathlib.Path(sciezka)
+    if sc.suffix.lower() == ".txt":
+        return [(sc.stem, sc.read_text(encoding="utf-8").strip())]
+    d = json.loads(sc.read_text(encoding="utf-8"))
     pary = []
     if isinstance(d, list):          # transkrypcja (*_slowa.json) - nie tekst do kontroli
         return pary
