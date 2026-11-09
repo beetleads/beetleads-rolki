@@ -1051,5 +1051,14 @@
   "slug": "cena-obok",
   "zrodlo": "Nunes i Boatwright, 2004",
   "mechanizm": "cena przypadkowa obok"
+ },
+ {
+  "rolka": "U10",
+  "data": "2026-11-29",
+  "godz": "13:00",
+  "status": "planowana",
+  "slug": "domyslne-wygrywa",
+  "zrodlo": "Hansen, Schilling i Malthesen, 2019",
+  "mechanizm": "wariant juz zaznaczony"
  }
 ]

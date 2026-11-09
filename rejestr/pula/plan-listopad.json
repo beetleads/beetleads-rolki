@@ -529,5 +529,14 @@
   "okladka": "CENA OBOK PODNOSI TWOJĄ",
   "zrodlo": "Nunes i Boatwright, 2004",
   "mechanizm": "cena przypadkowa obok"
+ },
+ {
+  "data": "2026-11-29",
+  "godz": "13:00",
+  "kod": "U10",
+  "filar": 3,
+  "okladka": "DOMYSLNE WYGRYWA",
+  "zrodlo": "Hansen, Schilling i Malthesen, 2019",
+  "mechanizm": "wariant juz zaznaczony"
  }
 ]

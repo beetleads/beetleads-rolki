@@ -106,5 +106,18 @@
   "mechanizm": "niewykorzystana przedplata",
   "rada": "Sprzedając pakiet wizyt, pilnuj, żeby klient go wykorzystał - niewykorzystane wizyty wyglądają na zysk, a są straconymi powrotami.",
   "link": "https://www.nber.org/papers/w34918"
+ },
+ {
+  "nr": "U10",
+  "filar": 3,
+  "hook": "Przy domyslnym obiedzie miesnym wege wybralo 6%, przy domyslnym wege - 87%.",
+  "okladka": "DOMYSLNE WYGRYWA",
+  "eksperyment": "trzy randomizowane eksperymenty na formularzach zapisu na konferencje w Kopenhadze, 330 odpowiedzi; polowa dostawala formularz z domyslnym obiadem miesnym, polowa z domyslnym wegetarianskim",
+  "zrodlo": "Hansen, Schilling i Malthesen, 2019",
+  "liczby": "eksperyment A 2% kontra 87%, B 6% kontra 86%, C 12,5% kontra 89%; lacznie 6% kontra 87%; P < 0,001 w kazdym",
+  "mechanizm": "wariant juz zaznaczony",
+  "rada": "W formularzu zamowienia albo zapisu wpisz to, co chcesz sprzedac, jako wariant juz zaznaczony, a alternatywe zostaw jako zmiane - nie jako dwa rownorzedne pola do wyboru.",
+  "link": "https://www.animallawconference.org/wp-content/uploads/2025/10/Nudging-Healthy-and-Sustainable-Food-Choices.pdf",
+  "uwaga": "obiad byl w cenie konferencji, nikt nie placil za wybor - przy platnej ofercie efekt bedzie slabszy; powiedziec to w rolce"
  }
 ]
