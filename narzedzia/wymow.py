@@ -45,6 +45,13 @@ def slowa(plik):
                 out[-1]["s"] += t
                 out[-1]["do"] = round(w.end, 3)
                 continue
+            # 09.11: to samo robi z przecinkiem dziesietnym - "5 ,2," i "4 ,6."
+            # Napis pokazywalby "5", a chwile pozniej ",2," - liczba rozsypana na
+            # dwie karty. Lektor mowi jedna liczbe, wiec i napis ma byc jeden.
+            if re.match(r"^[,.]\d", t) and out:
+                out[-1]["s"] += t
+                out[-1]["do"] = round(w.end, 3)
+                continue
             out.append({"s": t, "od": round(w.start, 3), "do": round(w.end, 3)})
     # "Zapamietaj" konczy zdanie - buduj.py dzieli zdania po kropce, a od tego
     # zalezy moment wejscia karty domkniecia (08.11: whisper slyszy tu przecinek)

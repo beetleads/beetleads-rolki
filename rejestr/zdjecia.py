@@ -33,8 +33,8 @@ def phash(p, bok=8):
     return "".join("1" if v > med else "0" for v in m.flatten())
 
 def uzyte(silnik):
-    """{nazwa pliku: kod rolki} na podstawie specyfikacji, nie zawartosci public/."""
-    mapa = {}
+    """{nazwa pliku: [kody rolek]} na podstawie specyfikacji, nie zawartosci public/."""
+    mapa = collections.defaultdict(list)
     for spec in sorted((pathlib.Path(silnik) / "dane" / "n").glob("*.json")):
         if spec.stem.endswith("_slowa"):
             continue
@@ -43,8 +43,9 @@ def uzyte(silnik):
         except Exception:
             continue
         for f in d.get("foty", []):
-            mapa.setdefault(f, spec.stem)
-    return mapa
+            if spec.stem not in mapa[f]:
+                mapa[f].append(spec.stem)
+    return dict(mapa)
 
 
 def main(silnik):
@@ -55,11 +56,18 @@ def main(silnik):
         print("brak zdjec w specyfikacjach - nie ma czego sprawdzac")
         return 0
     def temat(nazwa):
-        return mapa.get(nazwa)
+        return mapa.get(nazwa, [None])[0]
+    # 09.11: pierwsza wersja pamietala tylko JEDEN temat na plik (setdefault), wiec
+    # ta sama NAZWA wpisana do dwoch specyfikacji w ogole nie wchodzila do porownania.
+    # Tak przeszlo D4_3.jpg - to samo ujecie w C5 (10.11) i D4 (17.11). Widz nie
+    # odroznia "tego samego pliku" od "dwoch kopii tego samego zdjecia".
+    ta_sama_nazwa = [(f, t_) for f, t_ in sorted(mapa.items()) if len(t_) > 1]
     md5 = collections.defaultdict(list)
     for p in pliki:
         md5[hashlib.md5(p.read_bytes()).hexdigest()].append(p.name)
     bledy, ostrzezenia = [], []
+    for f, t_ in ta_sama_nazwa:
+        bledy.append(("TA SAMA NAZWA", [f"{f} -> {', '.join(t_)}"]))
     for grupa in md5.values():
         tematy = {temat(n) for n in grupa}
         if len(tematy) > 1:
