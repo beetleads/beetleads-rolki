@@ -81,8 +81,8 @@
   "mechanizm": "kolejnosc czytania ceny"
  },
  {
-  "data": "2026-11-13",
-  "godz": "09:00",
+  "data": "2026-11-28",
+  "godz": "13:00",
   "kod": "L13",
   "filar": 2,
   "okladka": "WŁASNA TORBA, DWA EFEKTY",
@@ -495,8 +495,8 @@
   "mechanizm": "wycena przez biorce"
  },
  {
-  "data": "2026-11-28",
-  "godz": "13:00",
+  "data": "2026-11-13",
+  "godz": "09:00",
   "kod": "D5",
   "filar": 2,
   "okladka": "FRAZA ZA KLIENTA",

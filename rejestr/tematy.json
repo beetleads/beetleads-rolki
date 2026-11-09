@@ -604,8 +604,8 @@
  },
  {
   "rolka": "L13",
-  "data": "2026-11-13",
-  "godz": "09:00",
+  "data": "2026-11-28",
+  "godz": "13:00",
   "status": "planowana",
   "slug": "własna-torba,-dwa-efekty",
   "zrodlo": "Karmarkar i Bollinger, 2015",
@@ -1018,8 +1018,8 @@
  },
  {
   "rolka": "D5",
-  "data": "2026-11-28",
-  "godz": "13:00",
+  "data": "2026-11-13",
+  "godz": "09:00",
   "status": "planowana",
   "slug": "fraza-za-klienta",
   "zrodlo": "Sun, 2025",

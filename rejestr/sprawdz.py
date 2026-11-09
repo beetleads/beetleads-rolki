@@ -10,7 +10,14 @@ Karencje (skill rolki-v3, sekcja 7):
     ten sam gradient celu, 7 dni odstepu i widz widzi powtorke.
     Dlatego: do 5 dni BLAD, do 30 dni OSTRZEZENIE do recznej decyzji.
 
-Kod wyjscia: 1 gdy jest BLAD, 0 gdy czysto albo same ostrzezenia.
+HISTORIA kontra PLAN (09.11): kolizja miedzy dwiema rolkami, ktore JUZ
+poszly w swiat, jest zapisem bledu, a nie czyms do naprawienia - nie da sie
+cofnac publikacji. Bramka ma zatrzymywac to, co jeszcze mozna zmienic, wiec
+blokuje tylko wtedy, gdy w kolizji bierze udzial rolka nieopublikowana.
+Stare kolizje nadal wypisuje, pod naglowkiem HISTORIA.
+
+Kod wyjscia: 1 gdy jest BLAD do naprawienia, 0 gdy czysto, same ostrzezenia
+albo sama historia.
 """
 import json, re, sys, datetime as dt, pathlib
 
@@ -60,10 +67,18 @@ for i, a in enumerate(zywe):
             elif dni <= MECH_OSTRZ_DNI:
                 ostrzezenia.append((dni, "MECHANIZM", a, b, ma))
 
-for dni, typ, a, b, co in sorted(bledy, key=lambda k: k[0]):
+def doNaprawy(a, b):
+    return a.get("status") != "opublikowana" or b.get("status") != "opublikowana"
+
+czynne = [k for k in bledy if doNaprawy(k[2], k[3])]
+historia = [k for k in bledy if not doNaprawy(k[2], k[3])]
+for dni, typ, a, b, co in sorted(czynne, key=lambda k: k[0]):
     print(f"BLAD {typ} ({dni} dni): {opis(a)} <-> {opis(b)}  [{co}]")
+for dni, typ, a, b, co in sorted(historia, key=lambda k: k[0]):
+    print(f"HISTORIA {typ} ({dni} dni): {opis(a)} <-> {opis(b)}  [{co}]")
 for dni, typ, a, b, co in sorted(ostrzezenia, key=lambda k: k[0]):
     print(f"OSTRZEZENIE {typ} ({dni} dni): {opis(a)} <-> {opis(b)}  [{co}]")
 
-print(f"\n{len(zywe)} rolek, bledow: {len(bledy)}, ostrzezen: {len(ostrzezenia)}")
-sys.exit(1 if bledy else 0)
+print(f"\n{len(zywe)} rolek, bledow do naprawy: {len(czynne)}, "
+      f"kolizji w historii: {len(historia)}, ostrzezen: {len(ostrzezenia)}")
+sys.exit(1 if czynne else 0)
