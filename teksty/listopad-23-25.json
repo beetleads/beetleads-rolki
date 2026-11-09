@@ -1,0 +1,110 @@
+{
+ "L7": {
+  "data": "2026-11-23",
+  "godz": "09:00",
+  "tytul": "Ktoś stoi za tobą. Ucieka 32% zamiast 84%?! 😳",
+  "hook": "To, ilu ludzi stoi za klientem, trzyma go w kolejce mocniej niż cokolwiek przed nim. Dlaczego?",
+  "badanie": "Obserwowano 91 osób w kolejce w godzinach szczytu, a potem przebadano 150 osób, które miały za plecami zero, pięć albo dziesięć osób. Opcję bez kolejki wybrało 84% przy nikim z tyłu, 58% przy pięciu i 32% przy dziesięciu. Liczba osób z przodu nie miała znaczenia.",
+  "mechanizm": "Wiesz, dlaczego? Patrząc do przodu, klient widzi, ile jeszcze straci. Patrząc do tyłu, widzi, ilu ludzi już wyprzedził, i nie chce tego oddać.",
+  "rada": "Zapamiętaj: prowadź kolejkę jedną linią, w której klient widzi, ilu czeka za nim. Numerki odbierają mu powód, żeby zostać.",
+  "pytanie": "Masz u siebie kolejkę czy numerki? 👇",
+  "tagi": "#kolejka #obsluga #sprzedaz #psychologiazakupow",
+  "zrodlo": "Zhou i Soman, 2003"
+ },
+ "P6": {
+  "data": "2026-11-23",
+  "godz": "13:00",
+  "tytul": "Zbyt celna reklama. Ogólna wygrywa 5,2 do 4,6?! 😳",
+  "hook": "Reklama pokazująca dokładnie ten produkt, który klient porzucił, wypada słabiej niż zwykła reklama marki. Dlaczego?",
+  "badanie": "Serwis przez 21 dni pokazywał jedną albo drugą reklamę na 77 937 profilach, a równolegle przebadano 162 osoby. Reklama ogólna dostała 5,21, a reklama z porzuconym produktem 4,57. W terenie dopasowana reklama obniżała szansę zakupu.",
+  "mechanizm": "Wiesz, dlaczego? Klient, który dopiero się zastanawia, czyta taką reklamę jako podglądanie. Zamiast przypomnienia dostaje sygnał, że ktoś go śledzi.",
+  "rada": "Zapamiętaj: przypominaj o sobie ogólnym komunikatem, a konkretny porzucony produkt pokazuj dopiero tym, którzy już porównywali opinie.",
+  "pytanie": "Pokazujesz klientom to, co zostawili w koszyku? 👇",
+  "tagi": "#reklama #ecommerce #marketing #sprzedaz",
+  "zrodlo": "Lambrecht i Tucker, 2013"
+ },
+ "P5": {
+  "data": "2026-11-23",
+  "godz": "18:00",
+  "tytul": "Odebrany status boli. 4,1 zamiast 5,4?! 😳",
+  "hook": "Klient, któremu odebrano status w programie, ocenia lojalność niżej niż ten, który statusu nigdy nie miał. Dlaczego?",
+  "badanie": "W eksperymencie na 359 osobach, powtórzonym na 487, i w danych 1423 zdegradowanych klientów sieci wyszło to samo. Zdegradowani ocenili lojalność na 4,09, nigdy nieawansowani na 5,38, a awansowani na 5,84.",
+  "mechanizm": "Wiesz, dlaczego? Poziom raz przyznany klient traktuje jak swój. Odebranie go jest stratą, a strata boli mocniej, niż cieszy zdobycie.",
+  "rada": "Zapamiętaj: nie odbieraj przyznanego poziomu bez ostrzeżenia. Lepiej go nie nadawać wcale, niż potem zabrać.",
+  "pytanie": "Masz w programie poziomy, które można stracić? 👇",
+  "tagi": "#lojalnosc #utrzymanieklienta #sprzedaz #marketing",
+  "zrodlo": "Wagner, Hennig-Thurau i Rudolph, 2009"
+ },
+ "P7": {
+  "data": "2026-11-24",
+  "godz": "09:00",
+  "tytul": "Promocja ściąga zwroty. Zamówienia +11%, zwroty +15%?! 😳",
+  "hook": "Promocja podniosła wartość zamówień, wartość zwrotów urosła szybciej, a zysk spadł. Dlaczego?",
+  "badanie": "Sklep online wysłał kod promocyjny połowie z 760 395 klientów, a drugiej połowie nic. Zamówienia urosły o 11,4%, zwroty o 14,7%. Wkład w zysk wyszedł minus 0,7% przy promocji i plus 6,0% przy kuponie.",
+  "mechanizm": "Wiesz, dlaczego? Obniżka przesuwa koszyk na rzeczy, których klient nie kupiłby w pełnej cenie. To właśnie te rzeczy najczęściej wracają.",
+  "rada": "Zapamiętaj: licz skutek promocji po zwrotach, nie po sprzedaży. Sama sprzedaż pokaże Ci wynik, którego nie ma.",
+  "pytanie": "Liczysz swoje promocje po zwrotach? 👇",
+  "tagi": "#promocje #ecommerce #zwroty #sprzedaz",
+  "zrodlo": "Shehu, Papies i Neslin, 2020"
+ },
+ "L8": {
+  "data": "2026-11-24",
+  "godz": "13:00",
+  "tytul": "Próbka zamiast koszyka. 40% zamiast 7%?! 😳",
+  "hook": "Degustacja podniosła zakup próbowanego produktu pięciokrotnie, a koszyk lekko spadł. Dlaczego?",
+  "badanie": "Przez sześć weekendów w trzech sklepach promowano sześć produktów, a przy wyjściu przebadano 354 klientów. Promowany produkt kupiło 40% zamiast 7%, ale wartość koszyka wyniosła 70,27 wobec 74,05 dolara.",
+  "mechanizm": "Wiesz, dlaczego? Klient nie dokłada próbowanego produktu do koszyka. Zamienia go na coś, co i tak zamierzał wziąć.",
+  "rada": "Zapamiętaj: do próbowania dawaj to, co ma wyższą marżę niż produkt, po który klient i tak przyszedł.",
+  "pytanie": "Dajesz klientom coś do spróbowania? 👇",
+  "tagi": "#degustacja #handel #sprzedaz #marketing",
+  "zrodlo": "Heilman, Lakishyk i Radas, 2011"
+ },
+ "P11": {
+  "data": "2026-11-24",
+  "godz": "18:00",
+  "tytul": "Próg zabija zakup. Udział z 12% na 6%?! 😳",
+  "hook": "Promocja z wysokim progiem sprzedała promowany produkt gorzej, niż gdyby promocji nie było wcale. Dlaczego?",
+  "badanie": "Pięć badań: 5040 ogłoszeń, trzy miesiące sprzedaży w cukierni i eksperymenty na ponad tysiącu osób. Udział promowanego produktu wyniósł 6,0% przy wysokim progu, 12,4% bez żadnej promocji i 36,4% przy niskim progu.",
+  "mechanizm": "Wiesz, dlaczego? Wysoki próg mówi klientowi, że do nagrody jeszcze mu daleko. Zamiast dołożyć, rezygnuje z zakupu, który zrobiłby bez promocji.",
+  "rada": "Zapamiętaj: ustawiaj warunek rabatu nisko, blisko zwykłego zamówienia.",
+  "pytanie": "Od jakiej kwoty daje u Ciebie rabat? 👇",
+  "tagi": "#promocje #ceny #sprzedaz #marketing",
+  "zrodlo": "Cheng i Stadler Blank, 2025"
+ },
+ "L6": {
+  "data": "2026-11-25",
+  "godz": "09:00",
+  "tytul": "Telefon zjada kasę. 5% zamiast 13%?! 😳",
+  "hook": "Telefon w ręce zbił zakupy z półki przy kasie ponad dwukrotnie, a cały koszyk urósł. Dlaczego?",
+  "badanie": "117 klientów w dwóch sklepach losowo dostało telefon albo nie, w okularach śledzących wzrok, przez ponad 110 godzin nagrań. Z półki przy kasie kupiło 5,3% z telefonem i 13,2% bez. Czas w sklepie i liczba produktów jednocześnie rosły.",
+  "mechanizm": "Wiesz, dlaczego? Zakup przy kasie bierze się z tego, że klient się nudzi i rozgląda. Telefon zajmuje tę samą chwilę, więc wzrok nie trafia na półkę.",
+  "rada": "Zapamiętaj: jeśli liczysz na dokupienie przy kasie, daj klientowi powód, żeby podniósł wzrok. Krótkie pytanie zamiast ciszy.",
+  "pytanie": "Odzywasz się do klienta przy kasie? 👇",
+  "tagi": "#kasa #handel #obsluga #sprzedaz",
+  "zrodlo": "Grewal i in., 2018"
+ },
+ "P3": {
+  "data": "2026-11-25",
+  "godz": "13:00",
+  "tytul": "Zwrot wraca. 32 grosze z każdej złotówki?! 😳",
+  "hook": "Każda złotówka oddana klientowi jako zwrot na konto wracała do sklepu jako nowy zakup. Dlaczego?",
+  "badanie": "Policzono 76 296 konsumentów i ponad 3 miliony transakcji. Z każdej oddanej złotówki wracało 0,32 nowych wydatków, a przy najmniejszych wypłatach aż 0,58. Liczył się moment wypłaty zwrotu, nie moment zakupu.",
+  "mechanizm": "Wiesz, dlaczego? Pieniądz, który wraca później, nie wygląda na odzyskany wydatek, tylko na premię. A premię wydaje się łatwiej niż własne pieniądze.",
+  "rada": "Zapamiętaj: oddawaj część kwoty po zakupie jako zwrot na konto, zamiast obniżać cenę przy kasie.",
+  "pytanie": "Oddajesz klientom część kwoty po zakupie? 👇",
+  "tagi": "#ceny #lojalnosc #sprzedaz #marketing",
+  "zrodlo": "Vana, Lambrecht i Bertini, 2018"
+ },
+ "D9": {
+  "data": "2026-11-25",
+  "godz": "18:00",
+  "tytul": "Imię w temacie. Leadów więcej o 31%?! 😳",
+  "hook": "Dodanie imienia do tematu maila, bez zmiany jednego słowa w treści, podniosło liczbę leadów. Dlaczego?",
+  "badanie": "W trzech firmach wysłano maile do milionów odbiorców, losowo z imieniem w temacie albo z tym samym tematem bez imienia. Otwarcia urosły o 20%, leady o 31%, a wypisy spadły o 17%.",
+  "mechanizm": "Wiesz, dlaczego? Imię mówi odbiorcy, że to nie jest wysyłka do wszystkich. Ten sam tekst czyta wtedy uważniej, bo zakłada, że dotyczy jego.",
+  "rada": "Zapamiętaj: wstaw imię klienta w temat maila i SMS-a. Sam ten zabieg, bez nowej oferty, podnosi liczbę leadów.",
+  "pytanie": "Masz imiona klientów w swojej bazie? 👇",
+  "tagi": "#mailing #leady #marketing #sprzedaz",
+  "zrodlo": "Sahni, Wheeler i Chintagunta, 2018"
+ }
+}

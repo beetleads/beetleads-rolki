@@ -8,7 +8,8 @@ nazw plikow, tylko widzi ten sam kadr drugi dzien z rzedu - dokladnie zarzut
 
 Sprawdza dwie rzeczy:
   - IDENTYCZNE pliki (md5) uzyte w wiecej niz jednym temacie,
-  - PODOBNE kadry (hash percepcyjny, odleglosc Hamminga <= PROG).
+  - PODOBNE kadry (hash percepcyjny, odleglosc Hamminga <= PROG) - to tylko
+    OSTRZEZENIE do obejrzenia okiem, bo hash myli uklad jasnosci z trescia.
 
 Sprawdza TYLKO zdjecia faktycznie wpisane do specyfikacji rolek
 (dane/n/*.json, pole "foty") - plik lezacy w public/ i nieuzywany przez zadna
@@ -58,7 +59,7 @@ def main(silnik):
     md5 = collections.defaultdict(list)
     for p in pliki:
         md5[hashlib.md5(p.read_bytes()).hexdigest()].append(p.name)
-    bledy = []
+    bledy, ostrzezenia = [], []
     for grupa in md5.values():
         tematy = {temat(n) for n in grupa}
         if len(tematy) > 1:
@@ -73,10 +74,16 @@ def main(silnik):
                 continue
             d = sum(c1 != c2 for c1, c2 in zip(hashe[a], hashe[b]))
             if d <= PROG:
-                bledy.append((f"PODOBNE({d})", [a, b]))
-    for typ, g in bledy:
+                ostrzezenia.append((f"PODOBNE({d})", [a, b]))
+    # 09.11: hash percepcyjny liczy uklad jasnosci, nie tresc. C8_3 (korytarz
+    # hotelowy) i L5_1 (szyny pustego regalu) wyszly na odleglosc 6, a dla widza
+    # nie maja ze soba nic wspolnego. Identyczny plik to BLAD, bo tu nie ma czego
+    # ogladac. Podobny kadr to OSTRZEZENIE do obejrzenia para obok pary - inaczej
+    # bramka zaczyna kasowac dobre zdjecia i przestaje sie jej ufac.
+    for typ, g in bledy + ostrzezenia:
         print(f"{typ}: {', '.join(g)}")
-    print(f"\n{len(pliki)} zdjec, powtorzen miedzy tematami: {len(bledy)}")
+    print(f"\n{len(pliki)} zdjec, identycznych miedzy tematami: {len(bledy)}, "
+          f"podobnych do obejrzenia: {len(ostrzezenia)}")
     return 1 if bledy else 0
 
 if __name__ == "__main__":
