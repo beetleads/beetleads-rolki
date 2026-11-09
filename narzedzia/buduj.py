@@ -119,10 +119,29 @@ def main():
         od = round(zd[i][0]["od"] - 0.08, 3)
         do = round(zd[j][-1]["do"] + 0.12, 3)
         e = {k: v for k, v in e.items() if k != "zdanie"}
+        # 09.11: "STARA PO LEWEJ" obok "PO PRAWEJ" nachodzily na siebie nad
+        # slupkami - etykieta jest centrowana nad slupkiem 152 px, wiec dluga
+        # wchodzi na sasiednia. Bramka, zeby nie wylapywac tego dopiero okiem.
+        if e.get("typ") == "slupki":
+            for strona in ("a", "b"):
+                et = e.get(strona, {}).get("etykieta", "")
+                if len(et) > 13:
+                    print(f"  UWAGA: etykieta slupka {et!r} ma {len(et)} znakow "
+                          f"- powyzej 13 nachodzi na sasiednia")
         elementy.append({**e, "od": max(0.0, od), "do": min(dlugosc, do)})
 
     # domkniecie wchodzi przed ostatnim zdaniem i zostaje do konca
     od_dom = round(zd[-1][0]["od"] - DOMKNIECIE_PRZED, 2) if zd else round(dlugosc - 3, 2)
+
+    # Impuls to obwodka w miejscu karty domkniecia. Wiazany ze zdaniem wchodzil
+    # pol sekundy PRZED karta i przez ten czas na ekranie stal pusty prostokat -
+    # wyglada jak blad, nie jak efekt (09.11, koncowka C6). Puszczamy go razem
+    # z karta, zeby byl jej wejsciem, a nie osobnym ksztaltem.
+    for e in elementy:
+        if e.get("typ") == "impuls" and (e.get("y") or 1180) >= 1000:
+            przesun = max(0.0, od_dom - 0.12) - e["od"]
+            e["od"] = round(e["od"] + przesun, 3)
+            e["do"] = round(min(dlugosc, e["do"] + przesun), 3)
     dane = {
         "glos": t["glos"],
         "dlugosc": dlugosc,

@@ -2,8 +2,15 @@
 """Zdjecie Unsplasha -> kadr Beetleads.
 
 Sufit jasnosci jest ze skilla `zdjecia` (srednia L <= 90, inaczej kadr jest
-plama). PODLOGA doszla 09.11: przy L ponizej ~45 ujecie pod scrimem 0,30 jest
-czarnym ekranem, czyli tym, co zalozyciel nazwal "puste bez efektow".
+plama). PODLOGA doszla 09.11: przy bardzo ciemnym zdjeciu ujecie pod scrimem
+0,30 jest czarnym ekranem, czyli tym, co zalozyciel nazwal "puste bez efektow".
+
+Gdzie dokladnie lezy ta podloga, sprawdzilem ARKUSZEM, a nie na wyczucie:
+zlozylem dziewiec zdjec o L od 11 do 57 ze scrimem 0,30 i obejrzalem.
+Przy L 16-26 temat zdjecia (sciana plakatow, sluchawki, biurko) jest nadal
+czytelny; dopiero przy L okolo 10 zostaje czarna plama z jednym swiatlem.
+Pierwsza wersja miala podloge 45 i kazala wymieniac polowe biblioteki -
+to byl moj prog z sufitu, nie wynik pomiaru.
 
 WAZNE: podloge trzymamy na ORYGINALE z Unsplasha, nigdy przez rozjasnianie
 gotowego, juz przyciemnionego JPEG-a. Proba takiego ratunku 09.11 rozwalila
@@ -16,7 +23,7 @@ import sys, pathlib
 import numpy as np
 from PIL import Image, ImageEnhance
 
-PODLOGA, CEL_DOL, CEL_GORA, SUFIT = 45.0, 52.0, 86.0, 90.0
+PODLOGA, CEL_DOL, CEL_GORA, SUFIT = 18.0, 26.0, 86.0, 90.0
 SZER, WYS = 1400, 1789
 
 def srednia(im):
