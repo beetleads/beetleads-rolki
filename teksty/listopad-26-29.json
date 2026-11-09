@@ -1,0 +1,110 @@
+{
+ "P13": {
+  "tytul": "Gratis z haczykiem. Dopłata ścina z 41% na 18%?! 😳",
+  "hook": "Czekanie i wysiłek nie odstraszyły prawie nikogo, a dopłata 50 groszy ścięła chętnych ponad dwukrotnie.",
+  "badanie": "132 osoby, powtórzone na 95, decydowały o dodatku: raz w pełni darmowym, raz darmowym pod warunkiem niepieniężnym, raz za drobną opłatą. Ofertę przyjęło 50,0% przy w pełni darmowym dodatku, 40,6% przy darmowym z haczykiem i tylko 17,7% przy drobnej opłacie.",
+  "mechanizm": "Koszt niepieniężny klient szacuje na oko i zwykle zaniża. Każda kwota, nawet najmniejsza, włącza liczenie i zmienia decyzję w rachunek.",
+  "rada": "zamiast brać symboliczną opłatę za dodatek, daj go za darmo pod warunkiem niepieniężnym - odbioru u Ciebie albo zapisu na termin.",
+  "pytanie": "Bierzesz symboliczną opłatę za swoje dodatki? 👇",
+  "zrodlo": "Dallas i Morwitz, 2018"
+ },
+ "L11": {
+  "tytul": "Osiem stopni więcej. Wycena w górę 21%?! 😳",
+  "hook": "Pokój cieplejszy o osiem stopni podniósł kwotę, jaką ludzie dawali za tę samą kawę.",
+  "badanie": "98 osób wyceniało jedenaście produktów w pomieszczeniu o temperaturze około 26 albo około 18 stopni. Za kawę dawali 9,98 zamiast 8,22 dolara, za mleko 9,97 zamiast 8,64. Ocena przyjemności samego pomieszczenia była w obu grupach identyczna.",
+  "mechanizm": "Ciepło fizyczne mózg czyta jako ciepło wobec rzeczy. Obcy produkt robi się bliski, a za bliski płaci się więcej.",
+  "rada": "nie wychładzaj lokalu do granic. W chłodzie klient wycenia ten sam produkt niżej, choć sam na temperaturę nie narzeka.",
+  "pytanie": "Jaką masz temperaturę u siebie w lokalu? 👇",
+  "zrodlo": "Zwebner, Lee i Goldenberg, 2014"
+ },
+ "P8": {
+  "tytul": "Dłuższy zwrot, mniej zwrotów. Oddaje 3% zamiast 22%?! 😳",
+  "hook": "Przy dwudniowym terminie zwrotu towar oddało 22% kupujących, a przy siedmiodniowym tylko 3%.",
+  "badanie": "276 osób, powtórzone na 128 i 153, dostawało na zwrot dwa albo siedem dni. Oddało 22% przy krótszym terminie i 3% przy dłuższym. Przy prezentach wyszło 28% kontra 6%.",
+  "mechanizm": "Krótki termin zmusza do decyzji od razu, a najprościej jest oddać. Przy dalekim terminie klient odkłada decyzję, przyzwyczaja się do rzeczy i z nią zostaje.",
+  "rada": "wydłuż termin zwrotu, zamiast go skracać. Dłuższy termin kosztuje mniej zwrotów, nie więcej.",
+  "pytanie": "Ile dni na zwrot dajesz swoim klientom? 👇",
+  "zrodlo": "Janakiraman i Ordonez, 2012"
+ },
+ "U8": {
+  "tytul": "Przerwa dodaje wartości. 5,4 zamiast 4,2?! 😳",
+  "hook": "Za to samo nagranie przerwane w środku ludzie chcieli zapłacić więcej niż za wersję bez przerwy.",
+  "badanie": "102 osoby losowo obejrzały ten sam materiał z jedną przerwą albo bez niej. Z przerwą ocena wyniosła 5,38, a gotowość do zapłaty 5,42. Bez przerwy - 4,47 i 4,18. Uczestnicy przewidywali odwrotnie.",
+  "mechanizm": "Przyjemność gaśnie, gdy trwa bez końca. Przerwa pozwala wrażeniu się odświeżyć, więc druga część smakuje jak pierwsza.",
+  "rada": "dłuższą usługę dziel na etapy z krótką przerwą, zamiast prowadzić ją jednym ciągiem.",
+  "pytanie": "Twoja usługa leci jednym ciągiem czy z przerwą? 👇",
+  "zrodlo": "Nelson, Meyvis i Galak, 2009"
+ },
+ "P12": {
+  "tytul": "Wytrenowany łowca. Promocje o 22% częściej?! 😳",
+  "hook": "Klienci, którzy wcześniej widzieli głębokie rabaty, kupowali potem promocje znacznie częściej niż reszta.",
+  "badanie": "W 10 supermarketach prześledzono 170 produktów i 13 482 dopasowane pary klientów. Najpierw różnicowano głębokość rabatu, potem pokazywano wszystkim identyczne promocje. Szansa zakupu promowanego produktu była o 22,4% wyższa u tych, którzy wcześniej widzieli 30% zamiast 10%.",
+  "mechanizm": "Klient uczy się, ile warto poczekać. Głęboki rabat ustawia mu poprzeczkę, poniżej której przestaje kupować w pełnej cenie.",
+  "rada": "trzymaj obniżki płaskie i rzadkie. Głęboki rabat uczy klienta czekać na kolejny i kupować tylko w promocji.",
+  "pytanie": "Jak głębokie są Twoje promocje? 👇",
+  "zrodlo": "Elberg, Gardete, Macera i Noton, 2019"
+ },
+ "U1": {
+  "tytul": "Jedno zdanie w SMS. Nieobecności z 11% na 8%?! 😳",
+  "hook": "Jedno zdanie dopisane do przypomnienia SMS zbiło liczbę nieodwołanych wizyt.",
+  "badanie": "10 111 umówionych osób dostało losowo jedną z czterech wersji SMS-a wysyłanego pięć dni przed terminem. Zwykły SMS dał 11,1% nieobecności, a SMS podający kwotę, którą traci przychodnia - 8,4%. Powtórka na 9848 osobach dała 8,2%.",
+  "mechanizm": "Prośba o odwołanie wizyty jest abstrakcyjna. Konkretna kwota cudzej straty robi z nieobecności czyjąś szkodę, a nie pustą rubrykę.",
+  "rada": "w przypomnieniu podaj jedną liczbę, ile traci firma, gdy termin przepada, zamiast pisać ogólnie o odwoływaniu.",
+  "pytanie": "Co dokładnie piszesz w przypomnieniu o wizycie? 👇",
+  "zrodlo": "Hallsworth i in., 2015"
+ },
+ "P9": {
+  "tytul": "Prezent traci wartość. Dwie trzecie ceny?! 😳",
+  "hook": "Obdarowani wycenili dostane prezenty na dwie trzecie tego, co zapłacili za nie darczyńcy.",
+  "badanie": "W dwóch ankietach porównano 278 prezentów: cenę zakupu z kwotą, jaką obdarowany dałby za tę samą rzecz. Wycena wyniosła 66,1% ceny w pierwszej ankiecie i 87,1% w drugiej, a dla prezentów rzeczowych 83,9%.",
+  "mechanizm": "Kupujący wybiera po swojemu, bo nie zna cudzych upodobań w szczegółach. Rzecz trafia obok, a obdarowany wycenia to, co dostał, nie to, co kosztowało.",
+  "rada": "przy prezentowych zakupach sprzedawaj bon albo wymianę bez paragonu. Rzecz wybrana za kogoś jest dla niego warta mniej, niż kosztowała.",
+  "pytanie": "Sprzedajesz bony na prezent? 👇",
+  "zrodlo": "Waldfogel, 1993"
+ },
+ "L13": {
+  "tytul": "Własna torba, dwa efekty. Eko w górę 13%, słodycze 7%?! 😳",
+  "hook": "Własna torba podniosła zakup produktów ekologicznych o 13%, ale słodyczy o 7%.",
+  "badanie": "Z kart lojalnościowych jednego sklepu w Kalifornii z lat 2005-2007 wzięto 884 gospodarstwa i 142 938 wizyt, porównując wizyty z własną torbą i bez niej. Produkty ekologiczne pojawiły się w 6,74% koszyków zamiast 5,95%, a przyjemnościowe w 19,2% zamiast 17,9%.",
+  "mechanizm": "Dobry wybór daje klientowi poczucie, że zasłużył. Zaraz potem łatwiej mu pozwolić sobie na nagrodę, której normalnie by nie wziął.",
+  "rada": "po każdym dobrym wyborze klienta od razu podsuń przyjemność. Poczucie, że zrobił coś słusznego, otwiera go na nagrodę.",
+  "pytanie": "Co podsuwasz klientowi zaraz po dobrym wyborze? 👇",
+  "zrodlo": "Karmarkar i Bollinger, 2015"
+ },
+ "L9": {
+  "tytul": "Martwa strefa karty. Ta sama pozycja o 20% częściej?! 😳",
+  "hook": "Ta sama pozycja przeniesiona ze środka karty na jej początek sprzedawała się o 20% częściej.",
+  "badanie": "W kawiarni przez miesiąc podawano naprzemiennie kartę zwykłą i odwróconą, zamieniając miejscami 20 z 60 pozycji; policzono 951 realnych zamówień. Krańce listy zebrały 55% zamówień, środek 45%. W badaniu na 240 osobach wyszło 56% kontra 44%.",
+  "mechanizm": "Uwaga zatrzymuje się na początku i na końcu listy. Środek czyta się w biegu, więc to, co tam stoi, klient po prostu mija.",
+  "rada": "pozycje, na których zarabiasz, stawiaj na początku i na końcu każdej kategorii, nigdy w jej środku.",
+  "pytanie": "Co stoi w środku Twojej karty? 👇",
+  "zrodlo": "Dayan i Bar-Hillel, 2011"
+ },
+ "C12": {
+  "tytul": "Wyjęte z zestawu. 2,45 zamiast 1,98?! 😳",
+  "hook": "Za ten sam baton wyjęty z zestawu ludzie żądali więcej niż za sprzedawany osobno.",
+  "badanie": "192 osoby wyceniały oddanie jednej sztuki: raz pochodzącej z zestawu, raz kupionej pojedynczo. Za sztukę z zestawu żądali 2,45 dolara, a za sprzedawaną osobno 1,98.",
+  "mechanizm": "Zestaw klient traktuje jak całość. Wyjęcie z niego jednej rzeczy czyta jak rozbicie tej całości, a nie jak zwykłą sprzedaż.",
+  "rada": "składaj ofertę w zestawy. Tę samą pozycję jako część zestawu klient wycenia wyżej niż luzem.",
+  "pytanie": "Sprzedajesz w zestawach czy po sztuce? 👇",
+  "zrodlo": "Shaddy i Fishbach, 2017"
+ },
+ "U10": {
+  "tytul": "Domyślne wygrywa. 87% zamiast 6%?! 😳",
+  "hook": "Przy domyślnym obiedzie mięsnym wegetariański wybrało 6%, przy domyślnym wegetariańskim - 87%.",
+  "badanie": "Trzy randomizowane eksperymenty na formularzach zapisu na konferencje w Kopenhadze, 330 odpowiedzi. Połowa dostawała formularz z domyślnym obiadem mięsnym, połowa z wegetariańskim. Wyszło 2% kontra 87%, 6% kontra 86% i 12,5% kontra 89%.",
+  "mechanizm": "Zaznaczone pole klient czyta jako zalecenie gospodarza, a nie jako jedną z dwóch równorzędnych opcji. Zmiana wymaga decyzji, której nikt nie chce podejmować.",
+  "rada": "w formularzu zamówienia albo zapisu wpisz to, co chcesz sprzedać, jako wariant już zaznaczony, a alternatywę zostaw jako zmianę.",
+  "pytanie": "Co masz zaznaczone z góry w swoim formularzu? 👇",
+  "zrodlo": "Hansen, Schilling i Malthesen, 2019"
+ },
+ "C15": {
+  "tytul": "Cena obok podnosi twoją. 9 zamiast 7,29?! 😳",
+  "hook": "Cena bluzy na sąsiednim stoisku podniosła ofertę za płytę, choć z płytą nie miała nic wspólnego.",
+  "badanie": "W eksperymencie polowym na plaży 60 osób licytowało płyty, a obok stało stoisko z bluzą za 10 albo za 80 dolarów. Średnia oferta za płytę wyniosła 7,29 dolara przy taniej bluzie i 9,00 przy drogiej. W danych z aukcji samochodowych współczynnik kotwicy wyszedł 0,15.",
+  "mechanizm": "Pierwsza zobaczona cena zostaje punktem odniesienia, nawet jeśli dotyczy zupełnie innego towaru. Mózg porównuje liczby, nie produkty.",
+  "rada": "obok tego, co sprzedajesz, postaw rzecz droższą. Cena z sąsiedztwa podnosi to, ile klient jest gotów zapłacić u Ciebie.",
+  "pytanie": "Co stoi obok Twojego najdroższego produktu? 👇",
+  "zrodlo": "Nunes i Boatwright, 2004"
+ }
+}
