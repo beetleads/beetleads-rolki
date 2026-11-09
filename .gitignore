@@ -1,1 +1,3 @@
 tmpaudio/
+__pycache__/
+*.pyc
