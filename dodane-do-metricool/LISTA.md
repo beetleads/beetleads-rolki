@@ -97,3 +97,13 @@ surowy mix stereo -> klik -> wygaszenie -> jedno wzmocnienie. Bez rubberbanda,
 bez skladania do mono, bez loudnorm i limitera. Tlumienie whooszy tylko w pasmie
 3,5-9 kHz (silnik/audio6.py), pasmo mowy nietkniete (0,00 dB). -14,1 do -14,2 LUFS,
 peak -1,3 do -1,9 dBFS.
+
+## 10.11 21:40 - PRZEBUDOWA CALEJ KOLEJKI 14-18.11 na silnik 5 (wersja v5g/s5g)
+14 rolek zbudowanych od nowa: glos wyciagniety z poprzednich plikow (bez kosztow lektora),
+transkrypcja lokalna, po 4-5 wlasnych zdjec z Unsplasha na rolke, bramki pasow i kolizji czyste,
+napisy w ramkach, dzwiek wygasa, -14 LUFS (+-1), peak <= -1,3 dBFS.
+1114: widelki / wideo / udzial | 1115: dotyk / czcionka / termin | 1116: ryczalt2 / panel / rabat
+1117: wozek / zadatek / odpowiedzi | 1118: ekran / abonament
+Sloty 15-18.11 przestawione z 9/13/18 na 7/12/18 (harmonogram z 10.11 07:20).
+WSTRZYMANE: 18.11 07:00 "jednostka na metce" - w kolejce byl podpiety NIE TEN film (duplikat
+rolki o ekranie). Post ustawiony na szkic, rolka do nagrania od nowa (brak oryginalnego glosu).
