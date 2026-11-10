@@ -74,3 +74,10 @@ elementy powiekszone, po trzy wlasne zdjecia na rolke.
 ## 10.11 19:41 - wersja v5e w kolejce: animacja wniosku, rozne tla, punkty procentowe
 1112_0700_zdjecia_s5e, 1112_1200_druga_s5e, 1112_1800_gratis_s5e,
 1113_0700_rozrzut_s5e, 1113_1200_opinia_s5e, 1113_1800_lewo_s5e.
+
+## 10.11 20:00 - wersja v5f w kolejce: wyciszenie na koncu (bez ucietego dzwieku)
+1112_0700_zdjecia_s5f, 1112_1200_druga_s5f, 1112_1800_gratis_s5f,
+1113_0700_rozrzut_s5f, 1113_1200_opinia_s5f, 1113_1800_lewo_s5f.
+Obraz wydluzony o 0,45 s (tpad=clone), afade=out curve=qsin od ostatniego slowa,
+ogon cichnie do -30 dB i dalej cisza; po tym dwie przebiegi loudness: -14,2 do -14,4 LUFS,
+peak -1,3/-1,4 dBFS. Wszystkie 12 postow (IG+TikTok i FB+YouTube) podmienione.
