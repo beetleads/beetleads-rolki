@@ -88,3 +88,12 @@ peak -1,3/-1,4 dBFS. Wszystkie 12 postow (IG+TikTok i FB+YouTube) podmienione.
 Box rosnie do 940 px, dopiero potem maleje czcionka (zalozyciel: "pamietaj aby tu sie miescily
 napisy, w razie potrzeby poszerzaj boxa"). Poziom liczony loudnorm w dwoch przebiegach:
 -14,3 do -14,9 LUFS, true peak -1,3 do -1,5 dBFS. Dolny pas zajety juz od 0,4 s (bramka pasow czysta).
+
+## 10.11 20:58 - wersja v5h: GLOS BEZ OBROBKI (zalozyciel: "glos ma byc normalny")
+1112_0700_zdjecia_s5h, 1112_1200_druga_s5h, 1112_1800_gratis_s5h,
+1113_0700_rozrzut_s5h, 1113_1200_opinia_s5h, 1113_1800_lewo_s5h.
+Obraz ten sam co v5g (skopiowany, bez ponownego renderu). Dzwiek skladany od nowa:
+surowy mix stereo -> klik -> wygaszenie -> jedno wzmocnienie. Bez rubberbanda,
+bez skladania do mono, bez loudnorm i limitera. Tlumienie whooszy tylko w pasmie
+3,5-9 kHz (silnik/audio6.py), pasmo mowy nietkniete (0,00 dB). -14,1 do -14,2 LUFS,
+peak -1,3 do -1,9 dBFS.
