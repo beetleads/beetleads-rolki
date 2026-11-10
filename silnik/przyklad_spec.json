@@ -1,0 +1,394 @@
+{
+ "audio": "/tmp/claude-0/-home-claude/2dbe75ca-4db3-575f-9da9-3016388c7a29/scratchpad/val/r2.mp4",
+ "dlugosc": 20.1,
+ "akcent": "#FFD84D",
+ "cyjan": "#35D0E8",
+ "okladka_do": 0.1,
+ "okladka": {
+  "l1": "Ryczałt czy licznik",
+  "l2": "46% przepłaca?!",
+  "foto": "/home/claude/silnik5/public/pieniadze.jpg"
+ },
+ "ujecia": [
+  {
+   "od": 0.1,
+   "do": 2.0,
+   "tlo": {
+    "typ": "foto",
+    "plik": "/home/claude/silnik5/public/pieniadze.jpg",
+    "kadr": 0
+   }
+  },
+  {
+   "od": 2.0,
+   "do": 4.05,
+   "tlo": {
+    "typ": "foto",
+    "plik": "/home/claude/silnik5/public/pieniadze.jpg",
+    "kadr": 1
+   }
+  },
+  {
+   "od": 4.05,
+   "do": 6.35,
+   "tlo": {
+    "typ": "desen",
+    "ziarno": 11
+   }
+  },
+  {
+   "od": 6.35,
+   "do": 8.65,
+   "tlo": {
+    "typ": "desen",
+    "ziarno": 16
+   }
+  },
+  {
+   "od": 8.65,
+   "do": 11.3,
+   "tlo": {
+    "typ": "foto",
+    "plik": "/home/claude/silnik5/public/bilety.jpg",
+    "kadr": 2
+   }
+  },
+  {
+   "od": 11.3,
+   "do": 13.4,
+   "tlo": {
+    "typ": "desen",
+    "ziarno": 21
+   }
+  },
+  {
+   "od": 13.4,
+   "do": 16.3,
+   "tlo": {
+    "typ": "desen",
+    "ziarno": 26
+   }
+  },
+  {
+   "od": 16.3,
+   "do": 18.3,
+   "tlo": {
+    "typ": "foto",
+    "plik": "/home/claude/silnik5/public/bilety.jpg",
+    "kadr": 3
+   }
+  },
+  {
+   "od": 18.3,
+   "do": 20.1,
+   "tlo": {
+    "typ": "foto",
+    "plik": "/home/claude/silnik5/public/pieniadze.jpg",
+    "kadr": 2
+   }
+  }
+ ],
+ "elementy": [
+  {
+   "typ": "chip",
+   "tekst": "Abonament czy licznik",
+   "od": 0.15,
+   "do": 4.0,
+   "y": 150
+  },
+  {
+   "typ": "ludzie",
+   "ile": 50,
+   "zaznaczone": 23,
+   "podpis": "10 000 faktur, 46% przepłaca",
+   "od": 4.15,
+   "do": 6.3,
+   "y": 330
+  },
+  {
+   "typ": "karta_liczby",
+   "naglowek": "Policzone w badaniu",
+   "l1": "46% na ryczałcie",
+   "l2": "płaci więcej",
+   "od": 6.45,
+   "do": 8.6,
+   "y": 1150
+  },
+  {
+   "typ": "slupki",
+   "a": {
+    "etykieta": "płaci tyle, co zużył",
+    "wartosc": 54,
+    "liczba": "54%"
+   },
+   "b": {
+    "etykieta": "przepłaca",
+    "wartosc": 46,
+    "liczba": "46%"
+   },
+   "od": 8.7,
+   "do": 11.25,
+   "y": 300
+  },
+  {
+   "typ": "chip",
+   "tekst": "Dlaczego tak jest",
+   "od": 11.45,
+   "do": 12.6,
+   "y": 150
+  },
+  {
+   "typ": "schemat",
+   "etykieta": "spokój",
+   "podpis": "stała kwota",
+   "od": 12.7,
+   "do": 16.2,
+   "y": 430
+  },
+  {
+   "typ": "zapamietaj",
+   "od": 16.5,
+   "do": 20.0,
+   "y": 150
+  },
+  {
+   "typ": "domkniecie",
+   "naglowek": "Zrób to u siebie",
+   "l1": "Daj abonament",
+   "l2": "obok płatności za użycie",
+   "od": 17.4,
+   "do": 20.0,
+   "y": 1180
+  },
+  {
+   "typ": "karta_liczby",
+   "naglowek": "Dlaczego tak jest",
+   "l1": "stała kwota",
+   "l2": "to spokój",
+   "od": 13.2,
+   "do": 16.2,
+   "y": 1150
+  },
+  {
+   "typ": "karta_liczby",
+   "naglowek": "Proba badania",
+   "l1": "10 000 faktur",
+   "l2": "sprawdzonych",
+   "od": 4.3,
+   "do": 6.3,
+   "y": 1150
+  }
+ ],
+ "slowa": [
+  {
+   "s": "Prawie",
+   "od": 0.2,
+   "do": 0.42
+  },
+  {
+   "s": "połowa",
+   "od": 0.52,
+   "do": 0.82
+  },
+  {
+   "s": "klientów",
+   "od": 0.88,
+   "do": 1.32
+  },
+  {
+   "s": "na",
+   "od": 1.36,
+   "do": 1.44
+  },
+  {
+   "s": "abonamencie",
+   "od": 1.48,
+   "do": 2.1
+  },
+  {
+   "s": "przepłaca",
+   "od": 2.2,
+   "do": 2.9
+  },
+  {
+   "s": "i",
+   "od": 3.08,
+   "do": 3.12
+  },
+  {
+   "s": "zostaje.",
+   "od": 3.18,
+   "do": 3.7
+  },
+  {
+   "s": "Sprawdzono",
+   "od": 4.14,
+   "do": 4.56
+  },
+  {
+   "s": "faktury",
+   "od": 4.6,
+   "do": 4.96
+  },
+  {
+   "s": "dziesięciu",
+   "od": 5.02,
+   "do": 5.46
+  },
+  {
+   "s": "tysięcy",
+   "od": 5.54,
+   "do": 5.92
+  },
+  {
+   "s": "osób.",
+   "od": 6.04,
+   "do": 6.34
+  },
+  {
+   "s": "46",
+   "od": 6.68,
+   "do": 7.48
+  },
+  {
+   "s": "procent",
+   "od": 7.52,
+   "do": 7.96
+  },
+  {
+   "s": "na",
+   "od": 8.02,
+   "do": 8.08
+  },
+  {
+   "s": "ryczałcie",
+   "od": 8.119,
+   "do": 8.52
+  },
+  {
+   "s": "zapłaciło",
+   "od": 8.56,
+   "do": 9.04
+  },
+  {
+   "s": "więcej,",
+   "od": 9.14,
+   "do": 9.62
+  },
+  {
+   "s": "niż",
+   "od": 9.78,
+   "do": 9.92
+  },
+  {
+   "s": "gdyby",
+   "od": 9.96,
+   "do": 10.2
+  },
+  {
+   "s": "liczyli",
+   "od": 10.24,
+   "do": 10.58
+  },
+  {
+   "s": "za",
+   "od": 10.64,
+   "do": 10.72
+  },
+  {
+   "s": "użycie.",
+   "od": 10.78,
+   "do": 11.16
+  },
+  {
+   "s": "Wiesz",
+   "od": 11.54,
+   "do": 11.66
+  },
+  {
+   "s": "dlaczego?",
+   "od": 11.7,
+   "do": 12.1
+  },
+  {
+   "s": "Stała",
+   "od": 12.72,
+   "do": 12.96
+  },
+  {
+   "s": "kwota",
+   "od": 12.98,
+   "do": 13.28
+  },
+  {
+   "s": "daje",
+   "od": 13.34,
+   "do": 13.56
+  },
+  {
+   "s": "spokój,",
+   "od": 13.6,
+   "do": 14.06
+  },
+  {
+   "s": "a",
+   "od": 14.3,
+   "do": 14.36
+  },
+  {
+   "s": "licznik",
+   "od": 14.4,
+   "do": 14.88
+  },
+  {
+   "s": "zmusza",
+   "od": 15.08,
+   "do": 15.38
+  },
+  {
+   "s": "do",
+   "od": 15.42,
+   "do": 15.48
+  },
+  {
+   "s": "pilnowania.",
+   "od": 15.56,
+   "do": 16.079
+  },
+  {
+   "s": "Zapamiętaj:",
+   "od": 16.52,
+   "do": 17.08
+  },
+  {
+   "s": "obok",
+   "od": 17.48,
+   "do": 17.7
+  },
+  {
+   "s": "rozliczenia",
+   "od": 17.74,
+   "do": 18.26
+  },
+  {
+   "s": "za",
+   "od": 18.3,
+   "do": 18.4
+  },
+  {
+   "s": "użycie",
+   "od": 18.46,
+   "do": 18.86
+  },
+  {
+   "s": "daj",
+   "od": 19.22,
+   "do": 19.38
+  },
+  {
+   "s": "abonament.",
+   "od": 19.46,
+   "do": 19.94
+  }
+ ]
+}

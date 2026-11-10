@@ -1,0 +1,390 @@
+#!/usr/bin/env python3
+"""Silnik 5 rolek Beetleads - rysowane sceny, bez przegladarki.
+
+Powod istnienia: silnik 4 mial tylko cztery elementy (pigulka, karta, slupki,
+ludzie) i przez wiekszosc rolki na ekranie zostawalo samo zdjecie z napisem.
+Zalozyciel 10.11: "to nie wyglada jak wczesniejsze edycje". Tutaj kazda scena
+jest rysowana, a zdjecie jest tylko przyciemnionym tlem.
+
+Zasady z rolki referencyjnej (skill rolki-aip, sekcja 0b):
+  - ujecie STOI, zmienia sie tylko na cieciu; nowe ujecie co ok. 1,6-2,2 s
+  - kazde zdanie niesie element; scena-schemat na ciemnym tle przynajmniej raz
+  - dwa akcenty: cyjan = mechanizm i liczby z badania, zolty = napisy i rada
+  - @beetleads na kazdej klatce, napisy karaoke na linii oczu
+  - czasy slow ZAWSZE z transkrypcji nagrania
+
+Uzycie: python3 render.py spec.json wyjscie.mp4
+"""
+import json, math, subprocess, sys, pathlib, random
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+
+W, H, FPS = 1080, 1920, 30
+TLO = (14, 14, 17)
+BIEL = (255, 255, 255)
+CIEMNY = (23, 17, 13)
+SAFE_L, SAFE_R = 224, 856
+CAP_Y = 920
+FONTY = pathlib.Path(__file__).parent / "fonty"
+
+
+def f_anton(px):
+    return ImageFont.truetype(str(FONTY / "Anton.ttf"), px)
+
+
+def f_inter(px, waga="bold"):
+    plik = "Inter-Bold.ttf" if waga == "bold" else "Inter-SemiBold.ttf"
+    return ImageFont.truetype(str(FONTY / plik), px)
+
+
+def hexkolor(s):
+    s = s.lstrip("#")
+    return tuple(int(s[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def szer(d, tekst, font):
+    l, t, r, b = d.textbbox((0, 0), tekst, font=font)
+    return r - l
+
+
+# ---------------------------------------------------------------- tla
+
+def tlo_foto(plik, kadr):
+    """Zdjecie jako przyciemnione tlo. Kadr STOI - zoom i przesuniecie biora sie
+    z numeru ujecia, nigdy z czasu, zeby w srodku ujecia nie ruszal sie ani piksel."""
+    im = Image.open(plik).convert("RGB")
+    zoom = [1.00, 1.06, 1.03, 1.08][kadr % 4]
+    dx = [0, -0.03, 0.03, 0][kadr % 4]
+    dy = [0, 0.02, -0.02, 0.01][kadr % 4]
+    sk = max(W / im.width, H / im.height) * zoom
+    im = im.resize((int(im.width * sk) + 1, int(im.height * sk) + 1), Image.LANCZOS)
+    x = int((im.width - W) / 2 + dx * W)
+    y = int((im.height - H) / 2 + dy * H)
+    x = max(0, min(x, im.width - W))
+    y = max(0, min(y, im.height - H))
+    im = im.crop((x, y, x + W, y + H))
+    szkic = Image.new("RGB", (W, H), TLO)
+    return Image.blend(im, szkic, 0.52)
+
+
+def tlo_desen(akcent, ziarno=7):
+    """Ciemne tlo z deseniem - scena-schemat z rolki referencyjnej."""
+    im = Image.new("RGB", (W, H), TLO)
+    d = ImageDraw.Draw(im)
+    rnd = random.Random(ziarno)
+    kol = tuple(int(c * 0.22) for c in akcent)
+    for _ in range(26):
+        x = rnd.randint(-100, W)
+        y = rnd.randint(-100, H)
+        punkty = []
+        for i in range(26):
+            punkty.append((x + i * 26, y + int(44 * math.sin(i / 2.4 + rnd.random()))))
+        d.line(punkty, fill=kol, width=3, joint="curve")
+    return im
+
+
+# ---------------------------------------------------------------- elementy
+
+def pigulka(d, srodek_x, y, tekst, font, tlo_k, tekst_k, obrys=None, pad=(26, 14), r=None):
+    w = szer(d, tekst, font) + pad[0] * 2
+    h = font.size + pad[1] * 2
+    x0 = srodek_x - w // 2
+    r = r if r is not None else h // 2
+    d.rounded_rectangle([x0, y, x0 + w, y + h], radius=r, fill=tlo_k,
+                        outline=obrys, width=3 if obrys else 0)
+    d.text((x0 + pad[0], y + pad[1] - font.size * 0.08), tekst, font=font, fill=tekst_k)
+    return (x0, y, x0 + w, y + h)
+
+
+def el_chip(im, d, el, akcent, post):
+    font = f_inter(28, "semi")
+    t = el["tekst"].upper()
+    y = el.get("y", 120)
+    a = int(255 * min(1, post / 0.18))
+    nak = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dn = ImageDraw.Draw(nak)
+    pigulka(dn, W // 2, y, t, font, (14, 14, 17, 225), akcent + (a,), obrys=akcent + (a,))
+    im.alpha_composite(nak)
+
+
+def el_slupki(im, d, el, akcent, cyjan, post):
+    """Porownanie A/B: dwa slupki z etykietami, wygrany w cyjanie."""
+    y = el.get("y", 300)
+    a, b = el["a"], el["b"]
+    maks = max(a["wartosc"], b["wartosc"], 1)
+    wys = 300
+    szer_s = 140
+    luz = 170
+    x0 = W // 2 - szer_s - luz // 2
+    wejscie = min(1, post / 0.35)
+    for i, (dane, kol) in enumerate([(a, (150, 150, 158)), (b, cyjan)]):
+        x = x0 + i * (szer_s + luz)
+        h = int(wys * dane["wartosc"] / maks * wejscie)
+        d.rounded_rectangle([x, y + wys - h, x + szer_s, y + wys], radius=14, fill=kol)
+        d.rounded_rectangle([x, y, x + szer_s, y + wys], radius=14, outline=(90, 90, 96), width=3)
+        font = f_inter(26, "semi")
+        pigulka(d, x + szer_s // 2, y + wys + 18, dane["etykieta"].upper(), font,
+                (14, 14, 17), BIEL, obrys=kol)
+        if dane.get("liczba"):
+            fa = f_anton(52)
+            d.text((x + szer_s // 2 - szer(d, dane["liczba"], fa) // 2, y - 68),
+                   dane["liczba"], font=fa, fill=kol)
+
+
+def el_ludzie(im, d, el, akcent, cyjan, post):
+    """Siatka ikonek ludzi - proba badania; zaznaczone w cyjanie."""
+    y = el.get("y", 320)
+    ile = el["ile"]
+    zazn = el.get("zaznaczone", 0)
+    kol_w = 10
+    krok = 58
+    x0 = W // 2 - (kol_w * krok) // 2 + 10
+    widoczne = int(ile * min(1, post / 0.5))
+    for i in range(widoczne):
+        cx = x0 + (i % kol_w) * krok
+        cy = y + (i // kol_w) * 62
+        kol = cyjan if i < zazn else (170, 170, 178)
+        d.ellipse([cx - 11, cy - 22, cx + 11, cy], outline=kol, width=3)
+        d.arc([cx - 18, cy - 2, cx + 18, cy + 34], 180, 360, fill=kol, width=3)
+    if el.get("podpis"):
+        font = f_inter(26, "semi")
+        wiersze = (ile + kol_w - 1) // kol_w
+        pigulka(d, W // 2, y + wiersze * 62 + 16, el["podpis"].upper(), font,
+                (14, 14, 17), BIEL, obrys=cyjan)
+
+
+def el_schemat(im, d, el, akcent, cyjan, post):
+    """Rysunek mechanizmu: dwa wezly polaczone kropkami (jak oko-kubek w referencji)."""
+    y = el.get("y", 430)
+    lx, rx = W // 2 - 190, W // 2 + 190
+    d.ellipse([lx - 70, y - 44, lx + 70, y + 44], outline=BIEL, width=5)
+    d.ellipse([lx - 20, y - 20, lx + 20, y + 20], fill=BIEL)
+    punkty = int(6 * min(1, post / 0.6))
+    for i in range(punkty):
+        x = lx + 80 + i * 36
+        d.ellipse([x - 7, y - 7, x + 7, y + 7], fill=cyjan)
+    d.rounded_rectangle([rx - 60, y - 52, rx + 60, y + 52], radius=20, outline=cyjan, width=5)
+    if el.get("etykieta"):
+        pigulka(d, rx, y - 118, el["etykieta"].upper(), f_inter(24, "semi"), cyjan, CIEMNY)
+    if el.get("podpis"):
+        pigulka(d, lx, y - 118, el["podpis"].upper(), f_inter(24, "semi"), (14, 14, 17), BIEL, obrys=BIEL)
+
+
+def el_karta_liczby(im, d, el, akcent, cyjan, post):
+    """Ciemna karta z liczba z badania - 'POLICZONE W BADANIU'."""
+    y = el.get("y", 1180)
+    wejscie = min(1, post / 0.3)
+    fn = f_inter(24, "semi")
+    f1 = f_anton(66)
+    f2 = f_anton(66)
+    linie = [(el["l1"], BIEL, f1)] + ([(el["l2"], cyjan, f2)] if el.get("l2") else [])
+    w = max([szer(d, t, f) for t, _, f in linie] + [szer(d, el["naglowek"], fn)]) + 110
+    w = min(w, SAFE_R - SAFE_L + 60)
+    h = 72 + sum(f.size + 14 for _, _, f in linie)
+    x0 = W // 2 - w // 2
+    y0 = y - int((1 - wejscie) * 24)
+    nak = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dn = ImageDraw.Draw(nak)
+    dn.rounded_rectangle([x0, y0, x0 + w, y0 + h], radius=18,
+                         fill=(10, 12, 16, int(238 * wejscie)), outline=cyjan + (int(255 * wejscie),), width=3)
+    dn.line([W // 2 - 26, y0 + 20, W // 2 + 26, y0 + 20], fill=cyjan + (255,), width=4)
+    dn.text((W // 2 - szer(dn, el["naglowek"].upper(), fn) // 2, y0 + 30),
+            el["naglowek"].upper(), font=fn, fill=(190, 195, 205, int(255 * wejscie)))
+    yy = y0 + 66
+    for t, kol, f in linie:
+        dn.text((W // 2 - szer(dn, t.upper(), f) // 2, yy), t.upper(), font=f,
+                fill=kol + (int(255 * wejscie),))
+        yy += f.size + 14
+    im.alpha_composite(nak)
+
+
+def el_domkniecie(im, d, el, akcent, cyjan, post):
+    """Karta wniosku 'ZROB TO U SIEBIE' - druga linia w akcencie."""
+    y = el.get("y", 1240)
+    wejscie = min(1, post / 0.3)
+    fn = f_inter(22, "semi")
+    f1 = f_anton(54)
+    linie = [(el["l1"], BIEL), (el.get("l2", ""), akcent)]
+    linie = [(t, k) for t, k in linie if t]
+    w = max([szer(d, t.upper(), f1) for t, _ in linie]) + 110
+    h = 70 + len(linie) * (f1.size + 12)
+    x0 = W // 2 - w // 2
+    nak = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dn = ImageDraw.Draw(nak)
+    dn.rounded_rectangle([x0, y, x0 + w, y + h], radius=16,
+                         fill=(12, 10, 8, int(240 * wejscie)), outline=akcent + (int(255 * wejscie),), width=3)
+    dn.line([W // 2 - 24, y + 20, W // 2 + 24, y + 20], fill=akcent + (255,), width=4)
+    dn.text((W // 2 - szer(dn, el["naglowek"].upper(), fn) // 2, y + 28),
+            el["naglowek"].upper(), font=fn, fill=(200, 196, 190, int(255 * wejscie)))
+    yy = y + 62
+    for t, kol in linie:
+        dn.text((W // 2 - szer(dn, t.upper(), f1) // 2, yy), t.upper(), font=f1,
+                fill=kol + (int(255 * wejscie),))
+        yy += f1.size + 12
+    im.alpha_composite(nak)
+    if post > 0.5:
+        szer_l = int(min(1, (post - 0.5) / 0.4) * 200)
+        d.line([W // 2 - szer_l // 2, y + h + 22, W // 2 + szer_l // 2, y + h + 22],
+               fill=akcent, width=6)
+
+
+def el_zapamietaj(im, d, el, akcent, post):
+    font = f_inter(30, "semi")
+    puls = 1 + 0.04 * math.sin(post * 7)
+    f = f_inter(int(30 * puls), "semi")
+    pigulka(d, W // 2, el.get("y", 120), "ZAPAMIĘTAJ", f, (14, 14, 17), BIEL, obrys=akcent, r=12)
+
+
+RYSUNKI = {
+    "chip": el_chip, "slupki": el_slupki, "ludzie": el_ludzie, "schemat": el_schemat,
+    "karta_liczby": el_karta_liczby, "domkniecie": el_domkniecie, "zapamietaj": el_zapamietaj,
+}
+
+
+# ---------------------------------------------------------------- napisy
+
+def grupy_slow(slowa, maks=5):
+    """Grupa konczy sie na kropce, pytajniku albo pauzie w glosie - inaczej napis
+    sklada slowa z dwoch zdan i czyta sie jak belkot (10.11: "Wiesz dlaczego? Stala kwota")."""
+    g, biez = [], []
+    for i, s in enumerate(slowa):
+        biez.append(s)
+        koniec_zdania = s["s"].rstrip()[-1:] in ".?!:"
+        pauza = i + 1 < len(slowa) and slowa[i + 1]["od"] - s["do"] > 0.28
+        if koniec_zdania or pauza or len(biez) == maks:
+            g.append(biez)
+            biez = []
+    if biez:
+        g.append(biez)
+    return g
+
+
+def rysuj_napisy(im, d, grupa, t, akcent):
+    font = f_inter(40, "bold")
+    odstep = 16
+    wiersze, biez, szer_b = [], [], 0
+    for s in grupa:
+        w = szer(d, s["s"], font) + 28
+        if szer_b + w > SAFE_R - SAFE_L and biez:
+            wiersze.append(biez)
+            biez, szer_b = [], 0
+        biez.append(s)
+        szer_b += w + odstep
+    if biez:
+        wiersze.append(biez)
+    y = CAP_Y - (len(wiersze) * (font.size + 34)) // 2
+    nak = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dn = ImageDraw.Draw(nak)
+    for wiersz in wiersze:
+        szer_w = sum(szer(dn, s["s"], font) + 28 + odstep for s in wiersz) - odstep
+        x = W // 2 - szer_w // 2
+        for s in wiersz:
+            w = szer(dn, s["s"], font) + 28
+            mowione = s["od"] <= t <= s["do"]
+            if mowione:
+                dn.rounded_rectangle([x, y, x + w, y + font.size + 22], radius=10, fill=akcent + (255,))
+                kol = CIEMNY + (255,)
+            else:
+                dn.rounded_rectangle([x, y, x + w, y + font.size + 22], radius=10, fill=(14, 14, 17, 205))
+                kol = (255, 255, 255, 255)
+            dn.text((x + 14, y + 6), s["s"], font=font, fill=kol)
+            x += w + odstep
+        y += font.size + 34
+    im.alpha_composite(nak)
+
+
+def znak_wodny(im, d):
+    font = f_inter(22, "semi")
+    t = "@beetleads"
+    nak = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dn = ImageDraw.Draw(nak)
+    dn.text((W // 2 - szer(dn, t, font) // 2, 1760), t, font=font, fill=(255, 255, 255, 150))
+    im.alpha_composite(nak)
+
+
+def okladka(spec, akcent):
+    o = spec["okladka"]
+    im = Image.open(o["foto"]).convert("RGB")
+    sk = max(W / im.width, H / im.height)
+    im = im.resize((int(im.width * sk) + 1, int(im.height * sk) + 1), Image.LANCZOS)
+    im = im.crop(((im.width - W) // 2, 0, (im.width - W) // 2 + W, H))
+    im = Image.blend(im, Image.new("RGB", (W, H), TLO), 0.42).convert("RGBA")
+    d = ImageDraw.Draw(im)
+    d.rectangle([0, 1000, W, H], fill=(14, 14, 17, 225))
+    y = 1060
+    for i, linia in enumerate([o["l1"], o["l2"]]):
+        f = f_anton(104)
+        while szer(d, linia.upper(), f) > SAFE_R - SAFE_L + 120 and f.size > 60:
+            f = f_anton(f.size - 4)
+        kol = akcent if i == 1 else BIEL
+        d.text((W // 2 - szer(d, linia.upper(), f) // 2, y), linia.upper(), font=f, fill=kol)
+        y += f.size + 18
+    znak_wodny(im, d)
+    return im
+
+
+# ---------------------------------------------------------------- montaz
+
+def renderuj(spec_plik, wyjscie):
+    spec = json.loads(pathlib.Path(spec_plik).read_text())
+    akcent = hexkolor(spec.get("akcent", "#FFD84D"))
+    cyjan = hexkolor(spec.get("cyjan", "#35D0E8"))
+    dlugosc = spec["dlugosc"]
+    klatki = int(round(dlugosc * FPS))
+    katalog = pathlib.Path(wyjscie).parent / ("kl_" + pathlib.Path(wyjscie).stem)
+    katalog.mkdir(parents=True, exist_ok=True)
+
+    # tla ujec licz RAZ - w srodku ujecia kadr i tak stoi
+    bazy = []
+    for i, u in enumerate(spec["ujecia"]):
+        t = u["tlo"]
+        if t["typ"] == "foto":
+            bazy.append(tlo_foto(t["plik"], t.get("kadr", i)).convert("RGBA"))
+        else:
+            bazy.append(tlo_desen(cyjan, t.get("ziarno", 7 + i)).convert("RGBA"))
+
+    okl = okladka(spec, akcent)
+    grupy = grupy_slow(spec["slowa"])
+
+    for k in range(klatki):
+        t = k / FPS
+        if t < spec.get("okladka_do", 0.1) or t > dlugosc - 0.1:
+            okl.convert("RGB").save(katalog / f"k{k:05d}.jpg", quality=93)
+            continue
+        idx = 0
+        for i, u in enumerate(spec["ujecia"]):
+            if u["od"] <= t < u["do"]:
+                idx = i
+                break
+        im = bazy[idx].copy()
+        d = ImageDraw.Draw(im)
+        for el in spec["elementy"]:
+            if el["od"] <= t <= el["do"]:
+                post = t - el["od"]
+                fn = RYSUNKI[el["typ"]]
+                if el["typ"] in ("chip",):
+                    fn(im, d, el, akcent, post)
+                elif el["typ"] == "zapamietaj":
+                    fn(im, d, el, akcent, post)
+                else:
+                    fn(im, d, el, akcent, cyjan, post)
+        for g in grupy:
+            if g[0]["od"] - 0.12 <= t <= g[-1]["do"] + 0.3:
+                rysuj_napisy(im, d, g, t, akcent)
+                break
+        znak_wodny(im, d)
+        im.convert("RGB").save(katalog / f"k{k:05d}.jpg", quality=93)
+
+    subprocess.run([
+        "ffmpeg", "-y", "-v", "error", "-framerate", str(FPS),
+        "-i", str(katalog / "k%05d.jpg"), "-i", spec["audio"],
+        "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p",
+        "-g", "60", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart",
+        "-shortest", wyjscie], check=True)
+    for p in katalog.glob("*.jpg"):
+        p.unlink()
+    katalog.rmdir()
+    print("gotowe:", wyjscie, klatki, "klatek")
+
+
+if __name__ == "__main__":
+    renderuj(sys.argv[1], sys.argv[2])
