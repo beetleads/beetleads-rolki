@@ -70,3 +70,7 @@ elementy powiekszone, po trzy wlasne zdjecia na rolke.
 ## 10.11 19:27 - wersja v5d: glos w oryginalnym tonie (bez przestrajania), obraz z v5c bez zmian
 1112_0700_zdjecia_s5d, 1112_1200_druga_s5d, 1112_1800_gratis_s5d,
 1113_0700_rozrzut_s5d, 1113_1200_opinia_s5d, 1113_1800_lewo_s5d.
+
+## 10.11 19:41 - wersja v5e w kolejce: animacja wniosku, rozne tla, punkty procentowe
+1112_0700_zdjecia_s5e, 1112_1200_druga_s5e, 1112_1800_gratis_s5e,
+1113_0700_rozrzut_s5e, 1113_1200_opinia_s5e, 1113_1800_lewo_s5e.
