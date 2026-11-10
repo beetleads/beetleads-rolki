@@ -51,8 +51,11 @@ def buduj(t):
     el.append({"typ": "karta_liczby", "naglowek": "Na start", "l1": t["start"][0], "l2": t["start"][1],
                "od": 0.75, "do": round(zd[0][1] + 0.2, 2), "y": 1150})
 
-    # DOWOD: ilustracja u gory przez cala czesc badawcza + dwie karty na dole
-    od_b, do_b = zd[1][0] - 0.1, zd[i_pyt - 1][1] + 0.15
+    # DOWOD: ilustracja u gory przez cala czesc badawcza + dwie karty na dole.
+    # Start NIE moze wyprzedzic konca kart hooka - 10.11 bramka kolizji zlapala
+    # nachodzenie kart na slupki w 3,4-3,8 s.
+    koniec_hooka = zd[0][1] + 0.2
+    od_b, do_b = max(zd[1][0] - 0.1, koniec_hooka + 0.05), zd[i_pyt - 1][1] + 0.15
     el.append(dict(t["dowod"], od=round(od_b, 2), do=round(do_b, 2), y=t["dowod"].get("y", 310)))
     pol = round((od_b + do_b) / 2, 2)
     el.append({"typ": "karta_liczby", "naglowek": "Próba badania", "l1": t["proba"][0], "l2": t["proba"][1],
@@ -63,13 +66,16 @@ def buduj(t):
     # MECHANIZM
     el.append({"typ": "chip", "tekst": "Dlaczego tak jest", "od": round(zd[i_pyt][0], 2),
                "do": round(zd[i_mech][0] - 0.05, 2), "y": 150})
+    start_k = round(zd[i_wniosek][0] - 0.2, 2)
+    # schemat i karta mechanizmu musza skonczyc sie, ZANIM wejdzie koncowka
     el.append({"typ": "schemat", "etykieta": t["schemat"][1], "podpis": t["schemat"][0],
-               "od": round(zd[i_mech][0], 2), "do": round(zd[i_mech][1] + 0.2, 2), "y": 430})
+               "od": round(zd[i_mech][0], 2),
+               "do": round(min(zd[i_mech][1] + 0.2, start_k + 0.02), 2), "y": 430})
     el.append({"typ": "karta_liczby", "naglowek": "Dlaczego tak jest", "l1": t["mech"][0], "l2": t["mech"][1],
-               "od": round(zd[i_pyt][1] + 0.3, 2), "do": round(zd[i_mech][1] + 0.25, 2), "y": 1150})
+               "od": round(zd[i_pyt][1] + 0.3, 2),
+               "do": round(min(zd[i_mech][1] + 0.25, start_k + 0.02), 2), "y": 1150})
 
     # KONCOWKA
-    start_k = round(zd[i_wniosek][0] - 0.2, 2)
     el.append({"typ": "tabliczka", "tekst": "Wniosek marketingowy", "od": start_k, "do": round(dl - 0.15, 2), "y": 130})
     el.append({"typ": "tak_nie", "podpis": t["tak_nie"], "od": round(start_k + 0.1, 2),
                "do": round(dl - 2.0, 2), "y": 330})

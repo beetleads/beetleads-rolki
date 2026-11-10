@@ -404,6 +404,26 @@ def el_follow(im, d, el, akcent, cyjan, post):
                 (14, 14, 17), BIEL, obrys=akcent)
 
 
+WYSOKOSCI = {"chip": 80, "karty": 360, "slupki": 420, "ludzie": 420, "schemat": 240,
+             "karta_liczby": 250, "domkniecie": 250, "zapamietaj": 80, "tak_nie": 190,
+             "follow": 210, "tabliczka": 100}
+
+
+def bramka_kolizji(spec):
+    """Czy w tej samej sekundzie dwa elementy nie nachodza na siebie w pionie.
+    Napisy maja wlasny pas (CAP_Y +/- 110) i tez sa sprawdzane."""
+    el = [(e, e.get("y", 300), e.get("y", 300) + WYSOKOSCI.get(e["typ"], 200))
+          for e in spec["elementy"]]
+    el.append(({"typ": "napisy", "od": 0, "do": spec["dlugosc"]}, CAP_Y - 110, CAP_Y + 110))
+    zle = []
+    for i in range(len(el)):
+        a, a0, a1 = el[i]
+        for b, b0, b1 in el[i + 1:]:
+            if a["od"] < b["do"] - 0.05 and b["od"] < a["do"] - 0.05 and a0 < b1 and b0 < a1:
+                zle.append(f'{a["typ"]} x {b["typ"]} ({max(a["od"], b["od"]):.1f} s)')
+    return zle
+
+
 def bramka_pasow(spec):
     """Trzy pasy maja byc zajete przez caly czas: ilustracja u gory, napis na
     srodku, ciemna karta na dole. 10.11 zalozyciel pokazal cztery rolki wzorcowe -
@@ -448,7 +468,7 @@ def grupy_slow(slowa, maks=5):
 
 
 def rysuj_napisy(im, d, grupa, t, akcent):
-    font = f_inter(40, "bold")
+    font = f_inter(46, "bold")   # 10.11: zalozyciel poprosil o troche wieksze napisy
     odstep = 16
     wiersze, biez, szer_b = [], [], 0
     for s in grupa:
@@ -522,6 +542,9 @@ def renderuj(spec_plik, wyjscie):
     braki = bramka_pasow(spec)
     if braki:
         print("BRAMKA PASOW - puste miejsca:", "; ".join(braki))
+    kol = bramka_kolizji(spec)
+    if kol:
+        print("BRAMKA KOLIZJI - elementy nachodza:", "; ".join(kol))
     katalog = pathlib.Path(wyjscie).parent / ("kl_" + pathlib.Path(wyjscie).stem)
     katalog.mkdir(parents=True, exist_ok=True)
 
