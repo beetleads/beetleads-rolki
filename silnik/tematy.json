@@ -1,0 +1,389 @@
+[
+ {
+  "kod": "zdjecia",
+  "chip": "Zdjęcia w ofercie",
+  "okladka": [
+   "Zdjęcia dały 9%",
+   "Obiecali dwa razy tyle?!"
+  ],
+  "foty": [
+   "hotel.jpg",
+   "fotograf.jpg",
+   "hotel2.jpg"
+  ],
+  "karty": [
+   {
+    "etykieta": "obiecane",
+    "wartosc": "2x",
+    "wygrany": false
+   },
+   {
+    "etykieta": "wyszło",
+    "wartosc": "9%",
+    "wygrany": true
+   }
+  ],
+  "start": [
+   "platforma obiecała",
+   "dwa razy więcej"
+  ],
+  "dowod": {
+   "typ": "slupki",
+   "kolumny": [
+    {
+     "etykieta": "obiecane",
+     "wartosc": 100,
+     "liczba": "250%"
+    },
+    {
+     "etykieta": "realne",
+     "wartosc": 9,
+     "liczba": "9%"
+    }
+   ]
+  },
+  "proba": [
+   "410 ofert",
+   "ze zdjęciami zawodowca"
+  ],
+  "wynik": [
+   "wzrost o 9%",
+   "nie dwa i pół raza"
+  ],
+  "schemat": [
+   "zdjęcie",
+   "uwaga"
+  ],
+  "mech": [
+   "zdjęcie otwiera drzwi",
+   "nie sprzedaje"
+  ],
+  "tak_nie": "zdjęcia plus opinie",
+  "rada": [
+   "Pokaż opinie",
+   "obok dobrych zdjęć"
+  ]
+ },
+ {
+  "kod": "druga",
+  "chip": "Druga pozycja od dołu",
+  "okladka": [
+   "Druga od dołu",
+   "O 26 pkt niżej?!"
+  ],
+  "foty": [
+   "menu.jpg",
+   "kelner.jpg",
+   "piekarnia.jpg"
+  ],
+  "karty": [
+   {
+    "etykieta": "środek karty",
+    "wartosc": "marża",
+    "wygrany": true
+   },
+   {
+    "etykieta": "druga od dołu",
+    "wartosc": "-26",
+    "wygrany": false
+   }
+  ],
+  "start": [
+   "pułapka",
+   "na właściciela"
+  ],
+  "dowod": {
+   "typ": "slupki",
+   "kolumny": [
+    {
+     "etykieta": "środek karty",
+     "wartosc": 100,
+     "liczba": "300%"
+    },
+    {
+     "etykieta": "druga od dołu",
+     "wartosc": 74,
+     "liczba": "-26"
+    }
+   ]
+  },
+  "proba": [
+   "235 lokali",
+   "470 kart, 6335 pozycji"
+  ],
+  "wynik": [
+   "marża niższa",
+   "o 26 punktów"
+  ],
+  "schemat": [
+   "skąpiec",
+   "druga od dołu"
+  ],
+  "mech": [
+   "klient omija",
+   "najtańszą pozycję"
+  ],
+  "tak_nie": "marża w środku cennika",
+  "rada": [
+   "Najwyższa marża",
+   "w środku cennika"
+  ]
+ },
+ {
+  "kod": "gratis",
+  "chip": "Gratis przy zakupie",
+  "okladka": [
+   "Gratis nie z tej półki",
+   "Obcy gadżet obniża?!"
+  ],
+  "foty": [
+   "gratis.jpg",
+   "prezent.jpg",
+   "bilety.jpg"
+  ],
+  "karty": [
+   {
+    "etykieta": "twój produkt",
+    "wartosc": "+20",
+    "wygrany": true
+   },
+   {
+    "etykieta": "obcy gadżet",
+    "wartosc": "-3",
+    "wygrany": false
+   }
+  ],
+  "start": [
+   "gadżet w gratisie",
+   "obniża wydatki"
+  ],
+  "dowod": {
+   "typ": "slupki",
+   "kolumny": [
+    {
+     "etykieta": "twój produkt",
+     "wartosc": 20,
+     "liczba": "+20"
+    },
+    {
+     "etykieta": "zaproszenie",
+     "wartosc": 10,
+     "liczba": "+10"
+    },
+    {
+     "etykieta": "obcy gadżet",
+     "wartosc": 3,
+     "liczba": "-3"
+    }
+   ]
+  },
+  "proba": [
+   "1950 klientów",
+   "24 tygodnie"
+  ],
+  "wynik": [
+   "własny produkt",
+   "podniósł wydatki"
+  ],
+  "schemat": [
+   "gratis",
+   "twoja oferta"
+  ],
+  "mech": [
+   "własny produkt",
+   "przypomina po co przyszedł"
+  ],
+  "tak_nie": "gratis z własnej oferty",
+  "rada": [
+   "Dawaj w gratisie",
+   "to, czym handlujesz"
+  ]
+ },
+ {
+  "kod": "rozrzut",
+  "chip": "Rozrzut cen",
+  "okladka": [
+   "Szeroki rozrzut cen",
+   "Więcej za to samo?!"
+  ],
+  "foty": [
+   "polka.jpg",
+   "metki.jpg",
+   "pieniadze.jpg"
+  ],
+  "karty": [
+   {
+    "etykieta": "szeroki rozrzut",
+    "wartosc": "643",
+    "wygrany": true
+   },
+   {
+    "etykieta": "wąski",
+    "wartosc": "617",
+    "wygrany": false
+   }
+  ],
+  "start": [
+   "ten sam pokój",
+   "inna gotowość zapłaty"
+  ],
+  "dowod": {
+   "typ": "slupki",
+   "kolumny": [
+    {
+     "etykieta": "rozrzut 85%",
+     "wartosc": 643,
+     "liczba": "643"
+    },
+    {
+     "etykieta": "rozrzut 20%",
+     "wartosc": 617,
+     "liczba": "617"
+    }
+   ]
+  },
+  "proba": [
+   "200 osób",
+   "pięć wariantów ceny"
+  ],
+  "wynik": [
+   "643 zamiast 617",
+   "przy szerokim rozrzucie"
+  ],
+  "schemat": [
+   "wybór",
+   "kontrola"
+  ],
+  "mech": [
+   "szeroki rozrzut",
+   "daje poczucie wyboru"
+  ],
+  "tak_nie": "ceny wyraźnie różne",
+  "rada": [
+   "Pokazuj warianty",
+   "o różnych cenach"
+  ]
+ },
+ {
+  "kod": "opinia",
+  "chip": "Jedna zła opinia",
+  "okladka": [
+   "Jedna zła opinia",
+   "Szansa zakupu -42%?!"
+  ],
+  "foty": [
+   "opinie.jpg",
+   "telefon.jpg",
+   "witryna.jpg"
+  ],
+  "karty": [
+   {
+    "etykieta": "bez skargi",
+    "wartosc": "100%",
+    "wygrany": true
+   },
+   {
+    "etykieta": "pierwsza skarga",
+    "wartosc": "-42%",
+    "wygrany": false
+   }
+  ],
+  "start": [
+   "świetna średnia",
+   "i jedna skarga"
+  ],
+  "dowod": {
+   "typ": "ludzie",
+   "ile": 50,
+   "zaznaczone": 21,
+   "podpis": "szansa zakupu niżej o 42%"
+  },
+  "proba": [
+   "121 391 klientów",
+   "400 126 wizyt"
+  ],
+  "wynik": [
+   "pierwsza skarga",
+   "to -42%"
+  ],
+  "schemat": [
+   "średnia",
+   "skarga"
+  ],
+  "mech": [
+   "skarga mówi",
+   "co pójdzie źle"
+  ],
+  "tak_nie": "odpowiadaj na skargi",
+  "rada": [
+   "Odpowiadaj",
+   "na każdą skargę"
+  ],
+  "i_pytanie": 3
+ },
+ {
+  "kod": "lewo",
+  "chip": "Kolejność cen",
+  "okladka": [
+   "Lewo czy prawo",
+   "Te same dwie liczby?!"
+  ],
+  "foty": [
+   "metka_reka.jpg",
+   "witryna.jpg",
+   "polka.jpg"
+  ],
+  "karty": [
+   {
+    "etykieta": "stara cena",
+    "wartosc": "280",
+    "wygrany": true
+   },
+   {
+    "etykieta": "nowa",
+    "wartosc": "190",
+    "wygrany": false
+   }
+  ],
+  "start": [
+   "ta sama torba",
+   "inna kolejność liczb"
+  ],
+  "dowod": {
+   "typ": "slupki",
+   "kolumny": [
+    {
+     "etykieta": "stara po lewej",
+     "wartosc": 240,
+     "liczba": "240"
+    },
+    {
+     "etykieta": "stara po prawej",
+     "wartosc": 215,
+     "liczba": "215"
+    }
+   ]
+  },
+  "proba": [
+   "121 osób",
+   "ta sama torba"
+  ],
+  "wynik": [
+   "240 zamiast 215",
+   "gdy stara jest z lewej"
+  ],
+  "schemat": [
+   "pierwsza liczba",
+   "odniesienie"
+  ],
+  "mech": [
+   "czytamy od lewej",
+   "pierwsza liczba zostaje"
+  ],
+  "tak_nie": "stara cena z lewej",
+  "rada": [
+   "Stara cena z lewej",
+   "nowa z prawej"
+  ]
+ }
+]

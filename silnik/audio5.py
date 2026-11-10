@@ -23,11 +23,20 @@ def zapisz(x, p):
     w = wave.open(p, "wb"); w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes((np.clip(x, -1, 1) * 32767).astype("<i2").tobytes()); w.close()
 
-def przygotuj(wej, wyj, pitch=0.96):
+def przygotuj(wej, wyj, pitch=0.90):
+    """pitch 0,90 = glos nizszy o 10%.
+
+    10.11: pierwsza wersja robila to przez asetrate + atempo i SKRACALA nagranie
+    o 1,4 s - napisy rozjezdzaly sie z glosem narastajaco przez cala rolke.
+    `rubberband` przestraja bez ruszania dlugosci; i tak sprawdzamy ja ponizej.
+    """
     tmp = wyj + ".pitch.wav"
-    subprocess.run(["ffmpeg","-y","-v","error","-i",wej,"-af",
-                    f"asetrate={int(SR*pitch)},aresample={SR},atempo={round(1/pitch,4)}",
+    subprocess.run(["ffmpeg","-y","-v","error","-i",wej,"-af",f"rubberband=pitch={pitch}",
                     "-ac","1","-ar",str(SR),tmp], check=True)
+    def dlugosc(p):
+        return float(subprocess.run(["ffprobe","-v","error","-show_entries","format=duration",
+                                     "-of","csv=p=0",p], capture_output=True, text=True).stdout)
+    assert abs(dlugosc(tmp) - dlugosc(wej)) < 0.05, "pitch zmienil dlugosc - napisy sie rozjada"
     x = wczytaj(tmp)
     okno = int(0.02 * SR)
     n = len(x) // okno

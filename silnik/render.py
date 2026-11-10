@@ -71,8 +71,13 @@ def tlo_foto(plik, kadr):
     x = max(0, min(x, im.width - WW))
     y = max(0, min(y, im.height - HH))
     im = im.crop((x, y, x + WW, y + HH))
+    # przyciemnienie zalezne od jasnosci zdjecia - jasne kadry gasimy mocniej,
+    # zeby rysowane elementy i napisy byly czytelne na kazdym tle
+    import numpy as _np
+    jasnosc = float(_np.array(im.convert("L").resize((40, 40))).mean())
+    alfa = min(0.78, max(0.45, 0.35 + (jasnosc - 60) / 255 * 0.75))
     szkic = Image.new("RGB", (WW, HH), TLO)
-    return Image.blend(im, szkic, 0.52)
+    return Image.blend(im, szkic, alfa)
 
 
 def tlo_desen(akcent, ziarno=7):
@@ -120,7 +125,7 @@ def pigulka(d, srodek_x, y, tekst, font, tlo_k, tekst_k, obrys=None, pad=(26, 14
 
 
 def el_chip(im, d, el, akcent, post):
-    font = f_inter(28, "semi")
+    font = f_inter(32, "semi")
     t = el["tekst"].upper()
     y = el.get("y", 120) + int(3 * math.sin(post * 2.0))
     a = int(255 * min(1, post / 0.18))
@@ -135,9 +140,9 @@ def el_slupki(im, d, el, akcent, cyjan, post):
     y = el.get("y", 300)
     kolumny = el.get("kolumny") or [el["a"], el["b"]]
     maks = max([k["wartosc"] for k in kolumny] + [1])
-    wys = 300
-    szer_s = 120 if len(kolumny) > 2 else 140
-    luz = 60 if len(kolumny) > 2 else 170
+    wys = 380                      # 10.11: elementy maja byc wyrazniej widoczne
+    szer_s = 150 if len(kolumny) > 2 else 180
+    luz = 48 if len(kolumny) > 2 else 150
     szer_calk = len(kolumny) * szer_s + (len(kolumny) - 1) * luz
     x0 = W // 2 - szer_calk // 2
     wejscie = min(1, post / 0.35)
@@ -148,11 +153,11 @@ def el_slupki(im, d, el, akcent, cyjan, post):
         h = int(wys * dane["wartosc"] / maks * wejscie)
         d.rounded_rectangle([x, y + wys - h, x + szer_s, y + wys], radius=14, fill=kol)
         d.rounded_rectangle([x, y, x + szer_s, y + wys], radius=14, outline=(90, 90, 96), width=3)
-        font = f_inter(22 if len(kolumny) > 2 else 26, "semi")
+        font = f_inter(24 if len(kolumny) > 2 else 30, "semi")
         pigulka(d, x + szer_s // 2, y + wys + 18, dane["etykieta"].upper(), font,
                 (14, 14, 17), BIEL, obrys=kol, pad=(14, 10))
         if dane.get("liczba"):
-            fa = f_anton(52)
+            fa = f_anton(64)
             cel = dane["liczba"]
             if cel.rstrip("%").isdigit():
                 biezaca = int(int(cel.rstrip("%")) * min(1, post / 0.7))
@@ -170,53 +175,53 @@ def el_ludzie(im, d, el, akcent, cyjan, post):
     ile = el["ile"]
     zazn = el.get("zaznaczone", 0)
     kol_w = 10
-    krok = 58
+    krok = 70
     x0 = W // 2 - (kol_w * krok) // 2 + 10
     widoczne = int(ile * min(1, post / 0.5))
     for i in range(widoczne):
         cx = x0 + (i % kol_w) * krok
-        cy = y + (i // kol_w) * 62
+        cy = y + (i // kol_w) * 74
         if i < zazn:
             j = 0.7 + 0.3 * math.sin(post * 3.0 + i * 0.35)
             kol = tuple(int(c * j) for c in cyjan)
         else:
             kol = (170, 170, 178)
-        d.ellipse([cx - 11, cy - 22, cx + 11, cy], outline=kol, width=3)
-        d.arc([cx - 18, cy - 2, cx + 18, cy + 34], 180, 360, fill=kol, width=3)
+        d.ellipse([cx - 14, cy - 28, cx + 14, cy], outline=kol, width=4)
+        d.arc([cx - 23, cy - 2, cx + 23, cy + 42], 180, 360, fill=kol, width=4)
     if el.get("podpis"):
-        font = f_inter(26, "semi")
+        font = f_inter(30, "semi")
         wiersze = (ile + kol_w - 1) // kol_w
-        pigulka(d, W // 2, y + wiersze * 62 + 16, el["podpis"].upper(), font,
+        pigulka(d, W // 2, y + wiersze * 74 + 18, el["podpis"].upper(), font,
                 (14, 14, 17), BIEL, obrys=cyjan)
 
 
 def el_schemat(im, d, el, akcent, cyjan, post):
     """Rysunek mechanizmu: dwa wezly polaczone kropkami (jak oko-kubek w referencji)."""
     y = el.get("y", 430)
-    lx, rx = W // 2 - 190, W // 2 + 190
-    d.ellipse([lx - 70, y - 44, lx + 70, y + 44], outline=BIEL, width=5)
-    d.ellipse([lx - 20, y - 20, lx + 20, y + 20], fill=BIEL)
+    lx, rx = W // 2 - 230, W // 2 + 230
+    d.ellipse([lx - 88, y - 56, lx + 88, y + 56], outline=BIEL, width=6)
+    d.ellipse([lx - 26, y - 26, lx + 26, y + 26], fill=BIEL)
     for i in range(6):
         faza = (post * 0.8 + i / 6.0) % 1.0
-        x = lx + 80 + faza * 216
-        r = 5 + 3 * math.sin(faza * math.pi)
+        x = lx + 100 + faza * 260
+        r = 7 + 4 * math.sin(faza * math.pi)
         jas = 0.45 + 0.55 * math.sin(faza * math.pi)
         kol = tuple(int(c * jas) for c in cyjan)
         d.ellipse([x - r, y - r, x + r, y + r], fill=kol)
-    d.rounded_rectangle([rx - 60, y - 52, rx + 60, y + 52], radius=20, outline=cyjan, width=5)
+    d.rounded_rectangle([rx - 76, y - 66, rx + 76, y + 66], radius=24, outline=cyjan, width=6)
     if el.get("etykieta"):
-        pigulka(d, rx, y - 118, el["etykieta"].upper(), f_inter(24, "semi"), cyjan, CIEMNY)
+        pigulka(d, rx, y - 140, el["etykieta"].upper(), f_inter(28, "semi"), cyjan, CIEMNY)
     if el.get("podpis"):
-        pigulka(d, lx, y - 118, el["podpis"].upper(), f_inter(24, "semi"), (14, 14, 17), BIEL, obrys=BIEL)
+        pigulka(d, lx, y - 140, el["podpis"].upper(), f_inter(28, "semi"), (14, 14, 17), BIEL, obrys=BIEL)
 
 
 def el_karta_liczby(im, d, el, akcent, cyjan, post):
     """Ciemna karta z liczba z badania - 'POLICZONE W BADANIU'."""
     y = el.get("y", 1180)
     wejscie = min(1, post / 0.3)
-    fn = f_inter(24, "semi")
-    f1 = f_anton(66)
-    f2 = f_anton(66)
+    fn = f_inter(28, "semi")
+    f1 = f_anton(80)
+    f2 = f_anton(80)
     linie = [(el["l1"], BIEL, f1)] + ([(el["l2"], cyjan, f2)] if el.get("l2") else [])
     w = max([szer(d, t, f) for t, _, f in linie] + [szer(d, el["naglowek"], fn)]) + 110
     w = min(w, SAFE_R - SAFE_L + 60)
@@ -246,8 +251,8 @@ def el_domkniecie(im, d, el, akcent, cyjan, post):
     """Karta wniosku 'ZROB TO U SIEBIE' - druga linia w akcencie."""
     y = el.get("y", 1240)
     wejscie = min(1, post / 0.3)
-    fn = f_inter(22, "semi")
-    f1 = f_anton(54)
+    fn = f_inter(26, "semi")
+    f1 = f_anton(64)
     linie = [(el["l1"], BIEL), (el.get("l2", ""), akcent)]
     linie = [(t, k) for t, k in linie if t]
     w = max([szer(d, t.upper(), f1) for t, _ in linie]) + 110
@@ -283,7 +288,7 @@ def el_tak_nie(im, d, el, akcent, cyjan, post):
     """Ptaszek i krzyzyk - domkniecie rady, jak w rolkach wzorcowych."""
     y = el.get("y", 300)
     wejscie = min(1, post / 0.3)
-    bok = 118
+    bok = 150
     for i, (dobry, kol) in enumerate([(True, akcent), (False, (120, 120, 128))]):
         x = W // 2 - bok - 30 + i * (bok + 60)
         skok = int(6 * math.sin(post * 3.0 + i * 1.6)) if dobry else 0
@@ -297,7 +302,7 @@ def el_tak_nie(im, d, el, akcent, cyjan, post):
             d.line([cx - 20, cy - 20, cx + 20, cy + 20], fill=(150, 150, 158), width=9)
             d.line([cx + 20, cy - 20, cx - 20, cy + 20], fill=(150, 150, 158), width=9)
     if el.get("podpis"):
-        pigulka(d, W // 2, y + bok + 26, el["podpis"].upper(), f_inter(24, "semi"),
+        pigulka(d, W // 2, y + bok + 28, el["podpis"].upper(), f_inter(28, "semi"),
                 (14, 14, 17), BIEL, obrys=akcent)
 
 
@@ -306,7 +311,7 @@ def el_karty(im, d, el, akcent, cyjan, post):
     sekundy maja najwiecej uwagi, a pas gorny byl w nich pusty."""
     y = el.get("y", 300)
     wejscie = min(1, post / 0.4)
-    bok_w, bok_h, luz = 250, 290, 70
+    bok_w, bok_h, luz = 300, 340, 60
     x0 = W // 2 - bok_w - luz // 2
     for i, karta in enumerate(el["karty"]):
         wygrany = karta.get("wygrany")
@@ -316,14 +321,14 @@ def el_karty(im, d, el, akcent, cyjan, post):
         yy = y - skok - int((1 - wejscie) * 20)
         d.rounded_rectangle([x, yy, x + bok_w, yy + bok_h], radius=26,
                             fill=(16, 16, 20), outline=kol, width=5)
-        fa = f_anton(84)
+        fa = f_anton(100)
         t = karta["wartosc"]
         while szer(d, t, fa) > bok_w - 36 and fa.size > 40:
             fa = f_anton(fa.size - 4)
         d.text((x + bok_w // 2 - szer(d, t, fa) // 2, yy + bok_h // 2 - fa.size // 2 - 10),
                t, font=fa, fill=kol)
-        pigulka(d, x + bok_w // 2, yy + bok_h + 18, karta["etykieta"].upper(),
-                f_inter(24, "semi"), (14, 14, 17), BIEL, obrys=kol, pad=(16, 11))
+        pigulka(d, x + bok_w // 2, yy + bok_h + 20, karta["etykieta"].upper(),
+                f_inter(28, "semi"), (14, 14, 17), BIEL, obrys=kol, pad=(18, 12))
     # znak zapytania miedzy kartami - pytanie hooka
     fq = f_anton(76)
     puls = 1 + 0.06 * math.sin(post * 4.0)
@@ -337,7 +342,7 @@ def el_tabliczka(im, d, el, akcent, cyjan, post):
     i napis, zeby na koncu bylo wiadomo, co z tego wynika dla firmy."""
     y = el.get("y", 130)
     wejscie = min(1, post / 0.3)
-    font = f_inter(30, "bold")
+    font = f_inter(34, "bold")
     t = el.get("tekst", "Wniosek marketingowy").upper()
     w = szer(d, t, font) + 150
     h = 86
@@ -367,7 +372,7 @@ def el_follow(im, d, el, akcent, cyjan, post):
     klik = el.get("klik", 0.9)
     wejscie = min(1, post / 0.25)
     po = post > klik
-    w, h = 470, 124
+    w, h = 530, 140
     x0 = W // 2 - w // 2
     wcisniety = 1.0 if not (klik - 0.07 < post < klik + 0.12) else 0.94
     ww, hh = int(w * wcisniety), int(h * wcisniety)
@@ -375,7 +380,7 @@ def el_follow(im, d, el, akcent, cyjan, post):
     tlo_p = akcent if not po else (26, 26, 30)
     d.rounded_rectangle([x, yy, x + ww, yy + hh], radius=hh // 2, fill=tlo_p,
                         outline=akcent, width=4)
-    font = f_inter(40, "bold")
+    font = f_inter(46, "bold")
     t = "OBSERWUJ" if not po else "OBSERWUJESZ"
     kol = CIEMNY if not po else akcent
     d.text((W // 2 - szer(d, t, font) // 2 + (16 if po else 0),
@@ -404,9 +409,9 @@ def el_follow(im, d, el, akcent, cyjan, post):
                 (14, 14, 17), BIEL, obrys=akcent)
 
 
-WYSOKOSCI = {"chip": 80, "karty": 360, "slupki": 420, "ludzie": 420, "schemat": 240,
-             "karta_liczby": 250, "domkniecie": 250, "zapamietaj": 80, "tak_nie": 190,
-             "follow": 210, "tabliczka": 100}
+WYSOKOSCI = {"chip": 90, "karty": 420, "slupki": 520, "ludzie": 500, "schemat": 300,
+             "karta_liczby": 290, "domkniecie": 290, "zapamietaj": 90, "tak_nie": 230,
+             "follow": 240, "tabliczka": 110}
 
 
 def bramka_kolizji(spec):

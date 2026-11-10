@@ -25,7 +25,7 @@ def zdania(slowa):
 
 
 def buduj(t):
-    slowa = json.load(open(f"/home/claude/silnik5/slowa_{t['kod']}.json"))
+    slowa = json.load(open(f"/home/claude/silnik5/glos_{t['kod']}.json"))
     zd = zdania(slowa)
     dl = round(slowa[-1]["do"] + 0.35, 2)
     i_pyt = t.get("i_pytanie", len(zd) - 3)      # zdanie "Wiesz dlaczego?"
@@ -56,7 +56,7 @@ def buduj(t):
     # nachodzenie kart na slupki w 3,4-3,8 s.
     koniec_hooka = zd[0][1] + 0.2
     od_b, do_b = max(zd[1][0] - 0.1, koniec_hooka + 0.05), zd[i_pyt - 1][1] + 0.15
-    el.append(dict(t["dowod"], od=round(od_b, 2), do=round(do_b, 2), y=t["dowod"].get("y", 310)))
+    el.append(dict(t["dowod"], od=round(od_b, 2), do=round(do_b, 2), y=t["dowod"].get("y", 240)))
     pol = round((od_b + do_b) / 2, 2)
     el.append({"typ": "karta_liczby", "naglowek": "Próba badania", "l1": t["proba"][0], "l2": t["proba"][1],
                "od": round(od_b + 0.15, 2), "do": pol, "y": 1150})
@@ -84,7 +84,7 @@ def buduj(t):
     el.append({"typ": "domkniecie", "naglowek": "Zrób to u siebie", "l1": t["rada"][0], "l2": t["rada"][1],
                "od": round(start_k + 0.05, 2), "do": round(dl - 0.15, 2), "y": 1180})
 
-    spec = {"audio": f"/home/claude/silnik5/audio_{t['kod']}.wav", "dlugosc": dl,
+    spec = {"audio": f"/home/claude/silnik5/glos_{t['kod']}.wav", "dlugosc": dl,
             "akcent": t.get("akcent", "#FFD84D"), "cyjan": t.get("cyjan", "#35D0E8"),
             "okladka_do": 0.1,
             "okladka": {"l1": t["okladka"][0], "l2": t["okladka"][1], "foto": P + t["foty"][0]},
