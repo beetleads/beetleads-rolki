@@ -81,3 +81,10 @@ elementy powiekszone, po trzy wlasne zdjecia na rolke.
 Obraz wydluzony o 0,45 s (tpad=clone), afade=out curve=qsin od ostatniego slowa,
 ogon cichnie do -30 dB i dalej cisza; po tym dwie przebiegi loudness: -14,2 do -14,4 LUFS,
 peak -1,3/-1,4 dBFS. Wszystkie 12 postow (IG+TikTok i FB+YouTube) podmienione.
+
+## 10.11 20:35 - wersja v5g: napisy mieszcza sie w ramkach + glosnosc przez loudnorm
+1112_0700_zdjecia_s5g, 1112_1200_druga_s5g, 1112_1800_gratis_s5g,
+1113_0700_rozrzut_s5g, 1113_1200_opinia_s5g, 1113_1800_lewo_s5g.
+Box rosnie do 940 px, dopiero potem maleje czcionka (zalozyciel: "pamietaj aby tu sie miescily
+napisy, w razie potrzeby poszerzaj boxa"). Poziom liczony loudnorm w dwoch przebiegach:
+-14,3 do -14,9 LUFS, true peak -1,3 do -1,5 dBFS. Dolny pas zajety juz od 0,4 s (bramka pasow czysta).
