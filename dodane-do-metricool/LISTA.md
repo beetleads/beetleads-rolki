@@ -32,3 +32,13 @@ Stare wersje rolek 13:00 i 18:00 leza w Metricoolu jako draft (nie publikuja sie
 
 Jeszcze NIE w nowej wersji (w Metricoolu stoją stare pliki): 03.11 08:00 r73, 04.11 12:00 r80, od 05.11 r82-r89 i r93-r95.
 Wszystkie powyższe mają jeszcze stare otwarcie - bez nowej okładki (maks. 4 słowa).
+
+## 10.11 11:47 - przebieg efektow (kadr co 1,2 s, punch i blysk na cieciu), podmienione w Metricoolu:
+1110_1200_tlok_fx.mp4
+1110_1800_ryczalt_fx.mp4
+1111_0700_zdjecia_fx.mp4
+1111_1200_druga_od_dolu_fx.mp4
+1111_1800_gratis_fx.mp4
+1112_0700_rozrzut_fx.mp4
+1112_1200_opinia_fx.mp4
+1112_1800_lewo_prawo_fx.mp4
