@@ -9,7 +9,9 @@
   "foty": [
    "hotel.jpg",
    "fotograf.jpg",
-   "hotel2.jpg"
+   "hotel2.jpg",
+   "opinie.jpg",
+   "telefon.jpg"
   ],
   "karty": [
    {
@@ -62,7 +64,15 @@
   "rada": [
    "Pokaż opinie",
    "obok dobrych zdjęć"
-  ]
+  ],
+  "lista": {
+   "pozycje": [
+    "same zdjęcia",
+    "zdjęcia + opinie",
+    "sam opis"
+   ],
+   "wybrany": 1
+  }
  },
  {
   "kod": "druga",
@@ -74,7 +84,9 @@
   "foty": [
    "menu.jpg",
    "kelner.jpg",
-   "piekarnia.jpg"
+   "piekarnia.jpg",
+   "bilety.jpg",
+   "pieniadze.jpg"
   ],
   "karty": [
    {
@@ -127,7 +139,15 @@
   "rada": [
    "Najwyższa marża",
    "w środku cennika"
-  ]
+  ],
+  "lista": {
+   "pozycje": [
+    "pozycja na górze",
+    "środek cennika",
+    "druga od dołu"
+   ],
+   "wybrany": 1
+  }
  },
  {
   "kod": "gratis",
@@ -139,7 +159,9 @@
   "foty": [
    "gratis.jpg",
    "prezent.jpg",
-   "bilety.jpg"
+   "witryna.jpg",
+   "piekarnia.jpg",
+   "pieniadze.jpg"
   ],
   "karty": [
    {
@@ -197,7 +219,15 @@
   "rada": [
    "Dawaj w gratisie",
    "to, czym handlujesz"
-  ]
+  ],
+  "lista": {
+   "pozycje": [
+    "obcy gadżet",
+    "twój produkt",
+    "nic w gratisie"
+   ],
+   "wybrany": 1
+  }
  },
  {
   "kod": "rozrzut",
@@ -209,6 +239,8 @@
   "foty": [
    "polka.jpg",
    "metki.jpg",
+   "hotel2.jpg",
+   "witryna.jpg",
    "pieniadze.jpg"
   ],
   "karty": [
@@ -262,7 +294,15 @@
   "rada": [
    "Pokazuj warianty",
    "o różnych cenach"
-  ]
+  ],
+  "lista": {
+   "pozycje": [
+    "trzy podobne ceny",
+    "wyraźnie różne ceny",
+    "jedna cena"
+   ],
+   "wybrany": 1
+  }
  },
  {
   "kod": "opinia",
@@ -274,7 +314,9 @@
   "foty": [
    "opinie.jpg",
    "telefon.jpg",
-   "witryna.jpg"
+   "metka_reka.jpg",
+   "witryna.jpg",
+   "polka.jpg"
   ],
   "karty": [
    {
@@ -319,7 +361,15 @@
    "Odpowiadaj",
    "na każdą skargę"
   ],
-  "i_pytanie": 3
+  "i_pytanie": 3,
+  "lista": {
+   "pozycje": [
+    "przeczekać skargę",
+    "odpowiedzieć i naprawić",
+    "skasować opinię"
+   ],
+   "wybrany": 1
+  }
  },
  {
   "kod": "lewo",
@@ -330,8 +380,10 @@
   ],
   "foty": [
    "metka_reka.jpg",
+   "metki.jpg",
    "witryna.jpg",
-   "polka.jpg"
+   "polka.jpg",
+   "menu.jpg"
   ],
   "karty": [
    {
@@ -384,6 +436,14 @@
   "rada": [
    "Stara cena z lewej",
    "nowa z prawej"
-  ]
+  ],
+  "lista": {
+   "pozycje": [
+    "nowa cena z lewej",
+    "stara cena z lewej",
+    "sama nowa cena"
+   ],
+   "wybrany": 1
+  }
  }
 ]

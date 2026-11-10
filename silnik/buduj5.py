@@ -37,6 +37,9 @@ def buduj(t):
     while czas < dl - 0.1:
         do = min(dl, czas + 1.9)
         if nr % 2 == 0:
+            # 10.11: "w tle zeby nie byly takie same, tylko rozne" - kazde ujecie
+            # dostaje INNE zdjecie; przy wyczerpaniu puli wraca pierwsze, ale
+            # w innym kadrze (`kadr` rosnie z numerem ujecia)
             plik = t["foty"][(nr // 2) % len(t["foty"])]
             tlo = {"typ": "foto", "plik": P + plik, "kadr": nr}
         else:
@@ -77,8 +80,13 @@ def buduj(t):
 
     # KONCOWKA
     el.append({"typ": "tabliczka", "tekst": "Wniosek marketingowy", "od": start_k, "do": round(dl - 0.15, 2), "y": 130})
-    el.append({"typ": "tak_nie", "podpis": t["tak_nie"], "od": round(start_k + 0.1, 2),
-               "do": round(dl - 2.0, 2), "y": 330})
+    if t.get("lista"):
+        el.append({"typ": "lista", "pozycje": t["lista"]["pozycje"],
+                   "wybrany": t["lista"].get("wybrany", 1), "podpis": t["tak_nie"],
+                   "od": round(start_k + 0.1, 2), "do": round(dl - 2.0, 2), "y": 300})
+    else:
+        el.append({"typ": "tak_nie", "podpis": t["tak_nie"], "od": round(start_k + 0.1, 2),
+                   "do": round(dl - 2.0, 2), "y": 330})
     el.append({"typ": "follow", "podpis": "po więcej treści marketingowych", "klik": 0.95,
                "od": round(dl - 1.95, 2), "do": round(dl - 0.15, 2), "y": 330})
     el.append({"typ": "domkniecie", "naglowek": "Zrób to u siebie", "l1": t["rada"][0], "l2": t["rada"][1],

@@ -411,7 +411,7 @@ def el_follow(im, d, el, akcent, cyjan, post):
 
 WYSOKOSCI = {"chip": 90, "karty": 420, "slupki": 520, "ludzie": 500, "schemat": 300,
              "karta_liczby": 290, "domkniecie": 290, "zapamietaj": 90, "tak_nie": 230,
-             "follow": 240, "tabliczka": 110}
+             "follow": 240, "tabliczka": 110, "lista": 430}
 
 
 def bramka_kolizji(spec):
@@ -427,6 +427,45 @@ def bramka_kolizji(spec):
             if a["od"] < b["do"] - 0.05 and b["od"] < a["do"] - 0.05 and a0 < b1 and b0 < a1:
                 zle.append(f'{a["typ"]} x {b["typ"]} ({max(a["od"], b["od"]):.1f} s)')
     return zle
+
+
+def el_lista(im, d, el, akcent, cyjan, post):
+    """Trzy pozycje listy z wyroznieniem jednej - animacja wniosku pokazuje to,
+    o czym mowi lektor (cennik, warianty, kolejnosc cen, rodzaj gratisu).
+    10.11: "jak dajesz wniosek, to animacja przedstawia to, o czym mowisz"."""
+    y = el.get("y", 300)
+    poz = el["pozycje"]
+    wybrany = el.get("wybrany", 1)
+    wiersz_h, luz = 104, 20
+    szer_l = 660
+    x0 = W // 2 - szer_l // 2
+    for i, tekst in enumerate(poz):
+        wejscie = min(1, max(0, (post - i * 0.18) / 0.3))
+        if wejscie <= 0:
+            continue
+        yy = y + i * (wiersz_h + luz)
+        akt = i == wybrany and post > len(poz) * 0.18 + 0.2
+        puls = 1 + 0.03 * math.sin(post * 3.4) if akt else 1
+        przes = int((1 - wejscie) * 40)
+        kol = akcent if akt else (120, 120, 128)
+        h = int(wiersz_h * puls)
+        d.rounded_rectangle([x0 + przes, yy, x0 + szer_l + przes, yy + h], radius=20,
+                            fill=(18, 18, 22) if not akt else (26, 22, 10),
+                            outline=kol, width=5 if akt else 3)
+        f = f_inter(36, "bold" if akt else "semi")
+        while szer(d, tekst.upper(), f) > szer_l - 140 and f.size > 22:
+            f = f_inter(f.size - 2, "bold" if akt else "semi")
+        d.text((x0 + 48 + przes, yy + h // 2 - f.size // 2 - 2), tekst.upper(), font=f,
+               fill=BIEL if akt else (170, 170, 178))
+        if akt:
+            cx = x0 + szer_l - 56 + przes
+            cy = yy + h // 2
+            d.ellipse([cx - 26, cy - 26, cx + 26, cy + 26], fill=akcent)
+            d.line([cx - 12, cy, cx - 3, cy + 10], fill=CIEMNY, width=7)
+            d.line([cx - 3, cy + 10, cx + 13, cy - 11], fill=CIEMNY, width=7)
+    if el.get("podpis"):
+        pigulka(d, W // 2, y + len(poz) * (wiersz_h + luz) + 8, el["podpis"].upper(),
+                f_inter(28, "semi"), (14, 14, 17), BIEL, obrys=akcent)
 
 
 def bramka_pasow(spec):
@@ -450,7 +489,7 @@ def bramka_pasow(spec):
 RYSUNKI = {
     "chip": el_chip, "slupki": el_slupki, "ludzie": el_ludzie, "schemat": el_schemat,
     "karta_liczby": el_karta_liczby, "domkniecie": el_domkniecie, "zapamietaj": el_zapamietaj,
-    "tak_nie": el_tak_nie, "karty": el_karty, "tabliczka": el_tabliczka, "follow": el_follow,
+    "tak_nie": el_tak_nie, "karty": el_karty, "lista": el_lista, "tabliczka": el_tabliczka, "follow": el_follow,
 }
 
 
