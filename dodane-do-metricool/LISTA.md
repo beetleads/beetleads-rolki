@@ -151,3 +151,28 @@ Realne bledy znalezione i poprawione (reszta roznic to brak przecinkow w transkr
 
 Glos lektora jest czysty - sprawdzone modelem `medium` na trzech nagraniach, ktore `small`
 przekrecal najmocniej. To byl blad modelu, nie nagrania.
+
+## 10.11 23:30 - NOWE OTWARCIE (efekty od pierwszej klatki) na 11-18.11
+Zalozyciel: "nie wszedzie sa efekty na poczatku". Sprawdzone na klatkach 0,15 / 0,5 / 1,0 / 1,6 s:
+miedzy 0,5 a 1,6 s zmienialo sie tylko slowo w napisie, karty stały.
+
+Pakiet otwarcia w silniku 5:
+- karty wjezdzaja z bokow (ease-out, przesuniecie 460 px, druga z opoznieniem 0,10 s)
+- liczby ODLICZAJA do wartosci docelowej w 0,55 s (`_odlicz` w render.py)
+- blysk przechodzi przez karte zwycieska po jej wejsciu (0,52-0,92 s)
+- "?" wbija sie miedzy karty z przeskokiem (0,40-0,70 s)
+- smuga swiatla przez caly kadr zaraz po miniaturce (0,25-0,90 s)
+- karty startuja od 0,22 s zamiast 0,5 s
+
+Przerobione i podmienione: 11.11 (3), 12.11 (3), 13.11 (3), 14-18.11 (14) = 23 rolki.
+Wszystkie w normie: 17,6-21,3 s, -14,0 do -14,9 LUFS, peak -1,2 do -1,9 dBFS, ogon do ciszy.
+
+Bledy zlapane przy tej zmianie:
+- RENDER PRODUKOWAL PLIK Z 8 KLATEK zamiast 547 i nie zglaszal bledu: petla efektu nadpisywala
+  zmienna `k` (numer klatki), wiec klatki 8-27 nie powstaly, a ffmpeg urwal film na pierwszej luce.
+  Dodana asercja: render pada, gdy liczba zapisanych klatek != dlugosc. NIGDY nie uzywac `k`
+  jako zmiennej pomocniczej w petli klatek.
+- DRUGIE WZMOCNIENIE GUBILO PIERWSZE: `przebieg` liczy od surowego pliku, wiec korekta musi byc
+  suma `k + (cel - i)`. Bez tego rolka "rozrzut" konczyla na -15,1 LUFS zamiast -14.
+- 16.11 PANEL stal jeszcze na starym slocie 13:00 ze starym plikiem - przestawiony na 12:00
+  z nowa rolka. Przy kazdym dniu sprawdzaj GODZINE slotu, nie tylko plik.
