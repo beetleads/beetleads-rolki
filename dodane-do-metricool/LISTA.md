@@ -66,3 +66,7 @@ Rolka ryczalt poszla o 18:30 w wersji s5 - poprawek juz nie dostala.
 1113_0700_rozrzut_s5c, 1113_1200_opinia_s5c, 1113_1800_lewo_s5c.
 Glos nizszy o 10% (rubberband), napisy 46 px i zsynchronizowane z koncowym nagraniem,
 elementy powiekszone, po trzy wlasne zdjecia na rolke.
+
+## 10.11 19:27 - wersja v5d: glos w oryginalnym tonie (bez przestrajania), obraz z v5c bez zmian
+1112_0700_zdjecia_s5d, 1112_1200_druga_s5d, 1112_1800_gratis_s5d,
+1113_0700_rozrzut_s5d, 1113_1200_opinia_s5d, 1113_1800_lewo_s5d.
