@@ -107,3 +107,31 @@ napisy w ramkach, dzwiek wygasa, -14 LUFS (+-1), peak <= -1,3 dBFS.
 Sloty 15-18.11 przestawione z 9/13/18 na 7/12/18 (harmonogram z 10.11 07:20).
 WSTRZYMANE: 18.11 07:00 "jednostka na metce" - w kolejce byl podpiety NIE TEN film (duplikat
 rolki o ekranie). Post ustawiony na szkic, rolka do nagrania od nowa (brak oryginalnego glosu).
+
+## 10.11 22:20 - 11.11 zapelnione + audyt kolejki
+Trzy rolki na 11.11 (7:00 / 12:00 / 18:00) zbudowane w silniku 5 z glosu rolek, ktore stac
+mialy 29.11: zestaw (2,45 zamiast 1,98), formularz (87% zamiast 6%), kotwica (9 zamiast 7,29).
+Pliki: 1111_0700_zestaw_s5.mp4, 1111_1200_formularz_s5.mp4, 1111_1800_kotwica_s5.mp4.
+20,5 / 21,2 / 18,4 s, -14,0 do -14,2 LUFS, peak -1,3 do -1,8 dBFS, dzwiek wygasa do ciszy,
+zgodnosc glos-napisy 100% (transkrypcja kontrolna).
+
+Poprawki silnika przy okazji:
+- OGONKI: wysokosc karty liczona z `getbbox`, nie z rozmiaru czcionki. "ZA JEDNA SZTUKE"
+  przebijalo dolna krawedz ramki o ok. 20 px. Zapas 20 px dodany w karta_liczby i domkniecie.
+- finisz.py: gdy samo wzmocnienie nie dowozi -14 LUFS (rolka "druga" wyszla -17,9),
+  wchodzi alimiter 0.86 jako ostatnia deska - zgodnie z zasada "glos bez obrobki, limiter tylko
+  gdy obu celow nie da sie trafic".
+
+Bledy znalezione w kolejce i naprawione:
+- isAigc / isAiGeneratedContent = true na wszystkich szesciu slotach 12 i 13.11 (lamalo zasade
+  z 05.11 o nieoznaczaniu tresci jako AI). Zdjete. 14-18.11 i 19-29.11 byly czyste.
+- DUBEL na 13.11: w kazdym slocie staly dwie rozne rolki - moje z silnika 5 i stara paczka
+  z 10.11 08:17 (fraza w wyszukiwarce, piec dziennie, polecony). Stare trzy pary przestawione
+  na 29.11 (7/12/18), gdzie zwolnily sie sloty po przeniesieniu na 11.11.
+- 12.11 12:00: na ekranie bylo "p.p." zamiast "%", a karta mowila "marza nizsza o 26% nizsza".
+  Plik 1112_1200_druga_s5i.mp4, tytuly tez poprawione na "Marza nizsza o 26%?!".
+
+DO PRZEBUDOWY (stary silnik - ciemne rozmyte tlo, zolte napisy, pol kadru puste):
+19.11 - 28.11 po trzy rolki dziennie w slotach 9/13/18 (30 rolek) + 29.11 trzy stare pary.
+Sloty tez do przestawienia na 7/12/18. Dzwiek w nich jest OK (-14 LUFS, wygasa) - do przebudowy
+idzie obraz; glos wyciagam z tych plikow, tak jak przy 14-18.11.
