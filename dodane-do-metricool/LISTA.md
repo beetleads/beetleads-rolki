@@ -135,3 +135,19 @@ DO PRZEBUDOWY (stary silnik - ciemne rozmyte tlo, zolte napisy, pol kadru puste)
 19.11 - 28.11 po trzy rolki dziennie w slotach 9/13/18 (30 rolek) + 29.11 trzy stare pary.
 Sloty tez do przestawienia na 7/12/18. Dzwiek w nich jest OK (-14 LUFS, wygasa) - do przebudowy
 idzie obraz; glos wyciagam z tych plikow, tak jak przy 14-18.11.
+
+## 10.11 22:50 - kontrola napisow slowo w slowo (wszystkie 20 rolek 12-18.11)
+Zmiana w silniku: transkrypcja na modelu `medium` zamiast `small`. `small` przekrecal polskie
+slowa ("ba" zamiast "bon", "Miesz dlaczego", "urusl") i te bledy szly prosto w napisy.
+Nowy krok po renderze: `wymowa.py` transkrybuje gotowy plik i porownuje z `glos_<kod>.json`.
+
+Realne bledy znalezione i poprawione (reszta roznic to brak przecinkow w transkrypcji):
+- 11.11 12:00 formularz - napis "wybral", lektor mowi "wybralo" -> 1111_1200_formularz_s5b.mp4
+- 15.11 12:00 czcionka - napis "od starych", lektor "od starej" -> 1115_1200_czcionka_s5c.mp4
+- 16.11 18:00 rabat   - napis "towar przecenie i w zlotowkach", lektor "towar przeceniaj
+  w zlotowkach, usluge w procentach" -> 1116_1800_rabat_s5b.mp4
+- 18.11 12:00 ekran   - napis "te obok o 0", lektor "o 0%" -> 1118_1200_ekran_s5c.mp4
+- 18.11 18:00 abonament - "11 %" jako dwa kafelki zamiast "11%" -> 1118_1800_abonament_s5c.mp4
+
+Glos lektora jest czysty - sprawdzone modelem `medium` na trzech nagraniach, ktore `small`
+przekrecal najmocniej. To byl blad modelu, nie nagrania.
