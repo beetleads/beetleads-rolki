@@ -55,3 +55,8 @@ Wszystkie powyższe mają jeszcze stare otwarcie - bez nowej okładki (maks. 4 s
 | 13.11 18:00 | lewo czy prawo | 1113_1800_lewo_s5.mp4 |
 
 Slot 11.11 wolny - kolejka przesunieta o dobe decyzja zalozyciela 10.11.
+
+## 10.11 18:47 - wersja v5b (nizszy glos, bez whooshy, wieksze napisy, bramka kolizji)
+Podmienione w kolejce: 1112_0700_zdjecia_s5b, 1112_1200_druga_s5b, 1112_1800_gratis_s5b,
+1113_0700_rozrzut_s5b, 1113_1200_opinia_s5b, 1113_1800_lewo_s5b.
+Rolka ryczalt poszla o 18:30 w wersji s5 - poprawek juz nie dostala.
