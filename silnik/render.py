@@ -48,38 +48,60 @@ def szer(d, tekst, font):
 
 # ---------------------------------------------------------------- tla
 
+MARGINES = 0.17   # zapas na jazde kadru wewnatrz ujecia
+
+
 def tlo_foto(plik, kadr):
-    """Zdjecie jako przyciemnione tlo. Kadr STOI - zoom i przesuniecie biora sie
-    z numeru ujecia, nigdy z czasu, zeby w srodku ujecia nie ruszal sie ani piksel."""
+    """Zdjecie jako przyciemnione tlo, w rozmiarze z zapasem - okno jedzie wewnatrz
+    ujecia (patrz `okno`). 10.11: w referencji tylko 1% klatek nie ma ruchu, wiec
+    kadr nie moze stac ani sekundy."""
     im = Image.open(plik).convert("RGB")
     zoom = [1.00, 1.06, 1.03, 1.08][kadr % 4]
     dx = [0, -0.03, 0.03, 0][kadr % 4]
     dy = [0, 0.02, -0.02, 0.01][kadr % 4]
-    sk = max(W / im.width, H / im.height) * zoom
+    sk = max(W / im.width, H / im.height) * zoom * (1 + MARGINES)
     im = im.resize((int(im.width * sk) + 1, int(im.height * sk) + 1), Image.LANCZOS)
     x = int((im.width - W) / 2 + dx * W)
     y = int((im.height - H) / 2 + dy * H)
     x = max(0, min(x, im.width - W))
     y = max(0, min(y, im.height - H))
-    im = im.crop((x, y, x + W, y + H))
-    szkic = Image.new("RGB", (W, H), TLO)
+    WW, HH = int(W * (1 + MARGINES)), int(H * (1 + MARGINES))
+    x = max(0, min(x, im.width - WW))
+    y = max(0, min(y, im.height - HH))
+    im = im.crop((x, y, x + WW, y + HH))
+    szkic = Image.new("RGB", (WW, HH), TLO)
     return Image.blend(im, szkic, 0.52)
 
 
 def tlo_desen(akcent, ziarno=7):
-    """Ciemne tlo z deseniem - scena-schemat z rolki referencyjnej."""
-    im = Image.new("RGB", (W, H), TLO)
+    """Ciemne tlo z deseniem - scena-schemat z rolki referencyjnej. Tez nadwymiarowe,
+    zeby desen plynal w poprzek kadru zamiast stac."""
+    WW, HH = int(W * (1 + MARGINES)), int(H * (1 + MARGINES))
+    im = Image.new("RGB", (WW, HH), TLO)
     d = ImageDraw.Draw(im)
     rnd = random.Random(ziarno)
     kol = tuple(int(c * 0.22) for c in akcent)
-    for _ in range(26):
-        x = rnd.randint(-100, W)
-        y = rnd.randint(-100, H)
+    for _ in range(34):
+        x = rnd.randint(-100, WW)
+        y = rnd.randint(-100, HH)
         punkty = []
         for i in range(26):
             punkty.append((x + i * 26, y + int(44 * math.sin(i / 2.4 + rnd.random()))))
         d.line(punkty, fill=kol, width=3, joint="curve")
     return im
+
+
+def okno(baza, post, dlugosc, kierunek):
+    """Wycina kadr 1080x1920 z nadwymiarowego tla; okno jedzie przez cale ujecie.
+    Ruch jest powolny (caly przejazd to ok. 2% szerokosci na sekunde) - ma oddychac,
+    nie wozic widzem."""
+    zap_x, zap_y = baza.width - W, baza.height - H
+    p = min(1, max(0, post / max(dlugosc, 0.1)))
+    p = p * p * (3 - 2 * p)            # wygladzenie koncow, zeby ciecie nie szarpalo
+    kx, ky = kierunek
+    x = int(zap_x * (0.5 + kx * (p - 0.5) * 0.42))
+    y = int(zap_y * (0.5 + ky * (p - 0.5) * 0.42))
+    return baza.crop((x, y, x + W, y + H))
 
 
 # ---------------------------------------------------------------- elementy
@@ -98,7 +120,7 @@ def pigulka(d, srodek_x, y, tekst, font, tlo_k, tekst_k, obrys=None, pad=(26, 14
 def el_chip(im, d, el, akcent, post):
     font = f_inter(28, "semi")
     t = el["tekst"].upper()
-    y = el.get("y", 120)
+    y = el.get("y", 120) + int(3 * math.sin(post * 2.0))
     a = int(255 * min(1, post / 0.18))
     nak = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     dn = ImageDraw.Draw(nak)
@@ -126,8 +148,15 @@ def el_slupki(im, d, el, akcent, cyjan, post):
                 (14, 14, 17), BIEL, obrys=kol)
         if dane.get("liczba"):
             fa = f_anton(52)
-            d.text((x + szer_s // 2 - szer(d, dane["liczba"], fa) // 2, y - 68),
-                   dane["liczba"], font=fa, fill=kol)
+            cel = dane["liczba"]
+            if cel.rstrip("%").isdigit():
+                biezaca = int(int(cel.rstrip("%")) * min(1, post / 0.7))
+                tekst = f"{biezaca}%" if cel.endswith("%") else str(biezaca)
+            else:
+                tekst = cel
+            uniesienie = int(4 * math.sin(post * 2.6 + i))
+            d.text((x + szer_s // 2 - szer(d, tekst, fa) // 2, y - 68 - uniesienie),
+                   tekst, font=fa, fill=kol)
 
 
 def el_ludzie(im, d, el, akcent, cyjan, post):
@@ -142,7 +171,11 @@ def el_ludzie(im, d, el, akcent, cyjan, post):
     for i in range(widoczne):
         cx = x0 + (i % kol_w) * krok
         cy = y + (i // kol_w) * 62
-        kol = cyjan if i < zazn else (170, 170, 178)
+        if i < zazn:
+            j = 0.7 + 0.3 * math.sin(post * 3.0 + i * 0.35)
+            kol = tuple(int(c * j) for c in cyjan)
+        else:
+            kol = (170, 170, 178)
         d.ellipse([cx - 11, cy - 22, cx + 11, cy], outline=kol, width=3)
         d.arc([cx - 18, cy - 2, cx + 18, cy + 34], 180, 360, fill=kol, width=3)
     if el.get("podpis"):
@@ -158,10 +191,13 @@ def el_schemat(im, d, el, akcent, cyjan, post):
     lx, rx = W // 2 - 190, W // 2 + 190
     d.ellipse([lx - 70, y - 44, lx + 70, y + 44], outline=BIEL, width=5)
     d.ellipse([lx - 20, y - 20, lx + 20, y + 20], fill=BIEL)
-    punkty = int(6 * min(1, post / 0.6))
-    for i in range(punkty):
-        x = lx + 80 + i * 36
-        d.ellipse([x - 7, y - 7, x + 7, y + 7], fill=cyjan)
+    for i in range(6):
+        faza = (post * 0.8 + i / 6.0) % 1.0
+        x = lx + 80 + faza * 216
+        r = 5 + 3 * math.sin(faza * math.pi)
+        jas = 0.45 + 0.55 * math.sin(faza * math.pi)
+        kol = tuple(int(c * jas) for c in cyjan)
+        d.ellipse([x - r, y - r, x + r, y + r], fill=kol)
     d.rounded_rectangle([rx - 60, y - 52, rx + 60, y + 52], radius=20, outline=cyjan, width=5)
     if el.get("etykieta"):
         pigulka(d, rx, y - 118, el["etykieta"].upper(), f_inter(24, "semi"), cyjan, CIEMNY)
@@ -186,7 +222,11 @@ def el_karta_liczby(im, d, el, akcent, cyjan, post):
     dn = ImageDraw.Draw(nak)
     dn.rounded_rectangle([x0, y0, x0 + w, y0 + h], radius=18,
                          fill=(10, 12, 16, int(238 * wejscie)), outline=cyjan + (int(255 * wejscie),), width=3)
-    dn.line([W // 2 - 26, y0 + 20, W // 2 + 26, y0 + 20], fill=cyjan + (255,), width=4)
+    puls = 0.75 + 0.25 * math.sin(post * 3.4)
+    dn.rounded_rectangle([x0 - 3, y0 - 3, x0 + w + 3, y0 + h + 3], radius=21,
+                         outline=cyjan + (int(70 * puls * wejscie),), width=2)
+    kreska = 20 + 12 * math.sin(post * 2.2)
+    dn.line([W // 2 - kreska, y0 + 20, W // 2 + kreska, y0 + 20], fill=cyjan + (255,), width=4)
     dn.text((W // 2 - szer(dn, el["naglowek"].upper(), fn) // 2, y0 + 30),
             el["naglowek"].upper(), font=fn, fill=(190, 195, 205, int(255 * wejscie)))
     yy = y0 + 66
@@ -355,7 +395,9 @@ def renderuj(spec_plik, wyjscie):
             if u["od"] <= t < u["do"]:
                 idx = i
                 break
-        im = bazy[idx].copy()
+        u = spec["ujecia"][idx]
+        kier = [(1, 0.3), (-1, -0.3), (0.4, 1), (-0.4, -1)][idx % 4]
+        im = okno(bazy[idx], t - u["od"], u["do"] - u["od"], kier).copy()
         d = ImageDraw.Draw(im)
         for el in spec["elementy"]:
             if el["od"] <= t <= el["do"]:
