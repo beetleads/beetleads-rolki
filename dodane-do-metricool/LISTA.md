@@ -42,3 +42,16 @@ Wszystkie powyższe mają jeszcze stare otwarcie - bez nowej okładki (maks. 4 s
 1112_0700_rozrzut_fx.mp4
 1112_1200_opinia_fx.mp4
 1112_1800_lewo_prawo_fx.mp4
+
+## 10.11 18:20 - silnik 5, kolejka przesunieta o dobe
+| termin | rolka | plik |
+|---|---|---|
+| 10.11 18:30 | ryczalt czy licznik | 1110_1830_ryczalt_s5.mp4 |
+| 12.11 07:00 | zdjecia dały 9% | 1112_0700_zdjecia_s5.mp4 |
+| 12.11 12:00 | druga od dolu | 1112_1200_druga_s5.mp4 |
+| 12.11 18:00 | gratis nie z tej polki | 1112_1800_gratis_s5.mp4 |
+| 13.11 07:00 | rozrzut cen | 1113_0700_rozrzut_s5.mp4 |
+| 13.11 12:00 | jedna zla opinia | 1113_1200_opinia_s5.mp4 |
+| 13.11 18:00 | lewo czy prawo | 1113_1800_lewo_s5.mp4 |
+
+Slot 11.11 wolny - kolejka przesunieta o dobe decyzja zalozyciela 10.11.
