@@ -332,6 +332,78 @@ def el_karty(im, d, el, akcent, cyjan, post):
            font=fq, fill=akcent)
 
 
+def el_tabliczka(im, d, el, akcent, cyjan, post):
+    """Tabliczka ostrzegawcza z wnioskiem marketingowym - zolty trojkat z wykrzyknikiem
+    i napis, zeby na koncu bylo wiadomo, co z tego wynika dla firmy."""
+    y = el.get("y", 130)
+    wejscie = min(1, post / 0.3)
+    font = f_inter(30, "bold")
+    t = el.get("tekst", "Wniosek marketingowy").upper()
+    w = szer(d, t, font) + 150
+    h = 86
+    x0 = W // 2 - w // 2
+    puls = 0.6 + 0.4 * abs(math.sin(post * 2.4))
+    nak = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dn = ImageDraw.Draw(nak)
+    dn.rounded_rectangle([x0, y, x0 + w, y + h], radius=16,
+                         fill=(14, 14, 17, int(238 * wejscie)),
+                         outline=akcent + (int(255 * wejscie),), width=4)
+    dn.rounded_rectangle([x0 - 4, y - 4, x0 + w + 4, y + h + 4], radius=20,
+                         outline=akcent + (int(90 * puls * wejscie),), width=2)
+    tx, ty = x0 + 34, y + h // 2
+    dn.polygon([(tx, ty + 22), (tx + 44, ty + 22), (tx + 22, ty - 24)],
+               fill=akcent + (int(255 * wejscie),))
+    fw = f_anton(30)
+    dn.text((tx + 22 - szer(dn, "!", fw) // 2, ty - 16), "!", font=fw, fill=CIEMNY + (255,))
+    dn.text((x0 + 104, y + h // 2 - font.size // 2 - 2), t, font=font,
+            fill=BIEL + (int(255 * wejscie),))
+    im.alpha_composite(nak)
+
+
+def el_follow(im, d, el, akcent, cyjan, post):
+    """Przycisk OBSERWUJ z kursorem, ktory najezdza i klika. Klikniecie wypada
+    w `klik` sekundy od wejscia - dzwiek klikniecia miksowany jest w tej samej chwili."""
+    y = el.get("y", 330)
+    klik = el.get("klik", 0.9)
+    wejscie = min(1, post / 0.25)
+    po = post > klik
+    w, h = 470, 124
+    x0 = W // 2 - w // 2
+    wcisniety = 1.0 if not (klik - 0.07 < post < klik + 0.12) else 0.94
+    ww, hh = int(w * wcisniety), int(h * wcisniety)
+    x, yy = W // 2 - ww // 2, y + (h - hh) // 2
+    tlo_p = akcent if not po else (26, 26, 30)
+    d.rounded_rectangle([x, yy, x + ww, yy + hh], radius=hh // 2, fill=tlo_p,
+                        outline=akcent, width=4)
+    font = f_inter(40, "bold")
+    t = "OBSERWUJ" if not po else "OBSERWUJESZ"
+    kol = CIEMNY if not po else akcent
+    d.text((W // 2 - szer(d, t, font) // 2 + (16 if po else 0),
+            yy + hh // 2 - font.size // 2 - 2), t, font=font, fill=kol)
+    if po:
+        cx, cy = W // 2 - szer(d, t, font) // 2 - 26, yy + hh // 2
+        d.line([cx - 16, cy, cx - 4, cy + 12], fill=akcent, width=7)
+        d.line([cx - 4, cy + 12, cx + 18, cy - 14], fill=akcent, width=7)
+    # pierscien po klikniecu
+    if 0 < post - klik < 0.45:
+        r = int(90 + 190 * (post - klik) / 0.45)
+        a = int(190 * (1 - (post - klik) / 0.45))
+        nak = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        dn = ImageDraw.Draw(nak)
+        dn.ellipse([W // 2 - r, y + h // 2 - r, W // 2 + r, y + h // 2 + r],
+                   outline=akcent + (a,), width=5)
+        im.alpha_composite(nak)
+    # kursor: najezdza na przycisk i zostaje
+    p = min(1, post / max(klik, 0.01))
+    kx = int(W // 2 + 250 - 250 * p)
+    ky = int(y + h + 150 - 110 * p)
+    d.polygon([(kx, ky), (kx, ky + 46), (kx + 13, ky + 34), (kx + 22, ky + 52),
+               (kx + 32, ky + 47), (kx + 23, ky + 29), (kx + 38, ky + 27)], fill=BIEL)
+    if el.get("podpis"):
+        pigulka(d, W // 2, y + h + 34, el["podpis"].upper(), f_inter(26, "semi"),
+                (14, 14, 17), BIEL, obrys=akcent)
+
+
 def bramka_pasow(spec):
     """Trzy pasy maja byc zajete przez caly czas: ilustracja u gory, napis na
     srodku, ciemna karta na dole. 10.11 zalozyciel pokazal cztery rolki wzorcowe -
@@ -353,7 +425,7 @@ def bramka_pasow(spec):
 RYSUNKI = {
     "chip": el_chip, "slupki": el_slupki, "ludzie": el_ludzie, "schemat": el_schemat,
     "karta_liczby": el_karta_liczby, "domkniecie": el_domkniecie, "zapamietaj": el_zapamietaj,
-    "tak_nie": el_tak_nie, "karty": el_karty,
+    "tak_nie": el_tak_nie, "karty": el_karty, "tabliczka": el_tabliczka, "follow": el_follow,
 }
 
 

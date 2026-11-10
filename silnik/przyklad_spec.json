@@ -192,26 +192,35 @@
    "y": 1150
   },
   {
-   "typ": "zapamietaj",
-   "od": 15.046,
-   "do": 18.349,
-   "y": 150
-  },
-  {
-   "typ": "tak_nie",
-   "podpis": "abonament obok licznika",
-   "od": 15.138,
-   "do": 18.349,
-   "y": 330
-  },
-  {
    "typ": "domkniecie",
    "naglowek": "Zrób to u siebie",
    "l1": "Daj abonament",
    "l2": "obok płatności za użycie",
    "od": 15.092,
-   "do": 18.349,
+   "do": 18.29,
    "y": 1180
+  },
+  {
+   "typ": "tabliczka",
+   "tekst": "Wniosek marketingowy",
+   "od": 14.84,
+   "do": 18.29,
+   "y": 130
+  },
+  {
+   "typ": "tak_nie",
+   "podpis": "abonament obok licznika",
+   "od": 14.94,
+   "do": 16.44,
+   "y": 330
+  },
+  {
+   "typ": "follow",
+   "podpis": "po więcej treści marketingowych",
+   "klik": 0.95,
+   "od": 16.49,
+   "do": 18.29,
+   "y": 330
   }
  ],
  "slowa": [
@@ -425,5 +434,6 @@
    "od": 17.853,
    "do": 18.294
   }
- ]
+ ],
+ "klik_dzwiek": 17.44
 }
