@@ -301,6 +301,37 @@ def el_tak_nie(im, d, el, akcent, cyjan, post):
                 (14, 14, 17), BIEL, obrys=akcent)
 
 
+def el_karty(im, d, el, akcent, cyjan, post):
+    """Dwie karty obok siebie z wartosciami - ilustracja hooka. 10.11: pierwsze
+    sekundy maja najwiecej uwagi, a pas gorny byl w nich pusty."""
+    y = el.get("y", 300)
+    wejscie = min(1, post / 0.4)
+    bok_w, bok_h, luz = 250, 290, 70
+    x0 = W // 2 - bok_w - luz // 2
+    for i, karta in enumerate(el["karty"]):
+        wygrany = karta.get("wygrany")
+        kol = (akcent if wygrany else cyjan) if karta.get("akcent", True) else (150, 150, 158)
+        x = x0 + i * (bok_w + luz)
+        skok = int(8 * math.sin(post * 2.6 + i * 1.5)) * (1 if wygrany else 0)
+        yy = y - skok - int((1 - wejscie) * 20)
+        d.rounded_rectangle([x, yy, x + bok_w, yy + bok_h], radius=26,
+                            fill=(16, 16, 20), outline=kol, width=5)
+        fa = f_anton(84)
+        t = karta["wartosc"]
+        while szer(d, t, fa) > bok_w - 36 and fa.size > 40:
+            fa = f_anton(fa.size - 4)
+        d.text((x + bok_w // 2 - szer(d, t, fa) // 2, yy + bok_h // 2 - fa.size // 2 - 10),
+               t, font=fa, fill=kol)
+        pigulka(d, x + bok_w // 2, yy + bok_h + 18, karta["etykieta"].upper(),
+                f_inter(24, "semi"), (14, 14, 17), BIEL, obrys=kol, pad=(16, 11))
+    # znak zapytania miedzy kartami - pytanie hooka
+    fq = f_anton(76)
+    puls = 1 + 0.06 * math.sin(post * 4.0)
+    fq = f_anton(int(76 * puls))
+    d.text((W // 2 - szer(d, "?", fq) // 2, y + bok_h // 2 - fq.size // 2), "?",
+           font=fq, fill=akcent)
+
+
 def bramka_pasow(spec):
     """Trzy pasy maja byc zajete przez caly czas: ilustracja u gory, napis na
     srodku, ciemna karta na dole. 10.11 zalozyciel pokazal cztery rolki wzorcowe -
@@ -322,7 +353,7 @@ def bramka_pasow(spec):
 RYSUNKI = {
     "chip": el_chip, "slupki": el_slupki, "ludzie": el_ludzie, "schemat": el_schemat,
     "karta_liczby": el_karta_liczby, "domkniecie": el_domkniecie, "zapamietaj": el_zapamietaj,
-    "tak_nie": el_tak_nie,
+    "tak_nie": el_tak_nie, "karty": el_karty,
 }
 
 

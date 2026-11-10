@@ -1,6 +1,6 @@
 {
- "audio": "/tmp/claude-0/-home-claude/2dbe75ca-4db3-575f-9da9-3016388c7a29/scratchpad/val/r2.mp4",
- "dlugosc": 20.1,
+ "audio": "/home/claude/silnik5/audio_ryczalt_szybciej.wav",
+ "dlugosc": 18.44,
  "akcent": "#FFD84D",
  "cyjan": "#35D0E8",
  "okladka_do": 0.1,
@@ -11,8 +11,8 @@
  },
  "ujecia": [
   {
-   "od": 0.1,
-   "do": 2.0,
+   "od": 0.092,
+   "do": 1.835,
    "tlo": {
     "typ": "foto",
     "plik": "/home/claude/silnik5/public/pieniadze.jpg",
@@ -20,8 +20,8 @@
    }
   },
   {
-   "od": 2.0,
-   "do": 4.05,
+   "od": 1.835,
+   "do": 3.716,
    "tlo": {
     "typ": "foto",
     "plik": "/home/claude/silnik5/public/pieniadze.jpg",
@@ -29,24 +29,24 @@
    }
   },
   {
-   "od": 4.05,
-   "do": 6.35,
+   "od": 3.716,
+   "do": 5.826,
    "tlo": {
     "typ": "desen",
     "ziarno": 11
    }
   },
   {
-   "od": 6.35,
-   "do": 8.65,
+   "od": 5.826,
+   "do": 7.936,
    "tlo": {
     "typ": "desen",
     "ziarno": 16
    }
   },
   {
-   "od": 8.65,
-   "do": 11.3,
+   "od": 7.936,
+   "do": 10.367,
    "tlo": {
     "typ": "foto",
     "plik": "/home/claude/silnik5/public/bilety.jpg",
@@ -54,24 +54,24 @@
    }
   },
   {
-   "od": 11.3,
-   "do": 13.4,
+   "od": 10.367,
+   "do": 12.294,
    "tlo": {
     "typ": "desen",
     "ziarno": 21
    }
   },
   {
-   "od": 13.4,
-   "do": 16.3,
+   "od": 12.294,
+   "do": 14.954,
    "tlo": {
     "typ": "desen",
     "ziarno": 26
    }
   },
   {
-   "od": 16.3,
-   "do": 18.3,
+   "od": 14.954,
+   "do": 16.789,
    "tlo": {
     "typ": "foto",
     "plik": "/home/claude/silnik5/public/bilety.jpg",
@@ -79,8 +79,8 @@
    }
   },
   {
-   "od": 18.3,
-   "do": 20.1,
+   "od": 16.789,
+   "do": 18.44,
    "tlo": {
     "typ": "foto",
     "plik": "/home/claude/silnik5/public/pieniadze.jpg",
@@ -92,17 +92,34 @@
   {
    "typ": "chip",
    "tekst": "Abonament czy licznik",
-   "od": 0.15,
-   "do": 4.05,
+   "od": 0.138,
+   "do": 3.716,
    "y": 150
   },
   {
+   "typ": "karty",
+   "karty": [
+    {
+     "etykieta": "ryczałt",
+     "wartosc": "stała",
+     "wygrany": true
+    },
+    {
+     "etykieta": "za użycie",
+     "wartosc": "licznik"
+    }
+   ],
+   "od": 0.55,
+   "do": 3.72,
+   "y": 330
+  },
+  {
    "typ": "karta_liczby",
-   "naglowek": "Pytanie na start",
-   "l1": "ryczałt",
-   "l2": "czy licznik?",
-   "od": 0.6,
-   "do": 4.1,
+   "naglowek": "Na start",
+   "l1": "prawie połowa",
+   "l2": "przepłaca i zostaje",
+   "od": 0.55,
+   "do": 3.761,
    "y": 1150
   },
   {
@@ -110,8 +127,8 @@
    "ile": 50,
    "zaznaczone": 23,
    "podpis": "10 000 faktur, 46% przepłaca",
-   "od": 4.15,
-   "do": 8.6,
+   "od": 3.807,
+   "do": 7.89,
    "y": 300
   },
   {
@@ -119,8 +136,8 @@
    "naglowek": "Próba badania",
    "l1": "10 000 faktur",
    "l2": "sprawdzonych",
-   "od": 4.3,
-   "do": 6.35,
+   "od": 3.945,
+   "do": 5.826,
    "y": 1150
   },
   {
@@ -128,8 +145,8 @@
    "naglowek": "Policzone w badaniu",
    "l1": "46% na ryczałcie",
    "l2": "płaci więcej",
-   "od": 6.4,
-   "do": 11.25,
+   "od": 5.872,
+   "do": 10.321,
    "y": 1150
   },
   {
@@ -146,23 +163,23 @@
      "liczba": "54%"
     }
    ],
-   "od": 8.7,
-   "do": 11.25,
+   "od": 7.982,
+   "do": 10.321,
    "y": 300
   },
   {
    "typ": "chip",
    "tekst": "Dlaczego tak jest",
-   "od": 11.35,
-   "do": 12.6,
+   "od": 10.413,
+   "do": 11.56,
    "y": 150
   },
   {
    "typ": "schemat",
    "etykieta": "spokój",
    "podpis": "stała kwota",
-   "od": 12.65,
-   "do": 16.3,
+   "od": 11.606,
+   "do": 14.954,
    "y": 430
   },
   {
@@ -170,21 +187,21 @@
    "naglowek": "Dlaczego tak jest",
    "l1": "stała kwota",
    "l2": "to spokój",
-   "od": 11.4,
-   "do": 16.3,
+   "od": 10.459,
+   "do": 14.954,
    "y": 1150
   },
   {
    "typ": "zapamietaj",
-   "od": 16.4,
-   "do": 20.0,
+   "od": 15.046,
+   "do": 18.349,
    "y": 150
   },
   {
    "typ": "tak_nie",
    "podpis": "abonament obok licznika",
-   "od": 16.5,
-   "do": 20.0,
+   "od": 15.138,
+   "do": 18.349,
    "y": 330
   },
   {
@@ -192,221 +209,221 @@
    "naglowek": "Zrób to u siebie",
    "l1": "Daj abonament",
    "l2": "obok płatności za użycie",
-   "od": 16.45,
-   "do": 20.0,
+   "od": 15.092,
+   "do": 18.349,
    "y": 1180
   }
  ],
  "slowa": [
   {
    "s": "Prawie",
-   "od": 0.2,
-   "do": 0.42
+   "od": 0.183,
+   "do": 0.385
   },
   {
    "s": "połowa",
-   "od": 0.52,
-   "do": 0.82
+   "od": 0.477,
+   "do": 0.752
   },
   {
    "s": "klientów",
-   "od": 0.88,
-   "do": 1.32
+   "od": 0.807,
+   "do": 1.211
   },
   {
    "s": "na",
-   "od": 1.36,
-   "do": 1.44
+   "od": 1.248,
+   "do": 1.321
   },
   {
    "s": "abonamencie",
-   "od": 1.48,
-   "do": 2.1
+   "od": 1.358,
+   "do": 1.927
   },
   {
    "s": "przepłaca",
-   "od": 2.2,
-   "do": 2.9
+   "od": 2.018,
+   "do": 2.661
   },
   {
    "s": "i",
-   "od": 3.08,
-   "do": 3.12
+   "od": 2.826,
+   "do": 2.862
   },
   {
    "s": "zostaje.",
-   "od": 3.18,
-   "do": 3.7
+   "od": 2.917,
+   "do": 3.394
   },
   {
    "s": "Sprawdzono",
-   "od": 4.14,
-   "do": 4.56
+   "od": 3.798,
+   "do": 4.183
   },
   {
    "s": "faktury",
-   "od": 4.6,
-   "do": 4.96
+   "od": 4.22,
+   "do": 4.55
   },
   {
    "s": "dziesięciu",
-   "od": 5.02,
-   "do": 5.46
+   "od": 4.606,
+   "do": 5.009
   },
   {
    "s": "tysięcy",
-   "od": 5.54,
-   "do": 5.92
+   "od": 5.083,
+   "do": 5.431
   },
   {
    "s": "osób.",
-   "od": 6.04,
-   "do": 6.34
+   "od": 5.541,
+   "do": 5.817
   },
   {
    "s": "46",
-   "od": 6.68,
-   "do": 7.48
+   "od": 6.128,
+   "do": 6.862
   },
   {
    "s": "procent",
-   "od": 7.52,
-   "do": 7.96
+   "od": 6.899,
+   "do": 7.303
   },
   {
    "s": "na",
-   "od": 8.02,
-   "do": 8.08
+   "od": 7.358,
+   "do": 7.413
   },
   {
    "s": "ryczałcie",
-   "od": 8.119,
-   "do": 8.52
+   "od": 7.449,
+   "do": 7.817
   },
   {
    "s": "zapłaciło",
-   "od": 8.56,
-   "do": 9.04
+   "od": 7.853,
+   "do": 8.294
   },
   {
    "s": "więcej,",
-   "od": 9.14,
-   "do": 9.62
+   "od": 8.385,
+   "do": 8.826
   },
   {
    "s": "niż",
-   "od": 9.78,
-   "do": 9.92
+   "od": 8.972,
+   "do": 9.101
   },
   {
    "s": "gdyby",
-   "od": 9.96,
-   "do": 10.2
+   "od": 9.138,
+   "do": 9.358
   },
   {
    "s": "liczyli",
-   "od": 10.24,
-   "do": 10.58
+   "od": 9.394,
+   "do": 9.706
   },
   {
    "s": "za",
-   "od": 10.64,
-   "do": 10.72
+   "od": 9.761,
+   "do": 9.835
   },
   {
    "s": "użycie.",
-   "od": 10.78,
-   "do": 11.16
+   "od": 9.89,
+   "do": 10.239
   },
   {
    "s": "Wiesz",
-   "od": 11.54,
-   "do": 11.66
+   "od": 10.587,
+   "do": 10.697
   },
   {
    "s": "dlaczego?",
-   "od": 11.7,
-   "do": 12.1
+   "od": 10.734,
+   "do": 11.101
   },
   {
    "s": "Stała",
-   "od": 12.72,
-   "do": 12.96
+   "od": 11.67,
+   "do": 11.89
   },
   {
    "s": "kwota",
-   "od": 12.98,
-   "do": 13.28
+   "od": 11.908,
+   "do": 12.183
   },
   {
    "s": "daje",
-   "od": 13.34,
-   "do": 13.56
+   "od": 12.239,
+   "do": 12.44
   },
   {
    "s": "spokój,",
-   "od": 13.6,
-   "do": 14.06
+   "od": 12.477,
+   "do": 12.899
   },
   {
    "s": "a",
-   "od": 14.3,
-   "do": 14.36
+   "od": 13.119,
+   "do": 13.174
   },
   {
    "s": "licznik",
-   "od": 14.4,
-   "do": 14.88
+   "od": 13.211,
+   "do": 13.651
   },
   {
    "s": "zmusza",
-   "od": 15.08,
-   "do": 15.38
+   "od": 13.835,
+   "do": 14.11
   },
   {
    "s": "do",
-   "od": 15.42,
-   "do": 15.48
+   "od": 14.147,
+   "do": 14.202
   },
   {
    "s": "pilnowania.",
-   "od": 15.56,
-   "do": 16.079
+   "od": 14.275,
+   "do": 14.751
   },
   {
    "s": "Zapamiętaj:",
-   "od": 16.52,
-   "do": 17.08
+   "od": 15.156,
+   "do": 15.67
   },
   {
    "s": "obok",
-   "od": 17.48,
-   "do": 17.7
+   "od": 16.037,
+   "do": 16.239
   },
   {
    "s": "rozliczenia",
-   "od": 17.74,
-   "do": 18.26
+   "od": 16.275,
+   "do": 16.752
   },
   {
    "s": "za",
-   "od": 18.3,
-   "do": 18.4
+   "od": 16.789,
+   "do": 16.881
   },
   {
    "s": "użycie",
-   "od": 18.46,
-   "do": 18.86
+   "od": 16.936,
+   "do": 17.303
   },
   {
    "s": "daj",
-   "od": 19.22,
-   "do": 19.38
+   "od": 17.633,
+   "do": 17.78
   },
   {
    "s": "abonament.",
-   "od": 19.46,
-   "do": 19.94
+   "od": 17.853,
+   "do": 18.294
   }
  ]
 }
