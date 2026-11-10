@@ -60,3 +60,9 @@ Slot 11.11 wolny - kolejka przesunieta o dobe decyzja zalozyciela 10.11.
 Podmienione w kolejce: 1112_0700_zdjecia_s5b, 1112_1200_druga_s5b, 1112_1800_gratis_s5b,
 1113_0700_rozrzut_s5b, 1113_1200_opinia_s5b, 1113_1800_lewo_s5b.
 Rolka ryczalt poszla o 18:30 w wersji s5 - poprawek juz nie dostala.
+
+## 10.11 19:09 - wersja v5c w kolejce (12 postow)
+1112_0700_zdjecia_s5c, 1112_1200_druga_s5c, 1112_1800_gratis_s5c,
+1113_0700_rozrzut_s5c, 1113_1200_opinia_s5c, 1113_1800_lewo_s5c.
+Glos nizszy o 10% (rubberband), napisy 46 px i zsynchronizowane z koncowym nagraniem,
+elementy powiekszone, po trzy wlasne zdjecia na rolke.
