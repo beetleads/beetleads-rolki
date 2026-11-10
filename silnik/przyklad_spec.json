@@ -93,8 +93,17 @@
    "typ": "chip",
    "tekst": "Abonament czy licznik",
    "od": 0.15,
-   "do": 4.0,
+   "do": 4.05,
    "y": 150
+  },
+  {
+   "typ": "karta_liczby",
+   "naglowek": "Pytanie na start",
+   "l1": "ryczałt",
+   "l2": "czy licznik?",
+   "od": 0.6,
+   "do": 4.1,
+   "y": 1150
   },
   {
    "typ": "ludzie",
@@ -102,30 +111,41 @@
    "zaznaczone": 23,
    "podpis": "10 000 faktur, 46% przepłaca",
    "od": 4.15,
-   "do": 6.3,
-   "y": 330
+   "do": 8.6,
+   "y": 300
+  },
+  {
+   "typ": "karta_liczby",
+   "naglowek": "Próba badania",
+   "l1": "10 000 faktur",
+   "l2": "sprawdzonych",
+   "od": 4.3,
+   "do": 6.35,
+   "y": 1150
   },
   {
    "typ": "karta_liczby",
    "naglowek": "Policzone w badaniu",
    "l1": "46% na ryczałcie",
    "l2": "płaci więcej",
-   "od": 6.45,
-   "do": 8.6,
+   "od": 6.4,
+   "do": 11.25,
    "y": 1150
   },
   {
    "typ": "slupki",
-   "a": {
-    "etykieta": "płaci tyle, co zużył",
-    "wartosc": 54,
-    "liczba": "54%"
-   },
-   "b": {
-    "etykieta": "przepłaca",
-    "wartosc": 46,
-    "liczba": "46%"
-   },
+   "kolumny": [
+    {
+     "etykieta": "przepłaca",
+     "wartosc": 46,
+     "liczba": "46%"
+    },
+    {
+     "etykieta": "płaci tyle, co zużył",
+     "wartosc": 54,
+     "liczba": "54%"
+    }
+   ],
    "od": 8.7,
    "do": 11.25,
    "y": 300
@@ -133,7 +153,7 @@
   {
    "typ": "chip",
    "tekst": "Dlaczego tak jest",
-   "od": 11.45,
+   "od": 11.35,
    "do": 12.6,
    "y": 150
   },
@@ -141,42 +161,40 @@
    "typ": "schemat",
    "etykieta": "spokój",
    "podpis": "stała kwota",
-   "od": 12.7,
-   "do": 16.2,
+   "od": 12.65,
+   "do": 16.3,
    "y": 430
-  },
-  {
-   "typ": "zapamietaj",
-   "od": 16.5,
-   "do": 20.0,
-   "y": 150
-  },
-  {
-   "typ": "domkniecie",
-   "naglowek": "Zrób to u siebie",
-   "l1": "Daj abonament",
-   "l2": "obok płatności za użycie",
-   "od": 17.4,
-   "do": 20.0,
-   "y": 1180
   },
   {
    "typ": "karta_liczby",
    "naglowek": "Dlaczego tak jest",
    "l1": "stała kwota",
    "l2": "to spokój",
-   "od": 13.2,
-   "do": 16.2,
+   "od": 11.4,
+   "do": 16.3,
    "y": 1150
   },
   {
-   "typ": "karta_liczby",
-   "naglowek": "Proba badania",
-   "l1": "10 000 faktur",
-   "l2": "sprawdzonych",
-   "od": 4.3,
-   "do": 6.3,
-   "y": 1150
+   "typ": "zapamietaj",
+   "od": 16.4,
+   "do": 20.0,
+   "y": 150
+  },
+  {
+   "typ": "tak_nie",
+   "podpis": "abonament obok licznika",
+   "od": 16.5,
+   "do": 20.0,
+   "y": 330
+  },
+  {
+   "typ": "domkniecie",
+   "naglowek": "Zrób to u siebie",
+   "l1": "Daj abonament",
+   "l2": "obok płatności za użycie",
+   "od": 16.45,
+   "do": 20.0,
+   "y": 1180
   }
  ],
  "slowa": [

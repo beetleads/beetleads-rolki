@@ -48,6 +48,7 @@ def szer(d, tekst, font):
 
 # ---------------------------------------------------------------- tla
 
+PRZENIKANIE = 0.26  # dlugosc przenikania miedzy ujeciami
 MARGINES = 0.17   # zapas na jazde kadru wewnatrz ujecia
 
 
@@ -131,21 +132,24 @@ def el_chip(im, d, el, akcent, post):
 def el_slupki(im, d, el, akcent, cyjan, post):
     """Porownanie A/B: dwa slupki z etykietami, wygrany w cyjanie."""
     y = el.get("y", 300)
-    a, b = el["a"], el["b"]
-    maks = max(a["wartosc"], b["wartosc"], 1)
+    kolumny = el.get("kolumny") or [el["a"], el["b"]]
+    maks = max([k["wartosc"] for k in kolumny] + [1])
     wys = 300
-    szer_s = 140
-    luz = 170
-    x0 = W // 2 - szer_s - luz // 2
+    szer_s = 120 if len(kolumny) > 2 else 140
+    luz = 60 if len(kolumny) > 2 else 170
+    szer_calk = len(kolumny) * szer_s + (len(kolumny) - 1) * luz
+    x0 = W // 2 - szer_calk // 2
     wejscie = min(1, post / 0.35)
-    for i, (dane, kol) in enumerate([(a, (150, 150, 158)), (b, cyjan)]):
+    kolory = [cyjan, (150, 150, 158), (110, 110, 118)]
+    for i, dane in enumerate(kolumny):
+        kol = hexkolor(dane["kolor"]) if dane.get("kolor") else kolory[min(i, 2)]
         x = x0 + i * (szer_s + luz)
         h = int(wys * dane["wartosc"] / maks * wejscie)
         d.rounded_rectangle([x, y + wys - h, x + szer_s, y + wys], radius=14, fill=kol)
         d.rounded_rectangle([x, y, x + szer_s, y + wys], radius=14, outline=(90, 90, 96), width=3)
-        font = f_inter(26, "semi")
+        font = f_inter(22 if len(kolumny) > 2 else 26, "semi")
         pigulka(d, x + szer_s // 2, y + wys + 18, dane["etykieta"].upper(), font,
-                (14, 14, 17), BIEL, obrys=kol)
+                (14, 14, 17), BIEL, obrys=kol, pad=(14, 10))
         if dane.get("liczba"):
             fa = f_anton(52)
             cel = dane["liczba"]
@@ -274,9 +278,50 @@ def el_zapamietaj(im, d, el, akcent, post):
     pigulka(d, W // 2, el.get("y", 120), "ZAPAMIĘTAJ", f, (14, 14, 17), BIEL, obrys=akcent, r=12)
 
 
+def el_tak_nie(im, d, el, akcent, cyjan, post):
+    """Ptaszek i krzyzyk - domkniecie rady, jak w rolkach wzorcowych."""
+    y = el.get("y", 300)
+    wejscie = min(1, post / 0.3)
+    bok = 118
+    for i, (dobry, kol) in enumerate([(True, akcent), (False, (120, 120, 128))]):
+        x = W // 2 - bok - 30 + i * (bok + 60)
+        skok = int(6 * math.sin(post * 3.0 + i * 1.6)) if dobry else 0
+        d.rounded_rectangle([x, y - skok, x + bok, y + bok - skok], radius=22,
+                            fill=kol if dobry else (34, 34, 38))
+        cx, cy = x + bok // 2, y + bok // 2 - skok
+        if dobry:
+            d.line([cx - 26, cy, cx - 6, cy + 22], fill=CIEMNY, width=10)
+            d.line([cx - 6, cy + 22, cx + 28, cy - 22], fill=CIEMNY, width=10)
+        else:
+            d.line([cx - 20, cy - 20, cx + 20, cy + 20], fill=(150, 150, 158), width=9)
+            d.line([cx + 20, cy - 20, cx - 20, cy + 20], fill=(150, 150, 158), width=9)
+    if el.get("podpis"):
+        pigulka(d, W // 2, y + bok + 26, el["podpis"].upper(), f_inter(24, "semi"),
+                (14, 14, 17), BIEL, obrys=akcent)
+
+
+def bramka_pasow(spec):
+    """Trzy pasy maja byc zajete przez caly czas: ilustracja u gory, napis na
+    srodku, ciemna karta na dole. 10.11 zalozyciel pokazal cztery rolki wzorcowe -
+    w kazdej gora i dol sa zajete niemal caly czas, a moja wersja miala je puste."""
+    gora = [e for e in spec["elementy"] if e.get("y", 300) < 760]
+    dol = [e for e in spec["elementy"] if e.get("y", 300) >= 1000]
+    braki = []
+    for pas, lista in (("gora", gora), ("dol", dol)):
+        t = spec.get("okladka_do", 0.1)
+        for e in sorted(lista, key=lambda e: e["od"]):
+            if e["od"] > t + 0.45:
+                braki.append(f"{pas}: pusto {t:.1f}-{e['od']:.1f} s")
+            t = max(t, e["do"])
+        if spec["dlugosc"] - 0.2 > t + 0.45:
+            braki.append(f"{pas}: pusto {t:.1f}-{spec['dlugosc']:.1f} s")
+    return braki
+
+
 RYSUNKI = {
     "chip": el_chip, "slupki": el_slupki, "ludzie": el_ludzie, "schemat": el_schemat,
     "karta_liczby": el_karta_liczby, "domkniecie": el_domkniecie, "zapamietaj": el_zapamietaj,
+    "tak_nie": el_tak_nie,
 }
 
 
@@ -370,6 +415,9 @@ def renderuj(spec_plik, wyjscie):
     cyjan = hexkolor(spec.get("cyjan", "#35D0E8"))
     dlugosc = spec["dlugosc"]
     klatki = int(round(dlugosc * FPS))
+    braki = bramka_pasow(spec)
+    if braki:
+        print("BRAMKA PASOW - puste miejsca:", "; ".join(braki))
     katalog = pathlib.Path(wyjscie).parent / ("kl_" + pathlib.Path(wyjscie).stem)
     katalog.mkdir(parents=True, exist_ok=True)
 
@@ -398,6 +446,13 @@ def renderuj(spec_plik, wyjscie):
         u = spec["ujecia"][idx]
         kier = [(1, 0.3), (-1, -0.3), (0.4, 1), (-0.4, -1)][idx % 4]
         im = okno(bazy[idx], t - u["od"], u["do"] - u["od"], kier).copy()
+        # 10.11: w rolkach wzorcowych ujecia PRZENIKAJA sie; twarde ciecie
+        # rozrywa material na slajdy
+        if idx > 0 and t - u["od"] < PRZENIKANIE:
+            pop = spec["ujecia"][idx - 1]
+            kier_p = [(1, 0.3), (-1, -0.3), (0.4, 1), (-0.4, -1)][(idx - 1) % 4]
+            poprz = okno(bazy[idx - 1], pop["do"] - pop["od"], pop["do"] - pop["od"], kier_p)
+            im = Image.blend(poprz, im, (t - u["od"]) / PRZENIKANIE)
         d = ImageDraw.Draw(im)
         for el in spec["elementy"]:
             if el["od"] <= t <= el["do"]:
