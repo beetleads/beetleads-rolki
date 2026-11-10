@@ -48,6 +48,7 @@ def szer(d, tekst, font):
 
 # ---------------------------------------------------------------- tla
 
+WEJSCIE = 0.42      # rozjazd okladki w pierwsza scene
 PRZENIKANIE = 0.26  # dlugosc przenikania miedzy ujeciami
 MARGINES = 0.17   # zapas na jazde kadru wewnatrz ujecia
 
@@ -435,7 +436,8 @@ def renderuj(spec_plik, wyjscie):
 
     for k in range(klatki):
         t = k / FPS
-        if t < spec.get("okladka_do", 0.1) or t > dlugosc - 0.1:
+        okl_do = spec.get("okladka_do", 0.1)
+        if t < okl_do or t > dlugosc - 0.1:
             okl.convert("RGB").save(katalog / f"k{k:05d}.jpg", quality=93)
             continue
         idx = 0
@@ -464,6 +466,27 @@ def renderuj(spec_plik, wyjscie):
                     fn(im, d, el, akcent, post)
                 else:
                     fn(im, d, el, akcent, cyjan, post)
+        # WEJSCIE Z OKLADKI (10.11): okladka rozjezdza sie w pierwsza scene -
+        # start nie moze byc "nic sie nie dzieje", musi byc czym przykryty
+        if t < okl_do + WEJSCIE:
+            p = (t - okl_do) / WEJSCIE
+            sk = 1 + 0.10 * (1 - p)
+            pow = okl.resize((int(W * sk), int(H * sk)), Image.BILINEAR)
+            pow = pow.crop(((pow.width - W) // 2, (pow.height - H) // 2,
+                            (pow.width - W) // 2 + W, (pow.height - H) // 2 + H))
+            pow = pow.filter(ImageFilter.GaussianBlur(10 * p))
+            im = Image.blend(im, pow, max(0.0, 1 - p))
+            d = ImageDraw.Draw(im)
+            poz = int(220 * (1 - p))
+            nak = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            dn = ImageDraw.Draw(nak)
+            dn.line([0, 0, W, 0], fill=akcent + (0,), width=1)
+            dn.rectangle([0, CAP_Y - 300 - poz, W, CAP_Y - 296 - poz],
+                         fill=akcent + (int(230 * (1 - p)),))
+            dn.rectangle([0, CAP_Y + 296 + poz, W, CAP_Y + 300 + poz],
+                         fill=akcent + (int(230 * (1 - p)),))
+            im.alpha_composite(nak)
+
         for g in grupy:
             if g[0]["od"] - 0.12 <= t <= g[-1]["do"] + 0.3:
                 rysuj_napisy(im, d, g, t, akcent)
