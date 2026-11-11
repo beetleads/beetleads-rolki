@@ -176,3 +176,17 @@ Bledy zlapane przy tej zmianie:
   suma `k + (cel - i)`. Bez tego rolka "rozrzut" konczyla na -15,1 LUFS zamiast -14.
 - 16.11 PANEL stal jeszcze na starym slocie 13:00 ze starym plikiem - przestawiony na 12:00
   z nowa rolka. Przy kazdym dniu sprawdzaj GODZINE slotu, nie tylko plik.
+
+## 11.11 (11:10-11:40) - przebudowa kolejki na silnik 5: 21-23.11
+
+Po trzy rolki na dzien, sloty przesuniete z 9/13/18 na 7/12/18, podmienione oba posty na slocie (IG+TikTok na raw.githubusercontent, FB+YT na zwroconym URL static.metricool).
+
+- 21.11: przymierzalnia 07:00, pakiety 12:00, bot 18:00
+- 22.11: raty 07:00, kasa 12:00, kupon 18:00
+- 23.11: kolejka 07:00, reklama 12:00, status 18:00
+
+Pomiary: 18,3-21,1 s, -14,0 do -14,5 LUFS, true peak -1,7 do -1,9 dBFS, ogon do ciszy cyfrowej, trzy pasma od 0,4 s, napisy zgodne z lektorem (roznice tylko tam, gdzie whisper slyszy koncowke bezdzwiecznie: "budzec"/"budzet", "klac"/"kladz").
+
+Zdjecia: bramka OCR odrzucila 4 (logo AIRFRANCE, angielskie "Focus GOALS THEN WORK", szyld sklepu, "NYSE") - wymienione i sprawdzone ponownie.
+
+NOWA REGULA (11:20): przy podmianie rolki trzeba wymienic takze `videoThumbnailUrl` na bliźniaku FB/YT - podmiana samego pliku zostawia STARA okladke i nie zglasza bledu. Posty 21 i 22.11 mialy taka stara okladke; wyciete nowe klatki z nowych filmow i podmienione. Sprawdzone 12-14.11 oraz 19.11 - tam okladka idzie z filmu (videoCoverMilliseconds), czyli czysto.
