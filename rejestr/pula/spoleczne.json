@@ -37,5 +37,18 @@
   "mechanizm": "ukryty przycisk odmowy",
   "rada": "Kazdy dodatkowy klik do odmowy zmienia decyzje - sprawdz, ile klikow ma u ciebie rezygnacja, i ile ma zakup.",
   "link": "https://arxiv.org/abs/2001.02479"
+ },
+ {
+  "nr": "S4",
+  "filar": 2,
+  "pytanie": "Czy tryb incognito faktycznie cos ukrywa?",
+  "hook": "Prawie 4 na 10 osob mysli, ze tryb incognito robi je anonimowymi w sieci. Nie robi.",
+  "okladka": "39% MYSLI ZE ANONIM",
+  "eksperyment": "przesledzono prawdziwe sesje przegladania 451 osob i zapytano 305 osob oraz 227 z tej samej grupy, co wedlug nich robi tryb prywatny",
+  "zrodlo": "Habib i in., 2018",
+  "liczby": "39% uznalo, ze tryb prywatny daje anonimowosc; 26-39% ze czysci cala historie; ok. 1 na 4 osoby robiace zakupy w tym trybie liczyla, ze chroni dane karty; tryb prywatny to 4% wszystkich sesji",
+  "mechanizm": "tryb prywatny ukrywa tylko lokalnie",
+  "rada": "Nie licz, ze klient rozumie, co jest prywatne, a co nie - napisz to wprost tam, gdzie podaje dane.",
+  "link": "https://www.usenix.org/system/files/conference/soups2018/soups2018-habib-prying.pdf"
  }
 ]
