@@ -613,8 +613,8 @@
  },
  {
   "rolka": "C10",
-  "data": "2026-11-13",
-  "godz": "13:00",
+  "data": "2026-11-29",
+  "godz": "12:00",
   "status": "zaplanowana",
   "slug": "pięć-dziennie",
   "zrodlo": "Hershfield, Shu i Benartzi, 2019",
@@ -622,7 +622,7 @@
  },
  {
   "rolka": "U6",
-  "data": "2026-11-13",
+  "data": "2026-11-29",
   "godz": "18:00",
   "status": "zaplanowana",
   "slug": "polecony-wart-więcej",
@@ -1018,8 +1018,8 @@
  },
  {
   "rolka": "D5",
-  "data": "2026-11-13",
-  "godz": "09:00",
+  "data": "2026-11-29",
+  "godz": "07:00",
   "status": "zaplanowana",
   "slug": "fraza-za-klienta",
   "zrodlo": "Sun, 2025",
@@ -1038,7 +1038,7 @@
   "rolka": "C12",
   "data": "2026-11-29",
   "godz": "09:00",
-  "status": "planowana",
+  "status": "wycofana",
   "slug": "wyjęte-z-zestawu",
   "zrodlo": "Shaddy i Fishbach, 2017",
   "mechanizm": "wyjecie z zestawu"
@@ -1047,7 +1047,7 @@
   "rolka": "C15",
   "data": "2026-11-29",
   "godz": "18:00",
-  "status": "planowana",
+  "status": "wycofana",
   "slug": "cena-obok",
   "zrodlo": "Nunes i Boatwright, 2004",
   "mechanizm": "cena przypadkowa obok"
@@ -1056,9 +1056,36 @@
   "rolka": "U10",
   "data": "2026-11-29",
   "godz": "13:00",
-  "status": "planowana",
+  "status": "wycofana",
   "slug": "domyslne-wygrywa",
   "zrodlo": "Hansen, Schilling i Malthesen, 2019",
   "mechanizm": "wariant juz zaznaczony"
+ },
+ {
+  "rolka": "R30a",
+  "data": "2026-11-30",
+  "godz": "07:00",
+  "slug": "dostawa-zamiast-ceny",
+  "zrodlo": "Hossain i Morgan, 2006",
+  "mechanizm": "koszt przeniesiony do dostawy",
+  "status": "zaplanowana"
+ },
+ {
+  "rolka": "R30b",
+  "data": "2026-11-30",
+  "godz": "12:00",
+  "slug": "czas-zamiast-ceny",
+  "zrodlo": "Mogilner i Aaker, 2009",
+  "mechanizm": "czas zamiast pieniedzy",
+  "status": "zaplanowana"
+ },
+ {
+  "rolka": "R30c",
+  "data": "2026-11-30",
+  "godz": "18:00",
+  "slug": "reklama-na-wlasna-nazwe",
+  "zrodlo": "Blake, Nosko i Tadelis, 2015",
+  "mechanizm": "reklama na wlasna nazwe",
+  "status": "zaplanowana"
  }
 ]

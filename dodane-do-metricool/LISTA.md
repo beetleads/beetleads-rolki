@@ -205,3 +205,18 @@ CALA KOLEJKA ROLEK DO KONCA LISTOPADA (11-29.11) jest na silniku 5 z efektem na 
 NOWA BRAMKA (12:35): `sprawdz_start.py` - ruch miedzy klatkami 0,25/0,45/0,75 s, prog 10. Stary format daje 1-4, silnik 5 daje 19-34. Tym miernikiem wylapalem, ze trzy rolki na 29.11 (zbudowane 10.11 o 22:13, przed decyzja o efektach z 22:49) mialy martwy start, mimo ze `waliduj.py` dawal OK - przebudowane. Przebieg po wszystkich 27 rolkach: 14,4-34,6, wszystkie OK.
 
 Pomiary calej partii 24-29.11: 18,6-21,9 s, -14,0 do -14,2 LUFS, true peak -1,3 do -2,1 dBFS, ogon do ciszy, napisy 90-100% (roznice tylko tam, gdzie whisper inaczej dzieli slowa albo slyszy koncowke bezdzwiecznie). Bramka OCR odrzucila 8 zdjec w tej partii - wszystkie wymienione.
+
+## 30.11 - trzy nowe rolki, pula tematow wyczerpana (11.11 13:30)
+
+Pula 60 tematow (`rejestr/pula/`) jest w calosci rozdysponowana, wiec te trzy tematy sa calkiem nowe, z liczbami sprawdzonymi w samych publikacjach:
+- 07:00 "dostawa zamiast ceny" - Hossain i Morgan, 2006 (80 aukcji; 10,16 kontra 8,37 dolara, +21%, 16 z 20 par)
+- 12:00 "czas zamiast ceny" - Mogilner i Aaker, 2009 (391 przechodniow; 14% kontra 7% kupujacych, 2,50 kontra 1,38 dolara)
+- 18:00 "reklama na wlasna nazwe" - Blake, Nosko i Tadelis, 2015 (99,5% klikniec wrocilo z wynikow darmowych, zwrot -63%)
+
+Bramka powtorek: `rejestr/sprawdz.py` - 0 bledow. Pomiary: 22,0 / 22,5 / 22,4 s, LUFS -14,1 / -14,4 / -14,0, true peak -1,6 / -1,3 / -1,4 dBFS, ogon do ciszy, ruch na starcie 23-35, napisy 89-97% (roznice tylko tam, gdzie whisper slyszy "%" zamiast "procent" albo inaczej stawia przecinek). Bramka OCR odrzucila 1 zdjecie (napis "SMOOTH") - wymienione.
+
+NOWA ZASADA (13:10): tekst lektora do rolki ma miec MAKS. 275 znakow. Pierwsze dwa nagrania wyszly 23,1 s i 27,7 s, a bramka dopuszcza 23 s; przyspieszac glosu nie wolno (zasada sztywna z 10.11), wiec trzeba bylo nagrywac drugi raz. Przelicznik zmierzony na tym glosie: 0,0705-0,0786 s na znak, czyli 275 znakow to 19,4-21,6 s, a rolka dokleja ok. 0,5 s. Licz znaki PRZED nagraniem.
+
+DRUGA ZASADA (13:26): przy `createScheduledPost` nie wysylaj `instagramData`, gdy w `providers` nie ma instagrama - API odrzuca caly post ("networkData contains data for network 'instagram' not listed in providers"). Przy podmianie (`updateScheduledPost`) to pole przechodzi bez bledu, wiec sam szablon z podmiany nie dziala przy tworzeniu.
+
+ROZJAZD W REJESTRZE (13:35): `rejestr/tematy.json` mial fraze/piec dziennie/poleconego na 13.11, a w Metricoolu stoja one 29.11 o 7/12/18 - poprawione. Stary plan 29.11 (wyjete-z-zestawu, cena-obok, domyslne-wygrywa) oznaczony jako wycofany. Zostaje jeszcze jeden rozjazd do przejrzenia na spokojnie: wpisy z 10-12.11 sa w rejestrze o jeden dzien wczesniej niz w Metricoolu (w Metricoolu 12.11 o 7:00 stoja "zdjecia daly 9%", ktore rejestr ma na 11.11). Na karencje to nie wplywa, bo roznica to jeden dzien.
