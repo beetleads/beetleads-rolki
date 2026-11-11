@@ -220,3 +220,16 @@ NOWA ZASADA (13:10): tekst lektora do rolki ma miec MAKS. 275 znakow. Pierwsze d
 DRUGA ZASADA (13:26): przy `createScheduledPost` nie wysylaj `instagramData`, gdy w `providers` nie ma instagrama - API odrzuca caly post ("networkData contains data for network 'instagram' not listed in providers"). Przy podmianie (`updateScheduledPost`) to pole przechodzi bez bledu, wiec sam szablon z podmiany nie dziala przy tworzeniu.
 
 ROZJAZD W REJESTRZE (13:35): `rejestr/tematy.json` mial fraze/piec dziennie/poleconego na 13.11, a w Metricoolu stoja one 29.11 o 7/12/18 - poprawione. Stary plan 29.11 (wyjete-z-zestawu, cena-obok, domyslne-wygrywa) oznaczony jako wycofany. Zostaje jeszcze jeden rozjazd do przejrzenia na spokojnie: wpisy z 10-12.11 sa w rejestrze o jeden dzien wczesniej niz w Metricoolu (w Metricoolu 12.11 o 7:00 stoja "zdjecia daly 9%", ktore rejestr ma na 11.11). Na karencje to nie wplywa, bo roznica to jeden dzien.
+
+## 11.11 21:30-23:00 - GLOS I NOWY KIERUNEK TEMATOW
+
+**Glos.** Zalozyciel: "jakosc glosu jest zbyt niski... ma wszedzie byc naturalnie". Zmierzylem mediane F0 kazdej rolki. Przyczyna: tekst szedl do ElevenLabs BEZ tagow energii - wtedy glos ROLKI wychodzi 118-123 Hz, czyli pod pasmem 126-136 Hz. Pitch-shift zakazany, wiec ton ustawia sie podawka:
+`[confident, giving advice] ... [intrigued] Wiesz dlaczego? [confident, warm] ... [confident] Zapamietaj, ...`
+Zmierzone na tym samym tekscie: bez tagow 119,4 Hz, z szablonem 129,0 Hz, z dodatkowym `[emphatic]` 136,8-140,4 Hz. Za nisko -> dodaj `[emphatic]`, powyzej 136 -> zdejmij.
+
+Przebudowane i podmienione: 13.11 (rozrzut 123,1 Hz po trzech ujeciach - zgoda auto na blizsze 131; opinia 132,2; lewo 135,6), 30.11 (dostawa 129,0; czas 134,5; marka 129,6 w trzecim ujeciu), 12.11 (zdjecia 126,0; druga 132,2; gratis 134,5). Kazda rolka przeszla waliduj.py, sprawdz_start.py i wymowe.
+
+**Tytuly pod vidIQ.** Zmierzone: wzor "Temat. Efekt?! 😳" dostaje 74-76 pkt. Najwyzej punktowane sa krotkie hasla z korzyscia i 2-3 hashtagami w tytule: "Eksperyment cenowy. Zysk +21%?! 😳 #psychologia #biznes" 82, "Czas czy pieniadze? Co wybieraja klienci #sprzedaz #psychologia #eksperyment" 84, "Twoje raporty z reklam klamia! 📉 #googleads #biznes" 83. Liczby UJEMNE w tytule zbijaja scoring (-63% dalo 58), ogolniki tez ("Jedno slowo" 71). Zasada: temat 2-4 slowa + korzysc albo pytanie + 2-3 hashtagi, bez minusow.
+
+**Nowy kierunek tematow (11.11 21:40).** Stare filary cenowe WYCOFANE w `dziennikarz` i `rolki-v3`. Nowe: 1. jak to dziala, czego nie widzisz (45%), 2. pytanie, ktore ludzie zadaja sobie sami (35%), 3. zachowanie ludzi, ktore zaskakuje ich samych (20%). Proces odwrocony: najpierw PYTANIE z Reddita/forow/komentarzy w ich slowach, potem badanie z liczba. Zakaz powtorek: maks. 1 rolka o cenach na 7 kolejnych, maks. 1 o tej samej platformie, streszczenie musi roznic sie od 10 poprzednich.
+Pierwsze trzy tematy w nowej puli `rejestr/pula/spoleczne.json`: S1 polozenie 340 razy na dobe (Schmidt, 2018), S2 17 260 aplikacji i zero nagran dzwieku, ale nagrania ekranu (Pan i in., 2018), S3 11,8% legalnych banerow zgod i +22-23 punkty procentowe po ukryciu odmowy (Nouwens i in., 2020).

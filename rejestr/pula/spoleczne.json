@@ -1,0 +1,41 @@
+[
+ {
+  "nr": "S1",
+  "filar": 1,
+  "pytanie": "Czy telefon wysyla moje polozenie, kiedy nic nie robie?",
+  "hook": "Telefon lezacy na biurku wyslal twoje polozenie 340 razy w ciagu doby.",
+  "okladka": "340 RAZY NA DOBE",
+  "eksperyment": "bezczynny telefon z Androidem, przez 24 h, z Chrome w tle, bez dotykania ekranu; pomiar calego ruchu do serwerow",
+  "zrodlo": "Schmidt, 2018",
+  "liczby": "ok. 900 polaczen do Google na dobe, z tego 340 dotyczylo polozenia (ok. 14 na godzine), 4,4 MB dziennie; iPhone bez produktow Google wysylal do Google ok. 50 razy rzadziej",
+  "mechanizm": "dane w tle bez dzialania uzytkownika",
+  "rada": "Pokaz klientowi, co zbierasz, zanim sam to sprawdzi - zaufanie jest tansze niz tlumaczenie sie potem.",
+  "link": "https://www.dre.vanderbilt.edu/~schmidt/PDF/google-data-collection.pdf"
+ },
+ {
+  "nr": "S2",
+  "filar": 2,
+  "pytanie": "Czy telefon mnie podsluchuje, bo widze reklamy tego, o czym rozmawialem?",
+  "hook": "Sprawdzili 17 260 aplikacji, szukajac podsluchu. Nie znalezli ani jednego nagrania dzwieku.",
+  "okladka": "17 260 APLIKACJI",
+  "eksperyment": "analiza 17 260 aplikacji na Androida, 9 100 z nich uruchomionych i podsluchanych w ruchu sieciowym, szukano wysylanego dzwieku i obrazu",
+  "zrodlo": "Pan i in., 2018",
+  "liczby": "0 aplikacji wysylalo nagrania dzwieku; wysylane byly natomiast zrzuty i nagrania EKRANU - m.in. aplikacja sklepu nagrywala ekran uzytkownika i wysylala wideo do zewnetrznej firmy analitycznej",
+  "mechanizm": "nie podsluch, a podglad ekranu",
+  "rada": "Reklamy trafiaja w ciebie z tego, co klikasz, nie z tego, co mowisz - i to samo mozesz wykorzystac w swojej reklamie.",
+  "link": "https://petsymposium.org/2018/files/papers/issue4/popets-2018-0030.pdf"
+ },
+ {
+  "nr": "S3",
+  "filar": 2,
+  "pytanie": "Czemu banery zgod sa tak zrobione, ze zawsze klikam zgadzam sie?",
+  "hook": "Legalny baner zgod ma 11,8% stron. Pozostale 88% lamie prawo w tej samej sprawie.",
+  "okladka": "TYLKO 11,8% LEGALNYCH",
+  "eksperyment": "zebrano banery zgod z najpopularniejszych stron w Wielkiej Brytanii (680 do analizy) i osobno eksperyment na 40 osobach z roznymi wersjami banera",
+  "zrodlo": "Nouwens i in., 2020",
+  "liczby": "11,8% banerow spelnialo minimalne wymogi prawa; usuniecie przycisku odrzucenia z pierwszego ekranu podnosilo zgode o 22-23 punkty procentowe; wiecej suwakow na pierwszym ekranie obnizalo ja o 8-20 punktow procentowych",
+  "mechanizm": "ukryty przycisk odmowy",
+  "rada": "Kazdy dodatkowy klik do odmowy zmienia decyzje - sprawdz, ile klikow ma u ciebie rezygnacja, i ile ma zakup.",
+  "link": "https://arxiv.org/abs/2001.02479"
+ }
+]
