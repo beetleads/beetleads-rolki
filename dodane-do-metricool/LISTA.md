@@ -190,3 +190,18 @@ Pomiary: 18,3-21,1 s, -14,0 do -14,5 LUFS, true peak -1,7 do -1,9 dBFS, ogon do 
 Zdjecia: bramka OCR odrzucila 4 (logo AIRFRANCE, angielskie "Focus GOALS THEN WORK", szyld sklepu, "NYSE") - wymienione i sprawdzone ponownie.
 
 NOWA REGULA (11:20): przy podmianie rolki trzeba wymienic takze `videoThumbnailUrl` na bliźniaku FB/YT - podmiana samego pliku zostawia STARA okladke i nie zglasza bledu. Posty 21 i 22.11 mialy taka stara okladke; wyciete nowe klatki z nowych filmow i podmienione. Sprawdzone 12-14.11 oraz 19.11 - tam okladka idzie z filmu (videoCoverMilliseconds), czyli czysto.
+
+## 11.11 (11:40-12:40) - koniec przebudowy: 24-29.11
+
+- 24.11: zwroty 07:00, degustacja 12:00, prog 18:00
+- 25.11: telefon 07:00, zwrot 12:00, imie 18:00
+- 26.11: haczyk 07:00, cieplo 12:00, termin zwrotu 18:00
+- 27.11: przerwa 07:00, lowca 12:00, sms 18:00
+- 28.11: prezent 07:00, torba 12:00, martwa strefa 18:00
+- 29.11: fraza 07:00, piec dziennie 12:00, polecony 18:00
+
+CALA KOLEJKA ROLEK DO KONCA LISTOPADA (11-29.11) jest na silniku 5 z efektem na starcie, slotami 7/12/18 i nowymi okladkami na FB/YT.
+
+NOWA BRAMKA (12:35): `sprawdz_start.py` - ruch miedzy klatkami 0,25/0,45/0,75 s, prog 10. Stary format daje 1-4, silnik 5 daje 19-34. Tym miernikiem wylapalem, ze trzy rolki na 29.11 (zbudowane 10.11 o 22:13, przed decyzja o efektach z 22:49) mialy martwy start, mimo ze `waliduj.py` dawal OK - przebudowane. Przebieg po wszystkich 27 rolkach: 14,4-34,6, wszystkie OK.
+
+Pomiary calej partii 24-29.11: 18,6-21,9 s, -14,0 do -14,2 LUFS, true peak -1,3 do -2,1 dBFS, ogon do ciszy, napisy 90-100% (roznice tylko tam, gdzie whisper inaczej dzieli slowa albo slyszy koncowke bezdzwiecznie). Bramka OCR odrzucila 8 zdjec w tej partii - wszystkie wymienione.
