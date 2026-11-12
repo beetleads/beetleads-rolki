@@ -483,41 +483,36 @@ def scena_wniosek(im, t, dl, p, kt):
 
 
 def scena_cta(im, t, dl, p, kt):
-    """Karta profilu, kursor naciska Obserwuj, przycisk zmienia sie na Obserwujesz."""
+    """Koncowka: sama nazwa profilu i przycisk Obserwuj, ktory sie klika.
+    12.11 12:01 zalozyciel: "logo wywal na koncu, jest nieladne, po prostu nazwa
+    i obserwuj" - bez awatara, bez rysunku zuka, bez ramki karty."""
     akc = hexk("#FF5C28")       # CTA zawsze w kolorze marki
     a = wej(t, 0, 0.35)
     nak, d = warstwa()
-    cy = 860
-    d.rounded_rectangle([X0 + 20, cy - 220, X1 - 20, cy + 220], radius=36, fill=(28, 28, 34, int(240 * a)),
-                        outline=(70, 70, 80, int(255 * a)), width=3)
-    d.ellipse([CX - 80, cy - 190, CX + 80, cy - 30], fill=(246, 244, 240, int(255 * a)))
-    logo = pathlib.Path(__file__).parent / "logo.png"
-    fn = f_inter(44)
-    d.text((CX - szer(d, "@beetleads", fn) // 2, cy - 10), "@beetleads", font=fn, fill=BIEL + (int(255 * a),))
+    cy = 820
+    fn = f_anton(96)
+    tn = "@beetleads"
+    d.text((CX - szer(d, tn, fn) // 2, cy - 130), tn, font=fn, fill=BIEL + (int(255 * a),))
     t_klik = p.get("klik", 0.9)
     klik = t >= t_klik
-    by = cy + 70
+    by = cy + 40
     sc = 1 - 0.08 * math.sin(math.pi * min(1, max(0, (t - t_klik) / 0.2))) if t >= t_klik else 1
-    bw, bh = int(360 * sc), int(96 * sc)
+    bw, bh = int(420 * sc), int(108 * sc)
     kol = (60, 60, 68) if klik else akc
-    d.rounded_rectangle([CX - bw // 2, by, CX + bw // 2, by + bh], radius=24, fill=kol + (int(255 * a),))
-    tb = "Obserwujesz ✓" if klik else "Obserwuj"
-    fb = f_inter(40)
-    tb = tb.replace(" ✓", "")
-    d.text((CX - szer(d, tb, fb) // 2, by + bh // 2 - 26), tb, font=fb, fill=BIEL + (int(255 * a),))
+    d.rounded_rectangle([CX - bw // 2, by, CX + bw // 2, by + bh], radius=28, fill=kol + (int(255 * a),))
+    tb = "Obserwujesz" if klik else "Obserwuj"
+    fb = f_inter(46)
+    d.text((CX - szer(d, tb, fb) // 2, by + bh // 2 - 30), tb, font=fb, fill=BIEL + (int(255 * a),))
     fp = f_inter(36, False)
     tp = "po więcej ciekawostek"
-    d.text((CX - szer(d, tp, fp) // 2, cy + 260), tp, font=fp, fill=ZOLTY + (int(255 * a),))
-    # kursor-palec dojezdza do przycisku
+    d.text((CX - szer(d, tp, fp) // 2, by + 150), tp, font=fp, fill=ZOLTY + (int(255 * a),))
+    # kursor-palec dojezdza do przycisku i znika po kliknieciu
     pk = wej(t, 0.2, max(0.2, t_klik - 0.2))
-    fx, fy = CX + 260 - 200 * pk, by + 260 - 190 * pk
+    fx, fy = CX + 260 - 200 * pk, by + 260 - 200 * pk
     zn = 1 - wej(t, t_klik + 0.15, 0.3)
     if zn > 0:
         rr = 30 + 26 * wej(t, t_klik, 0.3)
         d.ellipse([fx - rr, fy - rr, fx + rr, fy + rr], outline=(255, 255, 255, int(230 * a * zn)), width=6)
-    im.alpha_composite(nak)
-    nak, d = warstwa()
-    zuk(d, CX, cy - 105, 58, (20, 20, 24), a)
     im.alpha_composite(nak)
 
 
@@ -641,7 +636,9 @@ def renderuj(plik, wyj):
             if g[0]["od"] - 0.1 <= t <= g[-1]["do"] + 0.25:
                 napisy(im, g, t)
                 break
-        znak(im)
+        # na scenie CTA nazwa stoi duzo - znak wodny bylby dublem
+        if not any(sc["typ"] == "cta" and od <= t for od, sc, do in sceny):
+            znak(im)
         im.convert("RGB").save(kat / f"k{k:05d}.jpg", quality=92)
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-framerate", str(FPS), "-i", str(kat / "k%05d.jpg"),
                     "-i", r["audio"], "-c:v", "libx264", "-preset", "medium", "-crf", "19",
