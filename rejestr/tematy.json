@@ -1114,5 +1114,32 @@
   "zrodlo": "Habib i in., 2018",
   "mechanizm": "tryb prywatny ukrywa tylko lokalnie",
   "status": "zaplanowana"
+ },
+ {
+  "rolka": "S5",
+  "data": "2026-11-13",
+  "godz": "07:00",
+  "slug": "ostatnie-sztuki",
+  "zrodlo": "Mathur i in., 2019",
+  "mechanizm": "sztuczny posplech w sklepie",
+  "status": "zaplanowana"
+ },
+ {
+  "rolka": "S6",
+  "data": "2026-11-13",
+  "godz": "12:00",
+  "slug": "regulaminy",
+  "zrodlo": "Obar i Oeldorf-Hirsch, 2016",
+  "mechanizm": "zgoda klikana bez czytania",
+  "status": "zaplanowana"
+ },
+ {
+  "rolka": "S3",
+  "data": "2026-11-13",
+  "godz": "18:00",
+  "slug": "banery-zgod",
+  "zrodlo": "Nouwens i in., 2020",
+  "mechanizm": "ukryty przycisk odmowy",
+  "status": "zaplanowana"
  }
 ]

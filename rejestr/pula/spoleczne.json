@@ -50,5 +50,31 @@
   "mechanizm": "tryb prywatny ukrywa tylko lokalnie",
   "rada": "Nie licz, ze klient rozumie, co jest prywatne, a co nie - napisz to wprost tam, gdzie podaje dane.",
   "link": "https://www.usenix.org/system/files/conference/soups2018/soups2018-habib-prying.pdf"
+ },
+ {
+  "nr": "S5",
+  "filar": 1,
+  "pytanie": "Dlaczego sklep pisze, ze zostaly ostatnie 3 sztuki, skoro potem sa?",
+  "hook": "Przeskanowali 11 tysiecy sklepow internetowych. W 1 254 z nich znalezli sztuczki, ktore maja cie popedzic.",
+  "okladka": "1 254 SKLEPY NA 11 000",
+  "eksperyment": "automatyczny przeglad okolo 11 000 najpopularniejszych sklepow internetowych i okolo 53 000 stron produktow, szukano wzorcow popedzajacych do zakupu",
+  "zrodlo": "Mathur i in., 2019",
+  "liczby": "1 254 sklepy z 11 000 (11,1%) mialy co najmniej jedna taka sztuczke; razem 1 818 przypadkow w 15 rodzajach; najczestszy to komunikat o konczacym sie stanie - 632 przypadki, zegar odliczajacy - 393, komunikat 'ktos wlasnie kupil' - 313; 22 firmy sprzedaja to sklepom jako gotowa usluge",
+  "mechanizm": "sztuczny posplech w sklepie",
+  "rada": "Jesli piszesz 'ostatnie sztuki', to niech to bedzie prawda - klient sprawdza i wraca tylko tam, gdzie liczba sie zgadzala.",
+  "link": "https://arxiv.org/abs/1907.07032"
+ },
+ {
+  "nr": "S6",
+  "filar": 2,
+  "pytanie": "Czy ktokolwiek czyta regulaminy, ktore akceptuje?",
+  "hook": "543 osoby zapisaly sie do serwisu, ktory w regulaminie zadal ich pierworodnego dziecka. Zauwazylo to 2 na 100.",
+  "okladka": "98 NA 100 NIE ZAUWAZYLO",
+  "eksperyment": "543 osoby zapisywano do fikcyjnego serwisu spolecznosciowego NameDrop z prawdziwie wygladajacym regulaminem i polityka prywatnosci, mierzono czas czytania",
+  "zrodlo": "Obar i Oeldorf-Hirsch, 2016",
+  "liczby": "74% kliknelo szybka rejestracje i pominelo polityke prywatnosci; ci, ktorzy jej nie pominęli, spedzili na niej srednio 73 sekundy, a na regulaminie 51 sekund, przy czym uwazne przeczytanie zajmuje okolo 29-32 minut i 15-17 minut; 98% nie zauwazylo zapisow o przekazywaniu danych pracodawcy i NSA oraz o oddaniu pierworodnego dziecka",
+  "mechanizm": "zgoda klikana bez czytania",
+  "rada": "Najwazniejsza rzecz napisz nad przyciskiem, jednym zdaniem - w regulaminie nikt jej nie przeczyta.",
+  "link": "https://papers.ssrn.com/abstract=2757465"
  }
 ]
