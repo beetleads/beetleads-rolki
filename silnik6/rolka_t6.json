@@ -1,0 +1,16 @@
+{
+ "kod": "t6",
+ "akcent": "#F6C430",
+ "audio": "/home/claude/silnik5/glos_t6.wav",
+ "slowa": "/home/claude/silnik5/glos_t6.json",
+ "sceny": [
+  {"typ": "pytanie_przycisk", "od": 0, "linie": ["CZY PRZYCISK NA PRZEJŚCIU", "W OGÓLE COŚ ROBI?"]},
+  {"typ": "wzywa", "od": "Wydaje", "tytul": "TAK MYŚLIMY"},
+  {"typ": "przyciski_nyc", "od": "Ale", "n": 65, "zle": 50, "na_kafelek": 50, "gasnie": "ponad",
+   "tytul": "3250 PRZYCISKÓW", "podtytul": "Nowy Jork, 2004",
+   "leg_zle": "bez wpływu na światła: ponad 2500", "leg_ok": "działały: 750"},
+  {"typ": "zegar", "od": "bo"},
+  {"typ": "dziesiec", "od": "Więc", "puenta": "ZIELONE I TAK PRZYJDZIE"},
+  {"typ": "cta", "od": "Zaobserwuj", "klik": 0.9}
+ ]
+}

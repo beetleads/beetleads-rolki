@@ -1099,6 +1099,233 @@ def scena_ustawienia(im, t, dl, p, kt):
     im.alpha_composite(nak)
 
 
+
+# ============================================================= przycisk na przejsciu (13.11)
+
+def ludzik(d, cx, cy, r, kol, a, idzie=False):
+    """Piktogram z sygnalizatora: stoi albo idzie."""
+    k = kol + (int(255 * a),)
+    w = max(4, int(r * 0.16))
+    d.ellipse([cx - r * 0.2, cy - r, cx + r * 0.2, cy - r * 0.6], fill=k)
+    if idzie:
+        d.line([cx, cy - r * 0.55, cx - r * 0.05, cy + r * 0.15], fill=k, width=int(w * 1.5))
+        d.line([cx - r * 0.05, cy + r * 0.15, cx - r * 0.38, cy + r * 0.85], fill=k, width=w)
+        d.line([cx - r * 0.05, cy + r * 0.15, cx + r * 0.32, cy + r * 0.85], fill=k, width=w)
+        d.line([cx, cy - r * 0.45, cx - r * 0.38, cy - r * 0.02], fill=k, width=w)
+        d.line([cx, cy - r * 0.45, cx + r * 0.38, cy - r * 0.08], fill=k, width=w)
+    else:
+        d.line([cx, cy - r * 0.55, cx, cy + r * 0.15], fill=k, width=int(w * 1.8))
+        d.line([cx - r * 0.08, cy + r * 0.15, cx - r * 0.12, cy + r * 0.85], fill=k, width=w)
+        d.line([cx + r * 0.08, cy + r * 0.15, cx + r * 0.12, cy + r * 0.85], fill=k, width=w)
+        d.line([cx - r * 0.14, cy - r * 0.5, cx - r * 0.24, cy + r * 0.1], fill=k, width=w)
+        d.line([cx + r * 0.14, cy - r * 0.5, cx + r * 0.24, cy + r * 0.1], fill=k, width=w)
+
+
+def sygnalizator(d, cx, cy, s, zielone, a):
+    """Sygnalizator dla pieszych: u gory czerwony ludzik, na dole zielony; zielone 0..1."""
+    w, h = 200 * s, 400 * s
+    d.rounded_rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], radius=int(26 * s),
+                        fill=(28, 28, 32, int(255 * a)), outline=(80, 80, 88, int(255 * a)), width=4)
+    r = 78 * s
+    for i, (kol, on, idzie) in enumerate([(CZERW, 1 - zielone, False), (ZIELONY, zielone, True)]):
+        ly = cy - h / 4 + i * h / 2
+        d.ellipse([cx - r, ly - r, cx + r, ly + r], fill=(14, 14, 16, int(255 * a)))
+        kk = tuple(int(45 + (c - 45) * (0.15 + 0.85 * on)) for c in kol)
+        ludzik(d, cx, ly, r * 0.8, kk, a, idzie)
+    return cx, cy + h / 2
+
+
+def skrzynka(d, cx, cy, s, a, wcisk=0.0, czekaj=0.0):
+    """Zolta skrzynka z przyciskiem; wcisk 0..1 wgniata przycisk, czekaj zapala lampke."""
+    w, h = 240 * s, 320 * s
+    d.rounded_rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], radius=int(30 * s),
+                        fill=(246, 196, 48, int(255 * a)))
+    f = f_inter(max(14, int(30 * s)))
+    tl = "WCIŚNIJ"
+    d.text((cx - szer(d, tl, f) / 2, cy - h / 2 + 24 * s), tl, font=f, fill=(30, 26, 20, int(255 * a)))
+    by = cy + 20 * s
+    d.ellipse([cx - 78 * s, by - 78 * s, cx + 78 * s, by + 78 * s], fill=(40, 38, 40, int(255 * a)))
+    r = 62 * s * (1 - 0.14 * wcisk)
+    jas = int(236 - 50 * wcisk)
+    d.ellipse([cx - r, by - r, cx + r, by + r], fill=(jas, jas, jas + 4, int(255 * a)))
+    lk = tuple(int(70 + (c - 70) * czekaj) for c in ZOLTY)
+    d.rounded_rectangle([cx - 60 * s, cy + h / 2 - 40 * s, cx + 60 * s, cy + h / 2 - 20 * s], radius=8,
+                        fill=lk + (int(255 * a),))
+    return cx, by
+
+
+def wcisk_fazy(t, start, okres):
+    """0..1..0 co `okres` sekund od `start` - palec wciska przycisk."""
+    if t < start:
+        return 0.0
+    q = ((t - start) % okres) / okres
+    return max(0.0, math.sin(math.pi * min(1.0, q / 0.45)))
+
+
+def palec(d, x, y, a, wcisk):
+    rr = 34 - 8 * wcisk
+    d.ellipse([x - rr, y - rr, x + rr, y + rr], outline=(255, 255, 255, int(235 * a)), width=7)
+    if wcisk > 0.6:
+        q = (wcisk - 0.6) / 0.4
+        r2 = 50 + 40 * q
+        d.ellipse([x - r2, y - r2, x + r2, y + r2], outline=ZOLTY + (int(200 * (1 - q) * a),), width=5)
+
+
+def smuga(im, t, od=0.15, do=0.95):
+    """Smuga swiatla przez caly kadr - ruch od pierwszej chwili."""
+    if not od < t < do:
+        return
+    ps = (t - od) / (do - od)
+    nak, d = warstwa()
+    sx = int(-W * 0.7 + ps * W * 2.3)
+    moc = int(150 * math.sin(math.pi * ps))
+    for kk in range(6):
+        d.line([sx + kk * 46, H, sx + kk * 46 + 700, 0], fill=(255, 255, 255, max(0, moc - kk * 18)), width=46)
+    im.alpha_composite(nak.filter(ImageFilter.GaussianBlur(22)))
+
+
+def ik_zegar(d, cx, cy, r, kol, a, t):
+    k = kol + (int(255 * a),)
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(24, 24, 28, int(255 * a)), outline=k, width=max(5, int(r * 0.1)))
+    for i in range(12):
+        an = i * math.pi / 6
+        d.line([cx + r * 0.78 * math.cos(an), cy + r * 0.78 * math.sin(an),
+                cx + r * 0.9 * math.cos(an), cy + r * 0.9 * math.sin(an)], fill=k, width=4)
+    an = t * 2 * math.pi / 2.4 - math.pi / 2
+    d.line([cx, cy, cx + r * 0.7 * math.cos(an), cy + r * 0.7 * math.sin(an)], fill=k, width=max(4, int(r * 0.08)))
+    an2 = t * 2 * math.pi / 28.8 - math.pi / 2
+    d.line([cx, cy, cx + r * 0.45 * math.cos(an2), cy + r * 0.45 * math.sin(an2)], fill=k, width=max(5, int(r * 0.11)))
+    d.ellipse([cx - 8, cy - 8, cx + 8, cy + 8], fill=k)
+
+
+def cykl_zegara(t, okres=2.4):
+    """Swiatlo z zegara: pol okresu czerwone, pol zielone, miekkie przejscie."""
+    q = (t % okres) / okres
+    return min(1.0, max(0.0, (math.sin(2 * math.pi * q - math.pi / 2) + 0.2) * 3))
+
+
+def scena_pytanie_przycisk(im, t, dl, p, kt):
+    """Pytanie + slup z sygnalizatorem i zolta skrzynka; palec wciska przycisk raz za razem."""
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+    nak, d = warstwa()
+    y0 = dol + 60
+    d.rounded_rectangle([CX - 18, y0, CX + 18, 1360], radius=10, fill=(96, 98, 106, 255))
+    sygnalizator(d, CX - 150, y0 + 230, 1.05, 0.0, 1.0)
+    bx, by = skrzynka(d, CX + 150, y0 + 560, 0.95, 1.0, wcisk_fazy(t, 0.1, 0.6), 0.5 + 0.5 * math.sin(t * 5))
+    palec(d, bx + 6, by + 6, wej(t, 0.0, 0.1), wcisk_fazy(t, 0.1, 0.6))
+    im.alpha_composite(nak)
+    smuga(im, t)
+
+
+def scena_wzywa(im, t, dl, p, kt):
+    """Jak myslimy: przycisk wysyla sygnal do swiatel, a te zmieniaja sie na zielone."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.35)
+    fb = f_anton(80)
+    tl = p.get("tytul", "TAK MYŚLIMY")
+    d.text((CX - szer(d, tl, fb) // 2, 330), tl, font=fb, fill=BIEL + (int(255 * a),))
+    bx, by = skrzynka(d, CX - 190, 900, 0.95, a, wcisk_fazy(t, 0.15, 10), wej(t, 0.3, 0.2))
+    palec(d, bx + 6, by + 6, a * (1 - wej(t, 0.6, 0.3)), wcisk_fazy(t, 0.15, 10))
+    ps = wej(t, 0.35, 0.6)
+    if ps > 0:
+        strzalka(d, (CX - 50, 860), (CX + 70, 760), ZOLTY, a, grub=10, postep=ps, kreska=True, t=t)
+    sygnalizator(d, CX + 200, 760, 1.0, wej(t, 1.0, 0.3), a)
+    im.alpha_composite(nak)
+
+
+def scena_przyciski_nyc(im, t, dl, p, kt):
+    """65 kafelkow = 3250 przyciskow (1 kafelek = 50). Na slowie p['gasnie'] 50 kafelkow gasnie i
+    dostaje krzyzyk (bez wplywu na swiatla), 15 zostaje zoltych (dzialaly)."""
+    nak, d = warstwa()
+    n, zle, na = p["n"], p["zle"], p["na_kafelek"]
+    kol, s, gap = 10, 62, 12
+    x0 = CX - (kol * s + (kol - 1) * gap) // 2
+    y0 = 540
+    try:
+        tg = kt["czas_slowa"](p["gasnie"]) - kt["od"]
+    except SystemExit:
+        tg = 1.2
+    fb = f_anton(90)
+    tl = p["tytul"]
+    d.text((CX - szer(d, tl, fb) // 2, 300), tl, font=fb, fill=BIEL + (int(255 * wej(t, 0, 0.3)),))
+    fp = f_inter(34, False)
+    d.text((CX - szer(d, p["podtytul"], fp) // 2, 420), p["podtytul"], font=fp, fill=SZARY + (int(255 * wej(t, 0.1, 0.3)),))
+    for i in range(n):
+        pa = pop(t, 0.05 + (i // kol) * 0.06, 0.25)
+        if pa <= 0:
+            continue
+        x = x0 + (i % kol) * (s + gap)
+        y = y0 + (i // kol) * (s + gap)
+        g = wej(t, tg + (i % zle if i < zle else 0) * 0.012, 0.25) if i < zle else 0.0
+        kolor = mieszaj((246, 196, 48), (66, 60, 62), g)
+        sc = s * pa
+        d.rounded_rectangle([x + (s - sc) / 2, y + (s - sc) / 2, x + (s + sc) / 2, y + (s + sc) / 2], radius=12,
+                            fill=tuple(int(c) for c in kolor) + (255,))
+        if g > 0.5:
+            m = 18
+            d.line([x + m, y + m, x + s - m, y + s - m], fill=CZERW + (int(255 * (g - 0.5) * 2),), width=6)
+            d.line([x + s - m, y + m, x + m, y + s - m], fill=CZERW + (int(255 * (g - 0.5) * 2),), width=6)
+    yk = y0 + ((n - 1) // kol + 1) * (s + gap) + 24
+    pl = wej(t, tg + 0.4, 0.4)
+    for j, (kolor, tekst) in enumerate([((66, 60, 62), p["leg_zle"]), ((246, 196, 48), p["leg_ok"])]):
+        yy = yk + j * 62
+        d.rounded_rectangle([X0 + 60, yy, X0 + 100, yy + 40], radius=8, fill=kolor + (int(255 * pl),))
+        d.text((X0 + 120, yy), tekst, font=dopasuj(d, tekst, X1 - X0 - 140, 34, 26), fill=BIEL + (int(255 * pl),))
+    fk = f_inter(26, False)
+    d.text((X0 + 60, yk + 140), f"1 kwadrat = {na} przycisków", font=fk, fill=SZARY + (int(255 * pl),))
+    im.alpha_composite(nak)
+
+
+def scena_zegar(im, t, dl, p, kt):
+    """Mechanizm: kabel od przycisku przeciety, swiatla przelacza zegar."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.35)
+    sx, sy = CX, 640
+    # zegar przestawia swiatlo na zielone sam, bez przycisku (scena trwa ~1,3 s)
+    dol_s = sygnalizator(d, sx, sy, 0.95, wej(t, 0.7, 0.25), a)
+    bx, by = CX - 230, 1090
+    cx, cy = CX + 230, 1090
+    # kabel od przycisku - przekreslony
+    d.line([bx, by - 150, sx - 40, dol_s[1]], fill=(110, 110, 118, int(255 * a)), width=8)
+    krzyzyk(d, (bx + sx - 40) / 2, (by - 150 + dol_s[1]) / 2, 34, a, wej(t, 0.2, 0.4))
+    # kabel od zegara - zywy
+    pz = wej(t, 0.35, 0.4)
+    strzalka(d, (cx, by - 112), (sx + 40, dol_s[1] + 6), ZIELONY, a * pz, grub=9, postep=max(0.01, pz), kreska=True, t=t)
+    skrzynka(d, bx, by, 0.8, a, 0.0, 0.0)
+    ik_zegar(d, cx, cy, 100 * max(0.01, pop(t, 0.3, 0.4)), BIEL, a, t)
+    f = f_inter(32)
+    for x, tx, kol in [(bx, "przycisk", SZARY), (cx, "zegar", ZIELONY)]:
+        d.text((x - szer(d, tx, f) / 2, 1250), tx, font=f, fill=kol + (int(255 * a),))
+    im.alpha_composite(nak)
+
+
+def scena_dziesiec(im, t, dl, p, kt):
+    """Wniosek: 10 wcisniec - licznik rosnie, a zegar i swiatla ida swoim tempem."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.35)
+    okres = 0.16
+    ile = min(10, int(max(0.0, t - 0.15) / okres) + (1 if t > 0.15 else 0))
+    wc = wcisk_fazy(t, 0.15, okres) if ile < 10 else 0.0
+    bx, by = skrzynka(d, CX - 190, 900, 0.95, a, wc, 1.0)
+    palec(d, bx + 6, by + 6, a, wc)
+    fb = f_anton(150)
+    tl = f"{ile}×"
+    d.text((bx - szer(d, tl, fb) / 2, 480), tl, font=fb, fill=ZOLTY + (int(255 * a),))
+    sygnalizator(d, CX + 200, 800, 0.95, 0.0, a)
+    ik_zegar(d, CX + 200, 1120, 70, BIEL, a, t)
+    if ile >= 10:
+        pz = pop(t, 0.15 + 10 * okres + 0.2, 0.4)
+        if pz > 0:
+            f = f_anton(int(60 * pz) + 1)
+            tx = p.get("puenta", "ZIELONE I TAK PRZYJDZIE")
+            f = dopasuj(d, tx, X1 - X0, int(60 * pz) + 1, 30, f_anton)
+            d.text((CX - szer(d, tx, f) / 2, 1250), tx, font=f, fill=ZIELONY + (255,))
+    im.alpha_composite(nak)
+
+
+SCENY_PRZYCISK = {"pytanie_przycisk": scena_pytanie_przycisk, "wzywa": scena_wzywa,
+                  "przyciski_nyc": scena_przyciski_nyc, "zegar": scena_zegar, "dziesiec": scena_dziesiec}
+
 SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wtyczka,
          "firmy": scena_firmy, "wniosek": scena_wniosek, "cta": scena_cta,
          "pytanie_dymek": scena_pytanie_dymek, "aplikacje": scena_aplikacje,
@@ -1107,6 +1334,7 @@ SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wt
          "obserwatorzy": scena_obserwatorzy, "dom_siec": scena_dom_siec,
          "pytanie_dokument": scena_pytanie_dokument, "klauzula": scena_klauzula, "czas": scena_czas, "sprawdz": scena_sprawdz,
          "pytanie_baner": scena_pytanie_baner, "kafelki": scena_kafelki, "dwa_banery": scena_dwa_banery, "ustawienia": scena_ustawienia}
+SCENY.update(SCENY_PRZYCISK)
 
 
 # ------------------------------------------------------------- napisy
