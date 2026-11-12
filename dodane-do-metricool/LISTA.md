@@ -258,3 +258,27 @@ Podmienione posty (12.11): 09:00 425357771 / 425357897,
 14:00 425358011 / 425358165, 19:00 425358293 / 425358415.
 Bramki: dlugosc 20,0 / 19,1 / 17,3 s, LUFS -14,5 / -14,2 / -14,1,
 TP -1,4 / -1,7 / -1,8, ruch startowy OK, zdjecia czyste.
+
+## 12.11 09:10 - rolki 13.11 na nowy kierunek
+
+Wymienione tematy cenowe (rozrzut/opinia/lewo) na spoleczne ciekawostki:
+- 07:00 "ostatnie sztuki" (Mathur i in. 2019) - NOWA para postow
+  425377309 (IG+TikTok) / 425377444 (FB+YT), tytul vidIQ 92.
+- 12:00 "regulaminy" (Obar i Oeldorf-Hirsch 2016)
+  425376402 / 425376595, tytul vidIQ 89.
+- 18:00 "banery zgod" (Nouwens i in. 2020)
+  425376953 / 425377082, tytul vidIQ 88.
+
+GLOS - wazne ustalenie: model eleven_v3 daje dzis 108-118 Hz (za nisko,
+to byl ten "niski glos"), eleven_v4 z tymi samymi tagami 137-140 Hz,
+a eleven_v4 z tagami [confident, warm] 125-132 Hz. Wybrane ujecia:
+132,2 / 127,0 / 130,1 Hz - wszystkie w pasmie 126-136, bez przetwarzania.
+
+Bramki: 20,3 / 18,3 / 19,3 s, LUFS -14,1 / -14,2 / -14,2,
+TP -1,8 / -1,7 / -1,8, ruch startowy OK, zdjecia czyste,
+rejestr/sprawdz.py 0 bledow.
+
+Wylapane samodzielnie i poprawione przed publikacja:
+- rolka "regulamin" miala zdjecie polki sklepowej zamiast ekranu
+  (ekran1.jpg to zdjecie sklepu) i laptop z napisem "Mockup." - wymienione.
+- slupki 73 kontra 1 800 bez jednostki - dodane "s".
