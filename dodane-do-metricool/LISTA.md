@@ -290,3 +290,12 @@ Zalozyciel odsluchal dwie wersje tego samego tekstu i wybral drugie nagranie
 to samo, ktore juz siedzi w rolkach 13.11 w kolejce. Nic nie podmieniane.
 eleven_v3 odpada: polszczyzna naturalna, ale 108-118 Hz, czyli niski glos.
 Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
+
+## 12.11 11:20 - nowy kierunek: silnik 6 + stare rolki do draftu
+
+- Silnik 6 (repo: silnik6/): pytanie od ludzi -> animacja mechanizmu jak dla
+  pieciolatka -> jeden dowod -> CTA "Zaobserwuj profil po wiecej ciekawostek".
+  Rolka testowa: test_silnik6_sztuki.mp4 (ostatnie 3 sztuki, Mathur i in. 2019).
+- Stare rolki cenowe przestawione na DRAFT (nie usuniete): 14.11, 15.11, 16.11.
+  Zostaly do przestawienia: 17-30.11 (najblizsza stara rolka 17.11 07:00).
+- 12.11 i 13.11 zostaja w kolejce (juz nowe tematy).
