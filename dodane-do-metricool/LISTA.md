@@ -356,3 +356,12 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
 - Podmienione (pliki *_s6m + okladki *_s6m_cover.jpg): 12.11 19:00, 13.11 07/12/18,
   14.11 07/12/18, 15.11 07/12/18 - wszystkie 4 kanaly.
 - 12.11 19:00 incognito: przy okazji usunieta tez etykieta "PYTAJA LUDZIE" (zostala w starym pliku).
+
+## 12.11 17:25 - CTA "Zaobserwuj profil po wiecej wiedzy"
+
+- Zalozyciel 17:04: zmiana z "po wiecej ciekawostek" na "po wiecej wiedzy" - w lektorze, na ekranie
+  koncowym i w opisach. Lektor: jedno nowe ujecie CTA (glos ROLKI, eleven_v4) wklejone w miejsce
+  starego zdania (silnik6/wklej_cta.py) - reszta nagrania bez zmian. Sprawdzone whisperem.
+- Podmienione pliki *_s6w (z muzyka i miniatura) we wszystkich 20 postach 12.11 19:00 - 15.11 18:00.
+- Poprawione przy okazji: abonament mial szczyt +0,9 dBTP po miksie z muzyka - dodany limiter
+  w podklad.py, teraz -1,8 dBTP.
