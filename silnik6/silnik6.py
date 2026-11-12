@@ -1326,6 +1326,928 @@ def scena_dziesiec(im, t, dl, p, kt):
 SCENY_PRZYCISK = {"pytanie_przycisk": scena_pytanie_przycisk, "wzywa": scena_wzywa,
                   "przyciski_nyc": scena_przyciski_nyc, "zegar": scena_zegar, "dziesiec": scena_dziesiec}
 
+
+# ============================================================= 14.11: bateria, sasiedni pas, "nie jestem robotem"
+
+def ptaszek(d, cx, cy, r, a=1.0, kol=ZIELONY):
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=kol + (int(255 * a),))
+    d.line([cx - r * 0.45, cy, cx - r * 0.1, cy + r * 0.38, cx + r * 0.5, cy - r * 0.35],
+           fill=BIEL + (int(255 * a),), width=max(6, int(r * 0.18)), joint="curve")
+
+
+def linie_tekstu(d, linie, cx, y, a, kol=BIEL, px=64, maks_w=None):
+    for l in linie:
+        f = dopasuj(d, l, maks_w or (X1 - X0), px, 30, f_anton)
+        d.text((cx - szer(d, l, f) // 2, y), l, font=f, fill=kol + (int(255 * a),))
+        y += f.size + 10
+    return y
+
+
+def bateria_ik(d, cx, cy, w, h, poziom, a, kol=ZIELONY, piorun=False, napis=True):
+    """Pionowa bateria; poziom 0..1."""
+    g = max(6, int(w * 0.06))
+    d.rounded_rectangle([cx - w * 0.2, cy - h / 2 - h * 0.06, cx + w * 0.2, cy - h / 2 + 4], radius=8,
+                        fill=(200, 200, 206, int(255 * a)))
+    d.rounded_rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], radius=int(w * 0.16),
+                        outline=(220, 220, 226, int(255 * a)), width=g)
+    m = g + 8
+    wys = (h - 2 * m) * max(0.0, min(1.0, poziom))
+    if wys > 4:
+        d.rounded_rectangle([cx - w / 2 + m, cy + h / 2 - m - wys, cx + w / 2 - m, cy + h / 2 - m],
+                            radius=int(w * 0.08), fill=kol + (int(255 * a),))
+    if napis:
+        tl = f"{int(round(poziom * 100))}%"
+        f = f_anton(int(w * 0.36))
+        d.text((cx - szer(d, tl, f) / 2, cy - f.size * 0.62), tl, font=f, fill=BIEL + (int(255 * a),))
+    if piorun:
+        s = w * 0.22
+        y = cy + h * 0.28
+        d.polygon([(cx + s * 0.1, y - s), (cx - s * 0.5, y + s * 0.1), (cx - s * 0.05, y + s * 0.1),
+                   (cx - s * 0.15, y + s), (cx + s * 0.5, y - s * 0.15), (cx + s * 0.05, y - s * 0.15)],
+                  fill=ZOLTY + (int(255 * a),))
+
+
+def ksiezyc(d, cx, cy, r, a, kol=(236, 232, 210)):
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=kol + (int(255 * a),))
+    d.ellipse([cx - r + r * 0.55, cy - r - r * 0.2, cx + r + r * 0.55, cy + r - r * 0.2], fill=(0, 0, 0, 0))
+
+
+def ksiezyc_na(im, cx, cy, r, a):
+    """Sierp: rysowany na osobnej warstwie, zeby 'wyciecie' bylo przezroczyste."""
+    nak = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(nak)
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(236, 232, 210, int(255 * a)))
+    d.ellipse([cx - r + r * 0.6, cy - r - r * 0.25, cx + r + r * 0.6, cy + r - r * 0.25], fill=(0, 0, 0, 0))
+    im.alpha_composite(nak)
+
+
+def budzik(d, cx, cy, r, a, kol=BIEL):
+    k = kol + (int(255 * a),)
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=k, width=max(4, int(r * 0.14)))
+    d.ellipse([cx - r * 1.05, cy - r * 1.25, cx - r * 0.45, cy - r * 0.7], fill=k)
+    d.ellipse([cx + r * 0.45, cy - r * 1.25, cx + r * 1.05, cy - r * 0.7], fill=k)
+    d.line([cx, cy, cx, cy - r * 0.55], fill=k, width=max(3, int(r * 0.12)))
+    d.line([cx, cy, cx + r * 0.4, cy + r * 0.2], fill=k, width=max(3, int(r * 0.12)))
+
+
+def scena_pytanie_bateria(im, t, dl, p, kt):
+    """Pytanie + telefon na kablu w nocy; bateria laduje sie na ekranie."""
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+    nak, d = warstwa()
+    cy = dol + 460
+    d.line([CX, cy + 340, CX, 1400], fill=(200, 200, 206, 255), width=12)
+    im.alpha_composite(nak)
+
+    def ekran(im2, box, tt, a):
+        x0, y0, x1, y1 = box
+        n2, d2 = warstwa()
+        d2.rounded_rectangle(box, radius=40, fill=(22, 24, 36, int(255 * a)))
+        bcx = (x0 + x1) // 2
+        poz = 0.55 + 0.45 * min(1.0, tt / 2.6)
+        bateria_ik(d2, bcx, (y0 + y1) // 2 + 40, 170, 300, poz, a, piorun=True)
+        f = f_inter(30, False)
+        tx = "02:47"
+        d2.text((bcx - szer(d2, tx, f) / 2, y0 + 70), tx, font=f, fill=(200, 200, 210, int(255 * a)))
+        im2.alpha_composite(n2)
+        ksiezyc_na(im2, bcx + 90, y0 + 150, 34, a)
+    telefon(im, CX, cy, 0.9, 1.0, ekran, t)
+    smuga(im, t)
+
+
+def scena_zuzycie(im, t, dl, p, kt):
+    """Bateria stoi na 100%, a od niej rozchodza sie czerwone fale zuzycia."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.35)
+    cx, cy = CX, 820
+    for k in range(3):
+        q = ((t - 0.3 - k * 0.45) % 1.35) / 1.35 if t > 0.3 + k * 0.45 else -1
+        if q >= 0:
+            r = 200 + 260 * q
+            d.ellipse([cx - r * 0.75, cy - r, cx + r * 0.75, cy + r], outline=CZERW + (int(200 * (1 - q) * a),), width=8)
+    puls = 0.5 + 0.5 * math.sin(t * 5)
+    kol = mieszaj(ZIELONY, (240, 140, 60), wej(t, 0.4, 0.8) * (0.6 + 0.4 * puls))
+    bateria_ik(d, cx, cy, 280, 520, 1.0, a, kol=kol)
+    f = dopasuj(d, p["podpis"], X1 - X0, 40, 28)
+    d.text((CX - szer(d, p["podpis"], f) / 2, 1200), p["podpis"], font=f, fill=BIEL + (int(255 * wej(t, 0.5, 0.4)),))
+    im.alpha_composite(nak)
+
+
+def scena_noce(im, t, dl, p, kt):
+    """7 nocy - telefon zapamietuje, o ktorej co dzien wstajesz."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    fb = f_anton(80)
+    tl = p.get("tytul", "UCZY SIĘ")
+    d.text((CX - szer(d, tl, fb) / 2, 330), tl, font=fb, fill=BIEL + (int(255 * a),))
+    dni = ["pn", "wt", "śr", "cz", "pt", "sb", "nd"]
+    godz = p.get("godziny", ["6:30"] * 5 + ["9:00"] * 2)
+    krok = 108
+    x0 = CX - krok * 3
+    for i, (dz, g) in enumerate(zip(dni, godz)):
+        x = x0 + i * krok
+        pa = wej(t, 0.05 + i * 0.05, 0.25)
+        d.rounded_rectangle([x - 46, 560, x + 46, 960], radius=22, fill=(34, 36, 50, int(255 * pa)))
+        f = f_inter(30)
+        d.text((x - szer(d, dz, f) / 2, 580), dz, font=f, fill=SZARY + (int(255 * pa),))
+        pz = pop(t, 0.45 + i * 0.16, 0.3)
+        if pz > 0:
+            budzik(d, x, 760, 30 * pz, 1.0, ZOLTY)
+            fg = f_inter(26)
+            d.text((x - szer(d, g, fg) / 2, 850), g, font=fg, fill=ZOLTY + (int(255 * min(1, pz)),))
+    im.alpha_composite(nak)
+    for i in range(7):
+        pa = wej(t, 0.05 + i * 0.05, 0.25)
+        ksiezyc_na(im, x0 + i * krok, 660, 22, pa)
+
+
+def scena_wykres_80(im, t, dl, p, kt):
+    """Ladowanie w nocy: rosnie do 80%, stoi, konczy tuz przed budzikiem."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    gx0, gx1, gy0, gy1 = X0 + 60, X1 - 40, 560, 1160
+    d.line([gx0, gy1, gx1, gy1], fill=(120, 120, 130, int(255 * a)), width=4)
+    def py(v):
+        return gy1 - (gy1 - gy0) * v
+    for v, tx in ((0.8, "80%"), (1.0, "100%")):
+        y = py(v)
+        for xx in range(gx0, gx1, 28):
+            d.line([xx, y, xx + 14, y], fill=(90, 90, 100, int(200 * a)), width=3)
+        f = f_inter(30)
+        d.text((gx0 - 10 - szer(d, tx, f), y - 18), tx, font=f, fill=(SZARY if v == 1.0 else ZOLTY) + (int(255 * a),))
+    pts = []
+    for i in range(101):
+        u = i / 100
+        if u < 0.25:
+            v = 0.2 + 0.6 * (u / 0.25)
+        elif u < 0.8:
+            v = 0.8
+        elif u < 0.95:
+            v = 0.8 + 0.2 * ((u - 0.8) / 0.15)
+        else:
+            v = 1.0
+        pts.append((gx0 + (gx1 - gx0) * u, py(v)))
+    pr = wej(t, 0.2, 1.6)
+    n = max(2, int(len(pts) * pr))
+    d.line(pts[:n], fill=ZIELONY + (255,), width=10, joint="curve")
+    xe, ye = pts[n - 1]
+    d.ellipse([xe - 14, ye - 14, xe + 14, ye + 14], fill=ZIELONY + (255,))
+    f = f_inter(30)
+    for tx, x in ((p.get("od_godz", "23:00"), gx0), (p.get("do_godz", "6:30"), gx1)):
+        d.text((x - szer(d, tx, f) / 2, gy1 + 20), tx, font=f, fill=SZARY + (int(255 * a),))
+    pb = pop(t, 1.5, 0.35)
+    if pb > 0:
+        budzik(d, gx1, gy0 - 70, 36 * pb, 1.0, ZOLTY)
+    if pr > 0.5:
+        fs = f_inter(30, False)
+        tx = "czeka"
+        xm = gx0 + (gx1 - gx0) * 0.52
+        d.text((xm - szer(d, tx, fs) / 2, py(0.8) - 54), tx, font=fs, fill=ZOLTY + (int(255 * wej(t, 0.9, 0.3)),))
+    im.alpha_composite(nak)
+
+
+def scena_wniosek_ok(im, t, dl, p, kt):
+    """Wniosek: duzy zielony ptaszek i jedno haslo."""
+    nak, d = warstwa()
+    pz = pop(t, 0.1, 0.45)
+    if pz > 0:
+        ptaszek(d, CX, 700, 150 * pz)
+        linie_tekstu(d, p["linie"], CX, 920, min(1.0, pz), px=80)
+    im.alpha_composite(nak)
+
+
+# ---------- sasiedni pas
+
+def auto(d, cx, cy, s, kol, a):
+    """Auto z gory: karoseria, szyby, kola."""
+    w, h = 92 * s, 160 * s
+    ka = int(255 * a)
+    for dx in (-1, 1):
+        for dy in (-0.3, 0.3):
+            d.rounded_rectangle([cx + dx * w * 0.52 - 9 * s, cy + dy * h - 18 * s, cx + dx * w * 0.52 + 9 * s, cy + dy * h + 18 * s],
+                                radius=4, fill=(20, 20, 22, ka))
+    d.rounded_rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], radius=int(26 * s), fill=kol + (ka,))
+    d.rounded_rectangle([cx - w * 0.36, cy - h * 0.28, cx + w * 0.36, cy - h * 0.1], radius=int(8 * s), fill=(30, 34, 44, ka))
+    d.rounded_rectangle([cx - w * 0.36, cy + h * 0.2, cx + w * 0.36, cy + h * 0.32], radius=int(8 * s), fill=(30, 34, 44, ka))
+
+
+def droga(d, cx, y0, y1, a, przesun=0.0, pasy=2, szer_pasa=200):
+    w = pasy * szer_pasa
+    d.rectangle([cx - w / 2, y0, cx + w / 2, y1], fill=(44, 44, 50, int(255 * a)))
+    for k in (-1, 1):
+        d.line([cx + k * w / 2, y0, cx + k * w / 2, y1], fill=(220, 220, 226, int(255 * a)), width=6)
+    for i in range(1, pasy):
+        x = cx - w / 2 + i * szer_pasa
+        y = y0 - 80 + (przesun % 80)
+        while y < y1:
+            yy0, yy1 = max(y, y0), min(y + 44, y1)
+            if yy1 > yy0:
+                d.line([x, yy0, x, yy1], fill=(230, 230, 230, int(220 * a)), width=6)
+            y += 80
+
+
+def kolumna_aut(d, x, y0, y1, przes, odst, a, kol=(150, 152, 162), znikaj_ponizej=None):
+    y = y0 - odst + (przes % odst)
+    while y < y1 + odst:
+        if y0 + 60 < y < y1 - 60:
+            aa = a
+            if znikaj_ponizej is not None and y > znikaj_ponizej:
+                aa = a * max(0.0, 1 - (y - znikaj_ponizej) / 160)
+            auto(d, x, y, 1.0, kol, aa)
+        y += odst
+
+
+def scena_pytanie_pas(im, t, dl, p, kt):
+    """Pytanie + korek z gory: ty stoisz, sasiedni pas sie toczy."""
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+    nak, d = warstwa()
+    y0, y1 = dol + 40, 1380
+    droga(d, CX, y0, y1, 1.0)
+    kolumna_aut(d, CX + 100, y0, y1, -t * 140, 250, 1.0)
+    for y in (y0 + 160, y0 + 600):
+        auto(d, CX - 100, y, 1.0, (150, 152, 162), 1.0)
+    auto(d, CX - 100, y0 + 380, 1.0, ZOLTY, 1.0)
+    im.alpha_composite(nak)
+    smuga(im, t)
+
+
+def scena_mijaja(im, t, dl, p, kt):
+    """Stoisz: auta obok mijaja cie powoli, kazde dlugo na widoku."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    fb = f_anton(80)
+    tl = p.get("tytul", "STOISZ")
+    d.text((CX - szer(d, tl, fb) / 2, 300), tl, font=fb, fill=BIEL + (int(255 * a),))
+    y0, y1 = 430, 1360
+    droga(d, CX, y0, y1, a)
+    kolumna_aut(d, CX + 100, y0, y1, -t * 90, 240, a)
+    auto(d, CX - 100, 900, 1.0, ZOLTY, a)
+    im.alpha_composite(nak)
+
+
+def scena_wyprzedzasz(im, t, dl, p, kt):
+    """Jedziesz: mijasz auta w sekunde, a minietych od razu nie pamietasz (znikaja)."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    fb = f_anton(80)
+    tl = p.get("tytul", "JEDZIESZ")
+    d.text((CX - szer(d, tl, fb) / 2, 300), tl, font=fb, fill=BIEL + (int(255 * a),))
+    y0, y1 = 430, 1360
+    droga(d, CX, y0, y1, a, przesun=t * 700)
+    kolumna_aut(d, CX + 100, y0, y1, t * 520, 260, a, znikaj_ponizej=960)
+    auto(d, CX - 100, 900, 1.0, ZOLTY, a)
+    im.alpha_composite(nak)
+
+
+def scena_meta(im, t, dl, p, kt):
+    """Dwa auta: jedno trzyma pas, drugie zmienia pasy - na mete wjezdzaja razem."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    y0, y1, meta = 560, 1320, 640
+    f = f_inter(30)
+    for cx, tx in ((CX - 200, p.get("lewy", "bez zmiany")), (CX + 200, p.get("prawy", "zmiana pasa"))):
+        droga(d, cx, y0, y1, a, szer_pasa=140)
+        d.text((cx - szer(d, tx, f) / 2, y0 - 60), tx, font=f, fill=SZARY + (int(255 * a),))
+    for i in range(10):
+        kk = (240, 240, 240) if i % 2 == 0 else (30, 30, 34)
+        d.rectangle([CX - 340 + i * 28, meta - 10, CX - 340 + (i + 1) * 28, meta + 10], fill=kk + (int(255 * a),))
+        d.rectangle([CX + 60 + i * 28, meta - 10, CX + 60 + (i + 1) * 28, meta + 10], fill=kk + (int(255 * a),))
+    pr = wej(t, 0.2, 1.5)
+    y = 1220 - (1220 - meta - 90) * pr
+    auto(d, CX - 200 - 70, y, 0.8, ZOLTY, a)
+    zyg = math.sin(pr * math.pi * 3)
+    auto(d, CX + 200 + 70 * (1 if zyg > 0 else -1) * min(1, abs(zyg) * 2), y, 0.8, ZOLTY, a)
+    pz = pop(t, 1.8, 0.4)
+    if pz > 0:
+        tx = p.get("puenta", "TEN SAM CZAS")
+        fb = f_anton(max(1, int(76 * pz)))
+        d.text((CX - szer(d, tx, fb) / 2, 400), tx, font=fb, fill=ZIELONY + (255,))
+    im.alpha_composite(nak)
+
+
+# ---------- "nie jestem robotem"
+
+def kursor(d, x, y, s, a):
+    pts = [(0, 0), (0, 46), (12, 35), (21, 56), (30, 52), (21, 32), (38, 32)]
+    d.polygon([(x + px * s, y + py * s) for px, py in pts], fill=BIEL + (int(255 * a),), outline=(20, 20, 20, int(255 * a)))
+
+
+def widget_robot(d, x0, y0, x1, a, stan=0.0, t=0.0):
+    """Okienko 'Nie jestem robotem'; stan: 0 puste, 0..1 krecioleczek, 1 ptaszek."""
+    h = 150
+    ka = int(255 * a)
+    d.rounded_rectangle([x0, y0, x1, y0 + h], radius=14, fill=(249, 249, 249, ka), outline=(210, 210, 214, ka), width=3)
+    bx, by, bs = x0 + 34, y0 + 45, 60
+    if stan <= 0:
+        d.rounded_rectangle([bx, by, bx + bs, by + bs], radius=6, fill=(255, 255, 255, ka), outline=(150, 150, 156, ka), width=4)
+    elif stan < 1:
+        st = t * 540
+        d.arc([bx, by, bx + bs, by + bs], st, st + 270, fill=(66, 133, 244, ka), width=7)
+    else:
+        d.line([bx + 6, by + 32, bx + 24, by + 52, bx + 58, by + 6], fill=(30, 160, 70, ka), width=10, joint="curve")
+    f = f_inter(34, False)
+    d.text((bx + bs + 28, y0 + 52), "Nie jestem robotem", font=f, fill=(40, 40, 44, ka))
+    return (bx + bs / 2, by + bs / 2)
+
+
+def robot_ik(d, cx, cy, r, kol, a):
+    k = kol + (int(255 * a),)
+    d.line([cx, cy - r * 1.05, cx, cy - r * 0.7], fill=k, width=max(4, int(r * 0.08)))
+    d.ellipse([cx - r * 0.12, cy - r * 1.22, cx + r * 0.12, cy - r * 0.98], fill=k)
+    d.rounded_rectangle([cx - r * 0.8, cy - r * 0.7, cx + r * 0.8, cy + r * 0.6], radius=int(r * 0.25), fill=k)
+    for dx in (-0.35, 0.35):
+        d.ellipse([cx + dx * r - r * 0.14, cy - r * 0.25, cx + dx * r + r * 0.14, cy + r * 0.03], fill=(20, 20, 26, int(255 * a)))
+    d.rounded_rectangle([cx - r * 0.35, cy + r * 0.22, cx + r * 0.35, cy + r * 0.34], radius=4, fill=(20, 20, 26, int(255 * a)))
+
+
+def sciezka_kursora(t0, t1, t, start, cel, fala=60):
+    q = max(0.0, min(1.0, (t - t0) / (t1 - t0)))
+    q = 1 - (1 - q) ** 2
+    x = start[0] + (cel[0] - start[0]) * q
+    y = start[1] + (cel[1] - start[1]) * q + fala * math.sin(q * math.pi * 2) * (1 - q)
+    return x, y, q
+
+
+def scena_pytanie_captcha(im, t, dl, p, kt):
+    """Pytanie + okno strony z 'Nie jestem robotem'; kursor dojezdza falista droga i klika."""
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+    nak, d = warstwa()
+    x0, y0, x1, y1 = X0 + 10, dol + 80, X1 - 10, dol + 700
+    okno_przegladarki(d, x0, y0, x1, y1, 1.0, ciemne=False)
+    for i in range(3):
+        d.rounded_rectangle([x0 + 40, y0 + 110 + i * 46, x1 - 40 - i * 90, y0 + 132 + i * 46], radius=8, fill=(214, 214, 220, 255))
+    stan = 0.0 if t < 1.3 else (0.5 if t < 1.8 else 1.0)
+    cel = widget_robot(d, x0 + 40, y0 + 330, x1 - 40, 1.0, stan, t)
+    slad = []
+    for k in range(0, 40):
+        tt = 0.1 + k * 0.03
+        if tt > t:
+            break
+        xx, yy, _ = sciezka_kursora(0.1, 1.25, tt, (x1 - 60, y1 - 40), cel)
+        slad.append((xx, yy))
+    if len(slad) > 1:
+        d.line(slad, fill=kt["akcent"] + (160,), width=5, joint="curve")
+    xx, yy, q = sciezka_kursora(0.1, 1.25, t, (x1 - 60, y1 - 40), cel)
+    kursor(d, xx, yy, 1.2, 1.0)
+    if 1.25 < t < 1.6:
+        r = 20 + 80 * (t - 1.25) / 0.35
+        d.ellipse([cel[0] - r, cel[1] - r, cel[0] + r, cel[1] + r], outline=kt["akcent"] + (int(220 * (1.6 - t) / 0.35),), width=6)
+    im.alpha_composite(nak)
+    smuga(im, t)
+
+
+def scena_litery(im, t, dl, p, kt):
+    """Krzywe litery do przepisania; na slowie p['program'] wchodzi robot i odczytuje je: 99,8%."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    try:
+        tp = kt["czas_slowa"](p["program"]) - kt["od"]
+    except SystemExit:
+        tp = 1.0
+    bx0, by0, bx1, by1 = X0 + 40, 420, X1 - 40, 700
+    d.rounded_rectangle([bx0, by0, bx1, by1], radius=20, fill=(236, 234, 228, int(255 * a)))
+    im.alpha_composite(nak)
+    tekst = p.get("kod", "xK7mQ")
+    for i, ch in enumerate(tekst):
+        l = Image.new("RGBA", (160, 180), (0, 0, 0, 0))
+        dl_ = ImageDraw.Draw(l)
+        dl_.text((30, 10), ch, font=f_anton(130), fill=(40, 40, 46, int(255 * a)))
+        l = l.rotate([-18, 14, -8, 20, -12][i % 5] + 4 * math.sin(t * 2 + i), resample=Image.BICUBIC)
+        im.alpha_composite(l, (int(bx0 + 40 + i * 120), int(by0 + 40 + 18 * math.sin(i * 1.7))))
+    nak, d = warstwa()
+    pts = [(bx0 + 30 + k * 12, (by0 + by1) / 2 + 30 * math.sin(k * 0.3 + t)) for k in range(int((bx1 - bx0 - 60) / 12))]
+    d.line(pts, fill=(40, 40, 46, int(200 * a)), width=5)
+    pr = pop(t, tp, 0.4)
+    if pr > 0:
+        robot_ik(d, CX - 190, 960, 110 * pr, (170, 200, 230), 1.0)
+        fb = f_anton(max(1, int(150 * pr)))
+        tl = p.get("wynik", "99,8%")
+        d.text((CX - 40, 870), tl, font=fb, fill=ZOLTY + (255,))
+        fs = f_inter(32, False)
+        d.text((CX - 30, 1060), p.get("podpis", "odczytanych przez program"), font=fs, fill=BIEL + (int(255 * min(1, pr)),))
+    im.alpha_composite(nak)
+
+
+def scena_zachowanie(im, t, dl, p, kt):
+    """Liczy sie zachowanie: kursor kreci sie po stronie przed klikiem i po nim,
+    a pasek 'czlowiek' rosnie z kazdym ruchem."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    cy = 760
+    w0, w1 = CX - 240, CX + 240
+    cel = widget_robot(d, w0, cy - 75, w1, a, 1.0 if t > 1.2 else 0.0, t)
+    f = f_inter(34)
+    for tx, x in (("przed", X0 + 20), ("po", X1 - 60)):
+        d.text((x, cy - 180), tx, font=f, fill=SZARY + (int(255 * a),))
+    pts = []
+    for k in range(120):
+        u = k / 119
+        if u * 2.4 > t:
+            break
+        x = X0 + 40 + (X1 - X0 - 80) * u
+        y = cy - 140 + 40 * math.sin(u * 17) + 20 * math.sin(u * 41)
+        if 0.45 < u < 0.55:
+            y = cy - 140 + (cel[1] - (cy - 140)) * math.sin((u - 0.45) / 0.1 * math.pi)
+        pts.append((x, y))
+    if len(pts) > 1:
+        d.line(pts, fill=kt["akcent"] + (200,), width=5, joint="curve")
+        kursor(d, pts[-1][0], pts[-1][1], 1.0, a)
+    pk = min(1.0, t / 2.4)
+    gx0, gx1, gy = X0 + 60, X1 - 60, 1080
+    d.text((gx0, gy - 60), p.get("pasek", "człowiek?"), font=f_inter(32), fill=BIEL + (int(255 * a),))
+    d.rounded_rectangle([gx0, gy, gx1, gy + 40], radius=20, fill=(50, 50, 58, int(255 * a)))
+    d.rounded_rectangle([gx0, gy, gx0 + max(40, (gx1 - gx0) * 0.92 * pk), gy + 40], radius=20, fill=ZIELONY + (int(255 * a),))
+    im.alpha_composite(nak)
+
+
+def scena_zagadka(im, t, dl, p, kt):
+    """Zagadka ze zdjeciami: siatka 3x3 z autami, nad nia znak zapytania 'system niepewny'."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    pz = pop(t, 0.1, 0.4)
+    if pz > 0:
+        r = 70 * pz
+        d.ellipse([CX - r, 420 - r, CX + r, 420 + r], fill=ZOLTY + (255,))
+        fq = f_anton(max(1, int(100 * pz)))
+        d.text((CX - szer(d, "?", fq) / 2, 420 - fq.size * 0.62), "?", font=fq, fill=CIEMNY + (255,))
+    x0, y0, s, g = CX - 270, 560, 170, 10
+    d.rounded_rectangle([x0 - 16, y0 - 90, x0 + 3 * s + 2 * g + 16, y0 + 3 * s + 2 * g + 16], radius=16, fill=(249, 249, 249, int(255 * a)))
+    d.rectangle([x0, y0 - 76, x0 + 3 * s + 2 * g, y0 - 10], fill=(66, 133, 244, int(255 * a)))
+    ft = f_inter(30)
+    d.text((x0 + 20, y0 - 64), p.get("zadanie", "Zaznacz wszystkie auta"), font=ft, fill=BIEL + (int(255 * a),))
+    z_autem = {0, 4, 5, 7}
+    for i in range(9):
+        x, y = x0 + (i % 3) * (s + g), y0 + (i // 3) * (s + g)
+        d.rectangle([x, y, x + s, y + s], fill=(120, 140, 120, int(255 * a)) if i % 2 else (110, 130, 150, int(255 * a)))
+        if i in z_autem:
+            auto(d, x + s / 2, y + s / 2, 0.75, (220, 70, 60), a)
+        kl = list(sorted(z_autem)).index(i) if i in z_autem else -1
+        if kl >= 0 and t > 0.9 + kl * 0.3:
+            d.rectangle([x, y, x + s, y + s], outline=(66, 133, 244, 255), width=8)
+            ptaszek(d, x + 26, y + 26, 20, 1.0, (66, 133, 244))
+    im.alpha_composite(nak)
+
+
+SCENY_1411 = {"pytanie_bateria": scena_pytanie_bateria, "zuzycie": scena_zuzycie, "noce": scena_noce,
+              "wykres_80": scena_wykres_80, "wniosek_ok": scena_wniosek_ok,
+              "pytanie_pas": scena_pytanie_pas, "mijaja": scena_mijaja, "wyprzedzasz": scena_wyprzedzasz, "meta": scena_meta,
+              "pytanie_captcha": scena_pytanie_captcha, "litery": scena_litery, "zachowanie": scena_zachowanie,
+              "zagadka": scena_zagadka}
+
+
+# ============================================================= marketingowe (12.11 13:55: "tylko marketingowe ciekawostki")
+
+def metka(d, cx, cy, w, h, linia1, linia2, kol, a, kat=0.0):
+    """Metka cenowa z dziurka; tekst dwulinijkowy."""
+    ka = int(255 * a)
+    d.rounded_rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], radius=22, fill=kol + (ka,))
+    d.ellipse([cx - 14, cy - h / 2 + 18, cx + 14, cy - h / 2 + 46], fill=(16, 16, 20, ka))
+    # liczba i podpis w osobnych pasach: liczba w gornej czesci pod dziurka, podpis na dole -
+    # pierwsza wersja nakladala dolna krawedz cyfr Anton na podpis
+    f1 = dopasuj(d, linia1, w - 40, int(h * 0.3), 24, f_anton)
+    bb = d.textbbox((0, 0), linia1, font=f1)
+    y1 = cy - h * 0.2
+    d.text((cx - (bb[2] - bb[0]) / 2 - bb[0], y1 - bb[1]), linia1, font=f1, fill=CIEMNY + (ka,))
+    f2 = dopasuj(d, linia2, w - 40, int(h * 0.12), 18)
+    bb2 = d.textbbox((0, 0), linia2, font=f2)
+    y2 = max(y1 + (bb[3] - bb[1]) + h * 0.06, cy + h * 0.2)
+    d.text((cx - (bb2[2] - bb2[0]) / 2 - bb2[0], y2 - bb2[1]), linia2, font=f2, fill=CIEMNY + (ka,))
+
+
+def dwa_slupki(d, t, wart, etyk, kolory, y_dol=1150, wys_max=520, start=0.2, jedn="%"):
+    """Dwa slupki rosnace od dolu; liczba nad slupkiem, etykieta pod nim (mierzona)."""
+    szer_s = 220
+    xs = [CX - 170, CX + 170]
+    mx = max(wart)
+    for i, (v, e, k) in enumerate(zip(wart, etyk, kolory)):
+        p = wej(t, start + i * 0.25, 0.8)
+        h = wys_max * v / mx * p
+        x = xs[i]
+        d.rounded_rectangle([x - szer_s / 2, y_dol - max(h, 6), x + szer_s / 2, y_dol], radius=18, fill=k + (255,))
+        if p > 0.05:
+            tl = f"{int(round(v * p))}{jedn}"
+            fb = f_anton(96)
+            d.text((x - szer(d, tl, fb) / 2, y_dol - h - 120), tl, font=fb, fill=BIEL + (255,))
+        fe = dopasuj(d, e, 330, 36, 24)
+        d.text((x - szer(d, e, fe) / 2, y_dol + 20), e, font=fe, fill=SZARY + (int(255 * wej(t, start, 0.3)),))
+
+
+def scena_pytanie_dziennie(im, t, dl, p, kt):
+    """Pytanie + dwie metki: '5 dziennie' i '150 miesiecznie' kolysza sie na sznurkach."""
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+    for i, (l1, l2, kol) in enumerate([("5", "dziennie", ZIELONY), ("150", "miesięcznie", (240, 120, 100))]):
+        nak = Image.new("RGBA", (420, 520), (0, 0, 0, 0))
+        d = ImageDraw.Draw(nak)
+        d.line([210, 0, 210, 120], fill=(200, 200, 206, 255), width=5)
+        metka(d, 210, 300, 300, 330, l1, l2, kol, 1.0)
+        kat = 7 * math.sin(t * 2.4 + i * 1.3) * (1 if t > 0.1 else 0)
+        nak = nak.rotate(kat, center=(210, 0), resample=Image.BICUBIC)
+        im.alpha_composite(nak, (int(CX - 210 + (-185 if i == 0 else 185)), int(dol + 60)))
+    smuga(im, t)
+
+
+def scena_ta_sama(im, t, dl, p, kt):
+    """30 kratek kalendarza po 5 - sumuja sie w 150."""
+    nak, d = warstwa()
+    kol, s, g = 6, 100, 14
+    x0 = CX - (kol * s + (kol - 1) * g) / 2
+    y0 = 480
+    ile = int(min(30, max(0, (t - 0.1) / 0.045)))
+    for i in range(30):
+        x, y = x0 + (i % kol) * (s + g), y0 + (i // kol) * (s + g)
+        on = i < ile
+        d.rounded_rectangle([x, y, x + s, y + s], radius=16, fill=(ZIELONY if on else (46, 48, 58)) + (255,))
+        if on:
+            f = f_anton(48)
+            d.text((x + s / 2 - szer(d, "5", f) / 2, y + 18), "5", font=f, fill=CIEMNY + (255,))
+    suma = 5 * ile
+    fb = f_anton(110)
+    tl = f"= {suma}"
+    d.text((CX - szer(d, tl, fb) / 2, y0 + 5 * (s + g) + 20), tl, font=fb, fill=BIEL + (255,))
+    fs = f_inter(32, False)
+    tx = p.get("podpis", "30 dni po 5")
+    d.text((CX - szer(d, tx, fs) / 2, 380), tx, font=fs, fill=SZARY + (255,))
+    im.alpha_composite(nak)
+
+
+def kubek(d, cx, cy, r, a):
+    k = (236, 226, 210, int(255 * a))
+    d.polygon([(cx - r, cy - r * 0.8), (cx + r, cy - r * 0.8), (cx + r * 0.75, cy + r), (cx - r * 0.75, cy + r)], fill=k)
+    d.arc([cx + r * 0.6, cy - r * 0.4, cx + r * 1.4, cy + r * 0.4], -90, 90, fill=k, width=max(5, int(r * 0.15)))
+    for dx in (-0.35, 0.05, 0.45):
+        d.arc([cx + dx * r - r * 0.2, cy - r * 1.7, cx + dx * r + r * 0.2, cy - r * 0.95], 100, 260, fill=(200, 200, 206, int(200 * a)), width=4)
+
+
+def scena_waga(im, t, dl, p, kt):
+    """Waga: 150 opada ciezko (wydatek), 5 przy kubku kawy unosi sie lekko."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    ang = 0.22 * wej(t, 0.3, 0.6)
+    cx, cy, L = CX, 700, 330
+    d.polygon([(cx, cy), (cx - 50, 1150), (cx + 50, 1150)], fill=(90, 92, 102, int(255 * a)))
+    lx, ly = cx - L * math.cos(ang), cy + L * math.sin(ang)
+    rx, ry = cx + L * math.cos(ang), cy - L * math.sin(ang)
+    d.line([lx, ly, rx, ry], fill=(200, 200, 206, int(255 * a)), width=12)
+    d.ellipse([cx - 16, cy - 16, cx + 16, cy + 16], fill=(200, 200, 206, int(255 * a)))
+    # lewa szalka: 150 - wydatek
+    d.line([lx, ly, lx, ly + 120], fill=(200, 200, 206, int(255 * a)), width=4)
+    d.rounded_rectangle([lx - 120, ly + 120, lx + 120, ly + 270], radius=18, fill=(240, 120, 100, int(255 * a)))
+    fb = f_anton(80)
+    d.text((lx - szer(d, "150", fb) / 2, ly + 140), "150", font=fb, fill=CIEMNY + (int(255 * a),))
+    fl = f_inter(32)
+    tx = "wydatek"
+    d.text((lx - szer(d, tx, fl) / 2, ly + 290), tx, font=fl, fill=BIEL + (int(255 * wej(t, 0.6, 0.3)),))
+    # prawa szalka: 5 - drobne na kawe
+    d.line([rx, ry, rx, ry + 120], fill=(200, 200, 206, int(255 * a)), width=4)
+    kubek(d, rx - 60, ry + 190, 50, a)
+    d.text((rx + 40, ry + 150), "5", font=fb, fill=ZIELONY + (int(255 * a),))
+    tx2 = "drobne"
+    d.text((rx - szer(d, tx2, fl) / 2, ry + 290), tx2, font=fl, fill=BIEL + (int(255 * wej(t, 0.6, 0.3)),))
+    im.alpha_composite(nak)
+
+
+def scena_slupki2(im, t, dl, p, kt):
+    """Dowod: dwa slupki z badania."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    if tl:
+        fb = dopasuj(d, tl, X1 - X0, 64, 36, f_anton)
+        d.text((CX - szer(d, tl, fb) / 2, 300), tl, font=fb, fill=BIEL + (int(255 * a),))
+    if p.get("podtytul"):
+        fs = f_inter(30, False)
+        d.text((CX - szer(d, p["podtytul"], fs) / 2, 390), p["podtytul"], font=fs, fill=SZARY + (int(255 * a),))
+    dwa_slupki(d, t, p["wartosci"], p["etykiety"], [tuple(x) for x in p.get("kolory", [ZIELONY, (110, 112, 124)])],
+               jedn=p.get("jedn", "%"))
+    im.alpha_composite(nak)
+
+
+def scena_przelicz(im, t, dl, p, kt):
+    """Wniosek: metka '5 dziennie' obraca sie i pokazuje '150 miesiecznie' + ptaszek."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    q = wej(t, 0.3, 0.6)
+    w = 360 * abs(math.cos(q * math.pi))
+    pierwsza = q < 0.5
+    l1, l2, kol = (p["przod"][0], p["przod"][1], ZIELONY) if pierwsza else (p["tyl"][0], p["tyl"][1], (240, 120, 100))
+    if w > 20:
+        metka(d, CX, 760, w, 380, l1, l2, kol, a)
+    pz = pop(t, 1.1, 0.4)
+    if pz > 0:
+        ptaszek(d, CX + 220, 560, 70 * pz)
+        linie_tekstu(d, p["linie"], CX, 1030, min(1, pz), px=70)
+    im.alpha_composite(nak)
+
+
+# ---------- wozek
+
+def wozek(d, cx, cy, s, a, uchwyt="poziomy", t=0.0, kol=(200, 202, 210)):
+    """Wozek z boku. uchwyt: 'poziomy' (zwykla raczka) albo 'pionowy' (dwa uchwyty zginajace rece)."""
+    k = kol + (int(255 * a),)
+    w = int(6 * s)
+    pts = [(cx - 170 * s, cy - 120 * s), (cx + 150 * s, cy - 120 * s), (cx + 110 * s, cy + 40 * s), (cx - 140 * s, cy + 40 * s)]
+    d.polygon(pts, outline=k, width=w)
+    for i in range(1, 6):
+        x = cx - 170 * s + i * 320 * s / 6
+        d.line([x, cy - 120 * s, x - 6 * s * (1 if i < 3 else -1), cy + 40 * s], fill=k, width=max(2, w // 2))
+    d.line([cx - 160 * s, cy - 40 * s, cx + 135 * s, cy - 40 * s], fill=k, width=max(2, w // 2))
+    d.line([cx - 140 * s, cy + 40 * s, cx - 150 * s, cy + 100 * s, cx + 120 * s, cy + 100 * s], fill=k, width=w)
+    for x in (cx - 120 * s, cx + 100 * s):
+        r = 22 * s
+        d.ellipse([x - r, cy + 100 * s, x + r, cy + 100 * s + 2 * r], outline=k, width=w)
+        an = t * 6
+        d.line([x, cy + 100 * s + r, x + r * 0.8 * math.cos(an), cy + 100 * s + r + r * 0.8 * math.sin(an)], fill=k, width=max(2, w // 2))
+    hx, hy = cx - 170 * s, cy - 120 * s
+    d.line([hx, hy, hx - 60 * s, hy - 70 * s], fill=k, width=w)
+    if uchwyt == "poziomy":
+        d.ellipse([hx - 80 * s, hy - 90 * s, hx - 40 * s, hy - 50 * s], fill=ZOLTY + (int(255 * a),))
+    else:
+        d.rounded_rectangle([hx - 75 * s, hy - 170 * s, hx - 45 * s, hy - 60 * s], radius=int(12 * s), fill=ZOLTY + (int(255 * a),))
+    return hx - 60 * s, hy - 70 * s
+
+
+def ramie(d, sx, sy, kat_ramie, kat_przedr, dl1, dl2, kol, a, gr=26):
+    ex, ey = sx + dl1 * math.cos(kat_ramie), sy + dl1 * math.sin(kat_ramie)
+    hx, hy = ex + dl2 * math.cos(kat_przedr), ey + dl2 * math.sin(kat_przedr)
+    k = kol + (int(255 * a),)
+    d.line([sx, sy, ex, ey], fill=k, width=gr)
+    d.line([ex, ey, hx, hy], fill=k, width=gr)
+    for x, y, r in ((sx, sy, gr * 0.9), (ex, ey, gr * 0.6), (hx, hy, gr * 0.8)):
+        d.ellipse([x - r, y - r, x + r, y + r], fill=k)
+    return hx, hy
+
+
+def scena_pytanie_wozek(im, t, dl, p, kt):
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+    nak, d = warstwa()
+    hx, hy = wozek(d, CX + 60, dol + 470, 1.5, 1.0, "pionowy", t)
+    if 0.1 < t:
+        r = 40 + 10 * math.sin(t * 6)
+        d.ellipse([hx - 15 - r, hy - 80 - r, hx - 15 + r, hy - 80 + r], outline=kt["akcent"] + (220,), width=6)
+    im.alpha_composite(nak)
+    smuga(im, t)
+
+
+def scena_ramiona(im, t, dl, p, kt):
+    """Dwie postacie zwrocone w prawo. Lewa zgina ramie i przyciaga paczke do piersi (do siebie),
+    prawa prostuje ramie i odsuwa paczke od siebie. Strzalki pokazuja kierunek."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    f = f_anton(56)
+    q = wej(t, 0.3, 0.8)
+    for i, (tx, kol) in enumerate(((p.get("lewy", "DO SIEBIE"), ZIELONY), (p.get("prawy", "OD SIEBIE"), (240, 120, 100)))):
+        x = CX - 230 + i * 400
+        d.text((x + 40 - szer(d, tx, f) / 2, 360), tx, font=f, fill=kol + (int(255 * a),))
+        d.ellipse([x - 50, 520, x + 50, 620], fill=(200, 200, 206, int(255 * a)))
+        d.rounded_rectangle([x - 70, 640, x + 70, 960], radius=40, fill=(200, 200, 206, int(255 * a)))
+        if i == 0:
+            # zgiete: przedramie wraca do piersi
+            kp = -0.2 - q * 2.3
+            hx, hy = ramie(d, x + 40, 690, 0.45, kp, 120, 110, kol, a)
+            d.rounded_rectangle([hx - 34, hy - 34, hx + 34, hy + 34], radius=8, fill=ZOLTY + (int(255 * a),))
+            strzalka(d, (x + 230, 1010), (x + 60, 1010), kol, a * q, grub=8)
+        else:
+            # proste: reka idzie od tulowia w prawo
+            hx, hy = ramie(d, x + 40, 690, 0.25 - 0.2 * q, 0.05, 110, 100 + 30 * q, kol, a)
+            d.rounded_rectangle([hx, hy - 34, hx + 68, hy + 34], radius=8, fill=ZOLTY + (int(255 * a),))
+            strzalka(d, (x + 20, 1010), (x + 200, 1010), kol, a * q, grub=8)
+    im.alpha_composite(nak)
+
+
+def paragon(d, cx, ytop, w, h, kwota, a):
+    ka = int(255 * a)
+    d.rectangle([cx - w / 2, ytop, cx + w / 2, ytop + h], fill=(246, 244, 240, ka))
+    for x in range(int(cx - w / 2), int(cx + w / 2), 20):
+        d.polygon([(x, ytop + h), (x + 10, ytop + h + 12), (x + 20, ytop + h)], fill=(246, 244, 240, ka))
+    for k in range(int((h - 120) / 34)):
+        d.rounded_rectangle([cx - w / 2 + 24, ytop + 30 + k * 34, cx + w / 2 - 24 - (k % 3) * 30, ytop + 44 + k * 34], radius=5,
+                            fill=(200, 200, 206, ka))
+    f = f_anton(64)
+    d.text((cx - szer(d, kwota, f) / 2, ytop + h - 86), kwota, font=f, fill=CIEMNY + (ka,))
+
+
+def scena_paragony(im, t, dl, p, kt):
+    """Dwa wozki, pod kazdym paragon; przy uchwytach zginajacych rece paragon jest dluzszy."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    for i, (uch, kw, hmax) in enumerate((("poziomy", p["kwoty"][0], 300), ("pionowy", p["kwoty"][1], 400))):
+        x = CX - 190 + i * 380
+        wozek(d, x + 30, 520, 0.75, a, uch, 0)
+        et = p.get("etykiety", ["zwykła rączka", "uchwyty"])[i]
+        fe = f_inter(28, False)
+        d.text((x - szer(d, et, fe) / 2, 640), et, font=fe, fill=SZARY + (int(255 * a),))
+        q = wej(t, 0.4 + i * 0.3, 0.7)
+        if q > 0:
+            paragon(d, x, 700, 250, 140 + (hmax - 140) * q, kw, 1.0)
+    im.alpha_composite(nak)
+
+
+def scena_wniosek_wozek(im, t, dl, p, kt):
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    wozek(d, CX + 40, 760, 1.3, a, "poziomy", t)
+    pz = pop(t, 0.4, 0.4)
+    if pz > 0:
+        ptaszek(d, X1 - 120, 520, 80 * pz)
+        linie_tekstu(d, p["linie"], CX, 1060, min(1, pz), px=70)
+    im.alpha_composite(nak)
+
+
+# ---------- palec kontra myszka
+
+def sernik(d, cx, cy, r, a):
+    ka = int(255 * a)
+    d.polygon([(cx - r, cy + r * 0.5), (cx + r, cy + r * 0.5), (cx + r * 0.2, cy - r * 0.6)], fill=(250, 226, 160, ka))
+    d.polygon([(cx - r, cy + r * 0.5), (cx + r, cy + r * 0.5), (cx + r, cy + r * 0.75), (cx - r, cy + r * 0.75)], fill=(180, 120, 70, ka))
+    d.ellipse([cx - r * 0.1, cy - r * 0.75, cx + r * 0.3, cy - r * 0.35], fill=(220, 50, 60, ka))
+
+
+def salatka(d, cx, cy, r, a):
+    ka = int(255 * a)
+    d.chord([cx - r, cy - r * 0.6, cx + r, cy + r * 0.9], 0, 180, fill=(220, 220, 230, ka))
+    for dx, dy, kol in ((-0.5, -0.05, (240, 80, 70)), (0.0, -0.2, (120, 200, 90)), (0.45, 0.0, (250, 190, 60)), (-0.1, 0.1, (130, 80, 180))):
+        d.ellipse([cx + dx * r - r * 0.25, cy + dy * r - r * 0.25, cx + dx * r + r * 0.25, cy + dy * r + r * 0.25], fill=kol + (ka,))
+
+
+def ik_dlon(d, cx, cy, r, kol, a):
+    k = kol + (int(255 * a),)
+    d.rounded_rectangle([cx - r * 0.18, cy - r, cx + r * 0.18, cy], radius=int(r * 0.18), fill=k)
+    d.rounded_rectangle([cx - r * 0.55, cy - r * 0.2, cx + r * 0.55, cy + r * 0.8], radius=int(r * 0.3), fill=k)
+
+
+def ik_mysz(d, cx, cy, r, kol, a):
+    k = kol + (int(255 * a),)
+    d.rounded_rectangle([cx - r * 0.55, cy - r, cx + r * 0.55, cy + r], radius=int(r * 0.55), outline=k, width=max(5, int(r * 0.12)))
+    d.line([cx, cy - r, cx, cy - r * 0.2], fill=k, width=max(4, int(r * 0.1)))
+
+
+def scena_pytanie_palec(im, t, dl, p, kt):
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+
+    def ekran(im2, box, tt, a):
+        x0, y0, x1, y1 = box
+        n2, d2 = warstwa()
+        cxx = (x0 + x1) / 2
+        for j, rys in enumerate((sernik, salatka)):
+            yy = y0 + 150 + j * 250
+            d2.rounded_rectangle([x0 + 24, yy - 100, x1 - 24, yy + 110], radius=20, fill=(255, 255, 255, int(255 * a)),
+                                 outline=(220, 220, 226, int(255 * a)), width=3)
+            rys(d2, cxx, yy, 70, a)
+        im2.alpha_composite(n2)
+    box = telefon(im, CX, dol + 470, 0.95, 1.0, ekran, t)
+    nak, d = warstwa()
+    tap = wcisk_fazy(t, 0.15, 0.9)
+    px, py = (box[0] + box[2]) / 2 + 60, box[1] + 170
+    palec(d, px, py, 1.0, tap)
+    ik_dlon(d, px + 30, py + 110 - 20 * tap, 60, (236, 200, 170), 1.0)
+    im.alpha_composite(nak)
+    smuga(im, t)
+
+
+def scena_siegniecie(im, t, dl, p, kt):
+    """Palec dotyka sernika, a ten 'wychodzi z ekranu' w strone reki."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    q = wej(t, 0.4, 0.9)
+    d.rounded_rectangle([CX - 220, 480, CX + 220, 1180], radius=50, fill=(34, 34, 40, int(255 * a)))
+    d.rounded_rectangle([CX - 200, 500, CX + 200, 1160], radius=40, fill=(246, 244, 240, int(255 * a)))
+    sernik(d, CX, 760 - 120 * q, 90 + 90 * q, a)
+    ik_dlon(d, CX + 60, 1000 - 120 * q, 90, (236, 200, 170), a)
+    if q > 0.6:
+        tx = p.get("napis", "JAK SIĘGNIĘCIE RĘKĄ")
+        f = dopasuj(d, tx, X1 - X0, 60, 36, f_anton)
+        d.text((CX - szer(d, tx, f) / 2, 330), tx, font=f, fill=BIEL + (int(255 * wej(t, 1.0, 0.3)),))
+    im.alpha_composite(nak)
+
+
+def scena_palec_mysz(im, t, dl, p, kt):
+    """Dowod: sernik wybrany - dotyk 95%, myszka 73%."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    sernik(d, CX, 380, 70, a)
+    fs = f_inter(32, False)
+    tx = p.get("podpis", "wybrało sernik zamiast sałatki")
+    d.text((CX - szer(d, tx, fs) / 2, 470), tx, font=fs, fill=SZARY + (int(255 * a),))
+    dwa_slupki(d, t, p["wartosci"], p["etykiety"], [ZIELONY, (110, 112, 124)], y_dol=1150, wys_max=440)
+    im.alpha_composite(nak)
+
+
+def scena_policz(im, t, dl, p, kt):
+    """Wniosek: palec zawisa nad 'Kup', odliczanie 1-2-3."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    bx0, by0, bx1, by1 = CX - 230, 820, CX + 230, 950
+    d.rounded_rectangle([bx0, by0, bx1, by1], radius=30, fill=(255, 92, 40, int(255 * a)))
+    f = f_inter(54)
+    d.text((CX - szer(d, "Kup", f) / 2, by0 + 32), "Kup", font=f, fill=BIEL + (int(255 * a),))
+    ik_dlon(d, CX + 150, by1 + 150 + 10 * math.sin(t * 3), 80, (236, 200, 170), a)
+    n = min(3, int(max(0, t - 0.3) / 0.5) + 1) if t > 0.3 else 0
+    if n:
+        tl = str(n)
+        pz = pop(t, 0.3 + (n - 1) * 0.5, 0.3)
+        fb = f_anton(max(1, int(200 * max(pz, 0.01))))
+        d.text((CX - szer(d, tl, fb) / 2, 420), tl, font=fb, fill=ZOLTY + (255,))
+    im.alpha_composite(nak)
+
+
+# ---------- abonament
+
+def ik_usluga(d, x, y, s, kol, typ, a):
+    ka = int(255 * a)
+    d.rounded_rectangle([x, y, x + s, y + s], radius=int(s * 0.22), fill=kol + (ka,))
+    c = (x + s / 2, y + s / 2)
+    if typ == 0:
+        d.polygon([(c[0] - s * 0.15, c[1] - s * 0.2), (c[0] - s * 0.15, c[1] + s * 0.2), (c[0] + s * 0.2, c[1])], fill=BIEL + (ka,))
+    elif typ == 1:
+        d.ellipse([c[0] - s * 0.2, c[1] + s * 0.02, c[0] - s * 0.02, c[1] + s * 0.2], fill=BIEL + (ka,))
+        d.line([c[0] - s * 0.03, c[1] + s * 0.1, c[0] - s * 0.03, c[1] - s * 0.22, c[0] + s * 0.18, c[1] - s * 0.16], fill=BIEL + (ka,), width=max(3, int(s * 0.06)))
+    else:
+        d.ellipse([c[0] - s * 0.25, c[1] - s * 0.05, c[0] + s * 0.05, c[1] + s * 0.2], fill=BIEL + (ka,))
+        d.ellipse([c[0] - s * 0.1, c[1] - s * 0.2, c[0] + s * 0.25, c[1] + s * 0.2], fill=BIEL + (ka,))
+
+
+USLUGI = [((230, 60, 70), 0, "Filmy"), ((40, 190, 100), 1, "Muzyka"), ((70, 130, 240), 2, "Chmura"), ((240, 160, 40), 0, "Kursy")]
+
+
+def scena_pytanie_abonament(im, t, dl, p, kt):
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+
+    def ekran(im2, box, tt, a):
+        x0, y0, x1, y1 = box
+        n2, d2 = warstwa()
+        for j, (kol, typ, nazwa) in enumerate(USLUGI):
+            pj = 1.0 if j == 0 else wej(tt, j * 0.35, 0.35)
+            if pj <= 0:
+                continue
+            yy = y0 + 80 + j * 130 - 30 * (1 - pj)
+            d2.rounded_rectangle([x0 + 18, yy, x1 - 18, yy + 110], radius=20, fill=(255, 255, 255, int(255 * a * pj)))
+            ik_usluga(d2, x0 + 32, yy + 20, 70, kol, typ, a * pj)
+            f = f_inter(26)
+            d2.text((x0 + 118, yy + 18), nazwa, font=f, fill=(40, 40, 46, int(255 * pj)))
+            d2.text((x0 + 118, yy + 58), "-29,99 zł", font=f_inter(26), fill=(220, 60, 60, int(255 * pj)))
+        im2.alpha_composite(n2)
+    telefon(im, CX, dol + 470, 0.95, 1.0, ekran, t)
+    smuga(im, t)
+
+
+def scena_schodza(im, t, dl, p, kt):
+    """Miesiace mijaja, a monety same spadaja z konta - okienko 'decyzja' nigdy sie nie pojawia."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    mies = ["sty", "lut", "mar", "kwi", "maj", "cze"]
+    krok = 120
+    x0 = CX - krok * 2.5
+    for i, m in enumerate(mies):
+        x = x0 + i * krok
+        on = t > 0.2 + i * 0.3
+        d.rounded_rectangle([x - 50, 420, x + 50, 520], radius=16, fill=((70, 72, 86) if not on else (90, 60, 64)) + (int(255 * a),))
+        f = f_inter(30)
+        d.text((x - szer(d, m, f) / 2, 450), m, font=f, fill=BIEL + (int(255 * a),))
+        q = (t - (0.2 + i * 0.3)) / 0.6
+        if 0 < q < 1:
+            y = 540 + 520 * q
+            d.ellipse([x - 32, y - 32, x + 32, y + 32], fill=ZOLTY + (int(255 * (1 - q * 0.3)),))
+    d.rounded_rectangle([CX - 300, 1080, CX + 300, 1200], radius=24, fill=(40, 42, 52, int(255 * a)))
+    saldo = 1000 - 30 * min(6, max(0, int((t - 0.2) / 0.3) + (1 if t > 0.2 else 0)))
+    fb = f_anton(64)
+    tx = f"konto: {saldo}"
+    d.text((CX - szer(d, tx, fb) / 2, 1100), tx, font=fb, fill=BIEL + (int(255 * a),))
+    fs = f_inter(30, False)
+    t2 = p.get("podpis", "decyzja? nigdy nie pada")
+    d.text((CX - szer(d, t2, fs) / 2, 1230), t2, font=fs, fill=SZARY + (int(255 * wej(t, 0.8, 0.3)),))
+    im.alpha_composite(nak)
+
+
+def scena_przeglad(im, t, dl, p, kt):
+    """Wniosek: raz w miesiacu lista subskrypcji, zbedne skreslone."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    budzik(d, CX, 400, 50 * max(0.01, pop(t, 0.05, 0.4)), 1.0, ZOLTY)
+    x0, x1 = CX - 300, CX + 300
+    for j, (kol, typ, nazwa) in enumerate(USLUGI):
+        y = 520 + j * 150
+        d.rounded_rectangle([x0, y, x1, y + 120], radius=22, fill=(40, 42, 52, int(255 * a)))
+        ik_usluga(d, x0 + 20, y + 20, 80, kol, typ, a)
+        f = f_inter(36)
+        d.text((x0 + 130, y + 38), nazwa, font=f, fill=BIEL + (int(255 * a),))
+        zostaje = j in (0, 2)
+        q = wej(t, 0.5 + j * 0.25, 0.3)
+        if q > 0:
+            if zostaje:
+                ptaszek(d, x1 - 60, y + 60, 34 * q)
+            else:
+                d.line([x0 + 120, y + 62, x0 + 120 + (x1 - x0 - 200) * q, y + 62], fill=CZERW + (255,), width=8)
+                krzyzyk(d, x1 - 60, y + 60, 26, 1.0, q)
+    im.alpha_composite(nak)
+
+
+SCENY_MARKETING = {"pytanie_dziennie": scena_pytanie_dziennie, "ta_sama": scena_ta_sama, "waga": scena_waga,
+                   "slupki2": scena_slupki2, "przelicz": scena_przelicz,
+                   "pytanie_wozek": scena_pytanie_wozek, "ramiona": scena_ramiona, "paragony": scena_paragony,
+                   "wniosek_wozek": scena_wniosek_wozek,
+                   "pytanie_palec": scena_pytanie_palec, "siegniecie": scena_siegniecie, "palec_mysz": scena_palec_mysz,
+                   "policz": scena_policz,
+                   "pytanie_abonament": scena_pytanie_abonament, "schodza": scena_schodza, "przeglad": scena_przeglad}
+
 SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wtyczka,
          "firmy": scena_firmy, "wniosek": scena_wniosek, "cta": scena_cta,
          "pytanie_dymek": scena_pytanie_dymek, "aplikacje": scena_aplikacje,
@@ -1335,6 +2257,8 @@ SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wt
          "pytanie_dokument": scena_pytanie_dokument, "klauzula": scena_klauzula, "czas": scena_czas, "sprawdz": scena_sprawdz,
          "pytanie_baner": scena_pytanie_baner, "kafelki": scena_kafelki, "dwa_banery": scena_dwa_banery, "ustawienia": scena_ustawienia}
 SCENY.update(SCENY_PRZYCISK)
+SCENY.update(SCENY_1411)
+SCENY.update(SCENY_MARKETING)
 
 
 # ------------------------------------------------------------- napisy

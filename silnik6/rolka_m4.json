@@ -1,0 +1,7 @@
+{"kod":"m4","akcent":"#5AA9FF","audio":"/home/claude/silnik5/glos_m4.wav","slowa":"/home/claude/silnik5/glos_m4.json",
+"sceny":[
+ {"typ":"pytanie_abonament","od":0,"linie":["JAK TO MOŻLIWE, ŻE PŁACISZ","ZA NIEUŻYWANY ABONAMENT?"]},
+ {"typ":"schodza","od":"Pieniądze","podpis":"a chwili na decyzję nie ma"},
+ {"typ":"ludzie","od":"Na","ile":11,"podpis":"myśli o rezygnacji w typowym miesiącu"},
+ {"typ":"przeglad","od":"Więc#2"},
+ {"typ":"cta","od":"Zaobserwuj","klik":0.9}]}
