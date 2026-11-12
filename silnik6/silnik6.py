@@ -29,6 +29,7 @@ BIEL = (255, 255, 255)
 CIEMNY = (20, 17, 14)
 ZOLTY = (255, 216, 77)
 CZERW = (255, 72, 66)
+ZIELONY = (64, 214, 120)
 SZARY = (150, 152, 160)
 FONTY = pathlib.Path(__file__).parent / "fonty"
 
@@ -265,10 +266,53 @@ def pytanie_u_gory(im, linie, t, a, akcent):
     return y
 
 
+def blysk(im, box, t):
+    """Efekt otwarcia: od plakietki rozchodza sie dwie czerwone fale (0,2-1,2 s),
+    a przez ekran telefonu przechodzi blysk (0,25-1,3 s)."""
+    w = box[2] - box[0]
+    k = w / 378
+    bxc = (box[0] + box[2]) // 2
+    byc = int(box[1] + 64 * k + 0.9 * w - 30 * k)
+    for start in (0.2, 0.5):
+        if start < t < start + 0.7:
+            q = (t - start) / 0.7
+            r = int(60 + 360 * q)
+            nak, d = warstwa()
+            d.ellipse([bxc - r, byc - r * 0.6, bxc + r, byc + r * 0.6], outline=CZERW + (int(220 * (1 - q)),), width=10)
+            im.alpha_composite(nak)
+    # smuga swiatla przez caly kadr (0,15-0,95 s) - efekt otwarcia widoczny w miniaturce feedu
+    if 0.15 < t < 0.95:
+        ps = (t - 0.15) / 0.8
+        nak, d = warstwa()
+        sx = int(-W * 0.7 + ps * W * 2.3)
+        moc = int(150 * math.sin(math.pi * ps))
+        for kk in range(6):
+            d.line([sx + kk * 46, H, sx + kk * 46 + 700, 0], fill=(255, 255, 255, max(0, moc - kk * 18)), width=46)
+        im.alpha_composite(nak.filter(ImageFilter.GaussianBlur(22)))
+    if not 0.25 < t < 1.3:
+        return
+    pb = (t - 0.25) / 1.05
+    nak, d = warstwa()
+    bx = box[0] - 200 + pb * (box[2] - box[0] + 400)
+    for kk in range(3):
+        d.line([bx + kk * 30, box[3], bx + kk * 30 + 220, box[1]], fill=(255, 255, 255, int(130 * math.sin(math.pi * pb))), width=26)
+    nak = nak.filter(ImageFilter.GaussianBlur(10))
+    maska = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(maska).rounded_rectangle(box, radius=40, fill=255)
+    nak.putalpha(Image.composite(nak.getchannel("A"), Image.new("L", (W, H), 0), maska))
+    im.alpha_composite(nak)
+
+
 def scena_pytanie(im, t, dl, p, kt):
     """Pytanie + telefon z plakietka; na slowie 'jutro' kartka DZIS -> JUTRO, a liczba dalej 3."""
     akc = kt["akcent"]
     dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    if not p.get("jutro"):
+        # pytanie bez "jutro": sam telefon na osi, z tym samym ozywieniem startu
+        sk = 1.08 if t < 0.1 else 0.96 + 0.12 * (1 - (1 - min(1.0, (t - 0.1) / 0.7)) ** 3)
+        box = telefon(im, CX, dol + 470, sk, 1.0, ekran_sklepu(lambda tt: 3, p["foto"]), t)
+        blysk(im, box, t)
+        return
     t_jutro = kt["czas_slowa"](p["jutro"]) - kt["od"]
     # OTWARCIE (efekt na starcie kazdej rolki): klatka 0 jest gotowa okladka,
     # a od 0,1 s telefon "wskakuje" blizej z przeskokiem, przez ekran przechodzi
@@ -280,17 +324,7 @@ def scena_pytanie(im, t, dl, p, kt):
         sk = 0.96 + 0.12 * (1 - (1 - q) ** 3) + 0.03 * math.sin(math.pi * q)
         kal = wej(t, 0.35, 0.45)
     box = telefon(im, CX - 130, dol + 470, sk, 1.0, ekran_sklepu(lambda tt: 3, p["foto"]), t)
-    if 0.25 < t < 1.3:
-        pb = (t - 0.25) / 1.05
-        nak, d = warstwa()
-        bx = box[0] - 200 + pb * (box[2] - box[0] + 400)
-        for kk in range(3):
-            d.line([bx + kk * 30, box[3], bx + kk * 30 + 220, box[1]], fill=(255, 255, 255, int(110 * math.sin(math.pi * pb))), width=22)
-        nak = nak.filter(ImageFilter.GaussianBlur(10))
-        maska = Image.new("L", (W, H), 0)
-        ImageDraw.Draw(maska).rounded_rectangle(box, radius=40, fill=255)
-        nak.putalpha(Image.composite(nak.getchannel("A"), Image.new("L", (W, H), 0), maska))
-        im.alpha_composite(nak)
+    blysk(im, box, t)
     # kalendarz po prawej
     nak, d = warstwa()
     kx, ky = CX + 270 + int((1 - kal) * 340), dol + 380
@@ -322,12 +356,14 @@ def scena_magazyn(im, t, dl, p, kt):
                         outline=(70, 70, 80, int(255 * a)), width=3)
     fl = f_inter(30)
     d.text((mx + 20, my - 40), "MAGAZYN", font=fl, fill=SZARY + (int(255 * a),))
+    zgodnie = p.get("tryb") == "zgodnie"
     s = 78
     nr = 0
+    ile_k = p["w_magazynie"] if zgodnie else 99
     for rz in range(6):
         for kol in range(3):
             pa = wej(t, 0.05 + nr * 0.03, 0.25)
-            if pa > 0:
+            if pa > 0 and nr < ile_k:
                 pudelko(d, mx + 20 + kol * (s + 10), my + 20 + rz * (s * 0.8 + 12) - int((1 - pa) * 40), s, pa * a)
             nr += 1
     fbig = f_anton(64)
@@ -337,8 +373,17 @@ def scena_magazyn(im, t, dl, p, kt):
     telefon(im, X1 - 150, 880, 0.8, a, ekran_sklepu(lambda tt: 3, p["foto"]), t)
     nak, d = warstwa()
     pr = wej(t, 0.5, 0.6)
-    strzalka(d, (mx + 315, 880), (X1 - 310, 880), SZARY, a, grub=10, postep=pr, kreska=True, t=t)
     kx = (mx + 315 + X1 - 310) // 2
+    if zgodnie:
+        # NORMALNIE: magazyn i napis sa polaczone - liczba na telefonie = kartony
+        strzalka(d, (mx + 315, 880), (X1 - 310, 880), ZIELONY, a, grub=10, postep=pr, kreska=True, t=t)
+        pk = wej(t, 1.0, 0.4)
+        if pk > 0:
+            d.ellipse([kx - 56, 824, kx + 56, 936], fill=ZIELONY + (int(255 * pk),))
+            d.line([kx - 26, 880, kx - 6, 902, kx + 28, 858], fill=BIEL + (int(255 * pk),), width=12, joint="curve")
+        im.alpha_composite(nak)
+        return
+    strzalka(d, (mx + 315, 880), (X1 - 310, 880), SZARY, a, grub=10, postep=pr, kreska=True, t=t)
     pk = wej(t, 1.2, 0.5)
     if pk > 0:
         d.ellipse([kx - 62, 818, kx + 62, 942], fill=(20, 20, 26, int(240 * pk)), outline=CZERW + (int(255 * pk),), width=6)
@@ -354,7 +399,16 @@ def scena_wtyczka(im, t, dl, p, kt):
     sl = 9 - 6 * wej(t, 0.8, 1.2)
     n = max(1, int(round(sl)))
     nak, d = warstwa()
-    px, py = X0 + 170, 680
+    px, py = X0 + 170, 700
+    if p.get("magazyn"):
+        fm = f_inter(40)
+        tm = p["magazyn"]
+        wm, hm = pigulka(d, CX, 380, tm, fm, (28, 28, 34, int(240 * a)), SZARY + (int(255 * a),),
+                         obrys=(70, 70, 80, int(255 * a)), pad=(22, 10))
+        ps = wej(t, 0.6, 0.4)
+        if ps > 0:
+            d.line([CX - wm // 2 + 8, 380 + hm // 2, CX - wm // 2 + 8 + (wm - 16) * ps, 380 + hm // 2],
+                   fill=CZERW + (int(255 * a),), width=7)
     wtyczka(d, px, py, 110 * pop(t, 0, 0.45), akc, a)
     fl = f_inter(34)
     d.text((px - szer(d, "WTYCZKA", fl) // 2, py + 150), "WTYCZKA", font=fl, fill=BIEL + (int(255 * a),))
@@ -404,6 +458,30 @@ def scena_firmy(im, t, dl, p, kt):
     im.alpha_composite(nak)
 
 
+def scena_wniosek(im, t, dl, p, kt):
+    """Wniosek dla widza: napis na telefonie gasnie, wskakuje zielony ptaszek
+    i haslo, co z tym zrobic (tu: nie musisz sie spieszyc)."""
+    a = wej(t, 0, 0.35)
+    zgas = wej(t, 0.3, 0.5)
+    box = telefon(im, CX - 140, 860, 0.85, a, ekran_sklepu(lambda tt: 3, p["foto"]), t)
+    if zgas > 0:
+        nak, d = warstwa()
+        d.rounded_rectangle(box, radius=38, fill=(14, 14, 17, int(150 * zgas)))
+        im.alpha_composite(nak)
+    nak, d = warstwa()
+    pz = pop(t, 0.5, 0.45)
+    if pz > 0:
+        r = int(110 * pz)
+        cx, cy = X1 - 130, 760
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=ZIELONY + (255,))
+        d.line([cx - r * 0.45, cy, cx - r * 0.1, cy + r * 0.38, cx + r * 0.5, cy - r * 0.35],
+               fill=BIEL + (255,), width=max(6, int(r * 0.18)), joint="curve")
+        for i, linia in enumerate(p["linie"]):
+            f = dopasuj(d, linia, 330, 46, 28, f_anton)
+            d.text((cx - szer(d, linia, f) // 2, cy + 150 + i * (f.size + 8)), linia, font=f, fill=BIEL + (255,))
+    im.alpha_composite(nak)
+
+
 def scena_cta(im, t, dl, p, kt):
     """Karta profilu, kursor naciska Obserwuj, przycisk zmienia sie na Obserwujesz."""
     akc = hexk("#FF5C28")       # CTA zawsze w kolorze marki
@@ -444,7 +522,7 @@ def scena_cta(im, t, dl, p, kt):
 
 
 SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wtyczka,
-         "firmy": scena_firmy, "cta": scena_cta}
+         "firmy": scena_firmy, "wniosek": scena_wniosek, "cta": scena_cta}
 
 
 # ------------------------------------------------------------- napisy
@@ -465,18 +543,30 @@ def grupy(slowa, maks=4):
 
 def napisy(im, grupa, t):
     nak, d = warstwa()
-    f = f_inter(50)
     odst = 14
-    wiersze, biez, sz = [], [], 0
-    for s in grupa:
-        w = szer(d, s["s"], f) + 30
-        if sz + w > X1 - X0 and biez:
+
+    def lam(f):
+        wiersze, biez, sz = [], [], 0
+        for s in grupa:
+            w = szer(d, s["s"], f) + 30
+            if sz + w > X1 - X0 and biez:
+                wiersze.append(biez)
+                biez, sz = [], 0
+            biez.append(s)
+            sz += w + odst
+        if biez:
             wiersze.append(biez)
-            biez, sz = [], 0
-        biez.append(s)
-        sz += w + odst
-    if biez:
-        wiersze.append(biez)
+        return wiersze
+    # najpierw mniejsza czcionka (do 40), dopiero potem drugi wiersz - zeby nie
+    # zostawalo samotne "z" w drugiej linii
+    for px in range(50, 39, -2):
+        f = f_inter(px)
+        wiersze = lam(f)
+        if len(wiersze) == 1:
+            break
+    if len(wiersze) > 1:
+        f = f_inter(50)
+        wiersze = lam(f)
     y = CAP_Y - (len(wiersze) * (f.size + 34)) // 2
     for wier in wiersze:
         sw = sum(szer(d, s["s"], f) + 30 + odst for s in wier) - odst

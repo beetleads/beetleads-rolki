@@ -1,0 +1,50 @@
+{
+ "kod": "s6sztuki",
+ "akcent": "#35D0E8",
+ "audio": "/home/claude/silnik5/glos_s6v2.wav",
+ "slowa": "/home/claude/silnik5/glos_s6v2.json",
+ "sceny": [
+  {
+   "typ": "pytanie",
+   "od": 0,
+   "linie": [
+    "CO KRYJE SIĘ ZA NAPISEM",
+    "\"ZOSTAŁY 3 SZTUKI\"?"
+   ],
+   "foto": "public/torba1.jpg"
+  },
+  {
+   "typ": "magazyn",
+   "od": "Normalnie",
+   "tryb": "zgodnie",
+   "w_magazynie": 3,
+   "foto": "public/torba1.jpg"
+  },
+  {
+   "typ": "wtyczka",
+   "od": "Ale",
+   "magazyn": "MAGAZYN: 40 SZT.",
+   "foto": "public/torba1.jpg"
+  },
+  {
+   "typ": "firmy",
+   "od": "Badacze",
+   "ile": 22,
+   "podpis": "firmy sprzedają sklepom takie wtyczki"
+  },
+  {
+   "typ": "wniosek",
+   "od": "Więc",
+   "linie": [
+    "NIE MUSISZ",
+    "SIĘ SPIESZYĆ"
+   ],
+   "foto": "public/torba1.jpg"
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}
