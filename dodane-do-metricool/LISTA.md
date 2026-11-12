@@ -333,3 +333,15 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
   jeden kij; pusty ekran telefonu na okladce rolki o abonamencie; pierwsze nagranie "5 dziennie"
   mialo 24,9 s (limit 23) - nagrane krotsze.
 - Muzyka: pliku podklad.wav nie ma ani w srodowisku, ani na Dysku - czekam na plik od zalozyciela.
+
+## 12.11 15:15 - bez "PYTAJA LUDZIE" + 15.11 (koniec tygodnia)
+
+- Zalozyciel 14:45: etykieta "PYTAJA LUDZIE" na poczatku "bez sensu" - usunieta z silnika.
+  Przerenderowane i podmienione w Metricool (pliki *_s6b): 13.11 07/12/18, 14.11 07/12/18.
+- Przy okazji: kursor na koncowce jedzie poziomo do przycisku (wczesniej przejezdzal po napisie
+  "po wiecej ciekawostek"); kalendarz - liczba nie wchodzi juz na podpis.
+- 15.11 07:00 zwrot (Janakiraman i Ordonez, 2012): 425741819 / 425742362
+- 15.11 12:00 czcionka ceny (Coulter i Coulter, 2005): 425741884 / 425742433
+- 15.11 18:00 doladowanie z bonusem (Liu, Zhang i Zou, 2026): 425741906 / 425742453
+- Stare wersje tych zrodel -> DRAFT: 21.11 12:00 (pakiet 40%), 26.11 18:00 (zwroty).
+- Zakres: do 15.11 wlacznie (zalozyciel 14:37 "byle do 15.11, do konca tygodnia").

@@ -669,7 +669,7 @@
   "rolka": "C3",
   "data": "2026-11-15",
   "godz": "13:00",
-  "status": "zaplanowana",
+  "status": "wycofana",
   "slug": "mała-czcionka-ceny",
   "zrodlo": "Coulter i Coulter, 2005",
   "mechanizm": "rozmiar czcionki ceny"
@@ -831,7 +831,7 @@
   "rolka": "U9",
   "data": "2026-11-21",
   "godz": "13:00",
-  "status": "planowana",
+  "status": "wycofana",
   "slug": "40%-pakietu-przepada",
   "zrodlo": "Liu, Zhang i Zou, 2026",
   "mechanizm": "niewykorzystana przedplata"
@@ -975,7 +975,7 @@
   "rolka": "P8",
   "data": "2026-11-26",
   "godz": "18:00",
-  "status": "planowana",
+  "status": "wycofana",
   "slug": "dłuższy-zwrot,-mniej-zwrotów",
   "zrodlo": "Janakiraman i Ordonez, 2012",
   "mechanizm": "odkladanie zwrotu"
@@ -1186,5 +1186,32 @@
   "slug": "abonament-s6",
   "status": "zaplanowana",
   "zrodlo": "Einav, Klopack i Mahoney, 2023"
+ },
+ {
+  "data": "2026-11-15",
+  "godz": "07:00",
+  "mechanizm": "odkladanie zwrotu",
+  "rolka": "P8",
+  "slug": "zwrot-s6",
+  "status": "zaplanowana",
+  "zrodlo": "Janakiraman i Ordonez, 2012"
+ },
+ {
+  "data": "2026-11-15",
+  "godz": "12:00",
+  "mechanizm": "rozmiar czcionki ceny",
+  "rolka": "C3",
+  "slug": "czcionka-ceny-s6",
+  "status": "zaplanowana",
+  "zrodlo": "Coulter i Coulter, 2005"
+ },
+ {
+  "data": "2026-11-15",
+  "godz": "18:00",
+  "mechanizm": "niewykorzystana przedplata",
+  "rolka": "U9",
+  "slug": "doladowanie-s6",
+  "status": "zaplanowana",
+  "zrodlo": "Liu, Zhang i Zou, 2026"
  }
 ]
