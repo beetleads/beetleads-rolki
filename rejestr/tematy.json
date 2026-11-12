@@ -660,7 +660,7 @@
   "rolka": "D7",
   "data": "2026-11-15",
   "godz": "09:00",
-  "status": "zaplanowana",
+  "status": "wycofana",
   "slug": "palec-kontra-myszka",
   "zrodlo": "Shen, Zhang i Krishna, 2016",
   "mechanizm": "dotyk ekranu"
@@ -714,7 +714,7 @@
   "rolka": "L1",
   "data": "2026-11-17",
   "godz": "09:00",
-  "status": "planowana",
+  "status": "wycofana",
   "slug": "uchwyt-wózka-rządzi",
   "zrodlo": "Estes i Streicher, 2022",
   "mechanizm": "napiecie miesni ramion"
@@ -759,7 +759,7 @@
   "rolka": "U5",
   "data": "2026-11-18",
   "godz": "18:00",
-  "status": "planowana",
+  "status": "wycofana",
   "slug": "płacą-bez-decyzji",
   "zrodlo": "Einav, Klopack i Mahoney, 2023",
   "mechanizm": "moment wymuszonej decyzji"
@@ -1148,7 +1148,43 @@
   "mechanizm": "przycisk-placebo, swiatla na zegarze",
   "rolka": "S6",
   "slug": "przycisk-przejscie",
-  "status": "zaplanowana",
+  "status": "wycofana",
   "zrodlo": "NYT 2004, NYC DOT (Primeggia)"
+ },
+ {
+  "data": "2026-11-13",
+  "godz": "07:00",
+  "mechanizm": "rozbicie kwoty na dni",
+  "rolka": "C10",
+  "slug": "piec-dziennie-s6",
+  "status": "zaplanowana",
+  "zrodlo": "Hershfield, Shu i Benartzi, 2019"
+ },
+ {
+  "data": "2026-11-14",
+  "godz": "07:00",
+  "mechanizm": "napiecie miesni ramion",
+  "rolka": "L1",
+  "slug": "uchwyt-wozka-s6",
+  "status": "zaplanowana",
+  "zrodlo": "Estes i Streicher, 2022"
+ },
+ {
+  "data": "2026-11-14",
+  "godz": "12:00",
+  "mechanizm": "dotyk ekranu",
+  "rolka": "D7",
+  "slug": "palec-myszka-s6",
+  "status": "zaplanowana",
+  "zrodlo": "Shen, Zhang i Krishna, 2016"
+ },
+ {
+  "data": "2026-11-14",
+  "godz": "18:00",
+  "mechanizm": "moment wymuszonej decyzji",
+  "rolka": "U5",
+  "slug": "abonament-s6",
+  "status": "zaplanowana",
+  "zrodlo": "Einav, Klopack i Mahoney, 2023"
  }
 ]

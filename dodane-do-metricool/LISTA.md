@@ -312,3 +312,24 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
 - Poprawione przed publikacja: w scenie "zegar" swiatlo nie zdazalo zmienic sie
   na zielone w 1,3 s - teraz zmienia sie w 0,7 s scenki.
 - Metricool: IG+TT 425632107, FB+YT 425632233. Stara para (sztuki) zostaje w drafcie.
+
+## 12.11 14:25 - tylko MARKETINGOWE ciekawostki (zalozyciel 13:55)
+
+"Skupiaj sie tylko na marketingowych ciekawostkach, nie na ogolnych."
+- 13.11 07:00 przycisk na przejsciu -> DRAFT (ogolna ciekawostka). Na jego miejsce
+  "5 dziennie czy 150 miesiecznie" (Hershfield, Shu i Benartzi, 2019): IG+TT 425679361, FB+YT 425679944.
+- 14.11 07:00 uchwyt wozka (Estes i Streicher, 2022): 425679404 / 425679964
+- 14.11 12:00 palec kontra myszka (Shen, Zhang i Krishna, 2016): 425679431 / 425680004
+- 14.11 18:00 abonament bez decyzji (Einav, Klopack i Mahoney, 2023): 425679454 / 425680034
+- Te same zrodla w starym formacie -> DRAFT: 17.11 07:00 (wozek), 18.11 18:00 (abonament).
+  DO ZROBIENIA: 29.11 12:00 C10 (piec dziennie) nadal zaplanowana w starym formacie - przestawic na draft.
+- Odrzucone przed publikacja (ogolne, nie marketing): bateria w nocy, sasiedni pas, "nie jestem robotem"
+  - pliki zostaja w silnik6/ (gotowa_a7/a8/a9.mp4), nigdzie nie wrzucone.
+- Tematy bierzemy z pul rejestr/pula/*.json (zweryfikowane badania marketingowe) i opowiadamy
+  z perspektywy klienta, ktory pyta.
+- Bramki: 21,8 / 19,8 / 20,1 / 17,0 s; LUFS -14,0..-14,2; TP <= -1,5; ruch 21-23.
+- Poprawione samodzielnie przed publikacja: metka "150 miesiecznie" - cyfry nachodzily na podpis;
+  ekran abonamentow - kwota nachodzila na nazwe uslugi; ramiona - postacie wygladaly, jakby trzymaly
+  jeden kij; pusty ekran telefonu na okladce rolki o abonamencie; pierwsze nagranie "5 dziennie"
+  mialo 24,9 s (limit 23) - nagrane krotsze.
+- Muzyka: pliku podklad.wav nie ma ani w srodowisku, ani na Dysku - czekam na plik od zalozyciela.
