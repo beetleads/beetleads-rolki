@@ -299,3 +299,16 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
 - Stare rolki cenowe przestawione na DRAFT (nie usuniete): 14.11, 15.11, 16.11.
   Zostaly do przestawienia: 17-30.11 (najblizsza stara rolka 17.11 07:00).
 - 12.11 i 13.11 zostaja w kolejce (juz nowe tematy).
+
+## 12.11 13:36 - 13.11 07:00: przycisk na przejsciu (silnik 6)
+
+- Pytanie: "Czy przycisk na przejsciu dla pieszych w ogole cos robi?"
+- Dowod: NYT 27.02.2004 - z 3250 przyciskow w Nowym Jorku ponad 2500 bez wplywu
+  na swiatla (zegar), dzialalo ok. 750 (NYC DOT, M. Primeggia).
+- Sceny: slup z sygnalizatorem i przyciskiem -> "tak myslimy" (przycisk wzywa
+  zielone) -> 65 kwadratow po 50 przyciskow, 50 gasnie -> kabel przeciety, zegar
+  przelacza swiatlo -> 10 wcisniec, swiatlo dalej czerwone -> CTA.
+- Bramki: 20,7 s, LUFS -14,3, TP -1,3, ruch startowy 21,0. Klatki obejrzane.
+- Poprawione przed publikacja: w scenie "zegar" swiatlo nie zdazalo zmienic sie
+  na zielone w 1,3 s - teraz zmienia sie w 0,7 s scenki.
+- Metricool: IG+TT 425632107, FB+YT 425632233. Stara para (sztuki) zostaje w drafcie.

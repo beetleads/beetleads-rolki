@@ -1122,7 +1122,7 @@
   "slug": "ostatnie-sztuki",
   "zrodlo": "Mathur i in., 2019",
   "mechanizm": "sztuczny posplech w sklepie",
-  "status": "zaplanowana"
+  "status": "wycofana"
  },
  {
   "rolka": "S6",
@@ -1141,5 +1141,14 @@
   "zrodlo": "Nouwens i in., 2020",
   "mechanizm": "ukryty przycisk odmowy",
   "status": "zaplanowana"
+ },
+ {
+  "data": "2026-11-13",
+  "godz": "07:00",
+  "mechanizm": "przycisk-placebo, swiatla na zegarze",
+  "rolka": "S6",
+  "slug": "przycisk-przejscie",
+  "status": "zaplanowana",
+  "zrodlo": "NYT 2004, NYC DOT (Primeggia)"
  }
 ]
