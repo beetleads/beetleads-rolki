@@ -322,7 +322,7 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
 - 14.11 12:00 palec kontra myszka (Shen, Zhang i Krishna, 2016): 425679431 / 425680004
 - 14.11 18:00 abonament bez decyzji (Einav, Klopack i Mahoney, 2023): 425679454 / 425680034
 - Te same zrodla w starym formacie -> DRAFT: 17.11 07:00 (wozek), 18.11 18:00 (abonament).
-  DO ZROBIENIA: 29.11 12:00 C10 (piec dziennie) nadal zaplanowana w starym formacie - przestawic na draft.
+  29.11 12:00 C10 (piec dziennie, stary format) tez przestawiona na draft.
 - Odrzucone przed publikacja (ogolne, nie marketing): bateria w nocy, sasiedni pas, "nie jestem robotem"
   - pliki zostaja w silnik6/ (gotowa_a7/a8/a9.mp4), nigdzie nie wrzucone.
 - Tematy bierzemy z pul rejestr/pula/*.json (zweryfikowane badania marketingowe) i opowiadamy
