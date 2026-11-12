@@ -254,10 +254,8 @@ def ekran_sklepu(liczba_fn, foto_plik):
 
 def pytanie_u_gory(im, linie, t, a, akcent):
     nak, d = warstwa()
-    fc = f_inter(28, False)
-    pigulka(d, CX, 255, "PYTAJĄ LUDZIE", fc, (20, 20, 26, int(230 * a)), akcent + (int(255 * a),),
-            obrys=akcent + (int(255 * a),), pad=(22, 8))
-    y = 330
+    # 12.11 14:45 zalozyciel: chip "PYTAJA LUDZIE" na poczatku "bez sensu" - usuniety, samo pytanie
+    y = 290
     for l in linie:
         f = dopasuj(d, l, X1 - X0, 64, 40, f_anton)
         d.text((CX - szer(d, l, f) // 2, y), l, font=f, fill=BIEL + (int(255 * a),))
@@ -507,8 +505,9 @@ def scena_cta(im, t, dl, p, kt):
     tp = "po więcej ciekawostek"
     d.text((CX - szer(d, tp, fp) // 2, by + 150), tp, font=fp, fill=ZOLTY + (int(255 * a),))
     # kursor-palec dojezdza do przycisku i znika po kliknieciu
+    # kursor jedzie poziomo z prawej, na wysokosci przycisku - nie przejezdza po napisie pod spodem
     pk = wej(t, 0.2, max(0.2, t_klik - 0.2))
-    fx, fy = CX + 260 - 200 * pk, by + 260 - 200 * pk
+    fx, fy = X1 - 10 - (X1 - 10 - (CX + 120)) * pk, by + bh // 2
     zn = 1 - wej(t, t_klik + 0.15, 0.3)
     if zn > 0:
         rr = 30 + 26 * wej(t, t_klik, 0.3)
@@ -2248,6 +2247,256 @@ SCENY_MARKETING = {"pytanie_dziennie": scena_pytanie_dziennie, "ta_sama": scena_
                    "policz": scena_policz,
                    "pytanie_abonament": scena_pytanie_abonament, "schodza": scena_schodza, "przeglad": scena_przeglad}
 
+
+# ============================================================= 15.11: zwrot, czcionka ceny, bonus do doladowania
+
+def paczka(d, cx, cy, s, a, kol=(196, 150, 96)):
+    ka = int(255 * a)
+    d.polygon([(cx - 110 * s, cy - 40 * s), (cx, cy - 90 * s), (cx + 110 * s, cy - 40 * s), (cx, cy + 10 * s)], fill=tuple(min(255, c + 30) for c in kol) + (ka,))
+    d.polygon([(cx - 110 * s, cy - 40 * s), (cx, cy + 10 * s), (cx, cy + 130 * s), (cx - 110 * s, cy + 80 * s)], fill=kol + (ka,))
+    d.polygon([(cx + 110 * s, cy - 40 * s), (cx, cy + 10 * s), (cx, cy + 130 * s), (cx + 110 * s, cy + 80 * s)], fill=tuple(int(c * 0.8) for c in kol) + (ka,))
+    d.line([(cx - 55 * s, cy - 65 * s), (cx + 55 * s, cy - 15 * s)], fill=(236, 220, 180, ka), width=max(4, int(10 * s)))
+
+
+def kalendarz(d, cx, cy, s, a, tekst, podpis=""):
+    ka = int(255 * a)
+    w, h = 220 * s, 220 * s
+    d.rounded_rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], radius=int(24 * s), fill=(246, 244, 240, ka))
+    d.rounded_rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy - h / 2 + 60 * s], radius=int(24 * s), fill=(230, 70, 60, ka))
+    d.rectangle([cx - w / 2, cy - h / 2 + 30 * s, cx + w / 2, cy - h / 2 + 60 * s], fill=(230, 70, 60, ka))
+    # liczba miedzy naglowkiem a podpisem, mierzona bboxem - wczesniej liczba wchodzila na podpis
+    gora = cy - h / 2 + 66 * s
+    dol = cy + h / 2 - (46 * s if podpis else 14 * s)
+    f = dopasuj(d, tekst, w - 30, int((dol - gora) * 0.95), 16, f_anton)
+    bb = d.textbbox((0, 0), tekst, font=f)
+    d.text((cx - (bb[2] - bb[0]) / 2 - bb[0], (gora + dol) / 2 - (bb[3] - bb[1]) / 2 - bb[1]), tekst, font=f, fill=CIEMNY + (ka,))
+    if podpis:
+        fp = f_inter(max(12, int(22 * s)))
+        d.text((cx - szer(d, podpis, fp) / 2, cy + h / 2 - 38 * s), podpis, font=fp, fill=(90, 90, 96, ka))
+
+
+def serce(d, cx, cy, r, kol, a):
+    k = kol + (int(255 * a),)
+    d.ellipse([cx - r, cy - r * 0.8, cx, cy + r * 0.2], fill=k)
+    d.ellipse([cx, cy - r * 0.8, cx + r, cy + r * 0.2], fill=k)
+    d.polygon([(cx - r * 0.97, cy - r * 0.15), (cx + r * 0.97, cy - r * 0.15), (cx, cy + r)], fill=k)
+
+
+def scena_pytanie_zwrot(im, t, dl, p, kt):
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+    nak, d = warstwa()
+    paczka(d, CX - 120, dol + 430, 1.5, 1.0)
+    dzien = 1 + int(min(29, max(0, t - 0.1) / 0.06)) if t > 0.1 else 30
+    kalendarz(d, CX + 220, dol + 330, 1.0, 1.0, str(dzien if t > 0.1 else 30), p.get("podpis_kal", "dni na zwrot"))
+    ps = wej(t, 0.2, 0.8)
+    if ps > 0.05:   # bez tego na okladce zostawala czerwona kropka
+        strzalka(d, (CX + 90, dol + 620), (CX - 260, dol + 620), kt["akcent"], 1.0, grub=10, postep=ps)
+    im.alpha_composite(nak)
+    smuga(im, t)
+
+
+def sklep_ik(d, cx, cy, s, a):
+    ka = int(255 * a)
+    d.rectangle([cx - 150 * s, cy - 60 * s, cx + 150 * s, cy + 140 * s], fill=(70, 72, 86, ka))
+    for i in range(6):
+        k = (230, 70, 60) if i % 2 == 0 else (246, 244, 240)
+        d.rectangle([cx - 160 * s + i * 320 * s / 6, cy - 120 * s, cx - 160 * s + (i + 1) * 320 * s / 6, cy - 60 * s], fill=k + (ka,))
+    d.rectangle([cx - 40 * s, cy + 30 * s, cx + 40 * s, cy + 140 * s], fill=(40, 42, 52, ka))
+
+
+def scena_ryzyko(im, t, dl, p, kt):
+    """Sklep, do ktorego wracaja paczki - na pierwszy rzut oka ryzyko."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    sklep_ik(d, CX, 640, 1.3, a)
+    for i in range(3):
+        q = ((t - 0.2 - i * 0.35) % 1.2) / 1.2 if t > 0.2 + i * 0.35 else -1
+        if q >= 0:
+            x = X0 + 60 + (CX - 200 - X0 - 60) * q
+            paczka(d, x, 1080 - 40 * i, 0.5, a * (1 - q * 0.3))
+    pz = pop(t, 0.6, 0.4)
+    if pz > 0:
+        fb = f_anton(max(1, int(110 * pz)))
+        d.text((CX + 200, 300), "?", font=fb, fill=ZOLTY + (255,))
+        tx = p.get("napis", "ryzyko dla sklepu?")
+        f = f_inter(36)
+        d.text((CX - szer(d, tx, f) / 2, 1220), tx, font=f, fill=BIEL + (int(255 * min(1, pz)),))
+    im.alpha_composite(nak)
+
+
+def scena_dom(im, t, dl, p, kt):
+    """Paczka w domu; z kazdym dniem rosnie serce - 'to juz moje'."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    hx, hy, hw = CX, 820, 560
+    d.polygon([(hx - hw / 2 - 30, hy - 200), (hx, hy - 420), (hx + hw / 2 + 30, hy - 200)], fill=(90, 92, 104, int(255 * a)))
+    d.rectangle([hx - hw / 2, hy - 200, hx + hw / 2, hy + 260], fill=(60, 62, 74, int(255 * a)))
+    paczka(d, hx - 60, hy + 80, 1.0, a)
+    dni = 1 + int(min(6, max(0, t - 0.2) / 0.3)) if t > 0.2 else 1
+    kalendarz(d, hx + 170, hy - 100, 0.6, a, str(dni), "dzień")
+    q = wej(t, 0.3, 2.0)
+    serce(d, hx - 60, hy - 120, 20 + 60 * q, (240, 90, 110), a * min(1, q * 3))
+    if q > 0.7:
+        tx = p.get("napis", "TO JUŻ MOJE")
+        f = f_anton(70)
+        d.text((CX - szer(d, tx, f) / 2, 1160), tx, font=f, fill=(240, 90, 110, int(255 * wej(t, 1.6, 0.3))))
+    im.alpha_composite(nak)
+
+
+def scena_czcionka(im, t, dl, p, kt):
+    """Pytanie + metka: stara cena przekreslona, nowa cena pulsuje miedzy mala a duza czcionka."""
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+    nak, d = warstwa()
+    x0, x1, y0, y1 = CX - 300, CX + 300, dol + 120, dol + 720
+    d.rounded_rectangle([x0, y0, x1, y1], radius=36, fill=(246, 244, 240, 255))
+    f = f_inter(60, False)
+    st = p.get("stara", "199 zł")
+    d.text((CX - szer(d, st, f) / 2, y0 + 70), st, font=f, fill=(120, 120, 126, 255))
+    d.line([CX - szer(d, st, f) / 2 - 10, y0 + 110, CX + szer(d, st, f) / 2 + 10, y0 + 110], fill=CZERW + (255,), width=6)
+    q = 0.5 + 0.5 * math.sin(max(0, t - 0.1) * 3.2 - math.pi / 2)
+    px = int(90 + 120 * q)
+    fn = f_anton(px)
+    nt = p.get("nowa", "149 zł")
+    bb = d.textbbox((0, 0), nt, font=fn)
+    d.text((CX - (bb[2] - bb[0]) / 2 - bb[0], y0 + 380 - (bb[3] - bb[1]) / 2 - bb[1]), nt, font=fn, fill=CZERW + (255,))
+    im.alpha_composite(nak)
+    smuga(im, t)
+
+
+def scena_wielkosc(im, t, dl, p, kt):
+    """Mozg laczy wielkosc z iloscia: mala liczba obok malej kupki monet, duza obok duzej."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    f_m, f_d = f_anton(80), f_anton(220)
+    nt = p.get("liczba", "149")
+    d.text((CX - 200 - szer(d, nt, f_m) / 2, 560), nt, font=f_m, fill=BIEL + (int(255 * a),))
+    d.text((CX + 190 - szer(d, nt, f_d) / 2, 470), nt, font=f_d, fill=BIEL + (int(255 * a),))
+    for i in range(3):
+        if t > 0.3 + i * 0.1:
+            d.ellipse([CX - 240, 980 - i * 26, CX - 160, 1010 - i * 26], fill=ZOLTY + (255,), outline=(180, 140, 30, 255), width=3)
+    for i in range(12):
+        if t > 0.3 + i * 0.07:
+            col, row = i % 3, i // 3
+            x = CX + 120 + col * 70
+            d.ellipse([x - 40, 1010 - row * 26 - 30, x + 40, 1010 - row * 26], fill=ZOLTY + (255,), outline=(180, 140, 30, 255), width=3)
+    fl = f_inter(32)
+    for x, tx in ((CX - 200, p.get("lewy", "mało?")), (CX + 190, p.get("prawy", "dużo?"))):
+        d.text((x - szer(d, tx, fl) / 2, 1080), tx, font=fl, fill=SZARY + (int(255 * wej(t, 0.8, 0.3)),))
+    im.alpha_composite(nak)
+
+
+def scena_slupki_dzies(im, t, dl, p, kt):
+    """Dwa slupki z wynikami z jednym miejscem po przecinku (np. oceny na 7)."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    fb = dopasuj(d, tl, X1 - X0, 64, 36, f_anton)
+    d.text((CX - szer(d, tl, fb) / 2, 300), tl, font=fb, fill=BIEL + (int(255 * a),))
+    if p.get("podtytul"):
+        fs = f_inter(30, False)
+        d.text((CX - szer(d, p["podtytul"], fs) / 2, 390), p["podtytul"], font=fs, fill=SZARY + (int(255 * a),))
+    xs = [CX - 170, CX + 170]
+    mx = max(p["wartosci"])
+    for i, (v, e, k) in enumerate(zip(p["wartosci"], p["etykiety"], [ZIELONY, (110, 112, 124)])):
+        q = wej(t, 0.2 + i * 0.25, 0.8)
+        h = 520 * v / mx * q
+        x = xs[i]
+        d.rounded_rectangle([x - 110, 1150 - max(h, 6), x + 110, 1150], radius=18, fill=k + (255,))
+        if q > 0.05:
+            tx = f"{v * q:.2f}".replace(".", ",")
+            f = f_anton(90)
+            d.text((x - szer(d, tx, f) / 2, 1150 - h - 115), tx, font=f, fill=BIEL + (255,))
+        fe = dopasuj(d, e, 330, 36, 24)
+        d.text((x - szer(d, e, fe) / 2, 1170), e, font=fe, fill=SZARY + (int(255 * a),))
+    im.alpha_composite(nak)
+
+
+def karta_klubowa(d, x0, y0, x1, a, saldo, akc):
+    ka = int(255 * a)
+    h = (x1 - x0) * 0.6
+    d.rounded_rectangle([x0, y0, x1, y0 + h], radius=28, fill=akc + (ka,))
+    d.rounded_rectangle([x0 + 30, y0 + 40, x0 + 110, y0 + 100], radius=10, fill=(240, 210, 120, ka))
+    fs = f_inter(30)
+    d.text((x0 + 30, y0 + h - 140), "saldo", font=fs, fill=BIEL + (ka,))
+    fb = f_anton(90)
+    d.text((x0 + 30, y0 + h - 110), saldo, font=fb, fill=BIEL + (ka,))
+    return h
+
+
+def scena_pytanie_doladuj(im, t, dl, p, kt):
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, kt["akcent"])
+    nak, d = warstwa()
+    x0, x1 = CX - 300, CX + 300
+    y0 = dol + 110
+    q = wej(t, 0.3, 0.8)
+    saldo = int(100 + 10 * q)
+    h = karta_klubowa(d, x0, y0, x1, 1.0, f"{saldo} zł", (90, 70, 160))
+    pz = 1 + 0.08 * math.sin(t * 6)
+    f = f_anton(int(70 * pz))
+    tx = p.get("bonus", "+10 GRATIS")
+    w = szer(d, tx, f) + 50
+    d.rounded_rectangle([x1 - w + 30, y0 - 40, x1 + 30, y0 - 40 + f.size + 30], radius=20, fill=ZIELONY + (255,))
+    d.text((x1 - w + 55, y0 - 30), tx, font=f, fill=CIEMNY + (255,))
+    by = y0 + h + 60
+    d.rounded_rectangle([x0, by, x1, by + 120], radius=30, fill=(255, 92, 40, 255))
+    fb = f_inter(46)
+    tb = p.get("przycisk", "Doładuj 100 zł")
+    d.text((CX - szer(d, tb, fb) / 2, by + 32), tb, font=fb, fill=BIEL + (255,))
+    im.alpha_composite(nak)
+    smuga(im, t)
+
+
+def scena_z_gory(im, t, dl, p, kt):
+    """Platisz z gory: monety plyna z portfela do lokalu, zanim cokolwiek zjesz."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    d.rounded_rectangle([X0 + 20, 720, X0 + 240, 880], radius=26, fill=(150, 100, 60, int(255 * a)))
+    d.rounded_rectangle([X0 + 160, 770, X0 + 260, 830], radius=14, fill=(120, 80, 50, int(255 * a)))
+    sklep_ik(d, X1 - 160, 760, 0.9, a)
+    for i in range(10):
+        q = (t - 0.2 - i * 0.12) / 0.6
+        if 0 < q < 1:
+            x = X0 + 240 + (X1 - 300 - X0 - 240) * q
+            y = 780 - 160 * math.sin(math.pi * q)
+            d.ellipse([x - 26, y - 26, x + 26, y + 26], fill=ZOLTY + (255,))
+    tx = p.get("napis", "PŁACISZ Z GÓRY")
+    f = f_anton(70)
+    d.text((CX - szer(d, tx, f) / 2, 380), tx, font=f, fill=BIEL + (int(255 * a),))
+    im.alpha_composite(nak)
+
+
+def scena_przepada(im, t, dl, p, kt):
+    """10 monet = przedplata: 6 wydanych (zielone), 4 nigdy (szare, przekreslone). Duze 40%."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    kol, r, krok = 5, 58, 140
+    x0 = CX - krok * 2
+    for i in range(10):
+        x, y = x0 + (i % kol) * krok, 700 + (i // kol) * 160
+        pa = pop(t, 0.05 + i * 0.04, 0.25)
+        if pa <= 0:
+            continue
+        zle = i >= 6
+        g = wej(t, 0.8 + (i - 6) * 0.12, 0.3) if zle else 0
+        k = mieszaj(ZOLTY, (80, 80, 88), g)
+        rr = r * pa
+        d.ellipse([x - rr, y - rr, x + rr, y + rr], fill=k + (255,))
+        if g > 0.5:
+            krzyzyk(d, x, y, 30, 1.0, (g - 0.5) * 2)
+    pz = pop(t, 1.3, 0.4)
+    if pz > 0:
+        fb = f_anton(max(1, int(150 * pz)))
+        tx = p.get("wynik", "40%")
+        d.text((CX - szer(d, tx, fb) / 2, 360), tx, font=fb, fill=BIEL + (255,))
+    f = dopasuj(d, p["podpis"], X1 - X0, 36, 26)
+    d.text((CX - szer(d, p["podpis"], f) / 2, 1080), p["podpis"], font=f, fill=SZARY + (int(255 * wej(t, 0.9, 0.3)),))
+    im.alpha_composite(nak)
+
+
+SCENY_1511 = {"pytanie_zwrot": scena_pytanie_zwrot, "ryzyko": scena_ryzyko, "dom": scena_dom,
+              "czcionka": scena_czcionka, "wielkosc": scena_wielkosc, "slupki_dzies": scena_slupki_dzies,
+              "pytanie_doladuj": scena_pytanie_doladuj, "z_gory": scena_z_gory, "przepada": scena_przepada}
+
 SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wtyczka,
          "firmy": scena_firmy, "wniosek": scena_wniosek, "cta": scena_cta,
          "pytanie_dymek": scena_pytanie_dymek, "aplikacje": scena_aplikacje,
@@ -2259,6 +2508,7 @@ SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wt
 SCENY.update(SCENY_PRZYCISK)
 SCENY.update(SCENY_1411)
 SCENY.update(SCENY_MARKETING)
+SCENY.update(SCENY_1511)
 
 
 # ------------------------------------------------------------- napisy

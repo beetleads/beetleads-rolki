@@ -1,0 +1,7 @@
+{"kod":"z3","akcent":"#9B7BFF","audio":"/home/claude/silnik5/glos_z3.wav","slowa":"/home/claude/silnik5/glos_z3.json",
+"sceny":[
+ {"typ":"pytanie_doladuj","od":0,"linie":["SKĄD LOKAL MA NA BONUS","„DOŁADUJ 100, MASZ 110”?"],"bonus":"+10 GRATIS","przycisk":"Doładuj 100 zł"},
+ {"typ":"z_gory","od":"Płacisz","napis":"PŁACISZ Z GÓRY"},
+ {"typ":"przepada","od":"W","wynik":"40%","podpis":"nigdy niewykorzystane - ponad 4 mln klientów"},
+ {"typ":"wniosek_ok","od":"Więc","linie":["DOŁADUJ TYLE,","ILE WYDASZ"]},
+ {"typ":"cta","od":"Zaobserwuj","klik":0.9}]}
