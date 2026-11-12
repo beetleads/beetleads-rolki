@@ -489,7 +489,7 @@ def scena_cta(im, t, dl, p, kt):
     akc = hexk("#FF5C28")       # CTA zawsze w kolorze marki
     a = wej(t, 0, 0.35)
     nak, d = warstwa()
-    cy = 820
+    cy = 700
     fn = f_anton(96)
     tn = "@beetleads"
     d.text((CX - szer(d, tn, fn) // 2, cy - 130), tn, font=fn, fill=BIEL + (int(255 * a),))
@@ -864,12 +864,110 @@ def scena_dom_siec(im, t, dl, p, kt):
     im.alpha_composite(nak)
 
 
+# ============================================================= sceny: regulamin
+
+def dokument(d, x0, y0, x1, y1, a, linie=14, przesun=0.0, wyroznij=None, akc=(255, 216, 77)):
+    """Kartka regulaminu z liniami tekstu; `wyroznij` = (indeks_linii, tekst) - zaznaczony zapis."""
+    d.rounded_rectangle([x0, y0, x1, y1], radius=20, fill=(246, 244, 240, int(255 * a)))
+    fh = f_inter(30)
+    d.text((x0 + 36, y0 + 26), "REGULAMIN", font=fh, fill=(30, 30, 34, int(255 * a)))
+    krok = 46
+    for i in range(linie):
+        yy = y0 + 90 + i * krok - int(przesun)
+        if yy < y0 + 80 or yy > y1 - 40:
+            continue
+        if wyroznij and i == wyroznij[0]:
+            d.rounded_rectangle([x0 + 24, yy - 8, x1 - 24, yy + 34], radius=8, fill=akc + (int(255 * a),))
+            d.text((x0 + 36, yy - 4), wyroznij[1], font=f_inter(28), fill=(30, 30, 34, int(255 * a)))
+        else:
+            dl = (x1 - x0 - 72) * (0.55 + 0.4 * ((i * 37) % 10) / 10)
+            d.rounded_rectangle([x0 + 36, yy + 6, x0 + 36 + dl, yy + 22], radius=6, fill=(170, 170, 178, int(255 * a)))
+
+
+def scena_pytanie_dokument(im, t, dl, p, kt):
+    """Pytanie + regulamin, ktory przewija sie sam, i odhaczone 'Akceptuje'."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, x1 = CX - 300, CX + 300
+    y0, y1 = dol + 110, dol + 760
+    przes = 0 if t < 0.1 else (t - 0.1) * 260
+    dokument(d, x0, y0, x1, y1 - 120, 1.0, linie=40, przesun=przes)
+    # pole akceptacji
+    by = y1 - 100
+    d.rounded_rectangle([x0, by, x1, by + 100], radius=20, fill=(28, 28, 34, 255), outline=akc + (255,), width=4)
+    zazn = t < 0.1 or t > 0.9
+    d.rounded_rectangle([x0 + 30, by + 26, x0 + 78, by + 74], radius=10, fill=(akc if zazn else (60, 60, 70)) + (255,))
+    if zazn:
+        d.line([x0 + 40, by + 50, x0 + 52, by + 64, x0 + 70, by + 36], fill=CIEMNY + (255,), width=7, joint="curve")
+    d.text((x0 + 100, by + 30), "Akceptuję regulamin", font=f_inter(36), fill=BIEL + (255,))
+    im.alpha_composite(nak)
+    blysk(im, (x0, y0, x1, y1 - 120), t)
+
+
+def scena_klauzula(im, t, dl, p, kt):
+    """Regulamin przewija sie i zatrzymuje na ukrytym zapisie, ktory podswietla sie."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    x0, x1, y0, y1 = X0 + 10, X1 - 10, 330, 1180
+    t_stop = 1.2
+    przes = min(t, t_stop) / t_stop * 46 * 6
+    widac = t > t_stop
+    dokument(d, x0, y0, x1, y1, wej(t, 0, 0.3), linie=30, przesun=przes,
+             wyroznij=(13, p["zapis"]) if widac else None, akc=akc if widac else (170, 170, 178))
+    if widac:
+        pz = pop(t, t_stop, 0.4)
+        yy = y0 + 90 + 13 * 46 - int(przes)
+        d.rounded_rectangle([x0 + 10, yy - 22, x1 - 10, yy + 48], radius=12, outline=CZERW + (int(255 * min(1, pz)),), width=6)
+    im.alpha_composite(nak)
+
+
+def scena_czas(im, t, dl, p, kt):
+    """Dwa paski czasu: ile trzeba czytac vs ile ludzie czytali."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    fb = f_anton(64)
+    d.text((CX - szer(d, p["tytul"], fb) // 2, 330), p["tytul"], font=fb, fill=BIEL + (int(255 * wej(t, 0, 0.3)),))
+    maks = max(p["trzeba"], p["czytali"])
+    wiersze = [("potrzeba", p["trzeba"], p["trzeba_tekst"], SZARY), ("czytali", p["czytali"], p["czytali_tekst"], akc)]
+    for i, (nazwa, wart, tekst, kol) in enumerate(wiersze):
+        y = 560 + i * 280
+        pa = wej(t, 0.2 + i * 0.6, 0.9)
+        d.text((X0, y), nazwa, font=f_inter(38), fill=BIEL + (255,))
+        d.rounded_rectangle([X0, y + 70, X1, y + 140], radius=20, fill=(40, 40, 48, 255))
+        w = (X1 - X0) * wart / maks * pa
+        if w > 8:
+            d.rounded_rectangle([X0, y + 70, X0 + w, y + 140], radius=20, fill=kol + (255,))
+        ft = f_anton(54)
+        d.text((X1 - szer(d, tekst, ft), y - 8), tekst, font=ft, fill=kol + (int(255 * pa),))
+    im.alpha_composite(nak)
+
+
+def scena_sprawdz(im, t, dl, p, kt):
+    """Wniosek: regulamin z dwoma zaznaczonymi sekcjami do sprawdzenia."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    x0, x1, y0, y1 = CX - 300, CX + 300, 380, 1180
+    dokument(d, x0, y0, x1, y1, wej(t, 0, 0.3), linie=16)
+    for i, (sek, ws) in enumerate(zip(p["sekcje"], [0.3, 0.8])):
+        pz = pop(t, ws, 0.4)
+        if pz <= 0:
+            continue
+        yy = y0 + 180 + i * 300
+        d.rounded_rectangle([x0 - 30, yy, x1 + 30, yy + 120], radius=22, fill=ZIELONY + (255,))
+        d.ellipse([x0, yy + 25, x0 + 70, yy + 95], fill=BIEL + (255,))
+        d.line([x0 + 16, yy + 60, x0 + 30, yy + 76, x0 + 56, yy + 42], fill=ZIELONY + (255,), width=8, joint="curve")
+        d.text((x0 + 100, yy + 30), sek, font=f_anton(56), fill=BIEL + (255,))
+    im.alpha_composite(nak)
+
+
 SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wtyczka,
          "firmy": scena_firmy, "wniosek": scena_wniosek, "cta": scena_cta,
          "pytanie_dymek": scena_pytanie_dymek, "aplikacje": scena_aplikacje,
          "zrodla": scena_zrodla, "mikro_oko": scena_mikro_oko,
          "pytanie_okno": scena_pytanie_okno, "ludzie": scena_ludzie, "czyszczenie": scena_czyszczenie,
-         "obserwatorzy": scena_obserwatorzy, "dom_siec": scena_dom_siec}
+         "obserwatorzy": scena_obserwatorzy, "dom_siec": scena_dom_siec,
+         "pytanie_dokument": scena_pytanie_dokument, "klauzula": scena_klauzula, "czas": scena_czas, "sprawdz": scena_sprawdz}
 
 
 # ------------------------------------------------------------- napisy
