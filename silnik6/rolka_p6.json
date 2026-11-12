@@ -1,0 +1,53 @@
+{
+ "kod": "p6",
+ "akcent": "#A77BFF",
+ "audio": "/home/claude/silnik5/glos_p6.wav",
+ "slowa": "/home/claude/silnik5/glos_p6.json",
+ "sceny": [
+  {
+   "typ": "pytanie_dymek",
+   "od": 0,
+   "linie": [
+    "JAK TO MOŻLIWE, ŻE WIDZISZ",
+    "REKLAMĘ TEGO, O CZYM MÓWIŁEŚ?"
+   ],
+   "dymek": [
+    "Muszę kupić",
+    "nowy ekspres..."
+   ],
+   "reklama": [
+    "Ekspres do kawy",
+    "-30%"
+   ]
+  },
+  {
+   "typ": "aplikacje",
+   "od": "Badacze",
+   "ile": 17260,
+   "wynik_od": "żadna"
+  },
+  {
+   "typ": "zrodla",
+   "od": "Reklamę#2",
+   "slowa": [
+    "wyszukujesz",
+    "klikasz",
+    "gdzie"
+   ],
+   "reklama": [
+    "Ekspres do kawy",
+    "-30%"
+   ]
+  },
+  {
+   "typ": "mikro_oko",
+   "od": "Telefon",
+   "oko_od": "patrzy"
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}

@@ -516,8 +516,212 @@ def scena_cta(im, t, dl, p, kt):
     im.alpha_composite(nak)
 
 
+# ============================================================= ikony (proste, czytelne z daleka)
+
+def ik_mikrofon(d, cx, cy, r, kol, a):
+    k = kol + (int(255 * a),)
+    d.rounded_rectangle([cx - r * 0.38, cy - r, cx + r * 0.38, cy + r * 0.25], radius=int(r * 0.38), fill=k)
+    d.arc([cx - r * 0.7, cy - r * 0.55, cx + r * 0.7, cy + r * 0.6], 0, 180, fill=k, width=max(4, int(r * 0.12)))
+    d.line([cx, cy + r * 0.6, cx, cy + r * 0.95], fill=k, width=max(4, int(r * 0.12)))
+    d.line([cx - r * 0.4, cy + r * 0.95, cx + r * 0.4, cy + r * 0.95], fill=k, width=max(4, int(r * 0.12)))
+
+
+def ik_oko(d, cx, cy, r, kol, a, otwarcie=1.0):
+    k = kol + (int(255 * a),)
+    h = r * 0.62 * otwarcie
+    d.ellipse([cx - r, cy - h, cx + r, cy + h], outline=k, width=max(5, int(r * 0.11)))
+    if otwarcie > 0.3:
+        d.ellipse([cx - r * 0.38, cy - r * 0.38, cx + r * 0.38, cy + r * 0.38], fill=k)
+        d.ellipse([cx - r * 0.12, cy - r * 0.2, cx + r * 0.06, cy - r * 0.02], fill=(20, 20, 26, int(255 * a)))
+
+
+def ik_lupa(d, cx, cy, r, kol, a):
+    k = kol + (int(255 * a),)
+    d.ellipse([cx - r * 0.75, cy - r * 0.75, cx + r * 0.35, cy + r * 0.35], outline=k, width=max(5, int(r * 0.16)))
+    d.line([cx + r * 0.25, cy + r * 0.25, cx + r * 0.8, cy + r * 0.8], fill=k, width=max(6, int(r * 0.22)))
+
+
+def ik_pinezka(d, cx, cy, r, kol, a):
+    k = kol + (int(255 * a),)
+    d.ellipse([cx - r * 0.6, cy - r, cx + r * 0.6, cy + r * 0.2], fill=k)
+    d.polygon([(cx - r * 0.5, cy - r * 0.15), (cx + r * 0.5, cy - r * 0.15), (cx, cy + r)], fill=k)
+    d.ellipse([cx - r * 0.22, cy - r * 0.62, cx + r * 0.22, cy - r * 0.18], fill=(20, 20, 26, int(255 * a)))
+
+
+def ik_klik(d, cx, cy, r, kol, a, t):
+    """Palec-klik: kolko z rozchodzaca sie fala."""
+    k = kol + (int(255 * a),)
+    d.ellipse([cx - r * 0.35, cy - r * 0.35, cx + r * 0.35, cy + r * 0.35], fill=k)
+    q = (t * 1.2) % 1.0
+    rr = r * (0.4 + 0.6 * q)
+    d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], outline=kol + (int(255 * a * (1 - q)),), width=6)
+
+
+def ik_ekspres(d, cx, cy, r, a):
+    """Ekspres do kawy - produkt z reklamy."""
+    d.rounded_rectangle([cx - r * 0.7, cy - r, cx + r * 0.7, cy + r], radius=int(r * 0.15), fill=(60, 60, 68, int(255 * a)))
+    d.rectangle([cx - r * 0.5, cy - r * 0.75, cx + r * 0.5, cy - r * 0.35], fill=(200, 200, 206, int(255 * a)))
+    d.rounded_rectangle([cx - r * 0.3, cy + r * 0.15, cx + r * 0.3, cy + r * 0.75], radius=int(r * 0.08), fill=(246, 244, 240, int(255 * a)))
+    d.rectangle([cx - r * 0.12, cy - r * 0.35, cx + r * 0.12, cy + r * 0.1], fill=(40, 40, 46, int(255 * a)))
+
+
+def ekran_reklamy(produkt="Ekspres do kawy", rabat="-30%"):
+    """Ekran telefonu z postem-reklama w feedzie."""
+    def rys(im, box, t, a):
+        x0, y0, x1, y1 = box
+        w = x1 - x0
+        k = w / 378
+        nak, d = warstwa()
+        m = int(20 * k)
+        y = y0 + int(70 * k)
+        d.text((x0 + m, y), "Sponsorowane", font=f_inter(22 * k, False), fill=(120, 120, 128, int(255 * a)))
+        y += int(36 * k)
+        kart = [x0 + m, y, x1 - m, y + int(300 * k)]
+        d.rounded_rectangle(kart, radius=int(18 * k), fill=(230, 228, 224, int(255 * a)))
+        ik_ekspres(d, (kart[0] + kart[2]) // 2, (kart[1] + kart[3]) // 2, 95 * k, a)
+        y = kart[3] + int(20 * k)
+        d.text((x0 + m, y), produkt, font=f_inter(30 * k), fill=(30, 30, 34, int(255 * a)))
+        fr = f_anton(48 * k)
+        d.text((x0 + m, y + int(46 * k)), rabat, font=fr, fill=CZERW + (int(255 * a),))
+        bh = int(62 * k)
+        d.rounded_rectangle([x0 + m, y1 - bh - int(26 * k), x1 - m, y1 - int(26 * k)], radius=int(18 * k), fill=(30, 30, 34, int(255 * a)))
+        fb = f_inter(28 * k)
+        d.text(((x0 + x1) // 2 - szer(d, "Zobacz", fb) // 2, y1 - bh - int(26 * k) + (bh - fb.size) // 2 - 2), "Zobacz", font=fb, fill=BIEL + (int(255 * a),))
+        im.alpha_composite(nak)
+    return rys
+
+
+def dymek(d, x, y, linie, a, kol=(246, 244, 240), ogon="lewo"):
+    f = f_inter(34)
+    w = max(szer(d, l, f) for l in linie) + 56
+    h = len(linie) * (f.size + 12) + 40
+    d.rounded_rectangle([x, y, x + w, y + h], radius=28, fill=kol + (int(255 * a),))
+    if ogon == "lewo":
+        d.polygon([(x + 30, y + h - 2), (x + 70, y + h - 2), (x + 18, y + h + 34)], fill=kol + (int(255 * a),))
+    for i, l in enumerate(linie):
+        d.text((x + 28, y + 20 + i * (f.size + 12)), l, font=f, fill=(30, 30, 34, int(255 * a)))
+    return w, h
+
+
+# ============================================================= sceny: podsluch
+
+def scena_pytanie_dymek(im, t, dl, p, kt):
+    """Pytanie u gory, rozmowa (dymek + mikrofon) po lewej, telefon z reklama po prawej."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    sk = 0.92 if t < 0.1 else 0.84 + 0.08 * (1 - (1 - min(1.0, (t - 0.1) / 0.7)) ** 3)
+    box = telefon(im, X1 - 160, dol + 470, sk, 1.0, ekran_reklamy(*p.get("reklama", ["Ekspres do kawy", "-30%"])), t)
+    blysk(im, box, t)
+    nak, d = warstwa()
+    pa = 1.0 if t < 0.1 else wej(t, 0.2, 0.4)
+    dymek(d, X0, dol + 140, p["dymek"], pa)
+    ik_mikrofon(d, X0 + 110, dol + 520, 70, ZOLTY, pa)
+    # fale dzwieku przy mikrofonie
+    for i in range(3):
+        q = ((t * 0.9) + i / 3) % 1.0
+        rr = 90 + 80 * q
+        d.arc([X0 + 110 - rr, dol + 500 - rr, X0 + 110 + rr, dol + 500 + rr], 300, 60,
+              fill=ZOLTY + (int(200 * pa * (1 - q)),), width=6)
+    im.alpha_composite(nak)
+
+
+def scena_aplikacje(im, t, dl, p, kt):
+    """Siatka aplikacji przeczesywana lupa; wynik: nagrania rozmowy 0."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    fb = f_anton(110)
+    licz = int(p["ile"] * min(1.0, t / 1.2))
+    tl = f"{licz:,}".replace(",", " ")
+    d.text((CX - szer(d, tl, fb) // 2, 300), tl, font=fb, fill=BIEL + (255,))
+    fl = f_inter(36)
+    d.text((CX - szer(d, "sprawdzonych aplikacji", fl) // 2, 440), "sprawdzonych aplikacji", font=fl, fill=SZARY + (255,))
+    kol, s, gap = 6, 92, 22
+    x0 = CX - (kol * s + (kol - 1) * gap) // 2
+    y0 = 520
+    kolory = [(255, 120, 90), (90, 170, 255), (120, 220, 140), (255, 200, 80), (190, 130, 255), (80, 210, 210)]
+    lx = x0 + (t * 520) % (kol * (s + gap))
+    ly = y0 + 2 * (s + gap)
+    for i in range(24):
+        pa = pop(t, 0.05 + i * 0.03, 0.25)
+        if pa <= 0:
+            continue
+        x = x0 + (i % kol) * (s + gap)
+        y = y0 + (i // kol) * (s + gap)
+        sc = s * pa
+        d.rounded_rectangle([x + (s - sc) / 2, y + (s - sc) / 2, x + (s + sc) / 2, y + (s + sc) / 2], radius=22,
+                            fill=kolory[i % 6] + (255,))
+    ik_lupa(d, lx + 40, ly, 80, BIEL, 1.0)
+    # wynik
+    pw = wej(t, kt["czas_slowa"](p["wynik_od"]) - kt["od"], 0.4)
+    if pw > 0:
+        yw = y0 + 4 * (s + gap) + 10
+        d.rounded_rectangle([X0 + 30, yw, X1 - 30, yw + 150], radius=28, fill=(28, 28, 34, int(240 * pw)),
+                            outline=CZERW + (int(255 * pw),), width=4)
+        ik_mikrofon(d, X0 + 120, yw + 75, 46, BIEL, pw)
+        d.line([X0 + 70, yw + 125, X0 + 170, yw + 25], fill=CZERW + (int(255 * pw),), width=10)
+        ft = f_inter(40)
+        d.text((X0 + 210, yw + 30), "nagrania rozmowy:", font=ft, fill=BIEL + (int(255 * pw),))
+        d.text((X0 + 210, yw + 72), "0", font=f_anton(60), fill=CZERW + (int(255 * pw),))
+    im.alpha_composite(nak)
+
+
+def scena_zrodla(im, t, dl, p, kt):
+    """Trzy zrodla danych wpadaja do reklamy: wyszukiwanie, klik, polozenie."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    pozycje = [("szukasz", ik_lupa, p["slowa"][0]), ("klikasz", None, p["slowa"][1]), ("jesteś", ik_pinezka, p["slowa"][2])]
+    cel = (X1 - 150, 860)
+    for i, (etyk, ik, slowo) in enumerate(pozycje):
+        ts = max(0.0, kt["czas_slowa"](slowo) - kt["od"] - 0.1)
+        pa = wej(t, ts, 0.35)
+        if pa <= 0:
+            continue
+        y = 520 + i * 230
+        d.rounded_rectangle([X0, y, X0 + 330, y + 170], radius=28, fill=(28, 28, 34, int(240 * pa)),
+                            outline=akc + (int(255 * pa),), width=4)
+        if ik is None:
+            ik_klik(d, X0 + 80, y + 85, 50, akc, pa, t)
+        else:
+            ik(d, X0 + 80, y + 85, 46, akc, pa)
+        d.text((X0 + 140, y + 62), etyk, font=f_inter(40), fill=BIEL + (int(255 * pa),))
+        strzalka(d, (X0 + 340, y + 85), (cel[0] - 140, cel[1] - 60 + i * 60), akc, pa, grub=8,
+                 postep=wej(t, ts + 0.2, 0.5), kreska=True, t=t)
+    im.alpha_composite(nak)
+    ts0 = max(0.0, kt["czas_slowa"](p["slowa"][0]) - kt["od"] - 0.1)
+    telefon(im, cel[0], cel[1], 0.62, wej(t, 0, 0.4), ekran_reklamy(*p.get("reklama", ["Ekspres do kawy", "-30%"])), t)
+    nak, d = warstwa()
+    fr = f_anton(64)
+    d.text((CX - szer(d, "REKLAMA DLA CIEBIE", fr) // 2, 330), "REKLAMA DLA CIEBIE", font=fr, fill=BIEL + (int(255 * wej(t, 0, 0.3)),))
+    im.alpha_composite(nak)
+
+
+def scena_mikro_oko(im, t, dl, p, kt):
+    """Mikrofon przekreslony (nie slucha) kontra oko (patrzy)."""
+    akc = kt["akcent"]
+    t_oko = kt["czas_slowa"](p["oko_od"]) - kt["od"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.35)
+    lx, rx, y = CX - 200, CX + 200, 780
+    d.ellipse([lx - 150, y - 150, lx + 150, y + 150], fill=(28, 28, 34, int(240 * a)))
+    ik_mikrofon(d, lx, y - 10, 90, SZARY, a)
+    pk = wej(t, 0.4, 0.4)
+    if pk > 0:
+        d.line([lx - 110, y + 110, lx - 110 + 220 * pk, y + 110 - 220 * pk], fill=CZERW + (255,), width=14)
+    d.text((lx - szer(d, "nie słucha", f_inter(40)) // 2, y + 180), "nie słucha", font=f_inter(40), fill=SZARY + (int(255 * a),))
+    po = wej(t, t_oko - 0.1, 0.4)
+    if po > 0:
+        sk = pop(t, t_oko - 0.1, 0.45)
+        d.ellipse([rx - 150 * sk, y - 150 * sk, rx + 150 * sk, y + 150 * sk], fill=akc + (int(60 * po),),
+                  outline=akc + (int(255 * po),), width=6)
+        ik_oko(d, rx, y, 100 * sk, akc, po, otwarcie=min(1.0, po * 1.4))
+        d.text((rx - szer(d, "patrzy", f_inter(44)) // 2, y + 180), "patrzy", font=f_inter(44), fill=akc + (int(255 * po),))
+    im.alpha_composite(nak)
+
+
 SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wtyczka,
-         "firmy": scena_firmy, "wniosek": scena_wniosek, "cta": scena_cta}
+         "firmy": scena_firmy, "wniosek": scena_wniosek, "cta": scena_cta,
+         "pytanie_dymek": scena_pytanie_dymek, "aplikacje": scena_aplikacje,
+         "zrodla": scena_zrodla, "mikro_oko": scena_mikro_oko}
 
 
 # ------------------------------------------------------------- napisy
@@ -608,6 +812,11 @@ def renderuj(plik, wyj):
     for sc in r["sceny"]:
         od = 0.0 if sc.get("od") == 0 else czas_slowa(sc["od"]) - 0.08
         sceny.append([max(0.0, od), sc])
+    # BRAMKA: sceny musza startowac po kolei - inaczej slowo z wczesniejszego zdania
+    # (np. "reklame" w pytaniu) odpala scene za wczesnie i przykrywa poprzednia
+    for (a, sa), (b, sb) in zip(sceny, sceny[1:]):
+        if b <= a:
+            raise SystemExit(f"scena '{sb['typ']}' (od {b:.2f} s) startuje przed '{sa['typ']}' ({a:.2f} s) - uzyj 'slowo#2'")
     for i, s in enumerate(sceny):
         s.append(sceny[i + 1][0] if i + 1 < len(sceny) else dl)
     gr = grupy(slowa)
