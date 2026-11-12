@@ -1,0 +1,52 @@
+{
+ "kod": "i6",
+ "akcent": "#52E3B0",
+ "audio": "/home/claude/silnik5/glos_i6.wav",
+ "slowa": "/home/claude/silnik5/glos_i6.json",
+ "sceny": [
+  {
+   "typ": "pytanie_okno",
+   "od": 0,
+   "linie": [
+    "PRZED KIM NAPRAWDĘ",
+    "UKRYWA CIĘ INCOGNITO?"
+   ]
+  },
+  {
+   "typ": "ludzie",
+   "od": "39",
+   "ile": 39,
+   "podpis": "myśli, że jest anonimowa w sieci"
+  },
+  {
+   "typ": "czyszczenie",
+   "od": "A",
+   "podpis": "czyści tylko twoje urządzenie"
+  },
+  {
+   "typ": "obserwatorzy",
+   "od": "Operator",
+   "nazwy": [
+    "operator internetu",
+    "pracodawca",
+    "strona"
+   ],
+   "slowa": [
+    "Operator",
+    "pracodawca",
+    "strona"
+   ]
+  },
+  {
+   "typ": "dom_siec",
+   "od": "Więc",
+   "lewy": "domownik nie widzi",
+   "prawy": "sieć widzi"
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}

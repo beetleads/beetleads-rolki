@@ -718,10 +718,158 @@ def scena_mikro_oko(im, t, dl, p, kt):
     im.alpha_composite(nak)
 
 
+# ============================================================= sceny: incognito
+
+def ik_incognito(d, cx, cy, r, kol, a):
+    """Kapelusz + okulary - symbol trybu incognito."""
+    k = kol + (int(255 * a),)
+    d.rounded_rectangle([cx - r * 0.55, cy - r * 0.95, cx + r * 0.55, cy - r * 0.25], radius=int(r * 0.15), fill=k)
+    d.rounded_rectangle([cx - r, cy - r * 0.3, cx + r, cy - r * 0.12], radius=int(r * 0.08), fill=k)
+    for sx in (-1, 1):
+        d.ellipse([cx + sx * r * 0.48 - r * 0.32, cy + r * 0.12, cx + sx * r * 0.48 + r * 0.32, cy + r * 0.62],
+                  outline=k, width=max(4, int(r * 0.1)))
+    d.line([cx - r * 0.16, cy + r * 0.34, cx + r * 0.16, cy + r * 0.34], fill=k, width=max(4, int(r * 0.08)))
+
+
+def okno_przegladarki(d, x0, y0, x1, y1, a, ciemne=True):
+    tlo_k = (40, 40, 48) if ciemne else (246, 244, 240)
+    d.rounded_rectangle([x0, y0, x1, y1], radius=26, fill=tlo_k + (int(255 * a),), outline=(80, 80, 90, int(255 * a)), width=3)
+    d.rounded_rectangle([x0, y0, x1, y0 + 70], radius=26, fill=(60, 60, 70, int(255 * a)))
+    d.rectangle([x0, y0 + 40, x1, y0 + 70], fill=(60, 60, 70, int(255 * a)))
+    for i, c in enumerate([(255, 95, 86), (255, 189, 46), (39, 201, 63)]):
+        d.ellipse([x0 + 24 + i * 34, y0 + 24, x0 + 46 + i * 34, y0 + 46], fill=c + (int(255 * a),))
+    d.rounded_rectangle([x0 + 140, y0 + 18, x1 - 30, y0 + 52], radius=17, fill=(30, 30, 36, int(255 * a)))
+
+
+def czlowiek(d, cx, cy, r, kol, a):
+    k = kol + (int(255 * a),)
+    d.ellipse([cx - r * 0.35, cy - r, cx + r * 0.35, cy - r * 0.3], fill=k)
+    d.rounded_rectangle([cx - r * 0.55, cy - r * 0.2, cx + r * 0.55, cy + r * 0.8], radius=int(r * 0.35), fill=k)
+
+
+def scena_pytanie_okno(im, t, dl, p, kt):
+    """Pytanie u gory + okno przegladarki incognito z kapeluszem i okularami."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    sk = 1.0 if t < 0.1 else 0.9 + 0.1 * (1 - (1 - min(1.0, (t - 0.1) / 0.7)) ** 3)
+    nak, d = warstwa()
+    w, h = int(760 * sk), int(560 * sk)
+    x0, y0 = CX - w // 2, dol + 120
+    okno_przegladarki(d, x0, y0, x0 + w, y0 + h, 1.0)
+    ik_incognito(d, CX, y0 + h // 2 + 30, 150 * sk, BIEL, 1.0)
+    fl = f_inter(34)
+    tl = p.get("napis", "Tryb incognito")
+    d.text((CX - szer(d, tl, fl) // 2, y0 + h - 80), tl, font=fl, fill=SZARY + (255,))
+    im.alpha_composite(nak)
+    blysk(im, (x0, y0, x0 + w, y0 + h), t)
+
+
+def scena_ludzie(im, t, dl, p, kt):
+    """100 osob, z czego p['ile'] podswietlonych, z podpisem."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    ile = p["ile"]
+    kol, krok = 10, 74
+    x0 = CX - (kol * krok) // 2 + krok // 2
+    y0 = 520
+    zap = int(ile * min(1.0, max(0.0, (t - 0.3) / 1.2)))
+    for i in range(100):
+        x = x0 + (i % kol) * krok
+        y = y0 + (i // kol) * 76
+        pa = wej(t, 0.02 * (i // kol), 0.3)
+        czlowiek(d, x, y, 30, akc if i < zap else (70, 70, 80), pa)
+    fb = f_anton(120)
+    tl = f"{zap} na 100"
+    d.text((CX - szer(d, tl, fb) // 2, 300), tl, font=fb, fill=akc + (255,))
+    f2 = dopasuj(d, p["podpis"], X1 - X0, 40, 28)
+    d.text((CX - szer(d, p["podpis"], f2) // 2, y0 + 10 * 76 + 10), p["podpis"], font=f2, fill=BIEL + (int(255 * wej(t, 0.6, 0.4)),))
+    im.alpha_composite(nak)
+
+
+def scena_czyszczenie(im, t, dl, p, kt):
+    """Na urzadzeniu: lista historii znika pod gumka. Podpis: twoje urzadzenie."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    x0, y0, x1, y1 = X0 + 20, 420, X1 - 20, 1180
+    okno_przegladarki(d, x0, y0, x1, y1, wej(t, 0, 0.3))
+    fh = f_inter(34)
+    d.text((x0 + 40, y0 + 100), "Historia", font=fh, fill=BIEL + (255,))
+    gumka = min(1.0, max(0.0, (t - 0.5) / 1.4))
+    for i in range(7):
+        yy = y0 + 170 + i * 80
+        widac = gumka < (i + 1) / 7
+        if widac:
+            d.rounded_rectangle([x0 + 40, yy, x0 + 90, yy + 46], radius=10, fill=(90, 90, 100, 255))
+            d.rounded_rectangle([x0 + 110, yy + 6, x1 - 140 - (i % 3) * 60, yy + 40], radius=10, fill=(120, 120, 130, 255))
+    if 0 < gumka < 1:
+        gy = y0 + 170 + gumka * 7 * 80
+        d.rounded_rectangle([x1 - 200, gy - 20, x1 - 60, gy + 50], radius=14, fill=akc + (255,))
+    if gumka >= 1:
+        f = f_inter(40)
+        d.text((CX - szer(d, "wyczyszczone", f) // 2, (y0 + y1) // 2), "wyczyszczone", font=f, fill=akc + (255,))
+    pl = f_inter(34, False)
+    d.text((CX - szer(d, p["podpis"], pl) // 2, y1 + 30), p["podpis"], font=pl, fill=SZARY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_obserwatorzy(im, t, dl, p, kt):
+    """Laptop na dole, linia danych w gore do trzech obserwatorow; kazdy zapala oko na swoim slowie."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    lx, ly = CX, 1120
+    d.rounded_rectangle([lx - 150, ly - 90, lx + 150, ly + 60], radius=16, fill=(60, 60, 70, 255))
+    d.rounded_rectangle([lx - 190, ly + 60, lx + 190, ly + 84], radius=10, fill=(90, 90, 100, 255))
+    ik_incognito(d, lx, ly - 20, 50, BIEL, 1.0)
+    xs = [X0 + 110, CX, X1 - 110]
+    for i, (naz, slowo) in enumerate(zip(p["nazwy"], p["slowa"])):
+        ts = max(0.0, kt["czas_slowa"](slowo) - kt["od"] - 0.1)
+        pa = wej(t, ts, 0.35)
+        x, y = xs[i], 560
+        strzalka(d, (lx + (i - 1) * 60, ly - 100), (x, y + 185), akc, max(pa, 0.25), grub=6,
+                 postep=1.0, kreska=True, t=t)
+        d.ellipse([x - 110, y - 110, x + 110, y + 110], fill=(28, 28, 34, 255), outline=(akc if pa > 0 else (70, 70, 80)) + (255,), width=5)
+        ik_oko(d, x, y, 70, akc if pa > 0 else (90, 90, 100), 1.0, otwarcie=0.2 + 0.8 * pa)
+        f = dopasuj(d, naz, 270, 34, 24)
+        d.text((x - szer(d, naz, f) // 2, y + 130), naz, font=f, fill=BIEL + (255,))
+    fb = f_anton(60)
+    tl = p.get("tytul", "WIDZĄ WSZYSTKO")
+    d.text((CX - szer(d, tl, fb) // 2, 300), tl, font=fb, fill=BIEL + (int(255 * wej(t, 0, 0.3)),))
+    im.alpha_composite(nak)
+
+
+def scena_dom_siec(im, t, dl, p, kt):
+    """Wniosek: dom (domownik nie widzi) kontra siec (widzi)."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.35)
+    lx, rx, y = CX - 200, CX + 200, 760
+    # dom
+    d.polygon([(lx - 130, y - 20), (lx, y - 140), (lx + 130, y - 20)], fill=(246, 244, 240, int(255 * a)))
+    d.rectangle([lx - 105, y - 20, lx + 105, y + 120], fill=(246, 244, 240, int(255 * a)))
+    czlowiek(d, lx, y + 60, 50, (40, 40, 46), a)
+    pz = pop(t, 0.3, 0.4)
+    if pz > 0:
+        d.ellipse([lx + 60, y - 160, lx + 160, y - 60], fill=ZIELONY + (255,))
+        d.line([lx + 85, y - 110, lx + 105, y - 88, lx + 138, y - 132], fill=BIEL + (255,), width=10, joint="curve")
+    d.text((lx - szer(d, p["lewy"], f_inter(36)) // 2, y + 160), p["lewy"], font=f_inter(36), fill=BIEL + (int(255 * a),))
+    # siec - globus
+    pg = wej(t, 0.6, 0.4)
+    if pg > 0:
+        d.ellipse([rx - 120, y - 120, rx + 120, y + 120], outline=akc + (int(255 * pg),), width=8)
+        d.ellipse([rx - 55, y - 120, rx + 55, y + 120], outline=akc + (int(255 * pg),), width=6)
+        d.line([rx - 120, y, rx + 120, y], fill=akc + (int(255 * pg),), width=6)
+        d.ellipse([rx + 50, y - 170, rx + 160, y - 60], fill=CZERW + (int(255 * pg),))
+        ik_oko(d, rx + 105, y - 115, 40, BIEL, pg)
+        d.text((rx - szer(d, p["prawy"], f_inter(36)) // 2, y + 160), p["prawy"], font=f_inter(36), fill=BIEL + (int(255 * pg),))
+    im.alpha_composite(nak)
+
+
 SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wtyczka,
          "firmy": scena_firmy, "wniosek": scena_wniosek, "cta": scena_cta,
          "pytanie_dymek": scena_pytanie_dymek, "aplikacje": scena_aplikacje,
-         "zrodla": scena_zrodla, "mikro_oko": scena_mikro_oko}
+         "zrodla": scena_zrodla, "mikro_oko": scena_mikro_oko,
+         "pytanie_okno": scena_pytanie_okno, "ludzie": scena_ludzie, "czyszczenie": scena_czyszczenie,
+         "obserwatorzy": scena_obserwatorzy, "dom_siec": scena_dom_siec}
 
 
 # ------------------------------------------------------------- napisy
