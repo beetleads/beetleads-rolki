@@ -282,3 +282,11 @@ Wylapane samodzielnie i poprawione przed publikacja:
 - rolka "regulamin" miala zdjecie polki sklepowej zamiast ekranu
   (ekran1.jpg to zdjecie sklepu) i laptop z napisem "Mockup." - wymienione.
 - slupki 73 kontra 1 800 bez jednostki - dodane "s".
+
+## 12.11 09:35 - glos rozstrzygniety
+
+Zalozyciel odsluchal dwie wersje tego samego tekstu i wybral drugie nagranie
+("Drugie rob bo naturalne") - czyli eleven_v4 z podawka [confident, warm],
+to samo, ktore juz siedzi w rolkach 13.11 w kolejce. Nic nie podmieniane.
+eleven_v3 odpada: polszczyzna naturalna, ale 108-118 Hz, czyli niski glos.
+Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
