@@ -1,0 +1,40 @@
+{
+ "kod": "b6",
+ "akcent": "#35D0E8",
+ "audio": "/home/claude/silnik5/glos_b6.wav",
+ "slowa": "/home/claude/silnik5/glos_b6.json",
+ "sceny": [
+  {
+   "typ": "pytanie_baner",
+   "od": 0,
+   "linie": [
+    "PO CO STRONY CHOWAJĄ",
+    "PRZYCISK \"ODRZUĆ\"?"
+   ]
+  },
+  {
+   "typ": "kafelki",
+   "od": "Badacze",
+   "n": 68,
+   "ok": 8,
+   "tytul": "680 BANERÓW",
+   "leg_ok": "zgodne z prawem: 80",
+   "leg_zle": "łamią prawo: 600"
+  },
+  {
+   "typ": "dwa_banery",
+   "od": "Bo",
+   "wynik": "+22",
+   "podpis": "zgody na 100 osób"
+  },
+  {
+   "typ": "ustawienia",
+   "od": "Więc"
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}

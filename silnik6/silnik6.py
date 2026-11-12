@@ -961,13 +961,152 @@ def scena_sprawdz(im, t, dl, p, kt):
     im.alpha_composite(nak)
 
 
+# ============================================================= sceny: banery zgod
+
+def baner(d, x0, y0, x1, a, odmowa=False, skala=1.0, akc=(53, 208, 232)):
+    """Baner zgod na dole ekranu: duzy 'Akceptuje wszystkie', maly 'ustawienia',
+    opcjonalnie rowny przycisk 'Odrzuc'. Zwraca (wysokosc, box ustawien)."""
+    k = skala
+    h = int(330 * k)
+    d.rounded_rectangle([x0, y0, x1, y0 + h], radius=int(24 * k), fill=(250, 250, 248, int(255 * a)))
+    ft = f_inter(26 * k)
+    d.text((x0 + 26 * k, y0 + 22 * k), "Ta strona używa ciasteczek", font=ft, fill=(30, 30, 34, int(255 * a)))
+    for i in range(2):
+        d.rounded_rectangle([x0 + 26 * k, y0 + (70 + i * 26) * k, x1 - (60 + i * 90) * k, y0 + (84 + i * 26) * k], radius=6,
+                            fill=(190, 190, 196, int(255 * a)))
+    by = y0 + 140 * k
+    fb = f_inter(28 * k)
+    if odmowa:
+        sz = (x1 - x0 - 26 * k * 3) / 2
+        d.rounded_rectangle([x0 + 26 * k, by, x0 + 26 * k + sz, by + 70 * k], radius=int(16 * k), fill=(60, 60, 68, int(255 * a)))
+        d.rounded_rectangle([x1 - 26 * k - sz, by, x1 - 26 * k, by + 70 * k], radius=int(16 * k), fill=(60, 60, 68, int(255 * a)))
+        d.text((x0 + 26 * k + sz / 2 - szer(d, "Odrzuć", fb) / 2, by + 18 * k), "Odrzuć", font=fb, fill=BIEL + (int(255 * a),))
+        d.text((x1 - 26 * k - sz / 2 - szer(d, "Akceptuj", fb) / 2, by + 18 * k), "Akceptuj", font=fb, fill=BIEL + (int(255 * a),))
+        us = None
+    else:
+        d.rounded_rectangle([x0 + 26 * k, by, x1 - 26 * k, by + 80 * k], radius=int(16 * k), fill=akc + (int(255 * a),))
+        tl = "Akceptuję wszystkie"
+        d.text(((x0 + x1) / 2 - szer(d, tl, fb) / 2, by + 22 * k), tl, font=fb, fill=CIEMNY + (int(255 * a),))
+        fu = f_inter(20 * k, False)
+        uy = by + 104 * k
+        d.text(((x0 + x1) / 2 - szer(d, "ustawienia", fu) / 2, uy), "ustawienia", font=fu, fill=(150, 150, 158, int(255 * a)))
+        us = ((x0 + x1) / 2, uy + 12 * k)
+    return h, us
+
+
+def scena_pytanie_baner(im, t, dl, p, kt):
+    """Pytanie + telefon ze strona i banerem, w ktorym nie ma przycisku odmowy."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    sk = 1.0 if t < 0.1 else 0.9 + 0.1 * (1 - (1 - min(1.0, (t - 0.1) / 0.7)) ** 3)
+
+    def ekran(im2, box, tt, a):
+        x0, y0, x1, y1 = box
+        nak, d = warstwa()
+        for i in range(6):
+            d.rounded_rectangle([x0 + 24, y0 + 80 + i * 50, x1 - 24 - (i % 3) * 50, y0 + 104 + i * 50], radius=8,
+                                fill=(200, 200, 206, int(255 * a)))
+        bk = (x1 - x0) / 520
+        baner(d, x0 + 10, y1 - int(350 * bk) - 20, x1 - 10, a, skala=bk, akc=akc)
+        im2.alpha_composite(nak)
+    box = telefon(im, CX, dol + 480, 1.08 * sk, 1.0, ekran, t)
+    blysk(im, box, t)
+
+
+def scena_kafelki(im, t, dl, p, kt):
+    """Siatka kafelkow (kazdy = p['na_kafelek'] banerow); zgodne z prawem na zielono."""
+    nak, d = warstwa()
+    n, ok = p["n"], p["ok"]
+    kol, s, gap = 10, 62, 12
+    x0 = CX - (kol * s + (kol - 1) * gap) // 2
+    y0 = 520
+    zielone = int(ok * min(1.0, max(0.0, (t - 0.9) / 0.6)))
+    for i in range(n):
+        pa = pop(t, 0.02 + (i // kol) * 0.06, 0.25)
+        if pa <= 0:
+            continue
+        x = x0 + (i % kol) * (s + gap)
+        y = y0 + (i // kol) * (s + gap)
+        kolor = ZIELONY if i < zielone else (90, 40, 46)
+        sc = s * pa
+        d.rounded_rectangle([x + (s - sc) / 2, y + (s - sc) / 2, x + (s + sc) / 2, y + (s + sc) / 2], radius=12,
+                            fill=kolor + (255,))
+    fb = f_anton(90)
+    tl = p["tytul"]
+    d.text((CX - szer(d, tl, fb) // 2, 330), tl, font=fb, fill=BIEL + (255,))
+    yk = y0 + ((n - 1) // kol + 1) * (s + gap) + 20
+    pl = wej(t, 0.9, 0.4)
+    for j, (kolor, tekst) in enumerate([(ZIELONY, p["leg_ok"]), ((90, 40, 46), p["leg_zle"])]):
+        yy = yk + j * 60
+        d.rounded_rectangle([X0 + 60, yy, X0 + 100, yy + 40], radius=8, fill=kolor + (int(255 * pl),))
+        d.text((X0 + 120, yy), tekst, font=f_inter(34), fill=BIEL + (int(255 * pl),))
+    im.alpha_composite(nak)
+
+
+def scena_dwa_banery(im, t, dl, p, kt):
+    """Dwa banery: z odmowa i bez. Pod tym bez odmowy licznik zgod rosnie o +22."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.35)
+    w = 380
+    lx0, rx0 = X0, X1 - w
+    y = 680
+    d.text((lx0, y - 70), "z przyciskiem odmowy", font=f_inter(28), fill=SZARY + (int(255 * a),))
+    d.text((rx0, y - 70), "bez odmowy", font=f_inter(28), fill=SZARY + (int(255 * a),))
+    baner(d, lx0, y, lx0 + w, a, odmowa=True, skala=w / 520, akc=akc)
+    pb = wej(t, 0.4, 0.35)
+    baner(d, rx0, y, rx0 + w, pb, odmowa=False, skala=w / 520, akc=akc)
+    pz = pop(t, 1.0, 0.45)
+    if pz > 0:
+        fb = f_anton(150 * pz)
+        tl = p["wynik"]
+        d.text((rx0 + w / 2 - szer(d, tl, fb) / 2, y + 300), tl, font=fb, fill=ZIELONY + (255,))
+        fl = f_inter(34)
+        d.text((rx0 + w / 2 - szer(d, p["podpis"], fl) / 2, y + 480), p["podpis"], font=fl, fill=BIEL + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_ustawienia(im, t, dl, p, kt):
+    """Wniosek: klik w 'ustawienia' otwiera drugi ekran z 'Odrzuc wszystkie'."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    x0, x1 = CX - 300, CX + 300
+    y = 520
+    t_klik = 0.7
+    if t < t_klik + 0.2:
+        h, us = baner(d, x0, y, x1, wej(t, 0, 0.3), skala=600 / 520, akc=akc)
+        pk = wej(t, 0.2, 0.45)
+        fx, fy = us[0] + 160 * (1 - pk), us[1] + 160 * (1 - pk)
+        d.ellipse([fx - 28, fy - 28, fx + 28, fy + 28], outline=BIEL + (230,), width=6)
+    else:
+        a = wej(t, t_klik + 0.2, 0.3)
+        d.rounded_rectangle([x0, y, x1, y + 520], radius=26, fill=(250, 250, 248, int(255 * a)))
+        d.text((x0 + 30, y + 26), "Ustawienia prywatności", font=f_inter(32), fill=(30, 30, 34, int(255 * a)))
+        for i in range(3):
+            yy = y + 100 + i * 70
+            d.rounded_rectangle([x0 + 30, yy + 10, x1 - 150, yy + 30], radius=8, fill=(190, 190, 196, int(255 * a)))
+            d.rounded_rectangle([x1 - 110, yy, x1 - 40, yy + 40], radius=20, fill=(200, 200, 206, int(255 * a)))
+            d.ellipse([x1 - 106, yy + 4, x1 - 74, yy + 36], fill=BIEL + (int(255 * a),))
+        pz = pop(t, t_klik + 0.6, 0.4)
+        sc = max(pz, 0.001)
+        by = y + 360
+        d.rounded_rectangle([x0 + 30, by, x1 - 30, by + 110], radius=20, fill=ZIELONY + (int(255 * a),))
+        tl = "Odrzuć wszystkie"
+        fb = f_inter(40)
+        d.text((CX - szer(d, tl, fb) // 2, by + 30), tl, font=fb, fill=BIEL + (int(255 * a),))
+        if pz > 0:
+            d.rounded_rectangle([x0 + 20, by - 10, x1 - 20, by + 120], radius=24, outline=ZIELONY + (int(160 * pz),), width=6)
+    im.alpha_composite(nak)
+
+
 SCENY = {"pytanie": scena_pytanie, "magazyn": scena_magazyn, "wtyczka": scena_wtyczka,
          "firmy": scena_firmy, "wniosek": scena_wniosek, "cta": scena_cta,
          "pytanie_dymek": scena_pytanie_dymek, "aplikacje": scena_aplikacje,
          "zrodla": scena_zrodla, "mikro_oko": scena_mikro_oko,
          "pytanie_okno": scena_pytanie_okno, "ludzie": scena_ludzie, "czyszczenie": scena_czyszczenie,
          "obserwatorzy": scena_obserwatorzy, "dom_siec": scena_dom_siec,
-         "pytanie_dokument": scena_pytanie_dokument, "klauzula": scena_klauzula, "czas": scena_czas, "sprawdz": scena_sprawdz}
+         "pytanie_dokument": scena_pytanie_dokument, "klauzula": scena_klauzula, "czas": scena_czas, "sprawdz": scena_sprawdz,
+         "pytanie_baner": scena_pytanie_baner, "kafelki": scena_kafelki, "dwa_banery": scena_dwa_banery, "ustawienia": scena_ustawienia}
 
 
 # ------------------------------------------------------------- napisy
