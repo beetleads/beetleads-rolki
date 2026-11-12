@@ -27,7 +27,7 @@ def miks(wej, muz, wyj, g):
           "[0:a]asplit[v][sc];"
           "[m][sc]sidechaincompress=threshold=0.02:ratio=5:attack=30:release=350[md];"
           "[v][md]amix=inputs=2:duration=first:normalize=0,"
-          f"loudnorm=I=-14:TP=-1.6:LRA=11,afade=t=out:st={d - 0.7:.2f}:d=0.7[a]")
+          f"loudnorm=I=-14:TP=-1.6:LRA=11,alimiter=limit=0.8:level=disabled,afade=t=out:st={d - 0.7:.2f}:d=0.7[a]")
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", wej, "-stream_loop", "-1", "-i", muz,
                     "-filter_complex", fc, "-map", "0:v", "-map", "[a]", "-c:v", "copy",
                     "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", wyj], check=True)

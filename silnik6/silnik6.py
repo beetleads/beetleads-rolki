@@ -502,7 +502,7 @@ def scena_cta(im, t, dl, p, kt):
     fb = f_inter(46)
     d.text((CX - szer(d, tb, fb) // 2, by + bh // 2 - 30), tb, font=fb, fill=BIEL + (int(255 * a),))
     fp = f_inter(36, False)
-    tp = "po więcej ciekawostek"
+    tp = "po więcej wiedzy"
     d.text((CX - szer(d, tp, fp) // 2, by + 150), tp, font=fp, fill=ZOLTY + (int(255 * a),))
     # kursor-palec dojezdza do przycisku i znika po kliknieciu
     # kursor jedzie poziomo z prawej, na wysokosci przycisku - nie przejezdza po napisie pod spodem
