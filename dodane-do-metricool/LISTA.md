@@ -233,3 +233,28 @@ Przebudowane i podmienione: 13.11 (rozrzut 123,1 Hz po trzech ujeciach - zgoda a
 
 **Nowy kierunek tematow (11.11 21:40).** Stare filary cenowe WYCOFANE w `dziennikarz` i `rolki-v3`. Nowe: 1. jak to dziala, czego nie widzisz (45%), 2. pytanie, ktore ludzie zadaja sobie sami (35%), 3. zachowanie ludzi, ktore zaskakuje ich samych (20%). Proces odwrocony: najpierw PYTANIE z Reddita/forow/komentarzy w ich slowach, potem badanie z liczba. Zakaz powtorek: maks. 1 rolka o cenach na 7 kolejnych, maks. 1 o tej samej platformie, streszczenie musi roznic sie od 10 poprzednich.
 Pierwsze trzy tematy w nowej puli `rejestr/pula/spoleczne.json`: S1 polozenie 340 razy na dobe (Schmidt, 2018), S2 17 260 aplikacji i zero nagran dzwieku, ale nagrania ekranu (Pan i in., 2018), S3 11,8% legalnych banerow zgod i +22-23 punkty procentowe po ukryciu odmowy (Nouwens i in., 2020).
+
+## 12.11 08:50 - rolki 12.11 wersja n3 (spokojne tlo, poprawione liczby)
+
+Powod: zalozyciel 08:27 - "nie ten sam szablon wszedzie, wersja podobna,
+w tle nie moze byc zbyt dynamicznie i drgajaco".
+
+Zmiany w silniku:
+- render.py: przejazd okna w tle 0,42 -> 0,24 zapasu (ruch wolniejszy o 43%),
+  zoom zdjecia 1,00-1,04 zamiast skokow; ziarno desenia stale w obrebie rolki.
+- render.py: etykieta slupka dopasowuje stopien pisma i lamie sie na dwie
+  linie, wiec nie nachodzi na sasiednia (bylo w rolce "incognito").
+- buduj5.py: ujecia 1,9-2,1 s, rytm ciec rozny dla kazdej palety.
+
+Zmiany merytoryczne (bramka sensu liczb):
+- lokal: BLAD WYLAPANY - iPhone nie wysylal "0 razy", tylko ok. 50 razy
+  rzadziej (Schmidt 2018). Poprawione w rolce i w opisie na Metricoolu.
+  Slupki pokazuja 900 polaczen i 340 z nich o polozeniu.
+- podsluch: slupki 17 260 / 9 100 zamiast slowa "sa takie"; proba mowi,
+  ile z ilu aplikacji uruchomiono.
+- incognito: 39% i 0 zamiast slowa "zero"; w opisie "39 na 100 osob".
+
+Podmienione posty (12.11): 09:00 425357771 / 425357897,
+14:00 425358011 / 425358165, 19:00 425358293 / 425358415.
+Bramki: dlugosc 20,0 / 19,1 / 17,3 s, LUFS -14,5 / -14,2 / -14,1,
+TP -1,4 / -1,7 / -1,8, ruch startowy OK, zdjecia czyste.
