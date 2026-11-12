@@ -1,0 +1,40 @@
+{
+ "kod": "s6sztuki",
+ "akcent": "#35D0E8",
+ "audio": "/home/claude/silnik5/glos_s6sztuki.wav",
+ "slowa": "/home/claude/silnik5/glos_s6sztuki.json",
+ "sceny": [
+  {
+   "typ": "pytanie",
+   "od": 0,
+   "linie": [
+    "DLACZEGO SKLEP PISZE",
+    "\"ZOSTAŁY 3 SZTUKI\"?"
+   ],
+   "jutro": "jutro",
+   "foto": "public/torba1.jpg"
+  },
+  {
+   "typ": "magazyn",
+   "od": "Bo",
+   "w_magazynie": 40,
+   "foto": "public/torba1.jpg"
+  },
+  {
+   "typ": "wtyczka",
+   "od": "Bywa",
+   "foto": "public/torba1.jpg"
+  },
+  {
+   "typ": "firmy",
+   "od": "Badacze",
+   "ile": 22,
+   "podpis": "firmy sprzedają sklepom takie sztuczki"
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}
