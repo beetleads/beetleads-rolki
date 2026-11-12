@@ -345,3 +345,14 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
 - 15.11 18:00 doladowanie z bonusem (Liu, Zhang i Zou, 2026): 425741906 / 425742453
 - Stare wersje tych zrodel -> DRAFT: 21.11 12:00 (pakiet 40%), 26.11 18:00 (zwroty).
 - Zakres: do 15.11 wlacznie (zalozyciel 14:37 "byle do 15.11, do konca tygodnia").
+
+## 12.11 16:30 - podklad muzyczny + miniatury wszedzie
+
+- Zalozyciel 16:15: "dodawaj video thumbnail w Metricool zawsze" -> wszystkie posty IG+TT tez
+  maja teraz videoThumbnailUrl (wczesniej tylko FB+YT; IG/TT mialy videoCoverMilliseconds).
+- 16:15/16:18: podklad z ElevenLabs Music, "mniej korporacyjne, spokojny beat jednostajny" ->
+  lo-fi 82 BPM, Rhodes + miekki bit (silnik6/podklad_lofi.mp3), bez wokalu (sprawdzone whisperem).
+  Mieszanie silnik6/podklad.py: muzyka 16 dB pod lektorem + przyciszanie pod glosem, -14 LUFS.
+- Podmienione (pliki *_s6m + okladki *_s6m_cover.jpg): 12.11 19:00, 13.11 07/12/18,
+  14.11 07/12/18, 15.11 07/12/18 - wszystkie 4 kanaly.
+- 12.11 19:00 incognito: przy okazji usunieta tez etykieta "PYTAJA LUDZIE" (zostala w starym pliku).
