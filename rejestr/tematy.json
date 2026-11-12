@@ -1087,5 +1087,32 @@
   "zrodlo": "Blake, Nosko i Tadelis, 2015",
   "mechanizm": "reklama na wlasna nazwe",
   "status": "zaplanowana"
+ },
+ {
+  "rolka": "S1",
+  "data": "2026-11-12",
+  "godz": "07:00",
+  "slug": "polozenie-340-razy",
+  "zrodlo": "Schmidt, 2018",
+  "mechanizm": "dane w tle bez dzialania uzytkownika",
+  "status": "zaplanowana"
+ },
+ {
+  "rolka": "S2",
+  "data": "2026-11-12",
+  "godz": "12:00",
+  "slug": "czy-telefon-podsluchuje",
+  "zrodlo": "Pan i in., 2018",
+  "mechanizm": "nie podsluch a podglad ekranu",
+  "status": "zaplanowana"
+ },
+ {
+  "rolka": "S4",
+  "data": "2026-11-12",
+  "godz": "18:00",
+  "slug": "tryb-incognito",
+  "zrodlo": "Habib i in., 2018",
+  "mechanizm": "tryb prywatny ukrywa tylko lokalnie",
+  "status": "zaplanowana"
  }
 ]
