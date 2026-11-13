@@ -1,0 +1,47 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_proba",
+   "od": 0,
+   "linie": [
+    "CZY DARMOWY OKRES PRÓBNY",
+    "PRZYCIĄGA DOBRYCH KLIENTÓW?"
+   ]
+  },
+  {
+   "typ": "po_darmowe",
+   "od": "Często",
+   "slowo": "darmo"
+  },
+  {
+   "typ": "duza_liczba",
+   "od": "Firma",
+   "tytul": "PONAD 16 TYSIĘCY KLIENTÓW",
+   "start": "59%",
+   "wartosc": 59,
+   "znak": "-",
+   "ikony": true,
+   "podpis": [
+    "zysku od klientów",
+    "z darmowego okresu"
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "LICZ, ILU ZOSTAJE",
+    "PO OKRESIE PRÓBNYM"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "j1w",
+ "audio": "/home/claude/silnik5/glos_j1.wav",
+ "slowa": "/home/claude/silnik5/glos_j1.json"
+}

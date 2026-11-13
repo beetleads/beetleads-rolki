@@ -1746,3 +1746,127 @@ def scena_wzrok(im, t, dl, p, kt):
 
 
 s6.SCENY.update({"pytanie_twarz": scena_pytanie_twarz, "wzrok": scena_wzrok})
+
+
+# ---------------------------------------------------------------- j1-j3: okres probny, klient ze znizki, najczesciej wybierane
+
+def _bilet(d, cx, cy, tekst, kol, a, s=1.0):
+    w, h = 380 * s, 170 * s
+    A = int(255 * a)
+    d.rounded_rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], radius=int(20 * s), fill=kol + (A,))
+    for k in (-1, 1):
+        d.ellipse([cx + k * w / 2 - 22 * s, cy - 22 * s, cx + k * w / 2 + 22 * s, cy + 22 * s], fill=(28, 28, 34, A))
+    f = f_anton(int(70 * s))
+    d.text((cx - szer(d, tekst, f) / 2, cy - f.size * 0.62), tekst, font=f, fill=CIEMNY + (A,))
+
+
+def scena_pytanie_proba(im, t, dl, p, kt):
+    """Bilet ZA DARMO i ludzie, ktorzy po niego ida - od pierwszej klatki."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 260
+    _bilet(d, CX, cy, "ZA DARMO", akc, 1.0, s=1.2)
+    for j in range(4):
+        x = CX - 330 + j * 220 - 30 * wej(t, 0.2, 1.2)
+        czlowiek(d, x, cy + 290, 55, ((110, 170, 240), (240, 140, 190))[j % 2], 1.0)
+    im.alpha_composite(nak)
+
+
+def scena_po_darmowe(im, t, dl, p, kt):
+    """Ludzie przychodza po darmowe, a gdy trzeba placic - odchodza."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _bilet(d, CX + 150, 430, "ZA DARMO", akc, a, s=0.9)
+    _bilet(d, CX + 150, 720, "PŁATNE", (150, 152, 162), a, s=0.9)
+    t1 = kt["czas_slowa"](p.get("slowo", "darmo")) - kt["od"] - 0.15
+    q = wej(t, max(0.2, t1 - 0.8), 1.0)
+    for j in range(3):
+        czlowiek(d, X0 + 60 + j * 90, 430, 40, BIEL, a)
+    strzalka(d, (X0 + 270, 430), (CX - 40, 430), akc, a, grub=8, postep=wej(t, 0.2, 0.6))
+    if q > 0:
+        strzalka(d, (CX - 40, 740), (X0 + 120, 740), CZERW, 1.0, grub=10, postep=q)
+        f = f_inter(32)
+        d.text((X0 + 120, 790), "odchodzą", font=f, fill=CZERW + (int(255 * q),))
+    if t > t1:
+        pigulka(d, CX, 960, "PRZYSZLI PO DARMOWE", f_anton(48), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_pytanie_znizka(im, t, dl, p, kt):
+    """Duza metka -35% i klient przed nia - od pierwszej klatki."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 300
+    _metka_ceny(d, CX + 110, cy, "-35%", ZOLTY, 1.0, s=1.5 * (0.95 + 0.05 * pop(t, 0.2, 0.5)))
+    czlowiek(d, CX - 260, cy + 40, 85, BIEL, 1.0)
+    im.alpha_composite(nak)
+
+
+def scena_po_cene(im, t, dl, p, kt):
+    """Klient idzie za metka, nie za firma: metka znika, klient odchodzi."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _sklep(d, X0 + 170, 560, 1.0, a)
+    t1 = kt["czas_slowa"](p.get("slowo", "cenę")) - kt["od"] - 0.15
+    q = wej(t, t1, 0.8)
+    _metka_ceny(d, CX + 160 + 120 * q, 440, "-35%", ZOLTY, a * (1 - 0.6 * q), s=1.0)
+    czlowiek(d, CX + 40 + 220 * q, 640, 70, BIEL, a)
+    if q > 0:
+        strzalka(d, (CX - 40, 760), (CX + 300, 760), akc, 1.0, grub=8, postep=q)
+        pigulka(d, CX, 960, "PRZYSZEDŁ PO CENĘ", f_anton(48), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def _menu(d, x0, y0, x1, a, akc, wyroz=None, n=5):
+    A = int(255 * a)
+    d.rounded_rectangle([x0, y0, x1, y0 + 90 + n * 80], radius=22, fill=(240, 236, 226, A))
+    for i in range(n):
+        y = y0 + 50 + i * 80
+        d.rounded_rectangle([x0 + 40, y, x0 + 40 + (x1 - x0) * (0.45 + 0.08 * (i % 3)), y + 22], radius=8, fill=(120, 116, 108, A))
+        d.rounded_rectangle([x1 - 120, y, x1 - 40, y + 22], radius=8, fill=(160, 156, 148, A))
+        if wyroz is not None and i in wyroz:
+            d.rounded_rectangle([x0 + 14, y - 16, x1 - 14, y + 40], radius=12, outline=akc + (A,), width=6)
+
+
+def scena_pytanie_bestseller(im, t, dl, p, kt):
+    """Karta menu z jedna pozycja wyroznionej odznaka - od pierwszej klatki."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    y0 = dol + 90
+    _menu(d, CX - 300, y0, CX + 300, 1.0, akc, wyroz=[1])
+    q = pop(t, 0.3, 0.5)
+    if q > 0:
+        pigulka(d, CX + 220, y0 + 100, "NAJCZĘŚCIEJ WYBIERANE", f_anton(int(34 * max(q, 0.01))), akc + (255,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_patrzy_na_innych(im, t, dl, p, kt):
+    """Niepewny klient (znak zapytania) patrzy na innych, ktorzy wybieraja to samo danie."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    czlowiek(d, CX, 700, 90, BIEL, a)
+    f = f_anton(110)
+    d.text((CX - szer(d, "?", f) / 2, 470), "?", font=f, fill=BIEL + (int(255 * a),))
+    t1 = kt["czas_slowa"](p.get("slowo", "inni")) - kt["od"] - 0.15
+    for j, x in enumerate((X0 + 110, X0 + 260, X1 - 260, X1 - 110)):
+        q = wej(t, max(0.3, t1 - 1.0) + j * 0.15, 0.4)
+        czlowiek(d, x, 470, 50, ((110, 170, 240), (240, 140, 190))[j % 2], a)
+        if q > 0:
+            strzalka(d, (x, 540), (CX + (x - CX) * 0.35, 840), akc, q, grub=6, postep=q)
+    d.rounded_rectangle([CX - 90, 840, CX + 90, 900], radius=16, fill=akc + (int(255 * a),))
+    if t > t1:
+        pigulka(d, CX, 1000, "PATRZY, CO WYBIERAJĄ INNI", f_anton(46), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({
+    "pytanie_proba": scena_pytanie_proba, "po_darmowe": scena_po_darmowe,
+    "pytanie_znizka": scena_pytanie_znizka, "po_cene": scena_po_cene,
+    "pytanie_bestseller": scena_pytanie_bestseller, "patrzy_na_innych": scena_patrzy_na_innych,
+})

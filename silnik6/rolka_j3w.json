@@ -1,0 +1,52 @@
+{
+ "akcent": "#FFC93C",
+ "sceny": [
+  {
+   "typ": "pytanie_bestseller",
+   "od": 0,
+   "linie": [
+    "CZY OZNACZAĆ",
+    "NAJCZĘŚCIEJ WYBIERANE?"
+   ]
+  },
+  {
+   "typ": "patrzy_na_innych",
+   "od": "Tak",
+   "slowo": "inni"
+  },
+  {
+   "typ": "dwa_wzrosty",
+   "od": "W",
+   "tytul": "SIEĆ RESTAURACJI",
+   "wykres": true,
+   "pozycje": [
+    {
+     "od": "13",
+     "liczba": "+13-20%",
+     "podpis": "zamówień 5 najpopularniejszych"
+    },
+    {
+     "od": "polecane",
+     "liczba": "BEZ ZMIAN",
+     "podpis": "dania tylko polecane"
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "POKAZUJ, CO INNI",
+    "KUPUJĄ NAJCZĘŚCIEJ"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "j3w",
+ "audio": "/home/claude/silnik5/glos_j3.wav",
+ "slowa": "/home/claude/silnik5/glos_j3.json"
+}

@@ -1,0 +1,58 @@
+{
+ "akcent": "#FF7A59",
+ "sceny": [
+  {
+   "typ": "pytanie_znizka",
+   "od": 0,
+   "linie": [
+    "CZY KLIENT ZŁAPANY",
+    "NA DUŻĄ ZNIŻKĘ WRÓCI?"
+   ]
+  },
+  {
+   "typ": "po_cene",
+   "od": "Rzadziej",
+   "slowo": "cenę"
+  },
+  {
+   "typ": "trzy_paski",
+   "od": "Badacz",
+   "tytul": "ILE KLIENT JEST WART Z CZASEM",
+   "pozycje": [
+    {
+     "od": "35%",
+     "etykieta": "przyszedł ze zniżką 35%",
+     "dl": 0.5,
+     "opis": "OK. POŁOWA",
+     "kolor": [
+      235,
+      80,
+      80
+     ]
+    },
+    {
+     "od": "bez",
+     "etykieta": "przyszedł bez zniżki",
+     "dl": 1.0,
+     "opis": "CAŁOŚĆ"
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "NIE PRZYCIĄGAJ",
+    "SAMĄ ZNIŻKĄ"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "j2w",
+ "audio": "/home/claude/silnik5/glos_j2.wav",
+ "slowa": "/home/claude/silnik5/glos_j2.json"
+}
