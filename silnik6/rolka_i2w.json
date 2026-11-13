@@ -1,0 +1,54 @@
+{
+ "akcent": "#FFC93C",
+ "sceny": [
+  {
+   "typ": "pytanie_twarz",
+   "od": 0,
+   "linie": [
+    "CZY W REKLAMIE",
+    "POKAZYWAĆ LUDZI?"
+   ]
+  },
+  {
+   "typ": "wzrok",
+   "od": "Tak",
+   "slowo": "twarzy"
+  },
+  {
+   "typ": "dwa_wskazniki",
+   "od": "Badacze",
+   "tytul": "PONAD MILION ZDJĘĆ",
+   "twarze": true,
+   "pozycje": [
+    {
+     "od": "38%",
+     "wartosc": 38,
+     "kierunek": 1,
+     "podpis": "więcej polubień z twarzą"
+    },
+    {
+     "od": "32%",
+     "wartosc": 32,
+     "kierunek": 1,
+     "podpis": "więcej komentarzy z twarzą"
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "POKAŻ CZŁOWIEKA,",
+    "NIE SAM PRODUKT"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "i2w",
+ "audio": "/home/claude/silnik5/glos_i2.wav",
+ "slowa": "/home/claude/silnik5/glos_i2.json"
+}

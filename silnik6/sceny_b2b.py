@@ -973,6 +973,14 @@ def scena_dwa_wskazniki(im, t, dl, p, kt):
         if za > 0:
             _auto(d, CX - 60 + 60 * min(1.0, t / 3), 640, za, s=1.5)
             pigulka(d, CX - 140, 560, "0 ZŁ", f_anton(64), kt["akcent"] + (int(255 * za),), CIEMNY + (int(255 * za),))
+    if p.get("twarze"):
+        # siatka zdjec (z twarza / bez) trzyma kadr, zanim padnie pierwsza liczba
+        t_pierw = kt["czas_slowa"](p["pozycje"][0]["od"]) - kt["od"] - 0.15
+        za = a * (1 - wej(t, t_pierw, 0.4))
+        if za > 0:
+            for k in range(6):
+                x, y = X0 + 70 + (k % 3) * 300, 470 + (k // 3) * 300
+                _zdjecie(d, x, y, 250, za, k % 2 == 0, kt["akcent"])
     for i, poz in enumerate(p["pozycje"]):
         t0 = kt["czas_slowa"](poz["od"]) - kt["od"] - 0.15
         q = wej(t, t0, 0.7)
@@ -1679,3 +1687,62 @@ s6.SCENY.update({
     "pytanie_promo": scena_pytanie_promo, "sprawdza": scena_sprawdza,
     "pytanie_koszyk": scena_pytanie_koszyk, "wie_co": scena_wie_co,
 })
+
+
+# ---------------------------------------------------------------- i2: twarz w reklamie
+
+def _zdjecie(d, x, y, w, a, twarz, akc):
+    """Kwadratowe zdjecie: z twarza (glowa + ramiona) albo z samym pudelkiem produktu."""
+    A = int(255 * a)
+    d.rounded_rectangle([x, y, x + w, y + w], radius=18, fill=(58, 60, 70, A))
+    cx = x + w / 2
+    if twarz:
+        r = w * 0.2
+        d.ellipse([cx - r, y + w * 0.2, cx + r, y + w * 0.2 + 2 * r], fill=(232, 190, 160, A))
+        d.ellipse([cx - r * 0.45, y + w * 0.36, cx - r * 0.25, y + w * 0.42], fill=CIEMNY + (A,))
+        d.ellipse([cx + r * 0.25, y + w * 0.36, cx + r * 0.45, y + w * 0.42], fill=CIEMNY + (A,))
+        d.arc([cx - r * 0.45, y + w * 0.38, cx + r * 0.45, y + w * 0.55], 20, 160, fill=CIEMNY + (A,), width=4)
+        d.pieslice([cx - w * 0.36, y + w * 0.66, cx + w * 0.36, y + w * 1.2], 180, 360, fill=akc + (A,))
+    else:
+        d.rectangle([cx - w * 0.22, y + w * 0.3, cx + w * 0.22, y + w * 0.78], fill=(150, 152, 162, A))
+        d.polygon([(cx - w * 0.22, y + w * 0.3), (cx - w * 0.1, y + w * 0.2), (cx + w * 0.32, y + w * 0.2), (cx + w * 0.22, y + w * 0.3)],
+                  fill=(185, 187, 197, A))
+
+
+def scena_pytanie_twarz(im, t, dl, p, kt):
+    """Dwie reklamy obok siebie: sam produkt i czlowiek - od pierwszej klatki."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    y = dol + 140
+    _zdjecie(d, CX - 340, y, 300, 1.0, False, akc)
+    _zdjecie(d, CX + 40, y, 300, 1.0, True, akc)
+    f = f_anton(int(120 * (0.9 + 0.1 * pop(t, 0.3, 0.5))))
+    d.text((CX - szer(d, "?", f) / 2, y + 80), "?", font=f, fill=BIEL + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_wzrok(im, t, dl, p, kt):
+    """Oko skanuje kadr i laduje na twarzy, zanim zauwazy produkt."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _zdjecie(d, X0 + 60, 520, 300, a, False, akc)
+    _zdjecie(d, X1 - 360, 520, 300, a, True, akc)
+    ox, oy = CX, 360
+    d.ellipse([ox - 90, oy - 45, ox + 90, oy + 45], outline=BIEL + (int(255 * a),), width=6)
+    q = wej(t, 0.2, 1.0)
+    tx, ty = X1 - 210, 640
+    px, py = ox + 40 * q, oy + 12 * q          # zrenica zostaje w oku i patrzy w strone twarzy
+    d.ellipse([px - 30, py - 30, px + 30, py + 30], fill=akc + (int(255 * a),))
+    d.ellipse([px - 12, py - 12, px + 12, py + 12], fill=CIEMNY + (int(255 * a),))
+    if q > 0:
+        strzalka(d, (ox + 40, oy + 50), (tx - 20, ty - 70), akc, a, grub=8, postep=q)
+    t1 = kt["czas_slowa"](p.get("slowo", "twarzy")) - kt["od"] - 0.15
+    if t > t1:
+        d.rounded_rectangle([X1 - 372, 508, X1 - 48, 832], radius=22, outline=akc + (255,), width=8)
+        pigulka(d, CX, 960, "WZROK SAM SZUKA TWARZY", f_anton(48), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({"pytanie_twarz": scena_pytanie_twarz, "wzrok": scena_wzrok})
