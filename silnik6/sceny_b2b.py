@@ -352,7 +352,7 @@ def scena_pytanie_mail(im, t, dl, p, kt):
     nak, d = warstwa()
     x0, y0, x1, y1 = X0 + 20, dol + 70, X1 - 20, dol + 640
     okno_przegladarki(d, x0, y0, x1, y1, 1.0)
-    _skrzynka(d, x0 + 30, y0 + 100, x1 - 30, 4, 1.0, wyroznij=1, akc=akc, imie_p=wej(t, 0.5, 0.4))
+    _skrzynka(d, x0 + 30, y0 + 100, x1 - 30, 4, 1.0, wyroznij=1, akc=akc, imie_p=1.0)
     im.alpha_composite(nak)
 
 
