@@ -1,0 +1,8 @@
+{"rolka": "rolka_c1w.json", "wstrzas": "4", "tla": [
+ {"plik": "/home/claude/hf/hf_c1.mp4", "st": 0.2, "dl": 3.0, "ciemn": 0.6, "rozm": 2},
+ {"plik": "/home/claude/hf/hf_c1.mp4", "st": 3.6, "dl": 2.3, "ciemn": 0.6, "rozm": 2},
+ [{"plik": "/home/claude/hf/hf_c1.mp4", "st": 8.7, "dl": 3.1, "ciemn": 0.5, "rozm": 3},
+  {"od": "a", "plik": "/home/claude/hf/hf_c1.mp4", "st": 6.1, "dl": 2.3, "ciemn": 0.55, "rozm": 3}],
+ {"plik": "/home/claude/hf/hf_c1.mp4", "st": 12.1, "dl": 2.8, "ciemn": 0.6, "rozm": 2},
+ {"plik": "/home/claude/hf/hf_c1.mp4", "st": 9.0, "dl": 2.0}
+]}

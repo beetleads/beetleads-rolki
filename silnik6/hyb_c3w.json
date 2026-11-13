@@ -1,0 +1,49 @@
+{
+ "rolka": "rolka_c3w.json",
+ "wstrzas": "2,7",
+ "tla": [
+  {
+   "plik": "/home/claude/hf/hf_b3.mp4",
+   "st": 2.7,
+   "dl": 3.2,
+   "ciemn": 0.4,
+   "rozm": 10
+  },
+  {
+   "plik": "/home/claude/hf/hf_b3.mp4",
+   "st": 0.0,
+   "dl": 2.4,
+   "ciemn": 0.6,
+   "rozm": 2
+  },
+  [
+   {
+    "plik": "/home/claude/hf/hf_m3.mp4",
+    "st": 12.1,
+    "dl": 2.8,
+    "ciemn": 0.55,
+    "rozm": 3
+   },
+   {
+    "od": "2,7",
+    "plik": "/home/claude/hf/hf_m4.mp4",
+    "st": 9.6,
+    "dl": 2.3,
+    "ciemn": 0.5,
+    "rozm": 3
+   }
+  ],
+  {
+   "plik": "/home/claude/hf/hf_a2.mp4",
+   "st": 0.0,
+   "dl": 2.9,
+   "ciemn": 0.6,
+   "rozm": 2
+  },
+  {
+   "plik": "/home/claude/hf/hf_b3.mp4",
+   "st": 12.3,
+   "dl": 2.5
+  }
+ ]
+}

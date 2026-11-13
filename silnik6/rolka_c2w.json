@@ -1,0 +1,46 @@
+{
+ "akcent": "#FFB02E",
+ "sceny": [
+  {
+   "typ": "pytanie_polecenie",
+   "od": 0,
+   "linie": [
+    "CZY KLIENT Z POLECENIA",
+    "JEST WART WIĘCEJ?"
+   ]
+  },
+  {
+   "typ": "dopasowanie",
+   "od": "Znajomy"
+  },
+  {
+   "typ": "dwa_wzrosty",
+   "od": "Na",
+   "tytul": "KLIENT Z POLECENIA",
+   "podtytul": "blisko 10 tysięcy klientów banku",
+   "pozycje": [
+    {
+     "liczba": "+16%",
+     "podpis": "więcej wart dla firmy",
+     "od": "16%"
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc#2",
+   "linie": [
+    "NAGRADZAJ",
+    "ZA POLECENIA"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "c2w",
+ "audio": "/home/claude/silnik5/glos_c2.wav",
+ "slowa": "/home/claude/silnik5/glos_c2.json"
+}

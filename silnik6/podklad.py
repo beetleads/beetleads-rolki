@@ -41,7 +41,7 @@ def lufs(p, extra=[]):
     return float(linie[-1].split()[1])
 
 
-POD_GLOSEM = 16.0   # muzyka tyle dB ciszej niz lektor (przed przyciszaniem pod glosem)
+POD_GLOSEM = 12.0   # muzyka tyle dB ciszej niz lektor; 13.11 15:27 zalozyciel: "lekko podglosnij" (bylo 16)
 
 if __name__ == "__main__":
     wej, muz, wyj = sys.argv[1:4]

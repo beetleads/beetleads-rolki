@@ -1,0 +1,64 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_bot",
+   "od": 0,
+   "linie": [
+    "CZY CHATBOT POWINIEN",
+    "UDAWAĆ CZŁOWIEKA?"
+   ]
+  },
+  {
+   "typ": "oczekiwania",
+   "od": "Od"
+  },
+  {
+   "typ": "slupki_slowa",
+   "od": "W#2",
+   "tytul": "CHĘĆ ZAKUPU (1-7)",
+   "podtytul": "zdenerwowani klienci",
+   "wartosci": [
+    3.6,
+    2.7
+   ],
+   "etykiety": [
+    "zwykły bot",
+    "bot „człowiek”"
+   ],
+   "starty": [
+    "3,6",
+    "2,7"
+   ],
+   "jedn": "",
+   "kolory": [
+    [
+     150,
+     152,
+     162
+    ],
+    [
+     240,
+     110,
+     100
+    ]
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "więc#2",
+   "linie": [
+    "NIE PRZEBIERAJ BOTA",
+    "ZA CZŁOWIEKA"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "c3w",
+ "audio": "/home/claude/silnik5/glos_c3.wav",
+ "slowa": "/home/claude/silnik5/glos_c3.json"
+}

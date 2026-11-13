@@ -1,0 +1,64 @@
+{
+ "akcent": "#FF7A59",
+ "sceny": [
+  {
+   "typ": "pytanie_rabat",
+   "od": 0,
+   "linie": [
+    "CZY RABAT NA START",
+    "PRZYCIĄGA STAŁYCH KLIENTÓW?"
+   ]
+  },
+  {
+   "typ": "mniej_zal",
+   "od": "Kto"
+  },
+  {
+   "typ": "slupki_slowa",
+   "od": "Kupujący",
+   "tytul": "SPEKTAKLE NA KARNET",
+   "podtytul": "średnio, ten sam karnet",
+   "wartosci": [
+    4.1,
+    3.3
+   ],
+   "etykiety": [
+    "pełna cena",
+    "z rabatem"
+   ],
+   "starty": [
+    "4",
+    "3"
+   ],
+   "jedn": "",
+   "kolory": [
+    [
+     64,
+     214,
+     120
+    ],
+    [
+     240,
+     110,
+     100
+    ]
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "ZAMIAST RABATU",
+    "WEŹ ZADATEK"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "c1w",
+ "audio": "/home/claude/silnik5/glos_c1.wav",
+ "slowa": "/home/claude/silnik5/glos_c1.json"
+}

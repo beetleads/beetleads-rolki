@@ -563,3 +563,154 @@ def scena_slupki_slowa(im, t, dl, p, kt):
 
 
 s6.SCENY["slupki_slowa"] = scena_slupki_slowa
+
+
+# ---------------------------------------------------------------- c1: rabat na start vs zadatek
+
+def _metka_ceny(d, cx, cy, tekst, kol, a, s=1.0):
+    w, h = 230 * s, 120 * s
+    d.polygon([(cx - w / 2, cy - h / 2), (cx + w / 2 - 40 * s, cy - h / 2), (cx + w / 2, cy), (cx + w / 2 - 40 * s, cy + h / 2),
+               (cx - w / 2, cy + h / 2)], fill=kol + (int(255 * a),))
+    f = f_anton(int(62 * s))
+    d.text((cx - 20 * s - szer(d, tekst, f) / 2, cy - f.size * 0.62), tekst, font=f, fill=CIEMNY + (int(255 * a),))
+
+
+def scena_pytanie_rabat(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    # karnet z metka rabatu, ktora wpada z gory
+    x0, y0, x1, y1 = CX - 300, dol + 120, CX + 300, dol + 470
+    d.rounded_rectangle([x0, y0, x1, y1], radius=26, fill=(52, 52, 62, 255), outline=(90, 92, 104, 255), width=3)
+    for i in range(3):
+        d.rounded_rectangle([x0 + 40, y0 + 60 + i * 60, x1 - 160 - i * 40, y0 + 84 + i * 60], radius=10, fill=(150, 152, 162, 255))
+    d.line([x1 - 120, y0 + 20, x1 - 120, y1 - 20], fill=(30, 30, 36, 255), width=4)
+    po = pop(t, 0.3, 0.45)
+    if po > 0:
+        _metka_ceny(d, x1 - 40, y0 + 20, "RABAT", akc, 1.0, s=po)
+    im.alpha_composite(nak)
+
+
+def scena_mniej_zal(im, t, dl, p, kt):
+    """Pelna cena -> idzie; rabat -> zostaje w domu."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    for j, (cx, tag, kol, idzie) in enumerate(((CX - 200, "PEŁNA", ZIELONY, True), (CX + 200, "RABAT", akc, False))):
+        pj = wej(t, 0.1 + j * 0.35, 0.4)
+        _metka_ceny(d, cx, 360, tag, kol, pj, s=0.85)
+        czlowiek(d, cx, 600, 80, BIEL, pj)
+        if idzie:
+            strzalka(d, (cx, 720), (cx, 880), ZIELONY, pj, grub=9)
+            d.rectangle([cx - 70, 900, cx + 70, 1010], fill=(90, 92, 104, int(255 * pj)))
+            d.rectangle([cx - 24, 940, cx + 24, 1010], fill=(30, 30, 36, int(255 * pj)))
+            f = f_inter(30)
+            d.text((cx - szer(d, "przychodzi", f) / 2, 1030), "przychodzi", font=f, fill=BIEL + (int(255 * pj),))
+        else:
+            # domek
+            d.polygon([(cx - 90, 920), (cx, 840), (cx + 90, 920)], fill=(90, 92, 104, int(255 * pj)))
+            d.rectangle([cx - 70, 920, cx + 70, 1010], fill=(90, 92, 104, int(255 * pj)))
+            f = f_inter(30)
+            d.text((cx - szer(d, "zostaje w domu", f) / 2, 1030), "zostaje w domu", font=f, fill=BIEL + (int(255 * pj),))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- c2: klient z polecenia
+
+def scena_pytanie_polecenie(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    y = dol + 300
+    for j, (cx, et, kol) in enumerate(((CX - 200, "z polecenia", akc), (CX + 200, "z reklamy", (150, 152, 162)))):
+        czlowiek(d, cx, y, 100, kol, 1.0)
+        f = f_inter(34)
+        d.text((cx - szer(d, et, f) / 2, y + 110), et, font=f, fill=BIEL + (255,))
+    po = pop(t, 0.4, 0.4)
+    if po > 0:
+        f = f_anton(int(120 * po) or 1)
+        d.text((CX - szer(d, "?", f) / 2, y - 60), "?", font=f, fill=akc + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_dopasowanie(im, t, dl, p, kt):
+    """Znajomy laczy do firmy kogos, kto pasuje - klient zostaje dluzej."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    czlowiek(d, CX - 250, 520, 80, ZIELONY, a)
+    f = f_inter(28)
+    d.text((CX - 250 - szer(d, "znajomy", f) / 2, 620), "znajomy", font=f, fill=BIEL + (int(255 * a),))
+    p1 = wej(t, 0.3, 0.5)
+    strzalka(d, (CX - 170, 520), (CX - 40, 520), akc, a, grub=8, postep=p1)
+    if p1 > 0.6:
+        czlowiek(d, CX + 30, 520, 80, akc, 1.0)
+        d.text((CX + 30 - szer(d, "nowy klient", f) / 2, 620), "nowy klient", font=f, fill=BIEL + (255,))
+    p2 = wej(t, 0.9, 0.5)
+    strzalka(d, (CX + 110, 520), (CX + 230, 520), akc, a, grub=8, postep=p2)
+    if p2 > 0.6:
+        d.rectangle([CX + 240, 460, CX + 380, 580], fill=(90, 92, 104, 255))
+        for i in range(4):
+            k = (CZERW if i % 2 == 0 else BIEL) + (255,)
+            d.rectangle([CX + 232 + i * 39, 430, CX + 232 + (i + 1) * 39, 460], fill=k)
+    if t > 1.6:
+        f2 = f_anton(48)
+        pigulka(d, CX, 760, "PASUJE = ZOSTAJE DŁUŻEJ", f2, akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- c3: chatbot udajacy czlowieka
+
+def _dymek_czat(d, x0, y, x1, a, kol, prawy=False):
+    d.rounded_rectangle([x0, y, x1, y + 70], radius=22, fill=kol + (int(255 * a),))
+    d.rounded_rectangle([x0 + 24, y + 24, x1 - 60, y + 44], radius=8, fill=(30, 30, 36, int(120 * a)))
+
+
+def scena_pytanie_bot(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, y0, x1, y1 = X0 + 20, dol + 70, X1 - 20, dol + 640
+    okno_przegladarki(d, x0, y0, x1, y1, 1.0)
+    # naglowek czatu: awatar z buzia i "imie"
+    cx, cy = x0 + 90, y0 + 140
+    d.ellipse([cx - 44, cy - 44, cx + 44, cy + 44], fill=akc + (255,))
+    d.ellipse([cx - 18, cy - 12, cx - 8, cy - 2], fill=CIEMNY + (255,))
+    d.ellipse([cx + 8, cy - 12, cx + 18, cy - 2], fill=CIEMNY + (255,))
+    d.arc([cx - 20, cy - 4, cx + 20, cy + 22], 20, 160, fill=CIEMNY + (255,), width=5)
+    f = f_inter(36)
+    d.text((cx + 70, cy - 24), "Ola, konsultantka", font=f, fill=BIEL + (255,))
+    _dymek_czat(d, x0 + 30, y0 + 230, x1 - 160, wej(t, 0.3, 0.3), (90, 92, 104))
+    _dymek_czat(d, x0 + 160, y0 + 330, x1 - 30, wej(t, 0.8, 0.3), akc)
+    po = pop(t, 1.3, 0.4)
+    if po > 0:
+        f2 = f_anton(int(90 * po) or 1)
+        d.text((CX - szer(d, "BOT?", f2) / 2, y0 + 440), "BOT?", font=f2, fill=CZERW + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_oczekiwania(im, t, dl, p, kt):
+    """Zdenerwowany klient: od 'czlowieka' oczekuje wiecej - zawod wiekszy."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    czlowiek(d, CX, 430, 90, CZERW, a)
+    f = f_inter(30)
+    d.text((CX - szer(d, "zdenerwowany klient", f) / 2, 530), "zdenerwowany klient", font=f, fill=BIEL + (int(255 * a),))
+    f2 = f_anton(44)
+    for j, (et, ocz) in enumerate((("BOT", 0.35), ("BOT „CZŁOWIEK”", 0.9))):
+        y = 660 + j * 170
+        pj = wej(t, 0.4 + j * 0.4, 0.5)
+        d.text((X0 + 20, y), et, font=f2, fill=BIEL + (int(255 * pj),))
+        d.rounded_rectangle([X0 + 20, y + 64, X1 - 20, y + 104], radius=20, fill=(60, 62, 72, int(255 * pj)))
+        d.rounded_rectangle([X0 + 20, y + 64, X0 + 20 + (X1 - X0 - 40) * ocz * pj, y + 104], radius=20,
+                            fill=((CZERW if j == 1 else (150, 152, 162)) + (int(255 * pj),)))
+    if t > 1.4:
+        pigulka(d, CX, 1010, "WIĘKSZE OCZEKIWANIA = WIĘKSZY ZAWÓD", f_anton(40), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({
+    "pytanie_rabat": scena_pytanie_rabat, "mniej_zal": scena_mniej_zal,
+    "pytanie_polecenie": scena_pytanie_polecenie, "dopasowanie": scena_dopasowanie,
+    "pytanie_bot": scena_pytanie_bot, "oczekiwania": scena_oczekiwania,
+})
