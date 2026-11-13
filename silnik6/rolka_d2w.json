@@ -1,0 +1,42 @@
+{
+ "akcent": "#FFB02E",
+ "sceny": [
+  {
+   "typ": "pytanie_kod",
+   "od": 0,
+   "linie": [
+    "CZY MAILING Z RABATEM",
+    "DZIAŁA TYLKO Z KODEM?"
+   ]
+  },
+  {
+   "typ": "przypomina",
+   "od": "Mail"
+  },
+  {
+   "typ": "podzial",
+   "od": "W",
+   "tytul": "ODBIORCY OFERT WYDALI",
+   "start1": "37%",
+   "liczba1": 37,
+   "podpis1": "więcej niż bez maila",
+   "start2": "90%"
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc#2",
+   "linie": [
+    "MIERZ CAŁĄ SPRZEDAŻ,",
+    "NIE TYLKO KODY"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "d2w",
+ "audio": "/home/claude/silnik5/glos_d2.wav",
+ "slowa": "/home/claude/silnik5/glos_d2.json"
+}

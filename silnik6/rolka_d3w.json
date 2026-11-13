@@ -1,0 +1,52 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_dostawa",
+   "od": 0,
+   "linie": [
+    "CZY DARMOWA DOSTAWA",
+    "ZAWSZE SIĘ OPŁACA?"
+   ]
+  },
+  {
+   "typ": "zwroty",
+   "od": "Klient"
+  },
+  {
+   "typ": "dwa_wskazniki",
+   "od": "W",
+   "tytul": "PROMOCJE Z DARMOWĄ DOSTAWĄ",
+   "pozycje": [
+    {
+     "od": "7,4%",
+     "wartosc": 7.4,
+     "kierunek": 1,
+     "podpis": "zamówień"
+    },
+    {
+     "od": "0,7%",
+     "wartosc": 0.7,
+     "kierunek": -1,
+     "podpis": "zysku"
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "NAJPIERW",
+    "POLICZ ZWROTY"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "d3w",
+ "audio": "/home/claude/silnik5/glos_d3.wav",
+ "slowa": "/home/claude/silnik5/glos_d3.json"
+}

@@ -1,0 +1,45 @@
+{
+ "akcent": "#FF7A59",
+ "sceny": [
+  {
+   "typ": "pytanie_jedna",
+   "od": 0,
+   "linie": [
+    "CZY JEDNA ZŁA OPINIA",
+    "ZATRZYMA SPRZEDAŻ?"
+   ]
+  },
+  {
+   "typ": "szuka_powodu",
+   "od": "Klient"
+  },
+  {
+   "typ": "duza_liczba",
+   "od": "W",
+   "tytul": "JEDNA ZŁA OPINIA",
+   "start": "41,8%",
+   "wartosc": 41.8,
+   "znak": "-",
+   "podpis": [
+    "szansy na zakup",
+    "u czytających opinie"
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "PROŚ ZADOWOLONYCH",
+    "O OPINIE"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "d1w",
+ "audio": "/home/claude/silnik5/glos_d1.wav",
+ "slowa": "/home/claude/silnik5/glos_d1.json"
+}

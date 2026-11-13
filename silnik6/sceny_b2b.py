@@ -714,3 +714,236 @@ s6.SCENY.update({
     "pytanie_polecenie": scena_pytanie_polecenie, "dopasowanie": scena_dopasowanie,
     "pytanie_bot": scena_pytanie_bot, "oczekiwania": scena_oczekiwania,
 })
+
+
+# ---------------------------------------------------------------- d1: jedna zla opinia (19.11)
+
+def scena_pytanie_jedna(im, t, dl, p, kt):
+    """Karta produktu z dobrymi opiniami; od startu widac jedna zla opinie na czerwono."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, x1 = X0 + 20, X1 - 20
+    y = dol + 70
+    _opinia(d, x0, y, x1, 5, 1.0, akc=akc)
+    _opinia(d, x0, y + 175, x1, 5, 1.0, akc=akc)
+    q = 0.6 + 0.4 * wej(t, 0.3, 0.4)
+    d.rounded_rectangle([x0 - 8, y + 342, x1 + 8, y + 508], radius=20, outline=CZERW + (int(255 * q),), width=6)
+    _opinia(d, x0, y + 350, x1, 1, 1.0, akc=akc)
+    im.alpha_composite(nak)
+
+
+def scena_szuka_powodu(im, t, dl, p, kt):
+    """Klient czyta opinie i szuka powodu, zeby nie kupic - zla opinia mu go daje."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    czlowiek(d, CX - 260, 470, 80, BIEL, a)
+    ik_oko(d, CX - 260, 640, 46, akc, a)
+    x0, x1 = CX - 120, X1 - 20
+    for i, n in enumerate((5, 4, 1)):
+        pj = wej(t, 0.2 + i * 0.3, 0.3)
+        yy = 330 + i * 190
+        d.rounded_rectangle([x0, yy, x1, yy + 150], radius=16, fill=(52, 52, 62, int(255 * pj)),
+                            outline=(CZERW + (int(255 * pj),)) if n == 1 else None, width=6 if n == 1 else 0)
+        _gwiazdki(d, x0 + 30, yy + 44, n, 16, pj)
+        d.rounded_rectangle([x0 + 24, yy + 92, x1 - 60, yy + 108], radius=8, fill=(170, 172, 182, int(255 * pj)))
+    f = f_anton(44)
+    if t > 0.3:
+        pigulka(d, CX, 950, "SZUKA POWODU, ŻEBY NIE KUPIĆ", f, (60, 62, 72, 240), BIEL + (255,))
+    t1 = kt["czas_slowa"]("negatywna") - kt["od"] - 0.1
+    if t > t1:
+        pigulka(d, CX, 1060, "JEDNA ZŁA OPINIA = POWÓD", f, CZERW + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_duza_liczba(im, t, dl, p, kt):
+    """Duza liczba liczona od zera na slowie lektora (p['start']), z tytulem i podpisem."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    fb = dopasuj(d, tl, X1 - X0, 60, 36, f_anton)
+    d.text((CX - szer(d, tl, fb) / 2, 330), tl, font=fb, fill=BIEL + (int(255 * a),))
+    t0 = kt["czas_slowa"](p["start"]) - kt["od"] - 0.15
+    q = wej(t, t0, 0.8)
+    kol = tuple(p.get("kolor", CZERW))
+    if q > 0:
+        v = p["wartosc"] * q
+        tx = p.get("znak", "") + f"{v:.1f}".replace(".", ",") + "%"
+        f = f_anton(int(230 * (0.9 + 0.1 * pop(t, t0, 0.4))))
+        d.text((CX - szer(d, tx, f) / 2, 520), tx, font=f, fill=kol + (255,))
+        fs = f_inter(38)
+        for j, ln in enumerate(p.get("podpis", [])):
+            d.text((CX - szer(d, ln, fs) / 2, 860 + j * 56), ln, font=fs, fill=BIEL + (int(255 * min(1, q * 2)),))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- d2: mailing z rabatem
+
+def _koperta(d, cx, cy, w, a, otw=0.0, kol=(150, 152, 162)):
+    h = w * 0.62
+    x0, y0, x1, y1 = cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2
+    d.rectangle([x0, y0, x1, y1], fill=kol + (int(255 * a),))
+    gy = y0 - (h * 0.55) * otw + (h * 0.55) * (1 - otw)
+    d.polygon([(x0, y0), (cx, gy), (x1, y0)], fill=(110, 112, 124, int(255 * a)))
+    d.line([(x0, y1), (cx, cy + h * 0.05), (x1, y1)], fill=(110, 112, 124, int(255 * a)), width=4)
+
+
+def scena_pytanie_kod(im, t, dl, p, kt):
+    """Otwarta koperta, z ktorej od startu wystaje kupon z kodem rabatowym."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    w = 520
+    h = w * 0.62
+    cy = dol + 470
+    x0, y0, x1, y1 = CX - w / 2, cy - h / 2, CX + w / 2, cy + h / 2
+    d.polygon([(x0, y0), (CX, y0 - h * 0.55), (x1, y0)], fill=(110, 112, 124, 255))
+    wy = 140 * wej(t, 0.2, 0.6)
+    d.rounded_rectangle([CX - 210, y0 - 40 - wy, CX + 210, y0 + 150 - wy], radius=16, fill=akc + (255,))
+    f = f_anton(56)
+    d.text((CX - szer(d, "KOD RABATOWY", f) / 2, y0 - 12 - wy), "KOD RABATOWY", font=f, fill=CIEMNY + (255,))
+    d.rectangle([x0, y0 + 40, x1, y1], fill=(150, 152, 162, 255))
+    d.line([(x0, y1), (CX, cy + h * 0.1), (x1, y1)], fill=(110, 112, 124, 255), width=4)
+    im.alpha_composite(nak)
+
+
+def scena_przypomina(im, t, dl, p, kt):
+    """Mail przypomina o firmie - klient kupuje tez rzeczy bez kodu."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _koperta(d, CX - 300, 470, 200, a)
+    p1 = wej(t, 0.3, 0.5)
+    strzalka(d, (CX - 180, 470), (CX - 60, 470), akc, a, grub=8, postep=p1)
+    if p1 > 0.5:
+        czlowiek(d, CX, 470, 80, BIEL, 1.0)
+        f = f_inter(28)
+        d.text((CX - szer(d, "pamięta o firmie", f) / 2, 570), "pamięta o firmie", font=f, fill=BIEL + (255,))
+    t1 = kt["czas_slowa"]("kupuje") - kt["od"] - 0.1
+    p2 = wej(t, t1, 0.5)
+    strzalka(d, (CX + 90, 470), (CX + 200, 470), akc, a, grub=8, postep=p2)
+    if p2 > 0.4:
+        for i in range(3):
+            pk = pop(t, t1 + 0.2 + i * 0.15, 0.3)
+            if pk > 0:
+                x, y = CX + 270, 380 + i * 90
+                d.rounded_rectangle([x - 50 * pk, y - 32 * pk, x + 50 * pk, y + 32 * pk], radius=10, fill=ZIELONY + (255,))
+        pigulka(d, CX, 800, "KUPUJE TEŻ BEZ KODU", f_anton(48), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_podzial(im, t, dl, p, kt):
+    """+37% wydatkow na 1. slowie, potem pasek dzieli sie na 90% bez kodu / 10% z kodem."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    fb = f_anton(56)
+    d.text((CX - szer(d, p["tytul"], fb) / 2, 320), p["tytul"], font=fb, fill=BIEL + (int(255 * a),))
+    t0 = kt["czas_slowa"](p["start1"]) - kt["od"] - 0.15
+    q = wej(t, t0, 0.7)
+    if q > 0:
+        tx = f"+{int(round(p['liczba1'] * q))}%"
+        f = f_anton(190)
+        d.text((CX - szer(d, tx, f) / 2, 420), tx, font=f, fill=ZIELONY + (255,))
+        fs = f_inter(36)
+        d.text((CX - szer(d, p["podpis1"], fs) / 2, 650), p["podpis1"], font=fs, fill=BIEL + (int(255 * q),))
+    t1 = kt["czas_slowa"](p["start2"]) - kt["od"] - 0.15
+    q2 = wej(t, t1, 0.8)
+    x0, x1, y0 = X0 + 20, X1 - 20, 800
+    if q2 > 0:
+        d.rounded_rectangle([x0, y0, x1, y0 + 110], radius=24, fill=(60, 62, 72, 255))
+        xs = x0 + (x1 - x0) * 0.9 * q2
+        d.rounded_rectangle([x0, y0, xs, y0 + 110], radius=24, fill=akc + (255,))
+        f = f_anton(64)
+        tx = f"{int(round(90 * q2))}% BEZ KODU"
+        d.text((x0 + 30, y0 + 18), tx, font=f, fill=CIEMNY + (255,))
+        fs = f_inter(30)
+        d.text((x1 - szer(d, "10% z kodem", fs), y0 + 130), "10% z kodem", font=fs, fill=SZARY + (int(255 * q2),))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- d3: darmowa dostawa
+
+def _paczka(d, cx, cy, s, a, kol=(196, 160, 110)):
+    d.rectangle([cx - 50 * s, cy - 40 * s, cx + 50 * s, cy + 40 * s], fill=kol + (int(255 * a),))
+    d.line([cx, cy - 40 * s, cx, cy + 40 * s], fill=(150, 120, 80, int(255 * a)), width=max(1, int(6 * s)))
+
+
+def _auto(d, cx, cy, a, kol=BIEL, s=1.0):
+    d.rounded_rectangle([cx - 150 * s, cy - 80 * s, cx + 40 * s, cy + 40 * s], radius=12, fill=kol + (int(255 * a),))
+    d.rounded_rectangle([cx + 40 * s, cy - 40 * s, cx + 140 * s, cy + 40 * s], radius=12, fill=kol + (int(255 * a),))
+    for x in (cx - 90 * s, cx + 90 * s):
+        d.ellipse([x - 32 * s, cy + 16 * s, x + 32 * s, cy + 80 * s], fill=(30, 30, 36, int(255 * a)))
+
+
+def scena_pytanie_dostawa(im, t, dl, p, kt):
+    """Bus dostawczy jedzie z metka 0 ZL od pierwszej klatki."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cx = CX - 60 + 80 * min(1.0, t / 2.5)
+    cy = dol + 380
+    _auto(d, cx, cy, 1.0, s=1.8)
+    f = f_anton(84)
+    pigulka(d, cx - 100, cy - 90, "0 ZŁ", f, akc + (255,), CIEMNY + (255,))
+    for i in range(3):
+        d.line([cx - 360 - i * 50, cy - 80 + i * 50, cx - 290 - i * 50, cy - 80 + i * 50], fill=SZARY + (180,), width=6)
+    im.alpha_composite(nak)
+
+
+def scena_zwroty(im, t, dl, p, kt):
+    """Paczki ida do klienta, a czesc wraca - zwroty kosztuja."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _auto(d, CX - 250, 470, a, kol=(150, 152, 162))
+    czlowiek(d, CX + 280, 450, 80, BIEL, a)
+    for i in range(3):
+        q = (t * 0.7 + i * 0.34) % 1.0
+        _paczka(d, CX - 120 + 300 * q, 380, 0.7, a)
+    t1 = kt["czas_slowa"]("oddaje") - kt["od"] - 0.1
+    if t > t1:
+        for i in range(2):
+            q = ((t - t1) * 0.7 + i * 0.5) % 1.0
+            _paczka(d, CX + 180 - 300 * q, 600, 0.7, 1.0, kol=CZERW)
+        strzalka(d, (CX + 180, 690), (CX - 120, 690), CZERW, 1.0, grub=8)
+    t2 = kt["czas_slowa"]("kosztują") - kt["od"] - 0.15
+    if t > t2:
+        pigulka(d, CX, 880, "ZWROT = KOSZT DLA SKLEPU", f_anton(48), CZERW + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_dwa_wskazniki(im, t, dl, p, kt):
+    """Dwie liczby ze strzalkami gora/dol, kazda liczona na swoim slowie."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    fb = dopasuj(d, tl, X1 - X0, 56, 36, f_anton)
+    d.text((CX - szer(d, tl, fb) / 2, 320), tl, font=fb, fill=BIEL + (int(255 * a),))
+    for i, poz in enumerate(p["pozycje"]):
+        t0 = kt["czas_slowa"](poz["od"]) - kt["od"] - 0.15
+        q = wej(t, t0, 0.7)
+        if q <= 0:
+            continue
+        y = 450 + i * 330
+        kol = ZIELONY if poz["kierunek"] > 0 else CZERW
+        v = poz["wartosc"] * q
+        tx = ("+" if poz["kierunek"] > 0 else "-") + f"{v:.1f}".replace(".", ",") + "%"
+        f = f_anton(150)
+        d.text((CX - 40 - szer(d, tx, f) / 2, y), tx, font=f, fill=kol + (255,))
+        ax = CX + szer(d, tx, f) / 2 + 20
+        if poz["kierunek"] > 0:
+            strzalka(d, (ax, y + 170), (ax, y + 30), kol, q, grub=12)
+        else:
+            strzalka(d, (ax, y + 30), (ax, y + 170), kol, q, grub=12)
+        fs = f_inter(40)
+        d.text((CX - szer(d, poz["podpis"], fs) / 2, y + 200), poz["podpis"], font=fs, fill=BIEL + (int(255 * q),))
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({
+    "pytanie_jedna": scena_pytanie_jedna, "szuka_powodu": scena_szuka_powodu, "duza_liczba": scena_duza_liczba,
+    "pytanie_kod": scena_pytanie_kod, "przypomina": scena_przypomina, "podzial": scena_podzial,
+    "pytanie_dostawa": scena_pytanie_dostawa, "zwroty": scena_zwroty, "dwa_wskazniki": scena_dwa_wskazniki,
+})
