@@ -1,0 +1,49 @@
+{
+ "rolka": "rolka_b6w.json",
+ "wstrzas": "22",
+ "tla": [
+  {
+   "plik": "/home/claude/hf/hf_b6.mp4",
+   "st": 0.0,
+   "dl": 2.95,
+   "ciemn": 0.6,
+   "rozm": 2
+  },
+  [
+   {
+    "plik": "/home/claude/hf/hf_b6.mp4",
+    "st": 3.1,
+    "dl": 3.0,
+    "ciemn": 0.36,
+    "rozm": 5
+   },
+   {
+    "od": "Prawo",
+    "plik": "/home/claude/hf/hf_mlotek.mp4",
+    "st": 0.0,
+    "dl": 2.4,
+    "ciemn": 0.5,
+    "rozm": 2
+   }
+  ],
+  {
+   "plik": "/home/claude/hf/hf_b6.mp4",
+   "st": 7.1,
+   "dl": 3.8,
+   "ciemn": 0.5,
+   "rozm": 4
+  },
+  {
+   "plik": "/home/claude/hf/hf_b6.mp4",
+   "st": 11.1,
+   "dl": 3.3,
+   "ciemn": 0.65,
+   "rozm": 2
+  },
+  {
+   "plik": "/home/claude/hf/hf_b6.mp4",
+   "st": 4.0,
+   "dl": 2.0
+  }
+ ]
+}

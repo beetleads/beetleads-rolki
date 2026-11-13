@@ -1,0 +1,62 @@
+{
+ "rolka": "rolka_m2w.json",
+ "wstrzas": "35",
+ "skale": {},
+ "tla": [
+  {
+   "plik": "/home/claude/hf/multi.mp4",
+   "st": 2.7,
+   "dl": 1.6,
+   "ciemn": 0.6,
+   "rozm": 2
+  },
+  [
+   {
+    "plik": "/home/claude/hf/ramiona.mp4",
+    "st": 0.2,
+    "dl": 4.0,
+    "ciemn": 0.7,
+    "rozm": 2,
+    "eq": "eq=contrast=1.06:saturation=1.08:brightness=0.07:gamma=1.35"
+   },
+   {
+    "od": "proste",
+    "plik": "/home/claude/hf/ramiona.mp4",
+    "st": 4.55,
+    "dl": 3.4,
+    "ciemn": 0.7,
+    "rozm": 2,
+    "eq": "eq=contrast=1.06:saturation=1.08:brightness=0.07:gamma=1.35"
+   }
+  ],
+  [
+   {
+    "plik": "/home/claude/hf/multi.mp4",
+    "st": 8.21,
+    "dl": 3.6,
+    "ciemn": 0.55,
+    "rozm": 3
+   },
+   {
+    "od": "podniosły",
+    "plik": "/home/claude/hf/multi.mp4",
+    "st": 11.92,
+    "dl": 4.0,
+    "ciemn": 0.5,
+    "rozm": 3
+   }
+  ],
+  {
+   "plik": "/home/claude/hf/s5.mp4",
+   "st": 0.0,
+   "dl": 4.0,
+   "ciemn": 0.62,
+   "rozm": 2
+  },
+  {
+   "plik": "/home/claude/hf/multi.mp4",
+   "st": 2.0,
+   "dl": 2.0
+  }
+ ]
+}

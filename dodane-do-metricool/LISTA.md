@@ -371,3 +371,9 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
 - Zalozyciel 09:01 "R6h jest super" -> 13.11 12:00 regulamin podmieniony na 1113_1200_regulamin_s6h.mp4
   (ujecia Higgsfield seedance_2_5 + animacje silnika 6 na nich, silnik6/hybryda.py, hyb_r6w.json),
   okladka 1113_1200_regulamin_s6h_cover.jpg, wszystkie 4 kanaly.
+
+## 13.11 10:50 - styl hybrydowy dla 13.11 18:00 i calego 14.11
+
+- Zalozyciel 10:46 "ok, rob kolejne, dobrze idzie, i podmieniaj je, rob na kolejne dni w ten sposob".
+- Podmienione na *_s6h (ujecia Higgsfield + animacje silnika 6, grafika do pytania od 1. klatki):
+  13.11 18:00 banery, 14.11 07:00 wozek, 14.11 12:00 palec/myszka, 14.11 18:00 abonament - 4 kanaly, okladki *_s6h_cover.jpg.

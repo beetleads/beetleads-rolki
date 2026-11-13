@@ -771,7 +771,8 @@ def scena_ludzie(im, t, dl, p, kt):
     kol, krok = 10, 74
     x0 = CX - (kol * krok) // 2 + krok // 2
     y0 = 520
-    zap = int(ile * min(1.0, max(0.0, (t - 0.3) / 1.2)))
+    t0 = kt["czas_slowa"](p["liczy_od"]) - kt["od"] - 0.1 if p.get("liczy_od") else 0.1
+    zap = int(round(ile * min(1.0, max(0.0, (t - t0) / 0.5))))
     for i in range(100):
         x = x0 + (i % kol) * krok
         y = y0 + (i // kol) * 76

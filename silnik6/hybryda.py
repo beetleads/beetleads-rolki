@@ -146,7 +146,11 @@ for k in range(n):
     # tresc sceny
     if sc["typ"].startswith("pytanie"):
         im.alpha_composite(GORA)
-        s6.pytanie_u_gory(im, sc["linie"], t, 1.0, akc)
+        if cfg.get("pytanie_grafika", True):
+            # 13.11 09:44 "na poczatku brakuje wizualizacji do slow" - pytanie razem z grafika silnika
+            im.alpha_composite(warstwa_sceny(sc, t, od, do))
+        else:
+            s6.pytanie_u_gory(im, sc["linie"], t, 1.0, akc)
     elif sc["typ"] == "cta":
         s6.scena_cta(im, t - od, DL - od, sc, {"akcent": akc})
     else:

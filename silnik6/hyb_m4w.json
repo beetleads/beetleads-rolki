@@ -1,0 +1,8 @@
+{"rolka": "rolka_m4w.json", "wstrzas": "11%", "skale": {"ludzie": 0.78}, "tla": [
+ {"plik": "/home/claude/hf/hf_m4.mp4", "st": 0.0, "dl": 2.4, "ciemn": 0.62, "rozm": 2},
+ {"plik": "/home/claude/hf/hf_m4.mp4", "st": 2.6, "dl": 3.3, "ciemn": 0.6, "rozm": 2},
+ [{"plik": "/home/claude/hf/hf_m4.mp4", "st": 6.1, "dl": 3.2, "ciemn": 0.42, "rozm": 4},
+  {"od": "11%", "plik": "/home/claude/hf/hf_m4.mp4", "st": 9.6, "dl": 2.3, "ciemn": 0.5, "rozm": 3}],
+ {"plik": "/home/claude/hf/hf_m4.mp4", "st": 12.1, "dl": 2.7, "ciemn": 0.6, "rozm": 2},
+ {"plik": "/home/claude/hf/hf_m4.mp4", "st": 3.0, "dl": 2.0}
+]}
