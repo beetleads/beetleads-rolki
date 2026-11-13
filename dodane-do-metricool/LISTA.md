@@ -385,3 +385,4 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
 - 13.11: 16.11 18:00 NOWA rolka B2B pomiar reklam grupa kontrolna (Gordon i in., 2019) -> 1116_1800_pomiar_reklam_s6h.mp4; stara 18:00 (draft) zostaje draftem.
 - 13.11: 17.11 07:00 NOWA rolka B2B imie w temacie maila (Sahni, Wheeler i Chintagunta, 2018) -> 1117_0700_imie_w_mailu_s6h.mp4; stara 07:00 (draft) zostaje draftem.
 - 13.11: 17.11 12:00 NOWA rolka B2B reklama z ogladanym produktem (Lambrecht i Tucker, 2013) -> 1117_1200_retargeting_s6h.mp4; stara 12:00 (zadatek, stary format) -> draft.
+- 13.11: 17.11 18:00 NOWA rolka B2B odpowiadanie na opinie (Proserpio i Zervas, 2017) -> 1117_1800_odpowiedzi_na_opinie_s6h.mp4; stara 18:00 (stary format) -> draft.
