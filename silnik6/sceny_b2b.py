@@ -314,6 +314,13 @@ def scena_dwa_wzrosty(im, t, dl, p, kt):
     if p.get("podtytul"):
         fs = f_inter(30, False)
         d.text((CX - szer(d, p["podtytul"], fs) / 2, 390), p["podtytul"], font=fs, fill=SZARY + (int(255 * a),))
+    if p.get("firmy"):
+        # male budynki firm trzymaja kadr, zanim padnie pierwsza liczba
+        tp = kt["czas_slowa"](p["pozycje"][0]["od"]) - kt["od"] - 0.1
+        fa = a * (1 - wej(t, tp, 0.3))
+        if fa > 0:
+            for j in range(8):
+                _sklep(d, CX - 330 + (j % 4) * 220, 560 + (j // 4) * 260, 0.6, fa)
     for i, poz in enumerate(p["pozycje"]):
         t0 = kt["czas_slowa"](poz["od"]) - kt["od"] - 0.1 if poz.get("od") else 0.2 + i * 0.4
         pz = pop(t, t0, 0.45)
@@ -857,10 +864,13 @@ def scena_podzial(im, t, dl, p, kt):
     d.text((CX - szer(d, p["tytul"], fb) / 2, 320), p["tytul"], font=fb, fill=BIEL + (int(255 * a),))
     t0 = kt["czas_slowa"](p["start1"]) - kt["od"] - 0.15
     q = wej(t, t0, 0.7)
-    if q < 1:
+    if q < 1 and p.get("koperty", True):
         # koperta z ofertami trzyma kadr, zanim padnie liczba (bez pustego tla)
         for j in range(3):
             _koperta(d, CX - 220 + j * 220, 560 + (j % 2) * 40, 170, a * (1 - q))
+    if q < 1 and p.get("ludzie"):
+        for j in range(12):
+            czlowiek(d, CX - 375 + (j % 6) * 150, 500 + (j // 6) * 170, 46, (170, 172, 182), a * (1 - q))
     if q > 0:
         tx = f"+{int(round(p['liczba1'] * q))}%"
         f = f_anton(190)
@@ -872,13 +882,15 @@ def scena_podzial(im, t, dl, p, kt):
     x0, x1, y0 = X0 + 20, X1 - 20, 800
     if q2 > 0:
         d.rounded_rectangle([x0, y0, x1, y0 + 110], radius=24, fill=(60, 62, 72, 255))
-        xs = x0 + (x1 - x0) * 0.9 * q2
+        pr = p.get("proc2", 90)
+        xs = x0 + (x1 - x0) * pr / 100 * q2
         d.rounded_rectangle([x0, y0, xs, y0 + 110], radius=24, fill=akc + (255,))
         f = f_anton(64)
-        tx = f"{int(round(90 * q2))}% BEZ KODU"
+        tx = f"{int(round(pr * q2))}% " + p.get("et2", "BEZ KODU")
         d.text((x0 + 30, y0 + 18), tx, font=f, fill=CIEMNY + (255,))
         fs = f_inter(30)
-        d.text((x1 - szer(d, "10% z kodem", fs), y0 + 130), "10% z kodem", font=fs, fill=SZARY + (int(255 * q2),))
+        rs = p.get("reszta", "10% z kodem")
+        d.text((x1 - szer(d, rs, fs), y0 + 130), rs, font=fs, fill=SZARY + (int(255 * q2),))
     im.alpha_composite(nak)
 
 
@@ -1023,7 +1035,7 @@ def scena_pytanie_format(im, t, dl, p, kt):
     for i in range(6):
         d.rounded_rectangle([x0 + 30, y0 + 100 + i * 70, x1 - 30 - (i % 2) * 80, y0 + 124 + i * 70], radius=8, fill=(150, 152, 162, 255))
     q = wej(t, 0.2, 0.5)
-    yy = y1 - (y1 - y0 - 80) * 0.55 * q
+    yy = y1 - 30 - (y1 - y0 - 110) * 0.55 * q
     d.rounded_rectangle([x0 + 10, yy, x1 - 10, y1 - 10], radius=18, fill=akc + (255,))
     cx, cy = CX, (yy + y1) / 2
     for r in (60, 36, 12):
@@ -1117,4 +1129,150 @@ s6.SCENY.update({
     "pytanie_dziewiatka": scena_pytanie_dziewiatka, "okazja": scena_okazja,
     "pytanie_format": scena_pytanie_format, "sledzony": scena_sledzony, "trzy_paski": scena_trzy_paski,
     "pytanie_algorytm": scena_pytanie_algorytm, "najtansze": scena_najtansze,
+})
+
+
+# ---------------------------------------------------------------- f1: czestotliwosc reklamy (21.11)
+
+def _karta_reklamy(d, x0, y0, x1, a, akc):
+    d.rounded_rectangle([x0, y0, x1, y0 + 200], radius=18, fill=(52, 52, 62, int(255 * a)))
+    d.rounded_rectangle([x0 + 20, y0 + 20, x0 + 180, y0 + 180], radius=12, fill=akc + (int(255 * a),))
+    d.rounded_rectangle([x0 + 210, y0 + 50, x1 - 40, y0 + 74], radius=8, fill=(170, 172, 182, int(255 * a)))
+    d.rounded_rectangle([x0 + 210, y0 + 100, x1 - 140, y0 + 120], radius=8, fill=(120, 122, 134, int(255 * a)))
+
+
+def scena_pytanie_czestotliwosc(im, t, dl, p, kt):
+    """Ta sama reklama wraca w feedzie - licznik wyswietlen rosnie od startu."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, x1 = X0 + 40, X1 - 40
+    for i in range(3):
+        _karta_reklamy(d, x0, dol + 60 + i * 230, x1, 1.0 if i != 1 else 0.6, akc)
+    n = 1 + int(min(t, dl) * 2.2)
+    pigulka(d, x1 - 70, dol + 50, f"x{n}", f_anton(56), CZERW + (255,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_unika(im, t, dl, p, kt):
+    """Po kilku razach czlowiek odwraca wzrok od reklamy."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _karta_reklamy(d, X0 + 40, 330, X1 - 40, a, akc)
+    czlowiek(d, CX, 760, 100, BIEL, a)
+    t1 = kt["czas_slowa"]("unikać") - kt["od"] - 0.15
+    otw = 1 - wej(t, t1, 0.4)
+    ik_oko(d, CX, 620, 50, akc, a, otwarcie=max(0.05, otw))
+    if t > t1:
+        strzalka(d, (CX + 120, 760), (CX + 300, 760), CZERW, 1.0, grub=9)
+        pigulka(d, CX, 1000, "ZACZYNA UNIKAĆ", f_anton(52), CZERW + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_jeden_na(im, t, dl, p, kt):
+    """N ludzikow, jeden robi sie czerwony na slowie - '1 na 4'."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    fb = dopasuj(d, tl, X1 - X0, 56, 36, f_anton)
+    d.text((CX - szer(d, tl, fb) / 2, 320), tl, font=fb, fill=BIEL + (int(255 * a),))
+    t0 = kt["czas_slowa"](p["start"]) - kt["od"] - 0.15
+    q = wej(t, t0, 0.4)
+    n = p.get("n", 4)
+    for j in range(n):
+        kol = CZERW if (j == n - 1 and q > 0) else (170, 172, 182)
+        czlowiek(d, CX - (n - 1) * 110 + j * 220, 520, 80, kol, a)
+    if q > 0:
+        f = f_anton(int(200 * (0.9 + 0.1 * pop(t, t0, 0.4))))
+        tx = p["liczba"]
+        d.text((CX - szer(d, tx, f) / 2, 660), tx, font=f, fill=CZERW + (255,))
+        fs = f_inter(38)
+        for j, ln in enumerate(p.get("podpis", [])):
+            d.text((CX - szer(d, ln, fs) / 2, 930 + j * 56), ln, font=fs, fill=BIEL + (int(255 * q),))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- f2: czas odpowiedzi na leada
+
+def _zegar(d, cx, cy, r, t, a, kol=BIEL, spd=2.0):
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=kol + (int(255 * a),), width=8)
+    for ang, dlg, gr in ((t * spd, 0.75, 8), (t * spd / 12, 0.5, 10)):
+        d.line([cx, cy, cx + r * dlg * math.sin(ang), cy - r * dlg * math.cos(ang)], fill=kol + (int(255 * a),), width=gr)
+
+
+def scena_pytanie_leady(im, t, dl, p, kt):
+    """Skrzynka leadow z formularza, przy kazdym zegar - nikt nie oddzwania."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, x1 = X0 + 40, X1 - 40
+    for i in range(3):
+        y = dol + 70 + i * 170
+        d.rounded_rectangle([x0, y, x1, y + 140], radius=16, fill=(52, 52, 62, 255))
+        d.ellipse([x0 + 20, y + 30, x0 + 100, y + 110], fill=(120, 122, 134, 255))
+        d.rounded_rectangle([x0 + 130, y + 40, x1 - 200, y + 62], radius=8, fill=(170, 172, 182, 255))
+        d.rounded_rectangle([x0 + 130, y + 84, x1 - 280, y + 100], radius=8, fill=(120, 122, 134, 255))
+        _zegar(d, x1 - 80, y + 70, 42, t + i, 1.0, kol=CZERW)
+    pigulka(d, CX, dol + 600, "NIKT NIE ODDZWONIŁ", f_anton(46), CZERW + (int(255 * wej(t, 0.5, 0.4)),), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_czas_odp(im, t, dl, p, kt):
+    """Zegar biegnie, lead blednie - liczy sie czas odpowiedzi."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _zegar(d, CX - 200, 560, 130, t * 3, a, kol=akc, spd=3.0)
+    zan = max(0.2, 1 - t / max(dl, 0.1))
+    czlowiek(d, CX + 200, 560, 90, BIEL, a * zan)
+    t1 = kt["czas_slowa"]("czas") - kt["od"] - 0.15
+    if t > t1:
+        pigulka(d, CX, 860, "LICZY SIĘ CZAS ODPOWIEDZI", f_anton(48), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- f3: reklama online, zakup w sklepie
+
+def _sklep(d, cx, cy, s, a):
+    d.rectangle([cx - 110 * s, cy - 60 * s, cx + 110 * s, cy + 100 * s], fill=(90, 92, 104, int(255 * a)))
+    for i in range(5):
+        k = (CZERW if i % 2 == 0 else BIEL) + (int(255 * a),)
+        d.rectangle([cx - 120 * s + i * 48 * s, cy - 100 * s, cx - 120 * s + (i + 1) * 48 * s, cy - 60 * s], fill=k)
+    d.rectangle([cx - 30 * s, cy + 10 * s, cx + 30 * s, cy + 100 * s], fill=(30, 30, 36, int(255 * a)))
+
+
+def scena_pytanie_offline(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 330
+    # telefon z reklama
+    d.rounded_rectangle([CX - 330, cy - 170, CX - 130, cy + 170], radius=26, fill=(30, 30, 36, 255), outline=(120, 122, 134, 255), width=5)
+    d.rounded_rectangle([CX - 305, cy - 120, CX - 155, cy + 20], radius=12, fill=akc + (255,))
+    strzalka(d, (CX - 100, cy), (CX + 80, cy), akc, 1.0, grub=9, postep=wej(t, 0.3, 0.6))
+    _sklep(d, CX + 230, cy + 10, 1.0, 1.0)
+    im.alpha_composite(nak)
+
+
+def scena_do_sklepu(im, t, dl, p, kt):
+    """Czlowiek widzi reklame w telefonie i idzie do sklepu."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _sklep(d, CX + 250, 600, 1.1, a)
+    t1 = kt["czas_slowa"]("potem") - kt["od"] - 0.15
+    q = wej(t, t1, 1.4)
+    x = CX - 300 + 430 * q
+    czlowiek(d, x, 600, 80, BIEL, a)
+    d.rounded_rectangle([x - 110, 520, x - 60, 600], radius=8, fill=akc + (int(255 * a * (1 - q)),))
+    if q > 0.6:
+        pigulka(d, CX, 900, "KUPUJE W SKLEPIE", f_anton(50), ZIELONY + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({
+    "pytanie_czestotliwosc": scena_pytanie_czestotliwosc, "unika": scena_unika, "jeden_na": scena_jeden_na,
+    "pytanie_leady": scena_pytanie_leady, "czas_odp": scena_czas_odp,
+    "pytanie_offline": scena_pytanie_offline, "do_sklepu": scena_do_sklepu,
 })

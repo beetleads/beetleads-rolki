@@ -1,0 +1,51 @@
+{
+ "akcent": "#FFB02E",
+ "sceny": [
+  {
+   "typ": "pytanie_leady",
+   "od": 0,
+   "linie": [
+    "DLACZEGO LEADY",
+    "Z REKLAM NIE KUPUJĄ?"
+   ]
+  },
+  {
+   "typ": "czas_odp",
+   "od": "Często"
+  },
+  {
+   "typ": "dwa_wzrosty",
+   "od": "W",
+   "tytul": "PONAD 2 TYS. FIRM",
+   "pozycje": [
+    {
+     "od": "godziny",
+     "liczba": "DO 1 GODZ.",
+     "podpis": "odezwali się do klienta"
+    },
+    {
+     "od": "7",
+     "liczba": "7 RAZY",
+     "podpis": "większa szansa na rozmowę"
+    }
+   ],
+   "firmy": true
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "ODDZWANIAJ",
+    "OD RAZU"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "f2w",
+ "audio": "/home/claude/silnik5/glos_f2.wav",
+ "slowa": "/home/claude/silnik5/glos_f2.json"
+}

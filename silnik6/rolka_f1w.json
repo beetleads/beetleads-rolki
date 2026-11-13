@@ -1,0 +1,44 @@
+{
+ "akcent": "#FF7A59",
+ "sceny": [
+  {
+   "typ": "pytanie_czestotliwosc",
+   "od": 0,
+   "linie": [
+    "IM CZĘŚCIEJ KLIENT WIDZI",
+    "REKLAMĘ, TYM LEPIEJ?"
+   ]
+  },
+  {
+   "typ": "unika",
+   "od": "Nie"
+  },
+  {
+   "typ": "jeden_na",
+   "od": "W",
+   "tytul": "PONAD 12 TYS. OSÓB",
+   "start": "czwartej",
+   "liczba": "1 NA 4",
+   "podpis": [
+    "kolejne wyświetlenia",
+    "zmniejszały szansę wejścia"
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "USTAW LIMIT",
+    "WYŚWIETLEŃ NA OSOBĘ"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "f1w",
+ "audio": "/home/claude/silnik5/glos_f1.wav",
+ "slowa": "/home/claude/silnik5/glos_f1.json"
+}

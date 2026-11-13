@@ -1,0 +1,8 @@
+{"rolka":"rolka_e2w.json","wstrzas":"razem","tla":[
+ {"plik":"/home/claude/hf/hf_e2.mp4","st":1.0,"dl":2.6,"ciemn":0.45,"rozm":10},
+ {"plik":"/home/claude/hf/hf_e2.mp4","st":3.1,"dl":2.8,"ciemn":0.5,"rozm":3},
+ [{"plik":"/home/claude/hf/hf_e2.mp4","st":9.1,"dl":2.8,"ciemn":0.4,"rozm":5},
+  {"od":"razem","plik":"/home/claude/hf/hf_e2.mp4","st":6.4,"dl":2.4,"ciemn":0.4,"rozm":10}],
+ {"plik":"/home/claude/hf/hf_e2.mp4","st":12.1,"dl":2.8,"ciemn":0.5,"rozm":10},
+ {"plik":"/home/claude/hf/hf_e2.mp4","st":4.3,"dl":1.6}
+]}

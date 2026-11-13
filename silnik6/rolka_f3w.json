@@ -1,0 +1,47 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_offline",
+   "od": 0,
+   "linie": [
+    "CZY REKLAMA W INTERNECIE DZIAŁA,",
+    "SKORO MAŁO KTO KUPUJE PRZEZ STRONĘ?"
+   ]
+  },
+  {
+   "typ": "do_sklepu",
+   "od": "Klient"
+  },
+  {
+   "typ": "podzial",
+   "od": "W#2",
+   "tytul": "1,6 MLN KLIENTÓW",
+   "koperty": false,
+   "ludzie": true,
+   "start1": "5%",
+   "liczba1": 5,
+   "podpis1": "więcej sprzedaży dzięki reklamom",
+   "start2": "93%",
+   "proc2": 93,
+   "et2": "W SKLEPACH",
+   "reszta": "7% online"
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "LICZ TEŻ SPRZEDAŻ",
+    "W SKLEPIE"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "f3w",
+ "audio": "/home/claude/silnik5/glos_f3.wav",
+ "slowa": "/home/claude/silnik5/glos_f3.json"
+}
