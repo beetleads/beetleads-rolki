@@ -365,3 +365,9 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
 - Podmienione pliki *_s6w (z muzyka i miniatura) we wszystkich 20 postach 12.11 19:00 - 15.11 18:00.
 - Poprawione przy okazji: abonament mial szczyt +0,9 dBTP po miksie z muzyka - dodany limiter
   w podklad.py, teraz -1,8 dBTP.
+
+## 13.11 09:10 - regulamin w stylu hybrydowym (Higgsfield + silnik 6)
+
+- Zalozyciel 09:01 "R6h jest super" -> 13.11 12:00 regulamin podmieniony na 1113_1200_regulamin_s6h.mp4
+  (ujecia Higgsfield seedance_2_5 + animacje silnika 6 na nich, silnik6/hybryda.py, hyb_r6w.json),
+  okladka 1113_1200_regulamin_s6h_cover.jpg, wszystkie 4 kanaly.
