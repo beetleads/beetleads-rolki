@@ -321,6 +321,15 @@ def scena_dwa_wzrosty(im, t, dl, p, kt):
         if fa > 0:
             for j in range(8):
                 _sklep(d, CX - 330 + (j % 4) * 220, 560 + (j // 4) * 260, 0.6, fa)
+    if p.get("wykres"):
+        tp = kt["czas_slowa"](p["pozycje"][0]["od"]) - kt["od"] - 0.1
+        wa = a * (1 - wej(t, tp, 0.3))
+        if wa > 0:
+            vals = [0.3, 0.25, 1.0, 0.22, 0.3]
+            w = (X1 - X0 - 120) / len(vals)
+            for i, v in enumerate(vals):
+                d.rounded_rectangle([X0 + 60 + i * w + 10, 900 - 420 * v, X0 + 60 + (i + 1) * w - 10, 900], radius=10,
+                                    fill=(kt["akcent"] if i == 2 else (120, 122, 134)) + (int(255 * wa),))
     for i, poz in enumerate(p["pozycje"]):
         t0 = kt["czas_slowa"](poz["od"]) - kt["od"] - 0.1 if poz.get("od") else 0.2 + i * 0.4
         pz = pop(t, t0, 0.45)
@@ -952,6 +961,11 @@ def scena_dwa_wskazniki(im, t, dl, p, kt):
     tl = p.get("tytul", "")
     fb = dopasuj(d, tl, X1 - X0, 56, 36, f_anton)
     d.text((CX - szer(d, tl, fb) / 2, 320), tl, font=fb, fill=BIEL + (int(255 * a),))
+    if p.get("metka_bf"):
+        t_pierw = kt["czas_slowa"](p["pozycje"][0]["od"]) - kt["od"] - 0.15
+        za = a * (1 - wej(t, t_pierw, 0.4))
+        if za > 0:
+            _metka_bf(d, CX, 640, za, kt["akcent"], s=1.4)
     if p.get("auto"):
         # bus z paczkami trzyma kadr, zanim padnie pierwsza liczba
         t_pierw = kt["czas_slowa"](p["pozycje"][0]["od"]) - kt["od"] - 0.15
@@ -965,9 +979,10 @@ def scena_dwa_wskazniki(im, t, dl, p, kt):
         if q <= 0:
             continue
         y = 450 + i * 330
-        kol = ZIELONY if poz["kierunek"] > 0 else CZERW
+        kol = tuple(poz["kolor"]) if poz.get("kolor") else (ZIELONY if poz["kierunek"] > 0 else CZERW)
         v = poz["wartosc"] * q
-        tx = ("+" if poz["kierunek"] > 0 else "-") + f"{v:.1f}".replace(".", ",") + "%"
+        num = f"{int(round(v))}" if float(poz["wartosc"]).is_integer() else f"{v:.1f}".replace(".", ",")
+        tx = ("+" if poz["kierunek"] > 0 else "-") + num + "%"
         f = f_anton(150)
         d.text((CX - 40 - szer(d, tx, f) / 2, y), tx, font=f, fill=kol + (255,))
         ax = CX + szer(d, tx, f) / 2 + 20
@@ -1416,4 +1431,158 @@ s6.SCENY.update({
     "pytanie_test": scena_pytanie_test, "szum": scena_szum,
     "pytanie_oferta": scena_pytanie_oferta, "budzi": scena_budzi,
     "pytanie_baner": scena_pytanie_baner, "przypomnienie": scena_przypomnienie, "pasuje": scena_pasuje,
+})
+
+
+# ---------------------------------------------------------------- h1: logo w reklamie wideo (23.11)
+
+def _odtwarzacz(d, x0, y0, x1, y1, a):
+    d.rounded_rectangle([x0, y0, x1, y1], radius=20, fill=(30, 30, 36, int(255 * a)), outline=(90, 92, 104, int(255 * a)), width=4)
+    d.rounded_rectangle([x0 + 20, y1 - 40, x1 - 20, y1 - 28], radius=6, fill=(90, 92, 104, int(255 * a)))
+
+
+def scena_pytanie_logo(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, y0, x1, y1 = X0 + 40, dol + 80, X1 - 40, dol + 620
+    _odtwarzacz(d, x0, y0, x1, y1, 1.0)
+    d.rounded_rectangle([CX - 160, (y0 + y1) / 2 - 110, CX + 160, (y0 + y1) / 2 + 90], radius=30, fill=akc + (255,))
+    f = f_anton(90)
+    d.text((CX - szer(d, "LOGO", f) / 2, (y0 + y1) / 2 - 80), "LOGO", font=f, fill=CIEMNY + (255,))
+    q = 0.55 + 0.45 * math.sin(t * 6)
+    pigulka(d, x1 - 120, y1 - 100, "POMIŃ", f_anton(44), BIEL + (int(255 * q),), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_przewija(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _odtwarzacz(d, X0 + 80, 330, X1 - 80, 700, a)
+    d.rounded_rectangle([CX - 110, 440, CX + 110, 560], radius=20, fill=akc + (int(255 * a),))
+    t1 = kt["czas_slowa"]("przewija") - kt["od"] - 0.2
+    q = wej(t, t1, 0.5)
+    if q > 0:
+        y = 780 - 260 * q
+        d.ellipse([CX + 160, y - 40, CX + 240, y + 40], fill=BIEL + (int(255 * (1 - q * 0.5)),))
+        strzalka(d, (CX + 200, 820), (CX + 200, 620), BIEL, 1.0, grub=8)
+        pigulka(d, CX, 900, "WIDZI LOGO = PRZEWIJA", f_anton(50), CZERW + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_os_czasu(im, t, dl, p, kt):
+    """Dwie osie czasu reklamy: logo dlugo na poczatku (krzyzyk) vs krotko kilka razy (ptaszek)."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    fb = dopasuj(d, tl, X1 - X0, 56, 36, f_anton)
+    d.text((CX - szer(d, tl, fb) / 2, 320), tl, font=fb, fill=BIEL + (int(255 * a),))
+    x0, x1 = X0 + 40, X1 - 40
+    fs = f_inter(32)
+    for j, (et, bloki, ok) in enumerate((("długo na początku", [(0.0, 0.35)], False),
+                                          ("krótko, kilka razy", [(0.0, 0.08), (0.33, 0.41), (0.66, 0.74), (0.92, 1.0)], True))):
+        y = 450 + j * 190
+        pj = wej(t, 0.2 + j * 0.5, 0.4)
+        d.text((x0, y), et, font=fs, fill=BIEL + (int(255 * pj),))
+        d.rounded_rectangle([x0, y + 50, x1 - 110, y + 100], radius=14, fill=(60, 62, 72, int(255 * pj)))
+        for b0, b1 in bloki:
+            d.rounded_rectangle([x0 + (x1 - 110 - x0) * b0, y + 50, x0 + (x1 - 110 - x0) * b1, y + 100], radius=14, fill=akc + (int(255 * pj),))
+        if pj > 0.5:
+            if ok:
+                ptaszek(d, x1 - 45, y + 75, 40, 1.0)
+            else:
+                krzyzyk(d, x1 - 45, y + 75, 36, 1.0, 1.0)
+    t0 = kt["czas_slowa"](p["start"]) - kt["od"] - 0.15
+    q = pop(t, t0, 0.45)
+    if q > 0:
+        f = f_anton(max(1, int(120 * q)))
+        d.text((CX - szer(d, p["liczba"], f) / 2, 850), p["liczba"], font=f, fill=ZIELONY + (255,))
+        fs2 = f_inter(38)
+        d.text((CX - szer(d, p["podpis"], fs2) / 2, 1000), p["podpis"], font=fs2, fill=BIEL + (int(255 * min(1, q)),))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- h2/h3: Black Friday
+
+def _metka_bf(d, cx, cy, a, akc, s=1.0):
+    w, h = 300 * s, 150 * s
+    d.polygon([(cx - w / 2, cy - h / 2), (cx + w / 2 - 50 * s, cy - h / 2), (cx + w / 2, cy), (cx + w / 2 - 50 * s, cy + h / 2),
+               (cx - w / 2, cy + h / 2)], fill=(20, 20, 24, int(255 * a)), outline=akc + (int(255 * a),))
+    f = f_anton(int(46 * s))
+    for j, ln in enumerate(("BLACK", "FRIDAY")):
+        d.text((cx - 25 * s - szer(d, ln, f) / 2, cy - 56 * s + j * 52 * s), ln, font=f, fill=BIEL + (int(255 * a),))
+
+
+def scena_pytanie_bf(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 300
+    _metka_bf(d, CX - 120, cy, 1.0, akc, s=1.3)
+    q = wej(t, 0.3, 0.8)
+    for i in range(int(1 + 4 * q)):
+        d.ellipse([CX + 180, cy + 120 - i * 34, CX + 300, cy + 160 - i * 34], fill=ZOLTY + (255,), outline=(150, 120, 20, 255), width=3)
+    strzalka(d, (CX + 350, cy + 140), (CX + 350, cy - 60), CZERW, 1.0, grub=10, postep=q)
+    im.alpha_composite(nak)
+
+
+def scena_drozeje(im, t, dl, p, kt):
+    """Wyswietlenie drozeje, ale ludzie chetniej kupuja - dwie strzalki w gore na slowach."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    f = f_anton(52)
+    for j, (et, sl, kol) in enumerate((("WYŚWIETLENIE DROŻEJE", "drożeje", CZERW), ("LUDZIE CHĘTNIEJ KUPUJĄ", "chętniej", ZIELONY))):
+        t0 = kt["czas_slowa"](sl) - kt["od"] - 0.15
+        q = wej(t, t0, 0.4)
+        y = 420 + j * 260
+        d.text((X0 + 40, y), et, font=f, fill=BIEL + (int(255 * max(0.25 * a, q)),))
+        if q > 0:
+            strzalka(d, (X1 - 80, y + 150), (X1 - 80, y - 10), kol, 1.0, grub=12, postep=q)
+            czlowiek(d, X0 + 90, y + 140, 40, kol, q) if j == 1 else None
+    im.alpha_composite(nak)
+
+
+def scena_pytanie_bf2(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, x1, yb = X0 + 60, X1 - 60, dol + 560
+    vals = [0.35, 0.32, 0.3, 0.28, 1.0, 0.3, 0.27, 0.32]
+    w = (x1 - x0) / len(vals)
+    q = wej(t, 0.2, 0.8)
+    for i, v in enumerate(vals):
+        h = 420 * v * (q if i == 4 else 1)
+        kol = akc if i == 4 else (120, 122, 134)
+        d.rounded_rectangle([x0 + i * w + 8, yb - h, x0 + (i + 1) * w - 8, yb], radius=10, fill=kol + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_przed_po(im, t, dl, p, kt):
+    """Przed szczytem klienci czekaja, po szczycie odpoczywaja - slupki z podpisami na slowach."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    x0, x1, yb = X0 + 40, X1 - 40, 800
+    vals = [0.5, 0.25, 0.22, 1.0, 0.2, 0.24, 0.5]
+    w = (x1 - x0) / len(vals)
+    for i, v in enumerate(vals):
+        kol = akc if i == 3 else (120, 122, 134)
+        d.rounded_rectangle([x0 + i * w + 8, yb - 420 * v, x0 + (i + 1) * w - 8, yb], radius=10, fill=kol + (int(255 * a),))
+    f = f_anton(40)
+    for sl, x, et in (("czekają", x0 + w * 1.5, "CZEKAJĄ"), ("odpoczywają", x0 + w * 5.5, "ODPOCZYWAJĄ")):
+        t0 = kt["czas_slowa"](sl) - kt["od"] - 0.15
+        if t > t0:
+            pigulka(d, x, yb + 70, et, f, CZERW + (240,), CIEMNY + (255,))
+            d.rounded_rectangle([x - w, yb - 240, x + w, yb], radius=12, outline=CZERW + (255,), width=5)
+    pigulka(d, x0 + w * 3.5, yb - 470, "SZCZYT", f, akc + (int(240 * a),), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({
+    "pytanie_logo": scena_pytanie_logo, "przewija": scena_przewija, "os_czasu": scena_os_czasu,
+    "pytanie_bf": scena_pytanie_bf, "drozeje": scena_drozeje,
+    "pytanie_bf2": scena_pytanie_bf2, "przed_po": scena_przed_po,
 })

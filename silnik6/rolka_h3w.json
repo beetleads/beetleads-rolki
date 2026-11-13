@@ -1,0 +1,51 @@
+{
+ "akcent": "#FF7A59",
+ "sceny": [
+  {
+   "typ": "pytanie_bf2",
+   "od": 0,
+   "linie": [
+    "CZY BLACK FRIDAY NAPRAWDĘ",
+    "ZWIĘKSZA SPRZEDAŻ?"
+   ]
+  },
+  {
+   "typ": "przed_po",
+   "od": "W"
+  },
+  {
+   "typ": "dwa_wzrosty",
+   "od": "Analiza",
+   "tytul": "ANALIZA HANDLU",
+   "pozycje": [
+    {
+     "od": "150",
+     "liczba": "+150-200%",
+     "podpis": "skok w samym szczycie"
+    },
+    {
+     "od": "7%",
+     "liczba": "OK. +7%",
+     "podpis": "więcej w całym okresie"
+    }
+   ],
+   "wykres": true
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "LICZ CAŁY MIESIĄC,",
+    "NIE JEDEN DZIEŃ"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "h3w",
+ "audio": "/home/claude/silnik5/glos_h3.wav",
+ "slowa": "/home/claude/silnik5/glos_h3.json"
+}

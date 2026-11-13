@@ -1,0 +1,63 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_bf",
+   "od": 0,
+   "linie": [
+    "CZY REKLAMY W BLACK FRIDAY",
+    "SĄ ZA DROGIE?"
+   ]
+  },
+  {
+   "typ": "drozeje",
+   "od": "Pokazanie"
+  },
+  {
+   "typ": "dwa_wskazniki",
+   "od": "W#2",
+   "tytul": "TYDZIEŃ BLACK FRIDAY",
+   "pozycje": [
+    {
+     "od": "59%",
+     "wartosc": 59,
+     "kierunek": 1,
+     "podpis": "koszt wyświetleń",
+     "kolor": [
+      240,
+      110,
+      100
+     ]
+    },
+    {
+     "od": "20%",
+     "wartosc": 20,
+     "kierunek": -1,
+     "podpis": "koszt jednej sprzedaży",
+     "kolor": [
+      52,
+      200,
+      120
+     ]
+    }
+   ],
+   "metka_bf": true
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "NIE WYŁĄCZAJ REKLAM,",
+    "LICZ KOSZT SPRZEDAŻY"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "h2w",
+ "audio": "/home/claude/silnik5/glos_h2.wav",
+ "slowa": "/home/claude/silnik5/glos_h2.json"
+}

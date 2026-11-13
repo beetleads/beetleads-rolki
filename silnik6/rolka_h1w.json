@@ -1,0 +1,41 @@
+{
+ "akcent": "#FFB02E",
+ "sceny": [
+  {
+   "typ": "pytanie_logo",
+   "od": 0,
+   "linie": [
+    "LOGO NA POCZĄTKU REKLAMY",
+    "WIDEO - DOBRY POMYSŁ?"
+   ]
+  },
+  {
+   "typ": "przewija",
+   "od": "Często"
+  },
+  {
+   "typ": "os_czasu",
+   "od": "Badanie",
+   "tytul": "PRAWIE 2 TYS. OSÓB",
+   "start": "8",
+   "liczba": "8-10% MNIEJ",
+   "podpis": "przewijania reklamy"
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "POKAZUJ MARKĘ",
+    "KRÓTKO I KILKA RAZY"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "h1w",
+ "audio": "/home/claude/silnik5/glos_h1.wav",
+ "slowa": "/home/claude/silnik5/glos_h1.json"
+}
