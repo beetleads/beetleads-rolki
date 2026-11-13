@@ -380,3 +380,4 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
 - 13.11: 15.11 07:00 zwrot -> 1115_0700_zwrot_s6h.mp4 (hybryda), 4 kanaly.
 - 13.11: 15.11 12:00 czcionka ceny -> 1115_1200_czcionka_ceny_s6h.mp4 (hybryda), 4 kanaly.
 - 13.11: 15.11 18:00 doladowanie -> 1115_1800_doladowanie_s6h.mp4 (hybryda), 4 kanaly. Od 16.11 rolki B2B dla wlascicieli (zalozyciel 13.11 11:35).
+- 13.11: 16.11 07:00 NOWA rolka B2B szybkosc strony (Kohavi i in., 2014) -> 1116_0700_szybkosc_strony_s6h.mp4; stara 07:00 (taryfa, draft) zostaje draftem.

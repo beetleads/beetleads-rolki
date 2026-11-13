@@ -1,0 +1,55 @@
+{
+ "akcent": "#FF7A59",
+ "sceny": [
+  {
+   "typ": "pytanie_raport",
+   "od": 0,
+   "linie": [
+    "DLACZEGO REKLAMA WYGLĄDA LEPIEJ",
+    "W LICZBACH NIŻ W KASIE?"
+   ]
+  },
+  {
+   "typ": "kupiliby",
+   "od": "Widzą"
+  },
+  {
+   "typ": "slupki2",
+   "od": "W#3",
+   "tytul": "WZROST SPRZEDAŻY",
+   "podtytul": "ta sama kampania, 2 sposoby liczenia",
+   "wartosci": [
+    316,
+    73
+   ],
+   "etykiety": [
+    "widzowie vs reszta",
+    "grupa kontrolna"
+   ],
+   "kolory": [
+    [
+     240,
+     110,
+     100
+    ],
+    [
+     64,
+     214,
+     120
+    ]
+   ]
+  },
+  {
+   "typ": "grupa",
+   "od": "Więc"
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "a3w",
+ "audio": "/home/claude/silnik5/glos_a3.wav",
+ "slowa": "/home/claude/silnik5/glos_a3.json"
+}

@@ -1824,7 +1824,7 @@ def dwa_slupki(d, t, wart, etyk, kolory, y_dol=1150, wys_max=520, start=0.2, jed
         x = xs[i]
         d.rounded_rectangle([x - szer_s / 2, y_dol - max(h, 6), x + szer_s / 2, y_dol], radius=18, fill=k + (255,))
         if p > 0.05:
-            tl = f"{int(round(v * p))}{jedn}"
+            tl = (f"{v * p:.1f}".replace(".", ",") if v != int(v) else f"{int(round(v * p))}") + jedn
             fb = f_anton(96)
             d.text((x - szer(d, tl, fb) / 2, y_dol - h - 120), tl, font=fb, fill=BIEL + (255,))
         fe = dopasuj(d, e, 330, 36, 24)

@@ -14,6 +14,10 @@ Uzycie: python3 hybryda.py hyb_<kod>.json wyj_raw.mp4
 import sys, json, pathlib, subprocess, shutil, random
 import numpy as np
 import silnik6 as s6
+try:
+    import sceny_b2b  # noqa: F401 - rejestruje sceny B2B w s6.SCENY
+except ImportError:
+    pass
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
 
 W, H, CX, FPS = s6.W, s6.H, s6.CX, s6.FPS
@@ -40,6 +44,9 @@ def czas_slowa(spec):
 sceny = []
 for sc in r["sceny"]:
     sceny.append([0.0 if sc.get("od") == 0 else czas_slowa(sc["od"]) - 0.08, sc])
+for (a_, sa), (b_, sb) in zip(sceny, sceny[1:]):
+    if b_ <= a_:
+        raise SystemExit(f"scena '{sb['typ']}' startuje przed '{sa['typ']}' - uzyj 'slowo#2'")
 for i, s in enumerate(sceny):
     s.append(sceny[i + 1][0] if i + 1 < len(sceny) else DL)
 assert len(cfg["tla"]) == len(sceny), "tla: po jednym ujeciu na scene"

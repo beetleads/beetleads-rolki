@@ -1,0 +1,43 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_marka",
+   "od": 0,
+   "linie": [
+    "CZY PŁACIĆ ZA REKLAMĘ",
+    "NA NAZWĘ WŁASNEJ FIRMY?"
+   ]
+  },
+  {
+   "typ": "szuka",
+   "od": "Kto"
+  },
+  {
+   "typ": "slupki2",
+   "od": "Gdy",
+   "tytul": "RUCH PO WYŁĄCZENIU REKLAMY",
+   "podtytul": "ile wróciło z darmowych wyników",
+   "wartosci": [
+    99.5,
+    50
+   ],
+   "etykiety": [
+    "duży serwis",
+    "mniej znany serwis"
+   ]
+  },
+  {
+   "typ": "region",
+   "od": "Więc"
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "a2w",
+ "audio": "/home/claude/silnik5/glos_a2.wav",
+ "slowa": "/home/claude/silnik5/glos_a2.json"
+}

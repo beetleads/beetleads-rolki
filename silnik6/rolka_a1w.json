@@ -1,0 +1,41 @@
+{
+ "akcent": "#FFB02E",
+ "sceny": [
+  {
+   "typ": "pytanie_strona",
+   "od": 0,
+   "linie": [
+    "CZY UŁAMEK SEKUNDY ŁADOWANIA",
+    "ZMIENIA SPRZEDAŻ?"
+   ]
+  },
+  {
+   "typ": "najpierw",
+   "od": "Liczy"
+  },
+  {
+   "typ": "bok_panel",
+   "od": "Boczny"
+  },
+  {
+   "typ": "szybciej",
+   "od": "Ale"
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "NAJPIERW TO,",
+    "CO WIDAĆ OD RAZU"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "a1w",
+ "audio": "/home/claude/silnik5/glos_a1.wav",
+ "slowa": "/home/claude/silnik5/glos_a1.json"
+}
