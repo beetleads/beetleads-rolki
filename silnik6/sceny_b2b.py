@@ -773,9 +773,18 @@ def scena_duza_liczba(im, t, dl, p, kt):
         _opinia(d, X0 + 60, 430, X1 - 60, 1, a)
         d.rounded_rectangle([X0 + 52, 422, X1 - 52, 588], radius=20, outline=CZERW + (int(255 * a),), width=6)
         y_l = 640
+    if p.get("metki"):
+        for j, m in enumerate(p["metki"]):
+            _metka_ceny(d, CX - 180 + j * 360, 500, m, (150, 152, 162) if j == 0 else kt["akcent"], a, s=0.9)
+        y_l = 640
+    if p.get("ikony"):
+        czlowiek(d, CX - 160, 500, 70, (110, 170, 240), a)
+        czlowiek(d, CX + 160, 500, 70, (240, 140, 190), a)
+        y_l = 640
     if q > 0:
         v = p["wartosc"] * q
-        tx = p.get("znak", "") + f"{v:.1f}".replace(".", ",") + "%"
+        num = f"{int(round(v))}" if float(p["wartosc"]).is_integer() else f"{v:.1f}".replace(".", ",")
+        tx = p.get("znak", "") + num + "%"
         f = f_anton(int(230 * (0.9 + 0.1 * pop(t, t0, 0.4))))
         d.text((CX - szer(d, tx, f) / 2, y_l), tx, font=f, fill=kol + (255,))
         fs = f_inter(38)
@@ -931,6 +940,13 @@ def scena_dwa_wskazniki(im, t, dl, p, kt):
     tl = p.get("tytul", "")
     fb = dopasuj(d, tl, X1 - X0, 56, 36, f_anton)
     d.text((CX - szer(d, tl, fb) / 2, 320), tl, font=fb, fill=BIEL + (int(255 * a),))
+    if p.get("auto"):
+        # bus z paczkami trzyma kadr, zanim padnie pierwsza liczba
+        t_pierw = kt["czas_slowa"](p["pozycje"][0]["od"]) - kt["od"] - 0.15
+        za = a * (1 - wej(t, t_pierw, 0.4))
+        if za > 0:
+            _auto(d, CX - 60 + 60 * min(1.0, t / 3), 640, za, s=1.5)
+            pigulka(d, CX - 140, 560, "0 ZŁ", f_anton(64), kt["akcent"] + (int(255 * za),), CIEMNY + (int(255 * za),))
     for i, poz in enumerate(p["pozycje"]):
         t0 = kt["czas_slowa"](poz["od"]) - kt["od"] - 0.15
         q = wej(t, t0, 0.7)
@@ -956,4 +972,149 @@ s6.SCENY.update({
     "pytanie_jedna": scena_pytanie_jedna, "szuka_powodu": scena_szuka_powodu, "duza_liczba": scena_duza_liczba,
     "pytanie_kod": scena_pytanie_kod, "przypomina": scena_przypomina, "podzial": scena_podzial,
     "pytanie_dostawa": scena_pytanie_dostawa, "zwroty": scena_zwroty, "dwa_wskazniki": scena_dwa_wskazniki,
+})
+
+
+# ---------------------------------------------------------------- e1: cena z dziewiatka (20.11)
+
+def scena_pytanie_dziewiatka(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 330
+    s = 1.6
+    w, h = 230 * s, 120 * s
+    d.polygon([(CX - w / 2, cy - h / 2), (CX + w / 2 - 40 * s, cy - h / 2), (CX + w / 2, cy), (CX + w / 2 - 40 * s, cy + h / 2),
+               (CX - w / 2, cy + h / 2)], fill=BIEL + (255,))
+    f = f_anton(int(62 * s * 1.3))
+    x = CX - 20 * s - szer(d, "39", f) / 2
+    d.text((x, cy - f.size * 0.62), "3", font=f, fill=CIEMNY + (255,))
+    pq = 0.6 + 0.4 * wej(t, 0.3, 0.4)
+    d.text((x + szer(d, "3", f), cy - f.size * 0.62), "9", font=f, fill=akc + (int(255 * pq),))
+    im.alpha_composite(nak)
+
+
+def scena_okazja(im, t, dl, p, kt):
+    """Dwie metki 35 i 39 - dziewiatka wyglada jak okazja, choc drozsza."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _metka_ceny(d, CX - 190, 470, "35", (150, 152, 162), a, s=1.0)
+    p2 = pop(t, 0.3, 0.45)
+    if p2 > 0:
+        _metka_ceny(d, CX + 190, 470, "39", akc, 1.0, s=p2)
+    t1 = kt["czas_slowa"]("okazja") - kt["od"] - 0.1
+    if t > t1:
+        pigulka(d, CX + 190, 610, "OKAZJA?", f_anton(52), ZIELONY + (240,), CIEMNY + (255,))
+    t2 = kt["czas_slowa"]("wyższa") - kt["od"] - 0.15
+    if t > t2:
+        pigulka(d, CX, 800, "WYŻSZA CENA, A WYGLĄDA NA OKAZJĘ", f_anton(42), (60, 62, 72, 240), BIEL + (255,))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- e2: dopasowanie + duzy format
+
+def scena_pytanie_format(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, y0, x1, y1 = X0 + 20, dol + 70, X1 - 20, dol + 640
+    okno_przegladarki(d, x0, y0, x1, y1, 1.0)
+    for i in range(6):
+        d.rounded_rectangle([x0 + 30, y0 + 100 + i * 70, x1 - 30 - (i % 2) * 80, y0 + 124 + i * 70], radius=8, fill=(150, 152, 162, 255))
+    q = wej(t, 0.2, 0.5)
+    yy = y1 - (y1 - y0 - 80) * 0.55 * q
+    d.rounded_rectangle([x0 + 10, yy, x1 - 10, y1 - 10], radius=18, fill=akc + (255,))
+    cx, cy = CX, (yy + y1) / 2
+    for r in (60, 36, 12):
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=CIEMNY + (255,), width=6)
+    d.line([cx - 80, cy, cx + 80, cy], fill=CIEMNY + (255,), width=4)
+    d.line([cx, cy - 80, cx, cy + 80], fill=CIEMNY + (255,), width=4)
+    im.alpha_composite(nak)
+
+
+def scena_sledzony(im, t, dl, p, kt):
+    """Klient pod celownikiem czuje sie sledzony i sie broni."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    czlowiek(d, CX, 520, 100, BIEL, a)
+    r = 170 - 30 * min(1, t / 1.0)
+    d.ellipse([CX - r, 520 - r, CX + r, 520 + r], outline=CZERW + (int(255 * a),), width=6)
+    d.line([CX - r - 40, 520, CX + r + 40, 520], fill=CZERW + (int(200 * a),), width=4)
+    d.line([CX, 520 - r - 40, CX, 520 + r + 40], fill=CZERW + (int(200 * a),), width=4)
+    t1 = kt["czas_slowa"]("śledzony") - kt["od"] - 0.1
+    if t > t1:
+        pigulka(d, CX, 780, "CZUJE SIĘ ŚLEDZONY", f_anton(50), CZERW + (240,), CIEMNY + (255,))
+    t2 = kt["czas_slowa"]("bronić") - kt["od"] - 0.15
+    if t > t2:
+        # tarcza
+        sx, sy = CX + 230, 470
+        d.polygon([(sx - 60, sy - 70), (sx + 60, sy - 70), (sx + 60, sy + 10), (sx, sy + 80), (sx - 60, sy + 10)], fill=akc + (255,))
+        pigulka(d, CX, 890, "I ZACZYNA SIĘ BRONIĆ", f_anton(46), (60, 62, 72, 240), BIEL + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_trzy_paski(im, t, dl, p, kt):
+    """Poziome paski: kazdy osobno rosnie, razem slabiej - kazdy na swoim slowie."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    fb = dopasuj(d, tl, X1 - X0, 56, 36, f_anton)
+    d.text((CX - szer(d, tl, fb) / 2, 320), tl, font=fb, fill=BIEL + (int(255 * a),))
+    for i, poz in enumerate(p["pozycje"]):
+        t0 = kt["czas_slowa"](poz["od"]) - kt["od"] - 0.15 + poz.get("opozn", 0)
+        q = wej(t, t0, 0.7)
+        y = 440 + i * 200
+        fs = f_inter(36)
+        d.text((X0 + 20, y), poz["etykieta"], font=fs, fill=BIEL + (int(255 * max(a * 0.5, min(1, q * 2))),))
+        d.rounded_rectangle([X0 + 20, y + 56, X1 - 20, y + 116], radius=26, fill=(60, 62, 72, int(255 * a)))
+        if q > 0:
+            kol = tuple(poz.get("kolor", ZIELONY))
+            d.rounded_rectangle([X0 + 20, y + 56, X0 + 20 + (X1 - X0 - 40) * poz["dl"] * q, y + 116], radius=26, fill=kol + (255,))
+            f = f_anton(48)
+            d.text((X1 - 30 - szer(d, poz["opis"], f), y - 6), poz["opis"], font=f, fill=kol + (int(255 * q),))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- e3: algorytm szuka najtanszych
+
+def scena_pytanie_algorytm(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 330
+    for j, kol in enumerate(((110, 170, 240), (240, 140, 190), (110, 170, 240), (240, 140, 190))):
+        czlowiek(d, CX - 300 + j * 200, cy + 60, 60, kol, 1.0)
+    r = 120
+    cx = CX - 200 + 400 * (0.5 + 0.5 * math.sin(t * 1.6))
+    d.ellipse([cx - r, cy + 60 - r, cx + r, cy + 60 + r], outline=akc + (255,), width=7)
+    d.line([cx - r - 30, cy + 60, cx + r + 30, cy + 60], fill=akc + (220,), width=4)
+    d.line([cx, cy + 60 - r - 30, cx, cy + 60 + r + 30], fill=akc + (220,), width=4)
+    im.alpha_composite(nak)
+
+
+def scena_najtansze(im, t, dl, p, kt):
+    """Algorytm wybiera tansze wyswietlenia: stos monet mniejszy = czesciej pokazuje."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    f = f_anton(56)
+    pigulka(d, CX, 330, "ALGORYTM", f, akc + (int(240 * a),), CIEMNY + (int(255 * a),))
+    for j, (cx, kol, n) in enumerate(((CX - 200, (110, 170, 240), 2), (CX + 200, (240, 140, 190), 5))):
+        pj = wej(t, 0.2 + j * 0.3, 0.4)
+        czlowiek(d, cx, 560, 70, kol, pj)
+        for i in range(n):
+            d.ellipse([cx - 50, 780 - i * 22, cx + 50, 810 - i * 22], fill=ZOLTY + (int(255 * pj),), outline=(150, 120, 20, int(255 * pj)), width=3)
+    p2 = wej(t, 0.9, 0.5)
+    strzalka(d, (CX, 400), (CX - 160, 470), ZIELONY, a, grub=8, postep=p2)
+    if t > 1.3:
+        pigulka(d, CX, 940, "TAŃSZE WYŚWIETLENIE WYGRYWA", f_anton(46), (60, 62, 72, 240), BIEL + (255,))
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({
+    "pytanie_dziewiatka": scena_pytanie_dziewiatka, "okazja": scena_okazja,
+    "pytanie_format": scena_pytanie_format, "sledzony": scena_sledzony, "trzy_paski": scena_trzy_paski,
+    "pytanie_algorytm": scena_pytanie_algorytm, "najtansze": scena_najtansze,
 })

@@ -30,7 +30,8 @@
      "kierunek": -1,
      "podpis": "zysku"
     }
-   ]
+   ],
+   "auto": true
   },
   {
    "typ": "wniosek_ok",

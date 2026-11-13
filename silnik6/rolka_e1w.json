@@ -1,0 +1,54 @@
+{
+ "akcent": "#FFB02E",
+ "sceny": [
+  {
+   "typ": "pytanie_dziewiatka",
+   "od": 0,
+   "linie": [
+    "CZY CENA Z DZIEWIĄTKĄ",
+    "NAPRAWDĘ SPRZEDAJE?"
+   ]
+  },
+  {
+   "typ": "okazja",
+   "od": "Dziewiątka"
+  },
+  {
+   "typ": "duza_liczba",
+   "od": "W",
+   "tytul": "TE SAME UBRANIA",
+   "metki": [
+    "35",
+    "39"
+   ],
+   "start": "24%",
+   "wartosc": 24,
+   "znak": "+",
+   "kolor": [
+    52,
+    200,
+    120
+   ],
+   "podpis": [
+    "więcej kupujących",
+    "przy cenie 39"
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "TESTUJ CENY",
+    "Z DZIEWIĄTKĄ NA KOŃCU"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "e1w",
+ "audio": "/home/claude/silnik5/glos_e1.wav",
+ "slowa": "/home/claude/silnik5/glos_e1.json"
+}

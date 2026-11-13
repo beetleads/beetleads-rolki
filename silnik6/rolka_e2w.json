@@ -1,0 +1,64 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_format",
+   "od": 0,
+   "linie": [
+    "DOPASOWANA I NA PÓŁ EKRANU",
+    "= PODWÓJNY EFEKT?"
+   ]
+  },
+  {
+   "typ": "sledzony",
+   "od": "Nie"
+  },
+  {
+   "typ": "trzy_paski",
+   "od": "W",
+   "tytul": "PRAWIE 3 TYS. KAMPANII",
+   "pozycje": [
+    {
+     "od": "każda",
+     "etykieta": "tylko dopasowana",
+     "dl": 0.9,
+     "opis": "3 RAZY LEPIEJ"
+    },
+    {
+     "od": "każda",
+     "opozn": 0.4,
+     "etykieta": "tylko duży format",
+     "dl": 0.6,
+     "opis": "2 RAZY LEPIEJ"
+    },
+    {
+     "od": "razem",
+     "etykieta": "oba naraz",
+     "dl": 0.25,
+     "opis": "SŁABIEJ",
+     "kolor": [
+      240,
+      110,
+      100
+     ]
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "WYBIERZ JEDNO:",
+    "DOPASOWANIE ALBO FORMAT"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "e2w",
+ "audio": "/home/claude/silnik5/glos_e2.wav",
+ "slowa": "/home/claude/silnik5/glos_e2.json"
+}

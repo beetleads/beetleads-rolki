@@ -1,0 +1,51 @@
+{
+ "akcent": "#FF7A59",
+ "sceny": [
+  {
+   "typ": "pytanie_algorytm",
+   "od": 0,
+   "linie": [
+    "CZY ALGORYTM POKAZUJE REKLAMĘ",
+    "TYM, DO KTÓRYCH CELUJESZ?"
+   ]
+  },
+  {
+   "typ": "najtansze",
+   "od": "Nie"
+  },
+  {
+   "typ": "duza_liczba",
+   "od": "W",
+   "tytul": "191 KRAJÓW",
+   "ikony": true,
+   "start": "20%",
+   "wartosc": 20,
+   "znak": "+",
+   "kolor": [
+    110,
+    170,
+    240
+   ],
+   "podpis": [
+    "częściej widzieli mężczyźni",
+    "bo kobiety były droższe"
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "SPRAWDZAJ, KTO NAPRAWDĘ",
+    "WIDZI TWOJE REKLAMY"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "e3w",
+ "audio": "/home/claude/silnik5/glos_e3.wav",
+ "slowa": "/home/claude/silnik5/glos_e3.json"
+}
