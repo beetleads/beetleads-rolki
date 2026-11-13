@@ -1,0 +1,65 @@
+{
+ "kod": "z1w",
+ "akcent": "#FF7A59",
+ "audio": "/home/claude/silnik5/glos_z1w.wav",
+ "slowa": "/home/claude/silnik5/glos_z1w.json",
+ "sceny": [
+  {
+   "typ": "pytanie_zwrot",
+   "od": 0,
+   "linie": [
+    "DLACZEGO SKLEPY DAJĄ",
+    "AŻ TYLE CZASU NA ZWROT?"
+   ],
+   "podpis_kal": "dni na zwrot"
+  },
+  {
+   "typ": "ryzyko",
+   "od": "To",
+   "napis": "ryzyko dla sklepu?"
+  },
+  {
+   "typ": "dom",
+   "od": "ale",
+   "napis": "TO JUŻ MOJE"
+  },
+  {
+   "typ": "slupki2",
+   "od": "Przy",
+   "tytul": "ODDAŁO TOWAR",
+   "wartosci": [
+    22,
+    3
+   ],
+   "etykiety": [
+    "2 dni na zwrot",
+    "7 dni na zwrot"
+   ],
+   "kolory": [
+    [
+     240,
+     120,
+     100
+    ],
+    [
+     110,
+     112,
+     124
+    ]
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "CHCESZ ODDAĆ?",
+    "ZRÓB TO OD RAZU"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "kod": "m1w",
+ "akcent": "#3FD67A",
+ "audio": "/home/claude/silnik5/glos_m1w.wav",
+ "slowa": "/home/claude/silnik5/glos_m1w.json",
+ "sceny": [
+  {
+   "typ": "pytanie_dziennie",
+   "od": 0,
+   "linie": [
+    "„TYLKO 5 DZIENNIE”",
+    "CZY „150 MIESIĘCZNIE”?"
+   ]
+  },
+  {
+   "typ": "ta_sama",
+   "od": "To",
+   "podpis": "30 dni po 5"
+  },
+  {
+   "typ": "waga",
+   "od": "ale"
+  },
+  {
+   "typ": "slupki2",
+   "od": "badaniu",
+   "tytul": "ZAPISAŁO SIĘ",
+   "podtytul": "prawie 9000 osób, ta sama kwota",
+   "wartosci": [
+    30,
+    7
+   ],
+   "etykiety": [
+    "„5 dziennie”",
+    "„150 miesięcznie”"
+   ]
+  },
+  {
+   "typ": "przelicz",
+   "od": "Więc",
+   "przod": [
+    "5",
+    "dziennie"
+   ],
+   "tyl": [
+    "150",
+    "miesięcznie"
+   ],
+   "linie": [
+    "PRZELICZ NA MIESIĄC"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}

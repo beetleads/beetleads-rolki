@@ -1,0 +1,40 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_retarget",
+   "od": 0,
+   "linie": [
+    "CZY REKLAMA Z OGLĄDANYM",
+    "PRODUKTEM SPRZEDAJE NAJLEPIEJ?"
+   ]
+  },
+  {
+   "typ": "sciezka",
+   "od": "Na"
+  },
+  {
+   "typ": "dwie_reklamy",
+   "od": "W",
+   "tytul": "KTÓRA SPRZEDAŁA LEPIEJ?",
+   "podtytul": "test na prawie 78 tysiącach osób",
+   "wynik_od": "lepiej"
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "więc",
+   "linie": [
+    "PRODUKT POKAZUJ",
+    "TYM, CO PORÓWNUJĄ"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "b2w",
+ "audio": "/home/claude/silnik5/glos_b2.wav",
+ "slowa": "/home/claude/silnik5/glos_b2.json"
+}

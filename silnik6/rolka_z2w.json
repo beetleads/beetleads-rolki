@@ -1,0 +1,52 @@
+{
+ "kod": "z2w",
+ "akcent": "#F6C430",
+ "audio": "/home/claude/silnik5/glos_z2w.wav",
+ "slowa": "/home/claude/silnik5/glos_z2w.json",
+ "sceny": [
+  {
+   "typ": "czcionka",
+   "od": 0,
+   "linie": [
+    "W JAKI SPOSÓB ROZMIAR CENY",
+    "ZMIENIA TO, CZY JEST TANIA?"
+   ],
+   "stara": "199 zł",
+   "nowa": "149 zł"
+  },
+  {
+   "typ": "wielkosc",
+   "od": "Mózg",
+   "liczba": "149",
+   "lewy": "mało?",
+   "prawy": "dużo?"
+  },
+  {
+   "typ": "slupki_dzies",
+   "od": "Ta",
+   "tytul": "OCENA TANIOŚCI",
+   "podtytul": "ta sama cena, skala 1-7",
+   "wartosci": [
+    4.65,
+    3.28
+   ],
+   "etykiety": [
+    "mała czcionka",
+    "duża czcionka"
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc#2",
+   "linie": [
+    "PATRZ NA LICZBĘ,",
+    "NIE NA ROZMIAR"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}

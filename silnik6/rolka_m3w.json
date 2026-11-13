@@ -1,0 +1,43 @@
+{
+ "kod": "m3w",
+ "akcent": "#FF7A59",
+ "audio": "/home/claude/silnik5/glos_m3w.wav",
+ "slowa": "/home/claude/silnik5/glos_m3w.json",
+ "sceny": [
+  {
+   "typ": "pytanie_palec",
+   "od": 0,
+   "linie": [
+    "CZY PALCEM WYBIERASZ",
+    "INACZEJ NIŻ MYSZKĄ?"
+   ]
+  },
+  {
+   "typ": "siegniecie",
+   "od": "Dotyk",
+   "napis": "JAK SIĘGNIĘCIE RĘKĄ"
+  },
+  {
+   "typ": "palec_mysz",
+   "od": "Sernik",
+   "wartosci": [
+    95,
+    73
+   ],
+   "etykiety": [
+    "dotyk ekranu",
+    "myszka"
+   ],
+   "podpis": "wybrało sernik zamiast sałatki"
+  },
+  {
+   "typ": "policz",
+   "od": "Więc#2"
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}

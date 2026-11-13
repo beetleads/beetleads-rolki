@@ -14,7 +14,7 @@
    "od": "Kto"
   },
   {
-   "typ": "slupki2",
+   "typ": "slupki_slowa",
    "od": "Gdy",
    "tytul": "RUCH PO WYŁĄCZENIU REKLAMY",
    "podtytul": "ile wróciło z darmowych wyników",
@@ -25,6 +25,10 @@
    "etykiety": [
     "duży serwis",
     "mniej znany serwis"
+   ],
+   "starty": [
+    "99,5%",
+    "połowa"
    ]
   },
   {

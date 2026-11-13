@@ -1,0 +1,49 @@
+{
+ "kod": "r6w",
+ "akcent": "#FFB02E",
+ "audio": "/home/claude/silnik5/glos_r6w.wav",
+ "slowa": "/home/claude/silnik5/glos_r6w.json",
+ "sceny": [
+  {
+   "typ": "pytanie_dokument",
+   "od": 0,
+   "linie": [
+    "ILE OSÓB NAPRAWDĘ CZYTA",
+    "REGULAMIN, KTÓRY AKCEPTUJE?"
+   ]
+  },
+  {
+   "typ": "klauzula",
+   "od": "543",
+   "zapis": "§14. Oddajesz pierworodne dziecko"
+  },
+  {
+   "typ": "ludzie",
+   "od": "Zauważyło",
+   "ile": 2,
+   "podpis": "zauważyło ten zapis"
+  },
+  {
+   "typ": "czas",
+   "od": "Przeczytanie",
+   "tytul": "CZAS NA REGULAMIN",
+   "trzeba": 900,
+   "czytali": 51,
+   "trzeba_tekst": "15 min",
+   "czytali_tekst": "51 s"
+  },
+  {
+   "typ": "sprawdz",
+   "od": "Więc",
+   "sekcje": [
+    "PŁATNOŚCI",
+    "DANE"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}

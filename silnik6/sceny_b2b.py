@@ -140,7 +140,7 @@ def scena_pytanie_marka(im, t, dl, p, kt):
     # pasek wyszukiwania z wpisywana nazwa firmy
     d.rounded_rectangle([x0 + 40, y0 + 100, x1 - 40, y0 + 180], radius=40, fill=(246, 244, 240, 255))
     tx = "twoja firma"
-    n = int(len(tx) * min(1.0, t / 1.2))
+    n = len(tx)   # wpisane od pierwszej klatki - okladka pokazuje, czego szuka klient
     f = f_inter(40, False)
     d.text((x0 + 80, y0 + 116), tx[:n], font=f, fill=CIEMNY + (255,))
     if int(t * 2) % 2 == 0:
@@ -298,3 +298,268 @@ s6.SCENY.update({
     "pytanie_marka": scena_pytanie_marka, "szuka": scena_szuka, "region": scena_region,
     "pytanie_raport": scena_pytanie_raport, "kupiliby": scena_kupiliby, "grupa": scena_grupa,
 })
+
+
+# ---------------------------------------------------------------- wspolne: dwa wzrosty na slowach
+
+def scena_dwa_wzrosty(im, t, dl, p, kt):
+    """Tytul + dwie duze liczby wyskakujace na slowach lektora (np. +20% otwarc, +31% leadow)."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    if tl:
+        fb = dopasuj(d, tl, X1 - X0, 60, 36, f_anton)
+        d.text((CX - szer(d, tl, fb) / 2, 300), tl, font=fb, fill=BIEL + (int(255 * a),))
+    if p.get("podtytul"):
+        fs = f_inter(30, False)
+        d.text((CX - szer(d, p["podtytul"], fs) / 2, 390), p["podtytul"], font=fs, fill=SZARY + (int(255 * a),))
+    for i, poz in enumerate(p["pozycje"]):
+        t0 = kt["czas_slowa"](poz["od"]) - kt["od"] - 0.1 if poz.get("od") else 0.2 + i * 0.4
+        pz = pop(t, t0, 0.45)
+        if pz <= 0:
+            continue
+        y = 500 + i * 300
+        f = f_anton(max(1, int(150 * pz)))
+        d.text((CX - szer(d, poz["liczba"], f) / 2, y), poz["liczba"], font=f, fill=(ZIELONY if i == 0 else akc) + (255,))
+        f2 = f_inter(40)
+        d.text((CX - szer(d, poz["podpis"], f2) / 2, y + 190), poz["podpis"], font=f2, fill=BIEL + (int(255 * min(1, pz)),))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- b1: imie w temacie maila
+
+def _skrzynka(d, x0, y0, x1, n, a, wyroznij=None, akc=ZOLTY, imie_p=1.0):
+    for i in range(n):
+        y = y0 + i * 100
+        wyr = i == wyroznij
+        d.rounded_rectangle([x0, y, x1, y + 84], radius=14,
+                            fill=((60, 60, 70) if not wyr else (70, 66, 50)) + (int(255 * a),),
+                            outline=(akc + (int(255 * a * imie_p),)) if wyr else None, width=4 if wyr else 0)
+        d.ellipse([x0 + 16, y + 18, x0 + 64, y + 66], fill=(120, 122, 134, int(255 * a)))
+        if wyr:
+            f = f_inter(30)
+            d.text((x0 + 84, y + 12), "Anna,", font=f, fill=akc + (int(255 * a * imie_p),))
+            d.rounded_rectangle([x0 + 84 + szer(d, "Anna, ", f), y + 22, x1 - 40, y + 40], radius=8, fill=(200, 200, 206, int(255 * a)))
+        else:
+            d.rounded_rectangle([x0 + 84, y + 22, x1 - 60 - (i % 3) * 40, y + 40], radius=8, fill=(170, 172, 182, int(255 * a)))
+        d.rounded_rectangle([x0 + 84, y + 52, x1 - 140, y + 64], radius=6, fill=(110, 112, 124, int(255 * a)))
+
+
+def scena_pytanie_mail(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, y0, x1, y1 = X0 + 20, dol + 70, X1 - 20, dol + 640
+    okno_przegladarki(d, x0, y0, x1, y1, 1.0)
+    _skrzynka(d, x0 + 30, y0 + 100, x1 - 30, 4, 1.0, wyroznij=1, akc=akc, imie_p=wej(t, 0.5, 0.4))
+    im.alpha_composite(nak)
+
+
+def scena_do_jednej(im, t, dl, p, kt):
+    """Mail z imieniem = do jednej osoby; bez imienia = do calej bazy."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    # lewa: koperta -> jedna osoba (akcent); prawa: koperta -> tlum (szary)
+    for j, cx in enumerate((CX - 200, CX + 200)):
+        pj = wej(t, 0.1 + j * 0.3, 0.4)
+        ex, ey = cx, 430
+        d.rounded_rectangle([ex - 80, ey - 52, ex + 80, ey + 52], radius=10, fill=((akc if j == 0 else (150, 152, 162)) + (int(255 * pj),)))
+        d.line([ex - 80, ey - 50, ex, ey + 6, ex + 80, ey - 50], fill=(30, 30, 36, int(255 * pj)), width=6)
+        strzalka(d, (ex, ey + 70), (ex, ey + 200), (akc if j == 0 else (150, 152, 162)), pj, grub=8)
+        if j == 0:
+            czlowiek(d, cx, 740, 90, akc, pj)
+            f = f_anton(44)
+            pigulka(d, cx, 860, "DO CIEBIE", f, akc + (int(240 * pj),), CIEMNY + (int(255 * pj),))
+        else:
+            for i in range(9):
+                czlowiek(d, cx - 90 + (i % 3) * 90, 660 + (i // 3) * 90, 34, (150, 152, 162), pj)
+            f = f_anton(44)
+            pigulka(d, cx, 940, "DO BAZY", f, (70, 72, 82, int(240 * pj)), BIEL + (int(255 * pj),))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- b2: reklama z ogladanym produktem
+
+def _karta_reklamy(d, x0, y0, x1, y1, a, produkt, akc):
+    d.rounded_rectangle([x0, y0, x1, y1], radius=20, fill=(52, 52, 62, int(255 * a)))
+    f = f_inter(24)
+    pigulka(d, x0 + 90, y0 + 16, "Reklama", f, (90, 92, 104, int(255 * a)), BIEL + (int(255 * a),), pad=(12, 5))
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2 + 20
+    if produkt:   # pudelko z produktem
+        d.rounded_rectangle([cx - 70, cy - 60, cx + 70, cy + 60], radius=12, fill=akc + (int(255 * a),))
+        d.rectangle([cx - 70, cy - 10, cx + 70, cy + 10], fill=(30, 30, 36, int(110 * a)))
+    else:         # znak marki (zuk)
+        d.ellipse([cx - 70, cy - 70, cx + 70, cy + 70], outline=akc + (int(255 * a),), width=12)
+        pts = [(cx + 42 * math.cos(-math.pi / 2 + k * math.pi / 5) * (1 if k % 2 == 0 else 0.45),
+                cy + 42 * math.sin(-math.pi / 2 + k * math.pi / 5) * (1 if k % 2 == 0 else 0.45)) for k in range(10)]
+        d.polygon(pts, fill=akc + (int(255 * a),))
+
+
+def scena_pytanie_retarget(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+
+    def ekran(im2, box, tt, a):
+        x0, y0, x1, y1 = box
+        nak, d = warstwa()
+        for i in range(3):
+            d.rounded_rectangle([x0 + 24, y0 + 70 + i * 46, x1 - 24 - i * 40, y0 + 92 + i * 46], radius=8, fill=(200, 200, 206, int(255 * a)))
+        _karta_reklamy(d, x0 + 20, y0 + 230, x1 - 20, y0 + 500, a, True, akc)
+        # odbicie "znowu ten sam" - trzy male kopie produktu
+        for i in range(3):
+            q = wej(tt, 0.6 + i * 0.3, 0.3)
+            if q > 0:
+                xx = x0 + 60 + i * ((x1 - x0 - 120) / 2)
+                d.rounded_rectangle([xx - 34, y0 + 540, xx + 34, y0 + 600], radius=8, fill=akc + (int(200 * q),))
+        im2.alpha_composite(nak)
+    telefon(im, CX, dol + 470, 0.95, 1.0, ekran, t)
+
+
+def scena_sciezka(im, t, dl, p, kt):
+    """Sciezka zakupu: szuka -> porownuje -> kupuje; klient na poczatku, znak zapytania."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    etapy = ["SZUKA", "PORÓWNUJE", "KUPUJE"]
+    ys = [460, 680, 900]
+    for i, (et, y) in enumerate(zip(etapy, ys)):
+        pi_ = wej(t, 0.1 + i * 0.2, 0.3)
+        d.rounded_rectangle([CX - 230, y - 60, CX + 230, y + 60], radius=60,
+                            fill=((akc if i == 0 else (70, 72, 82)) + (int(235 * pi_),)))
+        f = f_anton(52)
+        d.text((CX - szer(d, et, f) / 2, y - 36), et, font=f, fill=((CIEMNY if i == 0 else BIEL) + (int(255 * pi_),)))
+        if i < 2:
+            strzalka(d, (CX, y + 64), (CX, ys[i + 1] - 64), (150, 152, 162), pi_, grub=7)
+    po = pop(t, 0.6, 0.4)
+    if po > 0:
+        czlowiek(d, CX - 330, 460, 60 * po, BIEL, 1.0)
+        f = f_anton(int(80 * po) or 1)
+        d.text((CX - 330 + 40, 340), "?", font=f, fill=akc + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_dwie_reklamy(im, t, dl, p, kt):
+    """Wynik: zwykla reklama marki wygrala z reklama ogladanego produktu."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    f0 = f_anton(54)
+    tx = p.get("tytul", "KTÓRA SPRZEDAŁA LEPIEJ?")
+    fb = dopasuj(d, tx, X1 - X0, 56, 36, f_anton)
+    d.text((CX - szer(d, tx, fb) / 2, 300), tx, font=fb, fill=BIEL + (int(255 * a),))
+    fs = f_inter(30, False)
+    pt = p.get("podtytul", "")
+    d.text((CX - szer(d, pt, fs) / 2, 380), pt, font=fs, fill=SZARY + (int(255 * a),))
+    for j, (cx, prod, et) in enumerate(((CX - 200, False, "reklama marki"), (CX + 200, True, "oglądany produkt"))):
+        pj = wej(t, 0.2 + j * 0.25, 0.4)
+        _karta_reklamy(d, cx - 170, 470, cx + 170, 820, pj, prod, akc)
+        f = f_inter(32)
+        d.text((cx - szer(d, et, f) / 2, 840), et, font=f, fill=SZARY + (int(255 * pj),))
+    tw = kt["czas_slowa"](p.get("wynik_od", "lepiej")) - kt["od"] - 0.1
+    pw = pop(t, tw, 0.45)
+    if pw > 0:
+        ptaszek(d, CX - 200, 940, 60 * pw)
+        krzyzyk(d, CX + 200, 940, 50, 1.0, min(1.0, pw))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- b3: odpowiadanie na opinie
+
+def _gwiazdki(d, x, y, n, r, a, kol=ZOLTY):
+    for i in range(5):
+        cx = x + i * (r * 2.3)
+        pts = []
+        for k in range(10):
+            ang = -math.pi / 2 + k * math.pi / 5
+            rr = r if k % 2 == 0 else r * 0.45
+            pts.append((cx + rr * math.cos(ang), y + rr * math.sin(ang)))
+        d.polygon(pts, fill=(kol if i < n else (90, 92, 104)) + (int(255 * a),))
+
+
+def _opinia(d, x0, y0, x1, n, a, odp=0.0, akc=ZOLTY):
+    d.rounded_rectangle([x0, y0, x1, y0 + 150], radius=16, fill=(52, 52, 62, int(255 * a)))
+    d.ellipse([x0 + 20, y0 + 20, x0 + 70, y0 + 70], fill=(120, 122, 134, int(255 * a)))
+    _gwiazdki(d, x0 + 100, y0 + 44, n, 16, a)
+    d.rounded_rectangle([x0 + 24, y0 + 92, x1 - 60, y0 + 108], radius=8, fill=(170, 172, 182, int(255 * a)))
+    d.rounded_rectangle([x0 + 24, y0 + 118, x1 - 160, y0 + 132], radius=7, fill=(120, 122, 134, int(255 * a)))
+    if odp > 0:
+        d.rounded_rectangle([x0 + 80, y0 + 165, x1, y0 + 245], radius=16, fill=akc + (int(235 * odp),))
+        f = f_inter(26)
+        d.text((x0 + 104, y0 + 175), "Odpowiedź właściciela", font=f, fill=CIEMNY + (int(255 * odp),))
+        d.rounded_rectangle([x0 + 104, y0 + 212, x1 - 60, y0 + 226], radius=7, fill=(30, 30, 36, int(160 * odp)))
+
+
+def scena_pytanie_opinie(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, x1 = X0 + 20, X1 - 20
+    y = dol + 80
+    _opinia(d, x0, y, x1, 2, 1.0, odp=wej(t, 0.8, 0.4), akc=akc)
+    _opinia(d, x0, y + 290, x1, 5, wej(t, 0.2, 0.3), akc=akc)
+    im.alpha_composite(nak)
+
+
+def scena_nastepni(im, t, dl, p, kt):
+    """Nastepny klient widzi, ze wlasciciel czyta - pisze ostrozniej."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    x0, x1 = X0 + 20, X1 - 20
+    _opinia(d, x0, 330, x1, 3, a, odp=1.0, akc=akc)
+    po = pop(t, 0.3, 0.4)
+    if po > 0:
+        ik_oko(d, CX - 220, 700, 60 * po, akc, 1.0)
+        czlowiek(d, CX - 220, 860, 70 * po, BIEL, 1.0)
+        f = f_anton(48)
+        pigulka(d, CX + 120, 760, "KTOŚ TO CZYTA", f, akc + (240,), CIEMNY + (255,))
+    if t > 1.2:
+        q = wej(t, 1.2, 0.4)
+        _opinia(d, x0, 980 - 40 * (1 - q), x1, 4, q, akc=akc)
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({
+    "dwa_wzrosty": scena_dwa_wzrosty,
+    "pytanie_mail": scena_pytanie_mail, "do_jednej": scena_do_jednej,
+    "pytanie_retarget": scena_pytanie_retarget, "sciezka": scena_sciezka, "dwie_reklamy": scena_dwie_reklamy,
+    "pytanie_opinie": scena_pytanie_opinie, "nastepni": scena_nastepni,
+})
+
+
+def scena_slupki_slowa(im, t, dl, p, kt):
+    """Jak slupki2, ale kazdy slupek rosnie na swoim slowie lektora (p['starty'])."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    if tl:
+        fb = dopasuj(d, tl, X1 - X0, 64, 36, f_anton)
+        d.text((CX - szer(d, tl, fb) / 2, 300), tl, font=fb, fill=BIEL + (int(255 * a),))
+    if p.get("podtytul"):
+        fs = f_inter(30, False)
+        d.text((CX - szer(d, p["podtytul"], fs) / 2, 390), p["podtytul"], font=fs, fill=SZARY + (int(255 * a),))
+    kolory = [tuple(x) for x in p.get("kolory", [ZIELONY, (110, 112, 124)])]
+    wart, etyk = p["wartosci"], p["etykiety"]
+    mx = max(wart)
+    for i in range(2):
+        t0 = kt["czas_slowa"](p["starty"][i]) - kt["od"] - 0.15
+        # pojedynczy slupek: rysowany recznie, ta sama geometria co dwa_slupki
+        szer_s, y_dol, wys_max = 220, 1150, 520
+        x = [CX - 170, CX + 170][i]
+        q = wej(t, t0, 0.8)
+        h = wys_max * wart[i] / mx * q
+        d.rounded_rectangle([x - szer_s / 2, y_dol - max(h, 6), x + szer_s / 2, y_dol], radius=18,
+                            fill=kolory[i] + (int(255 * max(a * 0.35, min(1.0, q * 3))),))
+        if q > 0.05:
+            v = wart[i] * q
+            tx = (f"{v:.1f}".replace(".", ",") if wart[i] != int(wart[i]) else f"{int(round(v))}") + p.get("jedn", "%")
+            fb = f_anton(96)
+            d.text((x - szer(d, tx, fb) / 2, y_dol - h - 120), tx, font=fb, fill=BIEL + (255,))
+        fe = dopasuj(d, etyk[i], 330, 36, 24)
+        d.text((x - szer(d, etyk[i], fe) / 2, y_dol + 20), etyk[i], font=fe, fill=SZARY + (int(255 * a),))
+    im.alpha_composite(nak)
+
+
+s6.SCENY["slupki_slowa"] = scena_slupki_slowa

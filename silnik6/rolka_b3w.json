@@ -1,0 +1,51 @@
+{
+ "akcent": "#3FD67A",
+ "sceny": [
+  {
+   "typ": "pytanie_opinie",
+   "od": 0,
+   "linie": [
+    "CZY ODPOWIADANIE NA OPINIE",
+    "MA SENS?"
+   ]
+  },
+  {
+   "typ": "nastepni",
+   "od": "Zmieniasz"
+  },
+  {
+   "typ": "dwa_wzrosty",
+   "od": "Hotele",
+   "tytul": "FIRMY, KTÓRE ZACZĘŁY ODPOWIADAĆ",
+   "podtytul": "w porównaniu z tymi, które milczały",
+   "pozycje": [
+    {
+     "liczba": "+12%",
+     "podpis": "więcej opinii",
+     "od": "12%"
+    },
+    {
+     "liczba": "+0,12",
+     "podpis": "gwiazdki średniej oceny",
+     "od": "0,12"
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "ODPOWIADAJ KRÓTKO,",
+    "TEŻ NA DOBRE"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "b3w",
+ "audio": "/home/claude/silnik5/glos_b3.wav",
+ "slowa": "/home/claude/silnik5/glos_b3.json"
+}

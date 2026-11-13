@@ -1,0 +1,42 @@
+{
+ "kod": "m2w",
+ "akcent": "#F6C430",
+ "audio": "/home/claude/silnik5/glos_m2w.wav",
+ "slowa": "/home/claude/silnik5/glos_m2w.json",
+ "sceny": [
+  {
+   "typ": "pytanie_wozek",
+   "od": 0,
+   "linie": [
+    "CO KRYJE SIĘ ZA UCHWYTEM",
+    "SKLEPOWEGO WÓZKA?"
+   ]
+  },
+  {
+   "typ": "ramiona",
+   "od": "Zgięte",
+   "lewy": "DO SIEBIE",
+   "prawy": "OD SIEBIE"
+  },
+  {
+   "typ": "paragony",
+   "od": "supermarkecie",
+   "kwoty": [
+    "26 €",
+    "35 €"
+   ]
+  },
+  {
+   "typ": "wniosek_wozek",
+   "od": "Więc",
+   "linie": [
+    "ZWYKŁA RĄCZKA"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ]
+}

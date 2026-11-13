@@ -1,0 +1,51 @@
+{
+ "akcent": "#FFB02E",
+ "sceny": [
+  {
+   "typ": "pytanie_mail",
+   "od": 0,
+   "linie": [
+    "CZY IMIĘ KLIENTA W TEMACIE",
+    "MAILA COŚ ZMIENIA?"
+   ]
+  },
+  {
+   "typ": "do_jednej",
+   "od": "Mail"
+  },
+  {
+   "typ": "dwa_wzrosty",
+   "od": "W#2",
+   "tytul": "TEMAT Z IMIENIEM",
+   "podtytul": "testy na milionach odbiorców",
+   "pozycje": [
+    {
+     "liczba": "+20%",
+     "podpis": "otwarć",
+     "od": "20%"
+    },
+    {
+     "liczba": "+31%",
+     "podpis": "leadów",
+     "od": "31%"
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "IMIĘ W TEMACIE",
+    "MAILA I SMS-A"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "b1w",
+ "audio": "/home/claude/silnik5/glos_b1.wav",
+ "slowa": "/home/claude/silnik5/glos_b1.json"
+}

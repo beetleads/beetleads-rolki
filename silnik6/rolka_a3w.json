@@ -14,7 +14,7 @@
    "od": "Widzą"
   },
   {
-   "typ": "slupki2",
+   "typ": "slupki_slowa",
    "od": "W#3",
    "tytul": "WZROST SPRZEDAŻY",
    "podtytul": "ta sama kampania, 2 sposoby liczenia",
@@ -37,6 +37,10 @@
      214,
      120
     ]
+   ],
+   "starty": [
+    "316%",
+    "73%"
    ]
   },
   {
