@@ -379,3 +379,4 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
   13.11 18:00 banery, 14.11 07:00 wozek, 14.11 12:00 palec/myszka, 14.11 18:00 abonament - 4 kanaly, okladki *_s6h_cover.jpg.
 - 13.11: 15.11 07:00 zwrot -> 1115_0700_zwrot_s6h.mp4 (hybryda), 4 kanaly.
 - 13.11: 15.11 12:00 czcionka ceny -> 1115_1200_czcionka_ceny_s6h.mp4 (hybryda), 4 kanaly.
+- 13.11: 15.11 18:00 doladowanie -> 1115_1800_doladowanie_s6h.mp4 (hybryda), 4 kanaly. Od 16.11 rolki B2B dla wlascicieli (zalozyciel 13.11 11:35).
