@@ -1,0 +1,9 @@
+{"rolka":"rolka_h2w.json","wstrzas":"59%","tla":[
+ {"plik":"/home/claude/hf/hf_h2.mp4","st":0.0,"dl":2.9,"ciemn":0.45,"rozm":5},
+ [{"plik":"/home/claude/hf/hf_h2.mp4","st":3.0,"dl":2.0,"ciemn":0.45,"rozm":4},
+  {"od":"ludzie","plik":"/home/claude/hf/hf_h2.mp4","st":5.2,"dl":2.4,"ciemn":0.55,"rozm":5}],
+ [{"plik":"/home/claude/hf/hf_h2.mp4","st":7.0,"dl":3.0,"ciemn":0.5,"rozm":5},
+  {"od":"koszt","plik":"/home/claude/hf/hf_h2.mp4","st":10.0,"dl":2.9,"ciemn":0.5,"rozm":5}],
+ {"plik":"/home/claude/hf/hf_h2.mp4","st":12.2,"dl":2.7,"ciemn":0.5,"rozm":4},
+ {"plik":"/home/claude/hf/hf_h2.mp4","st":13.4,"dl":1.6}
+]}
