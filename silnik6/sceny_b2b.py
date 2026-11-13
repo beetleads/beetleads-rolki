@@ -2072,3 +2072,49 @@ s6.SCENY.update({
     "pytanie_celowanie": scena_pytanie_celowanie, "zgadywane": scena_zgadywane, "moneta_koszt": scena_moneta_koszt,
     "pytanie_paczka": scena_pytanie_paczka, "tanie_slowa": scena_tanie_slowa,
 })
+
+
+# ---------------------------------------------------------------- l1: odreczna karteczka
+
+def _karteczka(d, cx, cy, s, a, q=1.0, kat_linii=1.0):
+    A = int(255 * a)
+    w = 240 * s
+    d.rectangle([cx - w / 2, cy - w / 2, cx + w / 2, cy + w / 2], fill=(255, 226, 92, A))
+    d.polygon([(cx + w / 2 - 40 * s, cy + w / 2), (cx + w / 2, cy + w / 2 - 40 * s), (cx + w / 2, cy + w / 2)], fill=(220, 190, 60, A))
+    for j in range(3):
+        y = cy - w / 2 + 60 * s + j * 55 * s
+        x0 = cx - w / 2 + 30 * s
+        dl = (w - 70 * s) * min(1, max(0, q * 3 - j)) * (0.95 - 0.15 * j)
+        if dl > 2:
+            pts = [(x0 + k, y + 6 * s * math.sin(k / (9 * s) + j)) for k in range(0, int(dl), 4)]
+            if len(pts) > 1:
+                d.line(pts, fill=(40, 60, 140, A), width=max(2, int(5 * s)))
+
+
+def scena_pytanie_karteczka(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 320
+    _paczka2(d, CX - 60, cy + 40, 1.6, 1.0, akc)
+    _karteczka(d, CX + 170, cy - 20, 0.9, 1.0, q=0.4 + 0.6 * wej(t, 0.1, 1.2))
+    im.alpha_composite(nak)
+
+
+def scena_chwila(im, t, dl, p, kt):
+    """Reka pisze karteczke - widac, ze ktos poswiecil klientowi chwile."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    q = wej(t, 0.2, 2.0)
+    _karteczka(d, CX, 600, 1.5, a, q=q)
+    px = CX - 140 + 280 * ((q * 3) % 1)
+    py = 520 + 82 * min(2, int(q * 3))
+    d.line([px, py, px + 120, py - 160], fill=(30, 30, 36, int(255 * a)), width=18)
+    t1 = kt["czas_slowa"](p.get("slowo", "chwilę")) - kt["od"] - 0.15
+    if t > t1:
+        pigulka(d, CX, 960, "KTOŚ POŚWIĘCIŁ CI CHWILĘ", f_anton(48), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({"pytanie_karteczka": scena_pytanie_karteczka, "chwila": scena_chwila})

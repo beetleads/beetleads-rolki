@@ -1,0 +1,58 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_karteczka",
+   "od": 0,
+   "linie": [
+    "CZY ODRĘCZNA KARTECZKA",
+    "W PACZCE MA SENS?"
+   ]
+  },
+  {
+   "typ": "chwila",
+   "od": "Ma",
+   "slowo": "chwilę"
+  },
+  {
+   "typ": "trzy_paski",
+   "od": "badaniu",
+   "tytul": "ILE OSÓB ODDAŁO ANKIETĘ",
+   "pozycje": [
+    {
+     "od": "76%",
+     "etykieta": "z odręczną karteczką",
+     "dl": 0.76,
+     "opis": "76%"
+    },
+    {
+     "od": "36%",
+     "etykieta": "bez karteczki",
+     "dl": 0.36,
+     "opis": "36%",
+     "kolor": [
+      150,
+      152,
+      162
+     ]
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "PROŚBĘ O OPINIĘ",
+    "NAPISZ RĘCZNIE"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "l1w",
+ "audio": "/home/claude/silnik5/glos_l1.wav",
+ "slowa": "/home/claude/silnik5/glos_l1.json"
+}
