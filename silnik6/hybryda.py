@@ -11,7 +11,7 @@
 
 Uzycie: python3 hybryda.py hyb_<kod>.json wyj_raw.mp4
 """
-import sys, json, pathlib, subprocess, shutil, random
+import math, sys, json, pathlib, subprocess, shutil, random
 import numpy as np
 import silnik6 as s6
 try:
@@ -52,9 +52,17 @@ def ciecie_przed(spec):
     return max(0.0, t - 0.08)
 
 
+def start_cta(spec):
+    """13.11 23:52 Krzysztof: "na koncu jest lag i dopiero CTA, nie ma plynnego przejscia".
+    CTA wchodzi 0,1 s po koncu ostatniego slowa wniosku i przenika sie z nim, zamiast czekac na 'Zaobserwuj'."""
+    t = czas_slowa(spec)
+    poprz = [s["do"] for s in slowa if s["do"] <= t + 1e-6]
+    return max(0.0, min(t - 0.08, (poprz[-1] + 0.1) if poprz else t - 0.08))
+
+
 sceny = []
 for sc in r["sceny"]:
-    sceny.append([0.0 if sc.get("od") == 0 else ciecie_przed(sc["od"]), sc])
+    sceny.append([0.0 if sc.get("od") == 0 else (start_cta(sc["od"]) if sc["typ"] == "cta" else ciecie_przed(sc["od"])), sc])
 for (a_, sa), (b_, sb) in zip(sceny, sceny[1:]):
     if b_ <= a_:
         raise SystemExit(f"scena '{sb['typ']}' startuje przed '{sa['typ']}' - uzyj 'slowo#2'")
@@ -122,7 +130,29 @@ def warstwa_sceny(sc, t, od, do):
         ws = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         ky = cfg.get("kotwica_y", 250)
         ws.alpha_composite(mala, (int(CX - CX * sk), int(ky - ky * sk)))
-    return ws
+    return ozyw(ws, t - od, sc["typ"].startswith("pytanie"))
+
+
+def ozyw(ws, t, pyt):
+    """13.11 23:52 Krzysztof: "w pierwszych 5 sekundach efekty ruchome, grafiki wizualizujace,
+    nie statyka". Pytanie: tekst stoi, grafika pod nim plywa (+-10 px) i pulsuje (+-2%).
+    Pozostale sceny: cala warstwa lekko oddycha (+-1,2%), zeby nigdy nie zamarla."""
+    out = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    if pyt:
+        y0 = 440
+        g = ws.crop((0, y0, W, H))
+        dy = int(10 * math.sin(2 * math.pi * t / 2.6))
+        sk = 1 + 0.02 * math.sin(2 * math.pi * t / 1.9 + 1.0)
+        gw, gh = int(W * sk), int((H - y0) * sk)
+        g2 = g.resize((gw, gh), Image.BILINEAR)
+        out.paste(ws.crop((0, 0, W, y0)), (0, 0))
+        out.paste(g2, ((W - gw) // 2, y0 + dy - (gh - (H - y0)) // 2), g2)
+    else:
+        sk = 1 + 0.012 * math.sin(2 * math.pi * t / 2.4)
+        gw, gh = int(W * sk), int(H * sk)
+        g2 = ws.resize((gw, gh), Image.BILINEAR)
+        out.paste(g2, ((W - gw) // 2, int(700 - 700 * sk)), g2)
+    return out
 
 
 gr = s6.grupy(slowa)
@@ -174,18 +204,21 @@ for k in range(n):
     else:
         im.alpha_composite(warstwa_sceny(sc, t, od, do))
     # poprzednia animacja gasnie 0,25 s na nowym ujeciu (jak przenikanie w silniku 6)
-    if i > 0 and t - od < 0.25 and not sceny[i - 1][1]["typ"].startswith("pytanie"):
+    przen = 0.45 if sc["typ"] == "cta" else 0.25
+    if i > 0 and t - od < przen and not sceny[i - 1][1]["typ"].startswith("pytanie"):
         po, ps, pd = sceny[i - 1]
         ws = warstwa_sceny(ps, t, po, pd)
-        ws.putalpha(ws.getchannel("A").point(lambda v, f=1 - (t - od) / 0.25: int(v * f)))
+        ws.putalpha(ws.getchannel("A").point(lambda v, f=1 - (t - od) / przen: int(v * f)))
         im.alpha_composite(ws)
-    # efekty ciecia
+    # efekty ciecia (nie na wejsciu CTA - tam jest przenikanie)
     for c in CIECIA:
+        if abs(c - T_CTA) < 0.01:
+            continue
         if c <= t < c + 0.15:
             im = rgb_split(im, int(14 * (1 - (t - c) / 0.15)) + 1)
         if c - 0.04 <= t < c + 0.16:
             a = 1 - abs(t - (c + 0.03)) / 0.16
-            im.alpha_composite(Image.new("RGBA", (W, H), (255, 248, 225, int(150 * max(0, a)))))
+            im.alpha_composite(Image.new("RGBA", (W, H), (255, 248, 225, int(90 * max(0, a)))))
     for g in gr:
         if g[0]["od"] - 0.1 <= t <= g[-1]["do"] + 0.25:
             s6.napisy(im, g, t)

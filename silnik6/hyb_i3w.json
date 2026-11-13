@@ -1,0 +1,9 @@
+{"rolka":"rolka_i3w.json","wstrzas":"dwa","tla":[
+ {"plik":"/home/claude/hf/hf_i3.mp4","st":0.0,"dl":2.9,"ciemn":0.45,"rozm":5},
+ [{"plik":"/home/claude/hf/hf_i3.mp4","st":3.2,"dl":2.0,"ciemn":0.5,"rozm":4},
+  {"od":"klient","plik":"/home/claude/hf/hf_i3.mp4","st":5.2,"dl":2.0,"ciemn":0.45,"rozm":4}],
+ [{"plik":"/home/claude/hf/hf_i3.mp4","st":6.6,"dl":2.4,"ciemn":0.5,"rozm":5},
+  {"od":"rabatem","plik":"/home/claude/hf/hf_i3.mp4","st":7.0,"dl":2.0,"ciemn":0.5,"rozm":6}],
+ {"plik":"/home/claude/hf/hf_i3.mp4","st":12.2,"dl":2.9,"ciemn":0.5,"rozm":4},
+ {"plik":"/home/claude/hf/hf_i3.mp4","st":13.4,"dl":1.6}
+]}
