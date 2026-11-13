@@ -377,3 +377,4 @@ Dodatkowo: "Nie rob podwojnych" - jedno ujecie na rolke, bez serii testowych.
 - Zalozyciel 10:46 "ok, rob kolejne, dobrze idzie, i podmieniaj je, rob na kolejne dni w ten sposob".
 - Podmienione na *_s6h (ujecia Higgsfield + animacje silnika 6, grafika do pytania od 1. klatki):
   13.11 18:00 banery, 14.11 07:00 wozek, 14.11 12:00 palec/myszka, 14.11 18:00 abonament - 4 kanaly, okladki *_s6h_cover.jpg.
+- 13.11: 15.11 07:00 zwrot -> 1115_0700_zwrot_s6h.mp4 (hybryda), 4 kanaly.
