@@ -1,0 +1,48 @@
+{
+ "akcent": "#FF7A59",
+ "sceny": [
+  {
+   "typ": "pytanie_baner",
+   "od": 0,
+   "linie": [
+    "CZY MAŁE REKLAMY",
+    "NA TELEFONIE COŚ DAJĄ?"
+   ]
+  },
+  {
+   "typ": "przypomnienie",
+   "od": "Tylko"
+  },
+  {
+   "typ": "pasuje",
+   "od": "W",
+   "tytul": "PRAWIE 40 TYS. OSÓB",
+   "lewa": [
+    "praktyczne",
+    "i przemyślane"
+   ],
+   "prawa": [
+    "drobiazgi",
+    "dla przyjemności"
+   ],
+   "od_lewa": "praktycznych",
+   "od_prawa": "drobiazgach"
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "STAWIAJ NA NIE PRZY",
+    "DROŻSZYCH OFERTACH"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "g3w",
+ "audio": "/home/claude/silnik5/glos_g3.wav",
+ "slowa": "/home/claude/silnik5/glos_g3.json"
+}

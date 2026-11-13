@@ -1,0 +1,50 @@
+{
+ "akcent": "#FFB02E",
+ "sceny": [
+  {
+   "typ": "pytanie_test",
+   "od": 0,
+   "linie": [
+    "CZY MAŁY TEST REKLAMY",
+    "POWIE CI, CZY SIĘ OPŁACA?"
+   ]
+  },
+  {
+   "typ": "szum",
+   "od": "Rzadko"
+  },
+  {
+   "typ": "dwa_wzrosty",
+   "od": "W",
+   "tytul": "DUŻE EKSPERYMENTY Z REKLAMAMI",
+   "pozycje": [
+    {
+     "od": "25",
+     "liczba": "25",
+     "podpis": "eksperymentów na milionach klientów"
+    },
+    {
+     "od": "100",
+     "liczba": "PONAD 100 P.P.",
+     "podpis": "tyle wynosiła niepewność wyniku"
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "NIE OCENIAJ REKLAMY",
+    "PO KILKU DNIACH"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "g1w",
+ "audio": "/home/claude/silnik5/glos_g1.wav",
+ "slowa": "/home/claude/silnik5/glos_g1.json"
+}

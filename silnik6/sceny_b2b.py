@@ -1276,3 +1276,144 @@ s6.SCENY.update({
     "pytanie_leady": scena_pytanie_leady, "czas_odp": scena_czas_odp,
     "pytanie_offline": scena_pytanie_offline, "do_sklepu": scena_do_sklepu,
 })
+
+
+# ---------------------------------------------------------------- g1: maly test reklamy (22.11)
+
+def _szum(d, x0, x1, y, amp, t, a, kol, seed=3, efekt=0.0):
+    import random as _r
+    rr = _r.Random(seed)
+    pts = []
+    n = 26
+    for i in range(n):
+        v = rr.uniform(-1, 1) * amp + math.sin(i * 0.9 + t * 2) * amp * 0.25
+        if i > n * 0.6:
+            v -= efekt
+        pts.append((x0 + (x1 - x0) * i / (n - 1), y + v))
+    d.line(pts, fill=kol + (int(255 * a),), width=7, joint="curve")
+
+
+def scena_pytanie_test(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    x0, x1, y = X0 + 40, X1 - 40, dol + 330
+    d.rounded_rectangle([x0 - 20, y - 220, x1 + 20, y + 220], radius=20, fill=(40, 40, 48, 230))
+    _szum(d, x0, x1, y, 140, t, 1.0, BIEL)
+    pigulka(d, x1 - 150, y - 180, "MAŁY TEST", f_anton(44), akc + (255,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_szum(im, t, dl, p, kt):
+    """Sprzedaz skacze mocniej niz maly efekt reklamy - efekt ginie w szumie."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    x0, x1 = X0 + 40, X1 - 40
+    _szum(d, x0, x1, 560, 170, t, a, (170, 172, 182), efekt=25)
+    q = wej(t, 0.6, 0.5)
+    xe = x0 + (x1 - x0) * 0.62
+    d.line([xe, 330, xe, 800], fill=akc + (int(255 * q),), width=4)
+    f = f_inter(30)
+    d.text((xe + 14, 330), "start reklamy", font=f, fill=akc + (int(255 * q),))
+    t1 = kt["czas_slowa"]("mocniej") - kt["od"] - 0.15
+    if t > t1:
+        pigulka(d, CX, 900, "SZUM WIĘKSZY NIŻ EFEKT REKLAMY", f_anton(44), (60, 62, 72, 240), BIEL + (255,))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- g2: lepsza oferta budzi klienta
+
+def scena_pytanie_oferta(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 340
+    d.rounded_rectangle([CX - 170, cy - 260, CX + 170, cy + 260], radius=36, fill=(30, 30, 36, 255), outline=(120, 122, 134, 255), width=6)
+    q = wej(t, 0.2, 0.4)
+    yb = cy - 180 + 40 * (1 - q)
+    d.rounded_rectangle([CX - 140, yb, CX + 140, yb + 150], radius=22, fill=akc + (255,))
+    f = f_anton(40)
+    for j, ln in enumerate(("MAMY DLA CIEBIE", "LEPSZY PLAN!")):
+        d.text((CX - szer(d, ln, f) / 2, yb + 22 + j * 52), ln, font=f, fill=CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_budzi(im, t, dl, p, kt):
+    """Spokojny klient dostaje wiadomosc i zaczyna liczyc, ile placi."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    czlowiek(d, CX - 120, 600, 100, BIEL, a)
+    t1 = kt["czas_slowa"]("płacą") - kt["od"] - 0.15
+    q = wej(t, t1, 0.4)
+    if q < 1:
+        f = f_anton(60)
+        for j in range(3):
+            d.text((CX - 20 + j * 50, 430 - j * 50), "z", font=f, fill=(170, 172, 182, int(255 * a * (1 - q))))
+    if q > 0:
+        d.ellipse([CX + 20, 300, CX + 380, 520], fill=BIEL + (int(240 * q),))
+        f2 = f_anton(54)
+        d.text((CX + 200 - szer(d, "ILE PŁACĘ?", f2) / 2, 378), "ILE PŁACĘ?", font=f2, fill=CIEMNY + (int(255 * q),))
+    t2 = kt["czas_slowa"]("zastanowić") - kt["od"] - 0.15
+    if t > t2:
+        pigulka(d, CX, 880, "ZACZYNA SIĘ ZASTANAWIAĆ", f_anton(48), CZERW + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+# ---------------------------------------------------------------- g3: male reklamy na telefonie
+
+def scena_pytanie_baner(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 340
+    d.rounded_rectangle([CX - 170, cy - 260, CX + 170, cy + 260], radius=36, fill=(30, 30, 36, 255), outline=(120, 122, 134, 255), width=6)
+    for i in range(5):
+        d.rounded_rectangle([CX - 130, cy - 210 + i * 60, CX + 130 - (i % 2) * 60, cy - 186 + i * 60], radius=8, fill=(120, 122, 134, 255))
+    pq = 0.75 + 0.25 * math.sin(t * 5)
+    d.rounded_rectangle([CX - 140, cy + 150, CX + 140, cy + 220], radius=10, fill=akc + (int(255 * pq),))
+    im.alpha_composite(nak)
+
+
+def scena_przypomnienie(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    d.rounded_rectangle([CX - 300, 400, CX - 60, 470], radius=10, fill=akc + (int(255 * a),))
+    strzalka(d, (CX - 40, 435), (CX + 80, 435), akc, a, grub=8, postep=wej(t, 0.3, 0.5))
+    czlowiek(d, CX + 200, 470, 90, BIEL, a)
+    t1 = kt["czas_slowa"]("przypomnienie") - kt["od"] - 0.15
+    if t > t1:
+        pigulka(d, CX + 200, 250, "AHA, NO TAK", f_anton(44), BIEL + (240,), CIEMNY + (255,))
+        pigulka(d, CX, 760, "PRZYPOMINA, NIE UCZY", f_anton(50), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_pasuje(im, t, dl, p, kt):
+    """Dwie kolumny: praktyczne (ptaszek) vs drobiazgi (krzyzyk), kazda na swoim slowie."""
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    fb = dopasuj(d, tl, X1 - X0, 56, 36, f_anton)
+    d.text((CX - szer(d, tl, fb) / 2, 320), tl, font=fb, fill=BIEL + (int(255 * a),))
+    for j, (cx, et, sl, ok) in enumerate(((CX - 210, p["lewa"], p["od_lewa"], True), (CX + 210, p["prawa"], p["od_prawa"], False))):
+        t0 = kt["czas_slowa"](sl) - kt["od"] - 0.15
+        q = wej(t, t0, 0.4)
+        d.rounded_rectangle([cx - 190, 440, cx + 190, 900], radius=24, fill=(52, 52, 62, int(255 * a)))
+        fs = f_inter(34)
+        for i, ln in enumerate(et):
+            d.text((cx - szer(d, ln, fs) / 2, 480 + i * 50), ln, font=fs, fill=BIEL + (int(255 * a),))
+        if q > 0:
+            if ok:
+                ptaszek(d, cx, 740, 90 * q, 1.0)
+            else:
+                krzyzyk(d, cx, 740, 80, 1.0, q)
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({
+    "pytanie_test": scena_pytanie_test, "szum": scena_szum,
+    "pytanie_oferta": scena_pytanie_oferta, "budzi": scena_budzi,
+    "pytanie_baner": scena_pytanie_baner, "przypomnienie": scena_przypomnienie, "pasuje": scena_pasuje,
+})

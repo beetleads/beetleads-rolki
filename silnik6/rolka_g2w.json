@@ -1,0 +1,63 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_oferta",
+   "od": 0,
+   "linie": [
+    "PISAĆ DO KLIENTÓW Z LEPSZĄ",
+    "OFERTĄ, ŻEBY NIE ODESZLI?"
+   ]
+  },
+  {
+   "typ": "budzi",
+   "od": "Taka"
+  },
+  {
+   "typ": "slupki_slowa",
+   "od": "odeszło",
+   "tytul": "ODESZŁO KLIENTÓW",
+   "wartosci": [
+    6,
+    10
+   ],
+   "etykiety": [
+    "bez kontaktu",
+    "z lepszą ofertą"
+   ],
+   "starty": [
+    "6%",
+    "10%"
+   ],
+   "jedn": "%",
+   "kolory": [
+    [
+     150,
+     152,
+     162
+    ],
+    [
+     240,
+     110,
+     100
+    ]
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "NIE BUDŹ",
+    "ZADOWOLONYCH KLIENTÓW"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "g2w",
+ "audio": "/home/claude/silnik5/glos_g2.wav",
+ "slowa": "/home/claude/silnik5/glos_g2.json"
+}
