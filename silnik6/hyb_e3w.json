@@ -1,0 +1,9 @@
+{"rolka":"rolka_e3w.json","wstrzas":"20%","tla":[
+ {"plik":"/home/claude/hf/hf_e3.mp4","st":0.2,"dl":2.8,"ciemn":0.45,"rozm":7},
+ [{"plik":"/home/claude/hf/hf_e3.mp4","st":3.1,"dl":2.8,"ciemn":0.42,"rozm":10},
+  {"od":"najlepszych","plik":"/home/claude/hf/hf_e3.mp4","st":9.2,"dl":2.6,"ciemn":0.5,"rozm":3}],
+ [{"plik":"/home/claude/hf/hf_e3.mp4","st":6.1,"dl":2.8,"ciemn":0.5,"rozm":12},
+  {"od":"droższe","plik":"/home/claude/hf/hf_e3.mp4","st":10.4,"dl":1.5,"ciemn":0.5,"rozm":3}],
+ {"plik":"/home/claude/hf/hf_e3.mp4","st":12.1,"dl":2.8,"ciemn":0.55,"rozm":4},
+ {"plik":"/home/claude/hf/hf_e3.mp4","st":1.2,"dl":1.6}
+]}
