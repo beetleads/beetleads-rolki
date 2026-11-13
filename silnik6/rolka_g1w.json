@@ -5,28 +5,28 @@
    "typ": "pytanie_test",
    "od": 0,
    "linie": [
-    "CZY MAŁY TEST REKLAMY",
-    "POWIE CI, CZY SIĘ OPŁACA?"
+    "CZY PO KRÓTKIM TEŚCIE",
+    "WIESZ, CZY REKLAMA DZIAŁA?"
    ]
   },
   {
    "typ": "szum",
-   "od": "Rzadko"
+   "od": "Zwykle"
   },
   {
    "typ": "dwa_wzrosty",
-   "od": "W",
-   "tytul": "DUŻE EKSPERYMENTY Z REKLAMAMI",
+   "od": "Badacze",
+   "tytul": "BADACZE SPRAWDZILI",
    "pozycje": [
     {
      "od": "25",
-     "liczba": "25",
-     "podpis": "eksperymentów na milionach klientów"
+     "liczba": "25 KAMPANII",
+     "podpis": "często na milionach klientów"
     },
     {
-     "od": "100",
-     "liczba": "PONAD 100 P.P.",
-     "podpis": "tyle wynosiła niepewność wyniku"
+     "od": "trudno",
+     "liczba": "ZYSK CZY STRATA?",
+     "podpis": "nawet tam trudno było to orzec"
     }
    ]
   },

@@ -1300,7 +1300,7 @@ def scena_pytanie_test(im, t, dl, p, kt):
     x0, x1, y = X0 + 40, X1 - 40, dol + 330
     d.rounded_rectangle([x0 - 20, y - 220, x1 + 20, y + 220], radius=20, fill=(40, 40, 48, 230))
     _szum(d, x0, x1, y, 140, t, 1.0, BIEL)
-    pigulka(d, x1 - 150, y - 180, "MAŁY TEST", f_anton(44), akc + (255,), CIEMNY + (255,))
+    pigulka(d, x1 - 150, y - 180, "KRÓTKI TEST", f_anton(44), akc + (255,), CIEMNY + (255,))
     im.alpha_composite(nak)
 
 
@@ -1318,7 +1318,7 @@ def scena_szum(im, t, dl, p, kt):
     d.text((xe + 14, 330), "start reklamy", font=f, fill=akc + (int(255 * q),))
     t1 = kt["czas_slowa"]("mocniej") - kt["od"] - 0.15
     if t > t1:
-        pigulka(d, CX, 900, "SZUM WIĘKSZY NIŻ EFEKT REKLAMY", f_anton(44), (60, 62, 72, 240), BIEL + (255,))
+        pigulka(d, CX, 900, "SPRZEDAŻ SKACZE SAMA Z SIEBIE", f_anton(44), (60, 62, 72, 240), BIEL + (255,))
     im.alpha_composite(nak)
 
 
