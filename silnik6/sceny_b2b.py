@@ -767,14 +767,20 @@ def scena_duza_liczba(im, t, dl, p, kt):
     t0 = kt["czas_slowa"](p["start"]) - kt["od"] - 0.15
     q = wej(t, t0, 0.8)
     kol = tuple(p.get("kolor", CZERW))
+    y_l = 520
+    if p.get("opinia"):
+        # zla opinia widoczna od wejscia sceny, zanim padnie liczba (bez pustego kadru)
+        _opinia(d, X0 + 60, 430, X1 - 60, 1, a)
+        d.rounded_rectangle([X0 + 52, 422, X1 - 52, 588], radius=20, outline=CZERW + (int(255 * a),), width=6)
+        y_l = 640
     if q > 0:
         v = p["wartosc"] * q
         tx = p.get("znak", "") + f"{v:.1f}".replace(".", ",") + "%"
         f = f_anton(int(230 * (0.9 + 0.1 * pop(t, t0, 0.4))))
-        d.text((CX - szer(d, tx, f) / 2, 520), tx, font=f, fill=kol + (255,))
+        d.text((CX - szer(d, tx, f) / 2, y_l), tx, font=f, fill=kol + (255,))
         fs = f_inter(38)
         for j, ln in enumerate(p.get("podpis", [])):
-            d.text((CX - szer(d, ln, fs) / 2, 860 + j * 56), ln, font=fs, fill=BIEL + (int(255 * min(1, q * 2)),))
+            d.text((CX - szer(d, ln, fs) / 2, y_l + 340 + j * 56), ln, font=fs, fill=BIEL + (int(255 * min(1, q * 2)),))
     im.alpha_composite(nak)
 
 
