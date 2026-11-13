@@ -460,8 +460,8 @@ def scena_dwie_reklamy(im, t, dl, p, kt):
     tw = kt["czas_slowa"](p.get("wynik_od", "lepiej")) - kt["od"] - 0.1
     pw = pop(t, tw, 0.45)
     if pw > 0:
-        ptaszek(d, CX - 200, 940, 60 * pw)
-        krzyzyk(d, CX + 200, 940, 50, 1.0, min(1.0, pw))
+        ptaszek(d, CX - 200, 990, 60 * pw)
+        krzyzyk(d, CX + 200, 990, 50, 1.0, min(1.0, pw))
     im.alpha_composite(nak)
 
 
