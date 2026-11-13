@@ -1,0 +1,70 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_koszyk",
+   "od": 0,
+   "linie": [
+    "CZY PRZYPOMINAĆ",
+    "O PORZUCONYM KOSZYKU?"
+   ]
+  },
+  {
+   "typ": "wie_co",
+   "od": "Samo",
+   "slowo": "wie"
+  },
+  {
+   "typ": "trzy_paski",
+   "od": "eksperymencie",
+   "tytul": "ILE OSÓB NA 100 KUPIŁO",
+   "pozycje": [
+    {
+     "od": "zmienił",
+     "etykieta": "bez wiadomości",
+     "dl": 0.46,
+     "opis": "1,4",
+     "kolor": [
+      150,
+      152,
+      162
+     ]
+    },
+    {
+     "od": "zmienił",
+     "etykieta": "SMS bez rabatu",
+     "dl": 0.39,
+     "opis": "1,2",
+     "kolor": [
+      150,
+      152,
+      162
+     ],
+     "opozn": 0.3
+    },
+    {
+     "od": "rabatem",
+     "etykieta": "SMS z rabatem",
+     "dl": 1.0,
+     "opis": "3,1"
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "DODAJ KONKRETNĄ",
+    "KORZYŚĆ"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "i3w",
+ "audio": "/home/claude/silnik5/glos_i3.wav",
+ "slowa": "/home/claude/silnik5/glos_i3.json"
+}

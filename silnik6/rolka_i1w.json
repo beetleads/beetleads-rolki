@@ -1,0 +1,49 @@
+{
+ "akcent": "#FF7A59",
+ "sceny": [
+  {
+   "typ": "pytanie_promo",
+   "od": 0,
+   "linie": [
+    "CZY KLIENCI WIERZĄ",
+    "W PROMOCJE BLACK FRIDAY?"
+   ]
+  },
+  {
+   "typ": "sprawdza",
+   "od": "Coraz",
+   "slowo": "sprawdzić"
+  },
+  {
+   "typ": "duza_liczba",
+   "od": "Organizacja",
+   "tytul": "CENY PONAD 200 PRODUKTÓW PRZEZ ROK",
+   "start": "98%",
+   "wartosc": 98,
+   "metki": [
+    "199 ZŁ",
+    "199 ZŁ"
+   ],
+   "podpis": [
+    "równie tanich albo tańszych",
+    "w innym terminie"
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "DAWAJ PRAWDZIWĄ",
+    "OBNIŻKĘ"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "i1w",
+ "audio": "/home/claude/silnik5/glos_i1.wav",
+ "slowa": "/home/claude/silnik5/glos_i1.json"
+}

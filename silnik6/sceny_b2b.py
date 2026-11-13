@@ -1586,3 +1586,96 @@ s6.SCENY.update({
     "pytanie_bf": scena_pytanie_bf, "drozeje": scena_drozeje,
     "pytanie_bf2": scena_pytanie_bf2, "przed_po": scena_przed_po,
 })
+
+
+# ---------------------------------------------------------------- i1/i3: prawdziwa obnizka, porzucony koszyk
+
+def _wykres_ceny(d, x0, y0, x1, y1, a, akc, q=1.0):
+    """Historia ceny z roku: plaska linia, w listopadzie ten sam poziom."""
+    d.rounded_rectangle([x0, y0, x1, y1], radius=18, fill=(40, 42, 50, int(235 * a)))
+    pts = [0.55, 0.5, 0.56, 0.52, 0.5, 0.54, 0.51, 0.55, 0.52, 0.5, 0.53, 0.52]
+    n = max(2, int(len(pts) * q))
+    w = (x1 - x0 - 60) / (len(pts) - 1)
+    xy = [(x0 + 30 + i * w, y0 + 30 + (y1 - y0 - 60) * pts[i]) for i in range(n)]
+    d.line(xy, fill=akc + (int(255 * a),), width=7)
+
+
+def scena_pytanie_promo(im, t, dl, p, kt):
+    """Metka Black Friday i przekreslona stara cena ze znakiem zapytania - od pierwszej klatki."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 300
+    _metka_bf(d, CX - 190, cy, 1.0, akc, s=1.2)
+    _metka_ceny(d, CX + 210, cy - 70, "-50%", ZOLTY, 1.0, s=1.0)
+    f = f_anton(int(150 * (0.9 + 0.1 * pop(t, 0.3, 0.5))))
+    d.text((CX + 190 - szer(d, "?", f) / 2, cy - 10), "?", font=f, fill=BIEL + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_sprawdza(im, t, dl, p, kt):
+    """Klient z telefonem sprawdza historie ceny - linia plaska, obnizka nie jest prawdziwa."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    czlowiek(d, X0 + 150, 560, 90, BIEL, a)
+    tx0, ty0, tx1, ty1 = CX - 60, 360, X1 - 30, 780
+    d.rounded_rectangle([tx0, ty0, tx1, ty1], radius=34, fill=(28, 28, 34, int(255 * a)), outline=(150, 152, 162, int(255 * a)), width=5)
+    t1 = kt["czas_slowa"](p.get("slowo", "sprawdzić")) - kt["od"] - 0.15
+    _wykres_ceny(d, tx0 + 24, ty0 + 60, tx1 - 24, ty1 - 60, a, akc, q=0.3 + 0.7 * wej(t, t1, 0.8))
+    if t > t1 + 0.4:
+        pigulka(d, CX, 900, "KLIENT SPRAWDZA HISTORIĘ CENY", f_anton(44), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def _koszyk(d, cx, cy, s, a, kol=BIEL, pelny=True, akc=ZOLTY):
+    w, h = 200 * s, 130 * s
+    d.line([(cx - w / 2 - 50 * s, cy - h / 2 - 30 * s), (cx - w / 2, cy - h / 2)], fill=kol + (int(255 * a),), width=int(9 * s))
+    d.polygon([(cx - w / 2, cy - h / 2), (cx + w / 2, cy - h / 2), (cx + w / 2 - 25 * s, cy + h / 2), (cx - w / 2 + 25 * s, cy + h / 2)],
+              outline=kol + (int(255 * a),), width=int(8 * s))
+    for k in (-1, 1):
+        x = cx + k * w * 0.3
+        d.ellipse([x - 16 * s, cy + h / 2 + 12 * s, x + 16 * s, cy + h / 2 + 44 * s], fill=kol + (int(255 * a),))
+    if pelny:
+        for j, kk in enumerate((akc, (110, 170, 240), (240, 140, 190))):
+            x = cx - w * 0.3 + j * w * 0.3
+            d.rounded_rectangle([x - 26 * s, cy - h / 2 - 50 * s, x + 26 * s, cy - h / 2 + 6 * s], radius=int(8 * s), fill=kk + (int(255 * a),))
+
+
+def scena_pytanie_koszyk(im, t, dl, p, kt):
+    """Porzucony koszyk z rzeczami i telefon z przychodzaca wiadomoscia - od pierwszej klatki."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 320
+    _koszyk(d, CX - 170, cy + 30, 1.3, 1.0, akc=akc)
+    tx0, ty0 = CX + 140, cy - 170
+    d.rounded_rectangle([tx0, ty0, tx0 + 190, ty0 + 340], radius=28, fill=(28, 28, 34, 255), outline=(150, 152, 162, 255), width=5)
+    q = pop(t, 0.3, 0.5)
+    if q > 0:
+        d.rounded_rectangle([tx0 + 20, ty0 + 70, tx0 + 20 + 150 * q, ty0 + 70 + 90 * q], radius=16, fill=akc + (255,))
+        for j in range(2):
+            d.rounded_rectangle([tx0 + 36, ty0 + 92 + j * 30, tx0 + 36 + 100 * q, ty0 + 104 + j * 30], radius=6, fill=CIEMNY + (int(255 * q),))
+    im.alpha_composite(nak)
+
+
+def scena_wie_co(im, t, dl, p, kt):
+    """Klient z dymkiem, w ktorym jest jego koszyk - wie, co zostawil, przypomnienie nic nie wnosi."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    czlowiek(d, CX - 200, 620, 100, BIEL, a)
+    for j, r in enumerate((14, 22)):
+        d.ellipse([CX - 110 + j * 50 - r, 470 - j * 40 - r, CX - 110 + j * 50 + r, 470 - j * 40 + r], fill=(70, 72, 84, int(255 * a)))
+    d.ellipse([CX - 30, 230, CX + 360, 470], fill=(70, 72, 84, int(255 * a)))
+    _koszyk(d, CX + 165, 360, 0.8, a, akc=akc)
+    t1 = kt["czas_slowa"](p.get("slowo", "wie")) - kt["od"] - 0.15
+    if t > t1:
+        pigulka(d, CX, 900, "DOBRZE WIE, CO ZOSTAWIŁ", f_anton(48), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({
+    "pytanie_promo": scena_pytanie_promo, "sprawdza": scena_sprawdza,
+    "pytanie_koszyk": scena_pytanie_koszyk, "wie_co": scena_wie_co,
+})
