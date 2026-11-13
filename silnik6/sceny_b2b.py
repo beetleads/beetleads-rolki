@@ -848,6 +848,10 @@ def scena_podzial(im, t, dl, p, kt):
     d.text((CX - szer(d, p["tytul"], fb) / 2, 320), p["tytul"], font=fb, fill=BIEL + (int(255 * a),))
     t0 = kt["czas_slowa"](p["start1"]) - kt["od"] - 0.15
     q = wej(t, t0, 0.7)
+    if q < 1:
+        # koperta z ofertami trzyma kadr, zanim padnie liczba (bez pustego tla)
+        for j in range(3):
+            _koperta(d, CX - 220 + j * 220, 560 + (j % 2) * 40, 170, a * (1 - q))
     if q > 0:
         tx = f"+{int(round(p['liczba1'] * q))}%"
         f = f_anton(190)
