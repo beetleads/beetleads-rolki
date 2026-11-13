@@ -1157,7 +1157,7 @@ s6.SCENY.update({
 
 # ---------------------------------------------------------------- f1: czestotliwosc reklamy (21.11)
 
-def _karta_reklamy(d, x0, y0, x1, a, akc):
+def _karta_reklamy2(d, x0, y0, x1, a, akc):
     d.rounded_rectangle([x0, y0, x1, y0 + 200], radius=18, fill=(52, 52, 62, int(255 * a)))
     d.rounded_rectangle([x0 + 20, y0 + 20, x0 + 180, y0 + 180], radius=12, fill=akc + (int(255 * a),))
     d.rounded_rectangle([x0 + 210, y0 + 50, x1 - 40, y0 + 74], radius=8, fill=(170, 172, 182, int(255 * a)))
@@ -1171,7 +1171,7 @@ def scena_pytanie_czestotliwosc(im, t, dl, p, kt):
     nak, d = warstwa()
     x0, x1 = X0 + 40, X1 - 40
     for i in range(3):
-        _karta_reklamy(d, x0, dol + 60 + i * 230, x1, 1.0 if i != 1 else 0.6, akc)
+        _karta_reklamy2(d, x0, dol + 60 + i * 230, x1, 1.0 if i != 1 else 0.6, akc)
     n = 1 + int(min(t, dl) * 2.2)
     pigulka(d, x1 - 70, dol + 50, f"x{n}", f_anton(56), CZERW + (255,), CIEMNY + (255,))
     im.alpha_composite(nak)
@@ -1182,7 +1182,7 @@ def scena_unika(im, t, dl, p, kt):
     akc = kt["akcent"]
     nak, d = warstwa()
     a = wej(t, 0, 0.3)
-    _karta_reklamy(d, X0 + 40, 330, X1 - 40, a, akc)
+    _karta_reklamy2(d, X0 + 40, 330, X1 - 40, a, akc)
     czlowiek(d, CX, 760, 100, BIEL, a)
     t1 = kt["czas_slowa"]("unikać") - kt["od"] - 0.15
     otw = 1 - wej(t, t1, 0.4)
@@ -1257,7 +1257,7 @@ def scena_czas_odp(im, t, dl, p, kt):
 
 # ---------------------------------------------------------------- f3: reklama online, zakup w sklepie
 
-def _sklep(d, cx, cy, s, a):
+def _sklep2(d, cx, cy, s, a):
     d.rectangle([cx - 110 * s, cy - 60 * s, cx + 110 * s, cy + 100 * s], fill=(90, 92, 104, int(255 * a)))
     for i in range(5):
         k = (CZERW if i % 2 == 0 else BIEL) + (int(255 * a),)
@@ -1274,7 +1274,7 @@ def scena_pytanie_offline(im, t, dl, p, kt):
     d.rounded_rectangle([CX - 330, cy - 170, CX - 130, cy + 170], radius=26, fill=(30, 30, 36, 255), outline=(120, 122, 134, 255), width=5)
     d.rounded_rectangle([CX - 305, cy - 120, CX - 155, cy + 20], radius=12, fill=akc + (255,))
     strzalka(d, (CX - 100, cy), (CX + 80, cy), akc, 1.0, grub=9, postep=wej(t, 0.3, 0.6))
-    _sklep(d, CX + 230, cy + 10, 1.0, 1.0)
+    _sklep2(d, CX + 230, cy + 10, 1.0, 1.0)
     im.alpha_composite(nak)
 
 
@@ -1283,7 +1283,7 @@ def scena_do_sklepu(im, t, dl, p, kt):
     akc = kt["akcent"]
     nak, d = warstwa()
     a = wej(t, 0, 0.3)
-    _sklep(d, CX + 250, 600, 1.1, a)
+    _sklep2(d, CX + 250, 600, 1.1, a)
     t1 = kt["czas_slowa"]("potem") - kt["od"] - 0.15
     q = wej(t, t1, 1.4)
     x = CX - 300 + 430 * q
@@ -1810,7 +1810,7 @@ def scena_po_cene(im, t, dl, p, kt):
     akc = kt["akcent"]
     nak, d = warstwa()
     a = wej(t, 0, 0.3)
-    _sklep(d, X0 + 170, 560, 1.0, a)
+    _sklep2(d, X0 + 170, 560, 1.0, a)
     t1 = kt["czas_slowa"](p.get("slowo", "cenę")) - kt["od"] - 0.15
     q = wej(t, t1, 0.8)
     _metka_ceny(d, CX + 160 + 120 * q, 440, "-35%", ZOLTY, a * (1 - 0.6 * q), s=1.0)

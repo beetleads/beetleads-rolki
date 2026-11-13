@@ -7,7 +7,7 @@
   silnika 6 pomniejszona (skala, kotwica u gory), zeby zostalo miejsce na napisy wyzej,
 - CTA: rozmyte ujecie + koncowka silnika 6,
 - efekty: najazd na starcie, punch-zoom i rozszczepienie RGB na cieciach, blysk, dryf,
-  wstrzas na liczbie dowodu, winieta, smuga. Bez dzwiekow na cieciach.
+  wstrzas na liczbie dowodu, winieta, (smuga wylaczona 13.11). Bez dzwiekow na cieciach.
 
 Uzycie: python3 hybryda.py hyb_<kod>.json wyj_raw.mp4
 """
@@ -41,9 +41,20 @@ def czas_slowa(spec):
     raise SystemExit(f"nie ma slowa '{spec}'")
 
 
+def ciecie_przed(spec):
+    """Ciecie w przerwie miedzy slowami, nigdy w srodku slowa (13.11 22:28: "sprawdzaj, czy zmiana
+    kadru nie ucina glosu"). Przy przerwie - 0,08 s przed slowem, ale nie wczesniej niz koniec
+    poprzedniego slowa; bez przerwy - dokladnie na granicy slow."""
+    t = czas_slowa(spec)
+    poprz = [s["do"] for s in slowa if s["do"] <= t + 1e-6]
+    if poprz:
+        return max(poprz[-1], t - 0.08) if poprz[-1] < t else t
+    return max(0.0, t - 0.08)
+
+
 sceny = []
 for sc in r["sceny"]:
-    sceny.append([0.0 if sc.get("od") == 0 else czas_slowa(sc["od"]) - 0.08, sc])
+    sceny.append([0.0 if sc.get("od") == 0 else ciecie_przed(sc["od"]), sc])
 for (a_, sa), (b_, sb) in zip(sceny, sceny[1:]):
     if b_ <= a_:
         raise SystemExit(f"scena '{sb['typ']}' startuje przed '{sa['typ']}' - uzyj 'slowo#2'")
@@ -54,7 +65,7 @@ assert len(cfg["tla"]) == len(sceny), "tla: po jednym ujeciu na scene"
 SEGM = []   # (od, do, cfg_ujecia, nr_sceny)
 for i, ((od, sc, do), tl) in enumerate(zip(sceny, cfg["tla"])):
     lst = tl if isinstance(tl, list) else [tl]
-    pocz = [od] + [czas_slowa(u["od"]) - 0.08 for u in lst[1:]]
+    pocz = [od] + [ciecie_przed(u["od"]) for u in lst[1:]]
     for j, u in enumerate(lst):
         SEGM.append((pocz[j], pocz[j + 1] if j + 1 < len(lst) else do, u, i))
 CIECIA = [s[0] for s in SEGM[1:]]
@@ -190,4 +201,7 @@ shutil.rmtree(kat)
 cta = sceny[-1]
 pathlib.Path(wyj).with_suffix(".spec.json").write_text(json.dumps(
     {"slowa": slowa, "klik_dzwiek": round(T_CTA + cta[1].get("klik", 0.9), 2)}, ensure_ascii=False))
+_sp = json.load(open(wyj.replace(".mp4", ".spec.json")))
+_sp["ciecia"] = [round(c, 3) for c in CIECIA]
+json.dump(_sp, open(wyj.replace(".mp4", ".spec.json"), "w"), ensure_ascii=False)
 print("gotowe:", wyj, n, "klatek; ciecia", [round(c, 2) for c in CIECIA])

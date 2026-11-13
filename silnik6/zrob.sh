@@ -9,5 +9,6 @@ if python3 /home/claude/silnik5/waliduj.py $H/${k}e.mp4 | grep -q "BLAD: peak"; 
   ffmpeg -v error -y -i $H/${k}e.mp4 -c:v copy -af "alimiter=limit=0.85:level=false" -c:a aac -b:a 192k $H/${k}e_l.mp4 && mv $H/${k}e_l.mp4 $H/${k}e.mp4
 fi
 python3 /home/claude/silnik5/waliduj.py $H/${k}e.mp4 | tail -1
-python3 /home/claude/silnik5/sprawdz_start.py $H/${k}e.mp4 | tail -1
+python3 /home/claude/silnik5/sprawdz_start.py $H/${k}e.mp4 | tail -1 || true
+python3 /home/claude/silnik5/sprawdz_ciecia.py $H/${k}e.mp4 $H/raw_${k}h.spec.json /home/claude/silnik5/glos_${k}.wav | grep -v " ok$"
 ffmpeg -v error -y -i $H/${k}e.mp4 -vf "fps=1.2,scale=180:-1,tile=13x2" -frames:v 1 $S/${k}e.jpg
