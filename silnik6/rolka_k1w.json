@@ -1,0 +1,41 @@
+{
+ "akcent": "#FFC93C",
+ "sceny": [
+  {
+   "typ": "pytanie_gwiazdki",
+   "od": 0,
+   "linie": [
+    "CZY PIĘĆ GWIAZDEK",
+    "NAJLEPIEJ SPRZEDAJE?"
+   ]
+  },
+  {
+   "typ": "podejrzane",
+   "od": "Nie",
+   "slowo": "podejrzanie"
+  },
+  {
+   "typ": "krzywa_ocen",
+   "od": "Badacze",
+   "tytul": "CHĘĆ ZAKUPU A OCENA",
+   "start": "Chęć",
+   "spadek": "spadała"
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "NIE BÓJ SIĘ KILKU",
+    "GORSZYCH OPINII"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "k1w",
+ "audio": "/home/claude/silnik5/glos_k1.wav",
+ "slowa": "/home/claude/silnik5/glos_k1.json"
+}

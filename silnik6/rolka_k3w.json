@@ -1,0 +1,69 @@
+{
+ "akcent": "#FF7A59",
+ "sceny": [
+  {
+   "typ": "pytanie_paczka",
+   "od": 0,
+   "linie": [
+    "CZY SAMO „PRZEPRASZAM”",
+    "WYSTARCZY?"
+   ]
+  },
+  {
+   "typ": "tanie_slowa",
+   "od": "Często",
+   "slowo": "kosztują"
+  },
+  {
+   "typ": "trzy_paski",
+   "od": "W",
+   "tytul": "WYDATKI KLIENTÓW PO WPADCE",
+   "pozycje": [
+    {
+     "od": "5",
+     "etykieta": "po jednej wpadce",
+     "dl": 0.9,
+     "opis": "-5-10%",
+     "kolor": [
+      255,
+      72,
+      66
+     ]
+    },
+    {
+     "od": "bonem",
+     "etykieta": "przeprosiny z bonem",
+     "dl": 1.0,
+     "opis": "ODRABIA"
+    },
+    {
+     "od": "słowa#2",
+     "etykieta": "same słowa",
+     "dl": 0.85,
+     "opis": "BYWA GORZEJ",
+     "kolor": [
+      255,
+      72,
+      66
+     ]
+    }
+   ]
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "DO PRZEPROSIN DODAJ",
+    "COŚ KONKRETNEGO"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "k3w",
+ "audio": "/home/claude/silnik5/glos_k3.wav",
+ "slowa": "/home/claude/silnik5/glos_k3.json"
+}

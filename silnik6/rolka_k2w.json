@@ -1,0 +1,43 @@
+{
+ "akcent": "#35D0E8",
+ "sceny": [
+  {
+   "typ": "pytanie_celowanie",
+   "od": 0,
+   "linie": [
+    "CZY DOPŁACAĆ DO",
+    "DOKŁADNEGO KIEROWANIA?"
+   ]
+  },
+  {
+   "typ": "zgadywane",
+   "od": "Uważaj",
+   "slowo": "zgadywane"
+  },
+  {
+   "typ": "moneta_koszt",
+   "od": "Badacze",
+   "tytul": "DANE Z 19 FIRM",
+   "slowo1": "monetą",
+   "slowo2": "151%",
+   "wartosc": 151,
+   "podpis2": "wyższy koszt reklamy"
+  },
+  {
+   "typ": "wniosek_ok",
+   "od": "Więc",
+   "linie": [
+    "SPRAWDZAJ, CZY DOPŁATA",
+    "SIĘ ZWRACA"
+   ]
+  },
+  {
+   "typ": "cta",
+   "od": "Zaobserwuj",
+   "klik": 0.9
+  }
+ ],
+ "kod": "k2w",
+ "audio": "/home/claude/silnik5/glos_k2.wav",
+ "slowa": "/home/claude/silnik5/glos_k2.json"
+}

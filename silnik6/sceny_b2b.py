@@ -1870,3 +1870,205 @@ s6.SCENY.update({
     "pytanie_znizka": scena_pytanie_znizka, "po_cene": scena_po_cene,
     "pytanie_bestseller": scena_pytanie_bestseller, "patrzy_na_innych": scena_patrzy_na_innych,
 })
+
+
+# ---------------------------------------------------------------- k1-k3: piec gwiazdek, kupione dane, przeprosiny
+
+def _ocena(d, x0, y0, x1, ocena, n, a, obrys=None):
+    A = int(255 * a)
+    d.rounded_rectangle([x0, y0, x1, y0 + 230], radius=22, fill=(52, 52, 62, A), outline=(obrys + (A,)) if obrys else None, width=6)
+    f = f_anton(90)
+    d.text(((x0 + x1) / 2 - szer(d, ocena, f) / 2, y0 + 20), ocena, font=f, fill=BIEL + (A,))
+    r = (x1 - x0) / 13
+    _gwiazdki(d, (x0 + x1) / 2 - r * 4.6, y0 + 180, n, r, a)
+
+
+def scena_pytanie_gwiazdki(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    y = dol + 140
+    _ocena(d, CX - 360, y, CX - 30, "5,0", 5, 1.0)
+    _ocena(d, CX + 30, y, CX + 360, "4,5", 4, 1.0)
+    f = f_anton(int(110 * (0.9 + 0.1 * pop(t, 0.3, 0.5))))
+    d.text((CX - szer(d, "?", f) / 2, y + 300), "?", font=f, fill=BIEL + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_podejrzane(im, t, dl, p, kt):
+    """Ocena 5,0 pod lupa klienta - wyglada za idealnie."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    _ocena(d, CX - 220, 420, CX + 220, "5,0", 5, a)
+    czlowiek(d, X0 + 120, 760, 70, BIEL, a)
+    q = wej(t, 0.3, 0.8)
+    lx, ly = CX + 140 - 80 * q, 560
+    d.ellipse([lx - 80, ly - 80, lx + 80, ly + 80], outline=akc + (int(255 * a),), width=10)
+    d.line([lx + 56, ly + 56, lx + 130, ly + 130], fill=akc + (int(255 * a),), width=16)
+    t1 = kt["czas_slowa"](p.get("slowo", "podejrzanie")) - kt["od"] - 0.15
+    if t > t1:
+        pigulka(d, CX, 960, "WYGLĄDA ZA IDEALNIE", f_anton(50), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_krzywa_ocen(im, t, dl, p, kt):
+    """Krzywa checi zakupu od oceny: rosnie do 4-4,7, spada przy 5. Pasmo szczytu na slowie."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    fb = dopasuj(d, tl, X1 - X0, 56, 36, f_anton)
+    d.text((CX - szer(d, tl, fb) / 2, 320), tl, font=fb, fill=BIEL + (int(255 * a),))
+    x0, x1, yb, yt = X0 + 60, X1 - 60, 900, 480
+    d.line([x0, yb, x1, yb], fill=(150, 152, 162, int(255 * a)), width=4)
+    fx = f_inter(34)
+    def X(v):
+        return x0 + (v - 3.0) / 2.0 * (x1 - x0)
+    for v, et in ((3.0, "3"), (4.0, "4"), (4.7, "4,7"), (5.0, "5")):
+        d.text((X(v) - szer(d, et, fx) / 2, yb + 14), et, font=fx, fill=BIEL + (int(255 * a),))
+    t1 = kt["czas_slowa"](p.get("start", "zakupu")) - kt["od"] - 0.15
+    q = wej(t, t1, 1.2)
+    if t > t1 + 0.4:
+        d.rectangle([X(4.0), yt - 20, X(4.7), yb], fill=akc[:3] + (60,))
+    def krzywa(qq):
+        out = []
+        for i in range(int(60 * qq) + 1):
+            v = 3.0 + 2.0 * i / 60
+            h = 0.35 + 0.65 * (1 - ((v - 4.35) / 1.0) ** 2) if v <= 4.7 else 0.35 + 0.65 * (1 - (0.35) ** 2) - 0.9 * (v - 4.7)
+            out.append((X(v), yb - (yb - yt) * max(0.05, h)))
+        return out
+    # szary zarys krzywej trzyma kadr, zanim padnie liczba
+    d.line(krzywa(1.0), fill=(120, 122, 134, int(150 * a)), width=5)
+    pts = []
+    n = 60
+    for i in range(int(n * q) + 1):
+        v = 3.0 + 2.0 * i / n
+        h = 0.35 + 0.65 * (1 - ((v - 4.35) / 1.0) ** 2) if v <= 4.7 else 0.35 + 0.65 * (1 - (0.35) ** 2) - 0.9 * (v - 4.7)
+        pts.append((X(v), yb - (yb - yt) * max(0.05, h)))
+    if len(pts) > 1:
+        d.line(pts, fill=ZIELONY + (255,), width=9)
+    t2 = kt["czas_slowa"](p.get("spadek", "spadała")) - kt["od"] - 0.15
+    if t > t2:
+        strzalka(d, (X(4.8), yt + 120), (X(4.97), yt + 300), CZERW, 1.0, grub=10, postep=wej(t, t2, 0.4))
+        pigulka(d, CX, 1010, "SZCZYT: 4-4,7", f_anton(50), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def _moneta(d, cx, cy, r, a, kat=0.0):
+    A = int(255 * a)
+    sx = 0.3 + 0.7 * abs(math.cos(kat))
+    d.ellipse([cx - r * sx, cy - r, cx + r * sx, cy + r], fill=ZOLTY + (A,), outline=(150, 120, 20, A), width=6)
+    if sx > 0.4:
+        f = f_anton(int(r * 0.9 * sx))
+        tx = "?"
+        d.text((cx - szer(d, tx, f) / 2, cy - f.size * 0.62), tx, font=f, fill=(150, 120, 20, A))
+
+
+def scena_pytanie_celowanie(im, t, dl, p, kt):
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 330
+    for j, kol in enumerate(((110, 170, 240), (240, 140, 190), (110, 170, 240), (240, 140, 190), (110, 170, 240))):
+        czlowiek(d, CX - 360 + j * 180, cy + 40, 50, kol, 1.0)
+    cx = CX - 180 + 360 * (0.5 + 0.5 * math.sin(t * 1.4))
+    for r in (150, 95):
+        d.ellipse([cx - r, cy + 40 - r, cx + r, cy + 40 + r], outline=akc + (255,), width=7)
+    d.line([cx - 180, cy + 40, cx + 180, cy + 40], fill=akc + (220,), width=4)
+    d.line([cx, cy - 140, cx, cy + 220], fill=akc + (220,), width=4)
+    im.alpha_composite(nak)
+
+
+def scena_zgadywane(im, t, dl, p, kt):
+    """Profil klienta z polami wypelnionymi znakami zapytania."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    A = int(255 * a)
+    x0, y0, x1 = CX - 300, 380, CX + 300
+    d.rounded_rectangle([x0, y0, x1, y0 + 470], radius=24, fill=(52, 52, 62, A))
+    czlowiek(d, x0 + 110, y0 + 150, 60, BIEL, a)
+    f = f_anton(46)
+    for j, et in enumerate(("PŁEĆ", "WIEK", "ZAINTERESOWANIA")):
+        y = y0 + 260 + j * 64
+        d.text((x0 + 40, y), et, font=f_inter(34), fill=BIEL + (A,))
+        q = pop(t, 0.3 + j * 0.25, 0.4)
+        if q > 0:
+            d.text((x1 - 80, y - 8), "?", font=f, fill=akc + (int(255 * min(1, q)),))
+    t1 = kt["czas_slowa"](p.get("slowo", "zgadywane")) - kt["od"] - 0.15
+    if t > t1:
+        pigulka(d, CX, 960, "DANE CZĘSTO ZGADYWANE", f_anton(50), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+def scena_moneta_koszt(im, t, dl, p, kt):
+    """Moneta (plec jak rzut moneta) od wejscia, potem +151% kosztu na slowie."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    tl = p.get("tytul", "")
+    fb = dopasuj(d, tl, X1 - X0, 56, 36, f_anton)
+    d.text((CX - szer(d, tl, fb) / 2, 320), tl, font=fb, fill=BIEL + (int(255 * a),))
+    _moneta(d, CX, 560, 120, a, kat=t * 5.0)
+    t1 = kt["czas_slowa"](p["slowo1"]) - kt["od"] - 0.15
+    if t > t1:
+        pigulka(d, CX, 730, p.get("et1", "PŁEĆ: JAK RZUT MONETĄ"), f_anton(48), akc + (240,), CIEMNY + (255,))
+    t2 = kt["czas_slowa"](p["slowo2"]) - kt["od"] - 0.15
+    q = wej(t, t2, 0.7)
+    if q > 0:
+        v = p["wartosc"] * q
+        tx = f"+{int(round(v))}%"
+        f = f_anton(int(170 * (0.9 + 0.1 * pop(t, t2, 0.4))))
+        d.text((CX - szer(d, tx, f) / 2, 820), tx, font=f, fill=CZERW + (255,))
+        fs = f_inter(40)
+        d.text((CX - szer(d, p["podpis2"], fs) / 2, 1050), p["podpis2"], font=fs, fill=BIEL + (int(255 * q),))
+    im.alpha_composite(nak)
+
+
+def _paczka2(d, cx, cy, s, a, akc):
+    A = int(255 * a)
+    w, h = 260 * s, 200 * s
+    d.rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], fill=(196, 150, 96, A))
+    d.rectangle([cx - 20 * s, cy - h / 2, cx + 20 * s, cy + h / 2], fill=(160, 120, 70, A))
+
+
+def scena_pytanie_paczka(im, t, dl, p, kt):
+    """Paczka i zegar ze wskazowka po terminie - od pierwszej klatki."""
+    akc = kt["akcent"]
+    dol = pytanie_u_gory(im, p["linie"], t, 1.0, akc)
+    nak, d = warstwa()
+    cy = dol + 300
+    _paczka2(d, CX - 150, cy + 40, 1.2, 1.0, akc)
+    r = 120
+    zx = CX + 220
+    d.ellipse([zx - r, cy - r, zx + r, cy + r], fill=(240, 240, 244, 255), outline=CZERW + (255,), width=10)
+    ang = -math.pi / 2 + t * 2.2
+    d.line([zx, cy, zx + r * 0.8 * math.cos(ang), cy + r * 0.8 * math.sin(ang)], fill=CIEMNY + (255,), width=8)
+    d.line([zx, cy, zx, cy - r * 0.5], fill=CIEMNY + (255,), width=10)
+    im.alpha_composite(nak)
+
+
+def scena_tanie_slowa(im, t, dl, p, kt):
+    """Dymek PRZEPRASZAM z metka 0 ZL - slowa nic nie kosztuja."""
+    akc = kt["akcent"]
+    nak, d = warstwa()
+    a = wej(t, 0, 0.3)
+    A = int(255 * a)
+    d.rounded_rectangle([CX - 300, 400, CX + 300, 600], radius=40, fill=(240, 240, 244, A))
+    d.polygon([(CX - 200, 600), (CX - 140, 600), (CX - 230, 680)], fill=(240, 240, 244, A))
+    f = f_anton(84)
+    d.text((CX - szer(d, "PRZEPRASZAM", f) / 2, 445), "PRZEPRASZAM", font=f, fill=CIEMNY + (A,))
+    czlowiek(d, CX - 250, 800, 70, BIEL, a)
+    t1 = kt["czas_slowa"](p.get("slowo", "kosztują")) - kt["od"] - 0.15
+    if t > t1:
+        _metka_ceny(d, CX + 210, 690, "0 ZŁ", ZOLTY, wej(t, t1, 0.3), s=1.1)
+        pigulka(d, CX, 960, "SŁOWA NIC NIE KOSZTUJĄ", f_anton(50), akc + (240,), CIEMNY + (255,))
+    im.alpha_composite(nak)
+
+
+s6.SCENY.update({
+    "pytanie_gwiazdki": scena_pytanie_gwiazdki, "podejrzane": scena_podejrzane, "krzywa_ocen": scena_krzywa_ocen,
+    "pytanie_celowanie": scena_pytanie_celowanie, "zgadywane": scena_zgadywane, "moneta_koszt": scena_moneta_koszt,
+    "pytanie_paczka": scena_pytanie_paczka, "tanie_slowa": scena_tanie_slowa,
+})
