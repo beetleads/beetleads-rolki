@@ -12,7 +12,7 @@ from scipy import signal as sg
 
 SR = 44100
 POD_GLOSEM = 9.0            # cel: muzyka tyle dB pod lektorem (skill rolki-v6, 15.11)
-MAX_PODBICIE_DB = 14.0      # bezpiecznik, zeby bit nie wszedl na lektora
+MAX_PODBICIE_DB = float(os.environ.get("REMIKS_MAX", 14.0))   # bezpiecznik, zeby bit nie wszedl na lektora
 FADE_MS = 15
 
 
@@ -175,12 +175,27 @@ def main(wej, wyj, kat="/home/claude/mc/sep"):
     l_v = lufs(os.path.join(rob, "htdemucs", "mix", "vocals.wav"))
     l_nv = lufs(os.path.join(rob, "htdemucs", "mix", "no_vocals.wav"))
     podbicie = min(max((l_v - POD_GLOSEM) - l_nv, 0.0), MAX_PODBICIE_DB)
+    # rolka bez podkladu: nie ma czego podglasniac - dokladamy firmowy bit
+    BIT = "/home/claude/rolki/silnik6/podklad_bit.mp3"
+    brak_muzyki = (l_v - l_nv) > 30
+    if brak_muzyki and os.path.exists(BIT):
+        bit_wav = os.path.join(rob, "bit.wav")
+        d = n / SR
+        sh(["ffmpeg", "-v", "error", "-y", "-stream_loop", "-1", "-i", BIT, "-t", f"{d:.3f}",
+            "-af", f"afade=t=in:d=0.5,afade=t=out:st={max(d - 1.2, 0):.2f}:d=1.2",
+            "-ac", "2", "-ar", str(SR), bit_wav])
+        bit = wczytaj(bit_wav)[:n]
+        if len(bit) < n:
+            bit = np.pad(bit, ((0, n - len(bit)), (0, 0)))
+        l_bit = lufs(bit_wav)
+        nv = bit * 10 ** (((l_v - POD_GLOSEM) - l_bit) / 20)   # bit na poziomie celu
+        podbicie = 0.0
     k = 10 ** (podbicie / 20)
     out_wav = os.path.join(rob, "nowy.wav")
 
     def miks_tab(podb):
         kk = 10 ** (podb / 20)
-        y = mix + (kk - 1) * nv - m * v
+        y = mix + (kk if brak_muzyki else kk - 1) * nv - m * v
         sz = np.abs(y).max()
         if sz > 0.98:
             y *= 0.98 / sz
@@ -204,17 +219,17 @@ def main(wej, wyj, kat="/home/claude/mc/sep"):
             break
         if b < 10.0 and podbicie >= MAX_PODBICIE_DB:
             break          # glosniej nie wolno - lektor ma byc na wierzchu
-        if b > 13.0 and podbicie <= 0:
+        if b > 13.0 and podbicie <= (-24.0 if brak_muzyki else 0.0):
             break
         krok = -2.0 if b > 13.0 else 1.5
-        podbicie = min(max(podbicie + krok, 0.0), MAX_PODBICIE_DB)
+        podbicie = min(max(podbicie + krok, -24.0 if brak_muzyki else 0.0), MAX_PODBICIE_DB)
         b = zrob(podbicie)
         proby.append((round(podbicie, 1), round(b, 1)))
     zapisz(miks_tab(podbicie))
     b = bas(wyj)        # kontrola na gotowym pliku, po loudnorm
     print(json.dumps({"plik": os.path.basename(wyj), "wdechy": len(odc),
                       "lektor_LUFS": round(l_v, 1), "muzyka_LUFS": round(l_nv, 1),
-                      "muzyka_bylo_dB_pod": round(l_v - l_nv, 1),
+                      "muzyka_bylo_dB_pod": round(l_v - l_nv, 1), "dolozony_bit": bool(brak_muzyki),
                       "podbicie_dB": round(podbicie, 1), "slow_lektora": len(sl), "bas_proc": round(b, 1), "kalibracja": proby,
                       "sek_wdechow": round(sum(b - a for a, b in odc), 2),
                       "odcinki": [[round(a, 2), round(b, 2)] for a, b in odc]}, ensure_ascii=False))
