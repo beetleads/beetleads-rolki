@@ -41,7 +41,11 @@ def lufs(p, extra=[]):
     return float(linie[-1].split()[1])
 
 
-POD_GLOSEM = 12.0   # muzyka tyle dB ciszej niz lektor; 13.11 15:27 zalozyciel: "lekko podglosnij" (bylo 16)
+POD_GLOSEM = 9.0    # muzyka tyle dB ciszej niz lektor; 15.11 zalozyciel: "lekko podglosnij" (bylo 12, wczesniej 16)
+# UWAGA (15.11): sam POD_GLOSEM nie wystarcza. Sidechain + loudnorm zjadaly podklad tak,
+# ze w gotowych rolkach muzyka siedziala realnie 20-29 dB pod lektorem (bas 4-5% zamiast 9-15%).
+# Dlatego po miksie mierzymy bas i korygujemy wzmocnienie, az wejdzie w 10-13%.
+CEL_BAS = (10.0, 13.0)
 
 if __name__ == "__main__":
     wej, muz, wyj = sys.argv[1:4]
@@ -49,5 +53,15 @@ if __name__ == "__main__":
     l_glos, l_muz = lufs(wej), lufs(muz)
     g = 10 ** ((l_glos - pod - l_muz) / 20)
     bas = miks(wej, muz, wyj, round(g, 3))
-    print(f"lektor {l_glos} LUFS, muzyka {l_muz} LUFS -> podklad x{g:.3f} ({pod} dB pod glosem), bas {bas}%")
+    proby = [(round(g, 3), bas)]
+    for _ in range(4):                      # kalibracja do slyszalnej muzyki
+        if CEL_BAS[0] <= bas <= CEL_BAS[1]:
+            break
+        g *= 10 ** ((-2.0 if bas > CEL_BAS[1] else 1.5) / 20)
+        bas = miks(wej, muz, wyj, round(g, 3))
+        proby.append((round(g, 3), bas))
+    print(f"lektor {l_glos} LUFS, muzyka {l_muz} LUFS -> podklad x{g:.3f}, bas {bas}% (cel {CEL_BAS[0]}-{CEL_BAS[1]})")
+    print("kalibracja:", proby)
+    if not (CEL_BAS[0] <= bas <= CEL_BAS[1]):
+        print("UWAGA: bas poza celem - sprawdz, czy podklad w ogole jest slyszalny")
     print("gotowe:", wyj)
