@@ -1,0 +1,64 @@
+{
+ "slot": "2026-11-25T10:00:00",
+ "seed": 2,
+ "photo": "https://images.unsplash.com/photo-1760890720050-7a0ebf3f1fee",
+ "text": "Jedno słowo i ludzie zgadzają się o 34% częściej. Badacze prosili kolejkę do ksero o przepuszczenie. Wystarczył powód, nawet bez sensu, bo mózg słyszy „bo” i nie sprawdza reszty. Dopisz: „Zadzwoń dziś, bo w grudniu mam 3 terminy”.",
+ "kw": [
+  "bo",
+  "34",
+  "powód",
+  "reszty",
+  "terminy",
+  "słowo"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 34,
+   "post": "%",
+   "label": "częściej mówią „tak”",
+   "icon": "chat"
+  },
+  {
+   "type": "icon",
+   "at": "Badacze prosili",
+   "icon": "copier",
+   "label": "Kolejka do ksero"
+  },
+  {
+   "type": "vs",
+   "at": "Wystarczył powód",
+   "items": [
+    {
+     "icon": "person",
+     "t": "Bez powodu",
+     "good": false
+    },
+    {
+     "icon": "chat",
+     "t": "Z „bo”",
+     "good": true
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "bo mózg",
+   "icon": "eye",
+   "label": "„bo” = jest powód",
+   "bg": "#3a2414"
+  },
+  {
+   "type": "card",
+   "at": "Dopisz",
+   "head": "Wiadomość do klienta",
+   "text": "Zadzwoń dziś, <span style='color:#FF6A1F'>bo</span> w grudniu mam 3 terminy.",
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ],
+ "glos_zgoda": "auto: blizsze 131 Hz (A 138,4 / B 137,6 Hz) - wzieto B"
+}

@@ -1,0 +1,84 @@
+{
+ "slot": "2026-11-25T18:00:00",
+ "seed": 4,
+ "photo": "https://images.unsplash.com/photo-1554672408-17407e0322ce",
+ "text": "Trudna czcionka i 41% osób odkłada zakup. Ludzie wybierali jeden z dwóch telefonów. Przy trudnej czcionce decyzję odkładało 41%, przy łatwej 17%. Mózg myli trudne czytanie z trudnym wyborem. Cennik pisz prostą, grubą czcionką.",
+ "kw": [
+  "41",
+  "17",
+  "czcionką",
+  "czcionka",
+  "trudnym",
+  "cennik"
+ ],
+ "scenes": [
+  {
+   "type": "donut",
+   "value": 41,
+   "label": "odkłada zakup przez czcionkę"
+  },
+  {
+   "type": "icons",
+   "at": "Ludzie wybierali",
+   "items": [
+    {
+     "icon": "phone",
+     "l": "telefon A"
+    },
+    {
+     "icon": "phone",
+     "l": "telefon B"
+    }
+   ]
+  },
+  {
+   "type": "bars",
+   "at": "Przy trudnej",
+   "title": "odkłada decyzję",
+   "bars": [
+    {
+     "l": "trudna czcionka",
+     "v": 41,
+     "post": "%",
+     "hi": true
+    },
+    {
+     "l": "łatwa czcionka",
+     "v": 17,
+     "post": "%"
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "vs",
+   "at": "Mózg myli",
+   "items": [
+    {
+     "icon": "fontbad",
+     "t": "Trudno",
+     "s": "czytać",
+     "good": false
+    },
+    {
+     "icon": "font",
+     "t": "Łatwo",
+     "s": "czytać",
+     "good": true
+    }
+   ],
+   "bg": "#3a2414"
+  },
+  {
+   "type": "card",
+   "at": "Cennik pisz",
+   "head": "Cennik",
+   "text": "Prosta, gruba czcionka. Zero ozdobników.",
+   "fs": 58,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

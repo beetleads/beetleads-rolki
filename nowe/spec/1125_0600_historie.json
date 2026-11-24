@@ -1,0 +1,63 @@
+{
+ "slot": "2026-11-25T06:00:00",
+ "seed": 1,
+ "photo": "https://images.unsplash.com/photo-1675537057700-92b6eb8d4882",
+ "text": "Tanie drobiazgi sprzedali z zyskiem 2700%. Autorzy kupili w lumpeksach rzeczy za grosze, a 200 pisarzy dopisało do nich historie. Aukcje dały prawie 8000 dolarów. U siebie dopisz do produktu zdanie, skąd się wziął.",
+ "kw": [
+  "2700",
+  "historie",
+  "8000",
+  "wyjątkowego",
+  "zdanie"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 2700,
+   "post": "%",
+   "label": "zysku na drobiazgach za grosze",
+   "icon": "tag"
+  },
+  {
+   "type": "icons",
+   "at": "Autorzy kupili",
+   "items": [
+    {
+     "icon": "bag",
+     "l": "lumpeksy"
+    },
+    {
+     "icon": "coin",
+     "l": "za grosze"
+    }
+   ]
+  },
+  {
+   "type": "icon",
+   "at": "a 200 pisarzy",
+   "icon": "book",
+   "label": "200 krótkich historii",
+   "bg": "#3a2414"
+  },
+  {
+   "type": "num",
+   "at": "Aukcje dały",
+   "value": 8000,
+   "post": " $",
+   "label": "z aukcji",
+   "icon": "trophy",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "U siebie",
+   "head": "Opis produktu",
+   "text": "„Ten kubek lepię ręcznie od 2019 roku, w małej pracowni pod Łodzią.”",
+   "fs": 50,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

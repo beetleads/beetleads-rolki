@@ -1,0 +1,72 @@
+{
+ "slot": "2026-11-25T14:00:00",
+ "seed": 3,
+ "photo": "https://images.unsplash.com/photo-1761142149014-5012a500c5ec",
+ "text": "Więcej wyboru, a kupujących 10 razy mniej. W sklepie dali do degustacji 6 dżemów, innego dnia 24. Przy 6 kupowało 30 na 100 osób, przy 24 tylko 3. Za dużo opcji i klient odkłada decyzję. Pokaż 3 pakiety, nie 5.",
+ "kw": [
+  "10",
+  "30",
+  "3",
+  "odkłada",
+  "pakiety",
+  "wyboru"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "count": false,
+   "text": "10× mniej",
+   "label": "kupujących przy większym wyborze",
+   "icon": "jar"
+  },
+  {
+   "type": "icons",
+   "at": "W sklepie",
+   "items": [
+    {
+     "icon": "jar",
+     "l": "6 smaków"
+    },
+    {
+     "icon": "jar",
+     "l": "24 smaki"
+    }
+   ]
+  },
+  {
+   "type": "bars",
+   "at": "Przy 6",
+   "title": "kupiło na 100 osób",
+   "bars": [
+    {
+     "l": "6 smaków",
+     "v": 30,
+     "hi": true
+    },
+    {
+     "l": "24 smaki",
+     "v": 3
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Za dużo",
+   "icon": "clock",
+   "label": "Decyzja odłożona",
+   "bg": "#3a2414"
+  },
+  {
+   "type": "card",
+   "at": "Pokaż 3",
+   "head": "Twoja oferta",
+   "text": "3 pakiety zamiast 5. Środkowy oznacz: <span style='color:#FF6A1F'>polecany</span>.",
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ],
+ "glos_zgoda": "auto: blizsze 131 Hz (A 124,0 / B 124,0 Hz) - wzieto B"
+}
