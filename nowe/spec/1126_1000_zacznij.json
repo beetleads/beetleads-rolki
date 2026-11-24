@@ -1,0 +1,68 @@
+{
+ "slot": "2026-11-26T10:00:00",
+ "seed": 6,
+ "photo": "https://images.unsplash.com/photo-1660945742817-217842d82b55",
+ "kw": [
+  "Zacznij",
+  "2",
+  "pośpiech",
+  "Odbierz"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 2,
+   "post": "x",
+   "label": "więcej chętnych przez 1 słowo",
+   "icon": "hand"
+  },
+  {
+   "type": "vs",
+   "at": "Firma zmieniła",
+   "items": [
+    {
+     "icon": "gift",
+     "t": "Odbierz",
+     "s": "darmowy test",
+     "good": false
+    },
+    {
+     "icon": "check",
+     "t": "Zacznij",
+     "s": "darmowy test",
+     "good": true
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "bars",
+   "at": "Do formularza",
+   "title": "weszło do formularza",
+   "bars": [
+    {
+     "l": "Odbierz",
+     "v": 10
+    },
+    {
+     "l": "Zacznij",
+     "v": 20,
+     "hi": true
+    }
+   ],
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Na swoim",
+   "head": "Twój przycisk",
+   "text": "„Zacznij” zamiast „Odbierz”",
+   "fs": 60,
+   "bg": "#3d2613"
+  }
+ ],
+ "text": "Jedno słowo na przycisku dało 2 razy więcej chętnych. Firma zmieniła Odbierz darmowy test na Zacznij darmowy test i dodała pośpiech. Do formularza weszło 2 razy więcej osób. Na swoim przycisku napisz Zacznij, nie Odbierz.",
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

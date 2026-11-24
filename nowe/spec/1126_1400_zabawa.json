@@ -1,0 +1,55 @@
+{
+ "slot": "2026-11-26T14:00:00",
+ "seed": 7,
+ "photo": "https://images.unsplash.com/photo-1617479837776-aaeacd7a9737",
+ "kw": [
+  "chętniej",
+  "41",
+  "quiz",
+  "studnię"
+ ],
+ "scenes": [
+  {
+   "type": "icon",
+   "icon": "bin",
+   "label": "nudny kosz w parku"
+  },
+  {
+   "type": "icon",
+   "at": "Kosz w parku",
+   "icon": "music",
+   "label": "dźwięk spadania w studnię",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "num",
+   "at": "W jeden dzień",
+   "value": 41,
+   "post": " kg",
+   "label": "śmieci więcej w 1 dzień",
+   "icon": "trophy",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "check",
+   "at": "Zamień nudny",
+   "title": "Quiz zamiast formularza",
+   "items": [
+    {
+     "t": "Pytanie 1"
+    },
+    {
+     "t": "Pytanie 2"
+    },
+    {
+     "t": "Pytanie 3 i wynik"
+    }
+   ],
+   "bg": "#3d2613"
+  }
+ ],
+ "text": "Jak sprawić, żeby ludzie chętniej coś robili? Kosz w parku wydawał dźwięk spadania w głęboką studnię. W jeden dzień zebrał 41 kilogramów śmieci więcej niż zwykły kosz. Zamień nudny formularz w quiz z 3 pytań.",
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

@@ -1,0 +1,69 @@
+{
+ "slot": "2026-11-27T10:00:00",
+ "seed": 10,
+ "photo": "https://images.unsplash.com/photo-1616422403639-282145aa3e73",
+ "kw": [
+  "152",
+  "jak",
+  "wracają",
+  "tytuły"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 152,
+   "post": "%",
+   "label": "więcej polubień nagłówka",
+   "icon": "heart"
+  },
+  {
+   "type": "icons",
+   "at": "Serwis testował",
+   "items": [
+    {
+     "icon": "note",
+     "l": "tytuł A"
+    },
+    {
+     "icon": "note",
+     "l": "tytuł B"
+    },
+    {
+     "icon": "note",
+     "l": "tytuł C"
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "vs",
+   "at": "Wygrywały te",
+   "items": [
+    {
+     "icon": "eye",
+     "t": "Mówi co",
+     "good": true
+    },
+    {
+     "icon": "search",
+     "t": "Ukrywa jak",
+     "good": true
+    }
+   ],
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Zamiast Nowa",
+   "head": "Zamiast „Nowa oferta”",
+   "text": "„Dlaczego klienci wracają po 2 tygodniach?”",
+   "fs": 50,
+   "bg": "#3d2613"
+  }
+ ],
+ "text": "Nagłówek z niedopowiedzeniem dał 152% więcej polubień. Serwis testował różne tytuły tego samego tekstu. Wygrywały te, które mówią co, ale nie jak. Zamiast Nowa oferta napisz: Dlaczego klienci wracają po 2 tygodniach?",
+ "bgs": [
+  "bg1.jpg"
+ ],
+ "glos_zgoda": true
+}

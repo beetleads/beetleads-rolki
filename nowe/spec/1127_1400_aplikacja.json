@@ -1,0 +1,54 @@
+{
+ "slot": "2026-11-27T14:00:00",
+ "seed": 11,
+ "photo": "https://images.unsplash.com/photo-1535303311164-664fc9ec6532",
+ "kw": [
+  "72",
+  "1000",
+  "łowców",
+  "drugi"
+ ],
+ "scenes": [
+  {
+   "type": "donut",
+   "value": 72,
+   "label": "kasuje aplikację po 1 zniżce"
+  },
+  {
+   "type": "icon",
+   "at": "Tak wynika",
+   "icon": "appdel",
+   "label": "instalacja, zniżka, kasowanie",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "vs",
+   "at": "Rabat na start",
+   "items": [
+    {
+     "icon": "percent",
+     "t": "Łowca okazji",
+     "good": false
+    },
+    {
+     "icon": "heart",
+     "t": "Stały klient",
+     "good": true
+    }
+   ],
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Daj nagrodę",
+   "head": "Nagroda",
+   "text": "za 2. zakup, nie za 1.",
+   "fs": 62,
+   "bg": "#3d2613"
+  }
+ ],
+ "text": "72% ludzi instaluje aplikację sklepu dla jednej zniżki, a potem ją kasuje. Tak wynika z ankiety wśród 1000 osób. Rabat na start ściąga łowców okazji, nie stałych klientów. Daj nagrodę za drugi zakup, nie za pierwszy.",
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

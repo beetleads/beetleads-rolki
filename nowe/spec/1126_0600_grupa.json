@@ -1,0 +1,58 @@
+{
+ "slot": "2026-11-26T06:00:00",
+ "seed": 5,
+ "photo": "https://images.unsplash.com/photo-1681949103006-70066fb25dfe",
+ "kw": [
+  "75",
+  "grupa",
+  "innych",
+  "120"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 75,
+   "post": "%",
+   "label": "podało złą odpowiedź za grupą",
+   "icon": "people"
+  },
+  {
+   "type": "vs",
+   "at": "W słynnym",
+   "items": [
+    {
+     "icon": "person",
+     "t": "Sam",
+     "s": "dobra odpowiedź",
+     "good": true
+    },
+    {
+     "icon": "people",
+     "t": "W grupie",
+     "s": "zła odpowiedź",
+     "good": false
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Klient też",
+   "icon": "eye",
+   "label": "patrzy, co wybrali inni",
+   "bg": "#3a2414"
+  },
+  {
+   "type": "card",
+   "at": "Przy ofercie",
+   "head": "Przy ofercie",
+   "text": "„W tym miesiącu zamówiło już 120 osób.”",
+   "fs": 54,
+   "bg": "#3d2613"
+  }
+ ],
+ "text": "Dlaczego wybieramy to, co inni? W słynnym teście 75% osób choć raz podało błędną odpowiedź, bo cała grupa tak mówiła. Klient też patrzy na innych. Przy ofercie napisz: W tym miesiącu zamówiło już 120 osób.",
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

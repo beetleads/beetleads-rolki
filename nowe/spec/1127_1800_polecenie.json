@@ -1,0 +1,66 @@
+{
+ "slot": "2026-11-27T18:00:00",
+ "seed": 12,
+ "photo": "https://images.unsplash.com/photo-1599666520205-7ef9d1b85ab9",
+ "kw": [
+  "rozczarowała",
+  "3",
+  "23",
+  "obiecała"
+ ],
+ "scenes": [
+  {
+   "type": "icon",
+   "icon": "warning",
+   "label": "polecenie i rozczarowanie"
+  },
+  {
+   "type": "bars",
+   "at": "Tylko 3%",
+   "title": "po złej stronie",
+   "bars": [
+    {
+     "l": "kupuje",
+     "v": 3,
+     "post": "%"
+    },
+    {
+     "l": "do konkurencji",
+     "v": 23,
+     "post": "%",
+     "hi": true
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Polecenie budzi",
+   "icon": "star",
+   "label": "klient ma oczekiwanie",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "check",
+   "at": "Pierwsze zdanie",
+   "title": "Pierwsze zdanie na stronie",
+   "items": [
+    {
+     "t": "to samo, co w reklamie"
+    },
+    {
+     "t": "ta sama cena"
+    },
+    {
+     "t": "ta sama korzyść"
+    }
+   ],
+   "bg": "#3d2613"
+  }
+ ],
+ "text": "Klient przyszedł z polecenia, a strona go rozczarowała. Tylko 3% takich osób i tak kupuje, a 23% idzie od razu do konkurencji. Polecenie budzi oczekiwanie. Pierwsze zdanie na stronie ma mówić to, co obiecała reklama.",
+ "bgs": [
+  "bg1.jpg"
+ ],
+ "glos_zgoda": true
+}

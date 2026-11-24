@@ -1,0 +1,46 @@
+{
+ "slot": "2026-11-26T18:00:00",
+ "seed": 8,
+ "photo": "https://images.unsplash.com/photo-1739124794957-4667b8b74894",
+ "kw": [
+  "86",
+  "1000",
+  "5",
+  "kilkanaście"
+ ],
+ "scenes": [
+  {
+   "type": "donut",
+   "value": 86,
+   "label": "kupuje co miesiąc bez planu"
+  },
+  {
+   "type": "icon",
+   "at": "Tak wynika",
+   "icon": "people",
+   "label": "ankieta wśród 1000 osób",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "num",
+   "at": "Co piąta",
+   "value": 5,
+   "post": "+",
+   "label": "zakupów bez planu miesięcznie",
+   "icon": "cart",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Przed świętami",
+   "head": "Przy koszyku",
+   "text": "Mały dodatek za kilkanaście złotych",
+   "fs": 56,
+   "bg": "#3d2613"
+  }
+ ],
+ "text": "86% kupujących co miesiąc kupuje coś, czego nie planowało. Tak wynika z ankiety wśród 1000 osób. Co piąta robi takich zakupów 5 albo więcej. Przed świętami dodaj przy koszyku mały produkt za kilkanaście złotych.",
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

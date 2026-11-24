@@ -1,0 +1,56 @@
+{
+ "slot": "2026-11-27T06:00:00",
+ "seed": 9,
+ "photo": "https://images.unsplash.com/photo-1515168746408-0f924dbb5c39",
+ "kw": [
+  "wyższa",
+  "połowę",
+  "podwoiła",
+  "zeszło"
+ ],
+ "scenes": [
+  {
+   "type": "icon",
+   "icon": "gem",
+   "label": "biżuteria, która nie schodziła"
+  },
+  {
+   "type": "vs",
+   "at": "Właścicielka sklepu",
+   "items": [
+    {
+     "icon": "tag",
+     "t": "Plan",
+     "s": "cena x 0,5",
+     "good": false
+    },
+    {
+     "icon": "tag",
+     "t": "Pomyłka",
+     "s": "cena x 2",
+     "good": true
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Zanim szefowa",
+   "icon": "trophy",
+   "label": "wszystko wyprzedane",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Nie tnij",
+   "head": "Zamiast obniżki",
+   "text": "„Srebro próby 925, ręcznie szlifowany kamień.”",
+   "fs": 50,
+   "bg": "#3d2613"
+  }
+ ],
+ "text": "Jak wyższa cena sprzedała towar? Właścicielka sklepu kazała przecenić biżuterię o połowę, a sprzedawczyni przez pomyłkę podwoiła cenę. Zanim szefowa wróciła, wszystko zeszło. Nie tnij ceny, napisz, za co się płaci.",
+ "bgs": [
+  "bg1.jpg"
+ ]
+}
