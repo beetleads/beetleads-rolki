@@ -1,0 +1,46 @@
+{
+ "slot": "2026-12-01T18:00:00",
+ "seed": 34,
+ "photo": "https://images.unsplash.com/photo-1646568779353-b9d2b903b3e1",
+ "text": "Karta podarunkowa to najczęstszy plan na prezent. Wybiera ją 35,6% kupujących w ankiecie dużej sieci sklepów. Karta zawsze trafia, bo obdarowany sam wybiera. Dodaj kartę do oferty i napisz: wyślemy ją mailem w 5 minut.",
+ "kw": [
+  "podarunkowa",
+  "35,6",
+  "trafia",
+  "5"
+ ],
+ "scenes": [
+  {
+   "type": "icon",
+   "icon": "card",
+   "label": "najczęstszy plan na prezent",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "num",
+   "at": "Wybiera ją",
+   "value": 35.6,
+   "dec": 1,
+   "post": "%",
+   "label": "kupujących wybiera kartę"
+  },
+  {
+   "type": "icon",
+   "at": "Karta zawsze",
+   "icon": "check",
+   "label": "obdarowany sam wybiera",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Dodaj kartę",
+   "head": "Napis przy karcie",
+   "text": "Wyślemy ją mailem w 5 minut",
+   "fs": 52,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

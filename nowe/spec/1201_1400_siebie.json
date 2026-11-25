@@ -1,0 +1,46 @@
+{
+ "slot": "2026-12-01T14:00:00",
+ "seed": 33,
+ "photo": "https://images.unsplash.com/photo-1513094735237-8f2714d57c13",
+ "text": "Nawet 57% kupujących w święta planuje prezent dla siebie. Średnio chcą wydać na niego 354 dolary. Po zakupach dla bliskich ludzie nagradzają samych siebie. Dodaj w sklepie zakładkę Prezent dla siebie z rzeczami, które kupuje się bez okazji.",
+ "kw": [
+  "57",
+  "354",
+  "siebie",
+  "zakładkę"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 57,
+   "post": "%",
+   "label": "kupi prezent dla siebie",
+   "icon": "gift"
+  },
+  {
+   "type": "num",
+   "at": "Średnio chcą",
+   "value": 354,
+   "post": " $",
+   "label": "średnio na prezent dla siebie"
+  },
+  {
+   "type": "icon",
+   "at": "Po zakupach",
+   "icon": "heart",
+   "label": "nagroda za zakupy dla bliskich",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Dodaj w",
+   "head": "Nowa zakładka",
+   "text": "Prezent dla siebie",
+   "fs": 60,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

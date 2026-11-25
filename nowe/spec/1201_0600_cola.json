@@ -1,0 +1,57 @@
+{
+ "slot": "2026-12-01T06:00:00",
+ "seed": 31,
+ "photo": "https://images.unsplash.com/photo-1635873432087-50eba4c4392d",
+ "text": "1 na 5 widzów przypisał reklamę napoju konkurencji. Badacze sprawdzili to na ponad 1600 osobach w 4 krajach. Ludzie pamiętają reklamę, ale nie markę. Pokaż nazwę firmy od pierwszej sekundy i powtórz ją na końcu.",
+ "kw": [
+  "5",
+  "1600",
+  "markę",
+  "nazwę"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 5,
+   "count": false,
+   "text": "1 na 5",
+   "label": "myli reklamę z konkurencją",
+   "icon": "eye"
+  },
+  {
+   "type": "icon",
+   "at": "Badacze sprawdzili",
+   "icon": "people",
+   "label": "ponad 1600 osób w 4 krajach",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "vs",
+   "at": "Ludzie pamiętają",
+   "items": [
+    {
+     "icon": "megaphone",
+     "t": "Reklama: pamiętają",
+     "good": true
+    },
+    {
+     "icon": "tag",
+     "t": "Marka: nie",
+     "good": false
+    }
+   ],
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Pokaż nazwę",
+   "head": "W każdej reklamie",
+   "text": "Nazwa firmy w 1. sekundzie i na końcu",
+   "fs": 52,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

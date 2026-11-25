@@ -1,0 +1,53 @@
+{
+ "slot": "2026-12-02T14:00:00",
+ "seed": 37,
+ "photo": "https://images.unsplash.com/photo-1724582586495-d050726cf354",
+ "text": "Od 79 do 90% domów przegląda produkty przy włączonym telewizorze w święta. Tak odpowiedziało 2000 domów w 5 krajach. Wieczorem ludzie oglądają film i jednocześnie przewijają telefon. Puść reklamy mocniej między 19 a 22, kiedy wszyscy siedzą na kanapie.",
+ "kw": [
+  "90",
+  "2000",
+  "telefon",
+  "22"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 90,
+   "count": false,
+   "text": "79-90%",
+   "label": "domów szuka produktów przy TV"
+  },
+  {
+   "type": "icon",
+   "at": "Tak odpowiedziało",
+   "icon": "people",
+   "label": "2000 domów w 5 krajach",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icons",
+   "at": "Wieczorem ludzie",
+   "items": [
+    {
+     "icon": "eye",
+     "l": "film"
+    },
+    {
+     "icon": "phone",
+     "l": "telefon"
+    }
+   ]
+  },
+  {
+   "type": "card",
+   "at": "Puść reklamy",
+   "head": "Najlepsza pora",
+   "text": "19:00-22:00",
+   "fs": 72,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

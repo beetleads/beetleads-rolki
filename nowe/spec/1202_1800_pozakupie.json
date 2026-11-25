@@ -1,0 +1,47 @@
+{
+ "slot": "2026-12-02T18:00:00",
+ "seed": 38,
+ "photo": "https://images.unsplash.com/photo-1575384043001-f37f48835528",
+ "text": "Maile po zakupie podnoszą ponowne zakupy o 31%. Do tego klient wraca średnio o 8 dni szybciej. Ktoś, kto już kupił, ufa ci bardziej niż nowy klient. Wyślij 3 dni po dostawie maila: Jak się sprawdza? Mamy coś, co do tego pasuje.",
+ "kw": [
+  "31",
+  "8",
+  "ufa",
+  "3"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 31,
+   "pre": "+",
+   "post": "%",
+   "label": "ponownych zakupów",
+   "icon": "mail"
+  },
+  {
+   "type": "num",
+   "at": "Do tego",
+   "value": 8,
+   "post": " dni",
+   "label": "szybciej wraca klient"
+  },
+  {
+   "type": "icon",
+   "at": "Ktoś, kto",
+   "icon": "heart",
+   "label": "stały klient ufa bardziej",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Wyślij 3",
+   "head": "Mail 3 dni po dostawie",
+   "text": "„Jak się sprawdza? Mamy coś, co do tego pasuje.”",
+   "fs": 48,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "slot": "2026-12-01T10:00:00",
+ "seed": 32,
+ "photo": "https://images.unsplash.com/photo-1783415367301-f7b5ced35883",
+ "text": "44% telefonów do firm nie odbiera człowiek. Tak wyszło z analizy ponad 70 milionów połączeń. Kto dzwoni, chce kupić teraz, a nie jutro. Przekieruj firmowy numer na komórkę i oddzwaniaj w 15 minut.",
+ "kw": [
+  "44",
+  "70",
+  "teraz",
+  "15"
+ ],
+ "scenes": [
+  {
+   "type": "donut",
+   "value": 44,
+   "label": "telefonów bez odpowiedzi człowieka"
+  },
+  {
+   "type": "icon",
+   "at": "Tak wyszło",
+   "icon": "phone",
+   "label": "ponad 70 milionów połączeń",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Kto dzwoni",
+   "icon": "clock",
+   "label": "chce kupić teraz",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "check",
+   "at": "Przekieruj firmowy",
+   "title": "Zrób to dziś",
+   "items": [
+    {
+     "t": "Numer firmowy na komórkę"
+    },
+    {
+     "t": "Oddzwonienie w 15 minut"
+    }
+   ],
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

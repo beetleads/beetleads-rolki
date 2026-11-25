@@ -1,0 +1,56 @@
+{
+ "slot": "2026-12-02T10:00:00",
+ "seed": 36,
+ "photo": "https://images.unsplash.com/photo-1608556984704-fa578c96e6eb",
+ "text": "Mniej więcej co 7. reklama klika się 2 razy lepiej niż reszta. Tak wyszło z analizy tysięcy kont reklamowych. Nie wiesz z góry, która to będzie. Zamiast jednej reklamy przygotuj 5 wersji z innym pierwszym zdaniem i zostaw zwycięzcę.",
+ "kw": [
+  "7.",
+  "2",
+  "tysięcy",
+  "5"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 7,
+   "count": false,
+   "text": "1 na 7",
+   "label": "reklam klika się 2 razy lepiej",
+   "icon": "trophy"
+  },
+  {
+   "type": "icon",
+   "at": "Tak wyszło",
+   "icon": "chart",
+   "label": "analiza tysięcy kont",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Nie wiesz",
+   "icon": "search",
+   "label": "zwycięzcy nie widać z góry",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "check",
+   "at": "Zamiast jednej",
+   "title": "5 wersji reklamy",
+   "items": [
+    {
+     "t": "Inne pierwsze zdanie"
+    },
+    {
+     "t": "Ten sam budżet"
+    },
+    {
+     "t": "Zostaw zwycięzcę"
+    }
+   ],
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

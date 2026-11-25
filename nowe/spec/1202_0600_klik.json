@@ -1,0 +1,53 @@
+{
+ "slot": "2026-12-02T06:00:00",
+ "seed": 35,
+ "photo": "https://images.unsplash.com/photo-1606229365485-93a3b8ee0385",
+ "text": "68% wyszukiwań kończy się bez żadnego kliknięcia. Tak wynika z danych o wyszukiwaniach w USA z początku roku. Ludzie dostają odpowiedź od razu na liście wyników. Wpisz w wizytówce firmy ceny, godziny i telefon, żeby klient nie musiał klikać.",
+ "kw": [
+  "68",
+  "USA",
+  "odpowiedź",
+  "wizytówce"
+ ],
+ "scenes": [
+  {
+   "type": "donut",
+   "value": 68,
+   "label": "wyszukiwań bez kliknięcia"
+  },
+  {
+   "type": "icon",
+   "at": "Tak wynika",
+   "icon": "search",
+   "label": "dane z początku roku",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Ludzie dostają",
+   "icon": "eye",
+   "label": "odpowiedź już na liście wyników",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "check",
+   "at": "Wpisz w",
+   "title": "W wizytówce firmy",
+   "items": [
+    {
+     "t": "Ceny"
+    },
+    {
+     "t": "Godziny"
+    },
+    {
+     "t": "Telefon"
+    }
+   ],
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}
