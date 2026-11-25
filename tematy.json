@@ -1,0 +1,275 @@
+{
+ "zasada": "Przed każdą rolką, postem, karuzelą i relacją sprawdź ten plik: żaden mechanizm, badanie, scena (np. kelnerka) ani rada nie może się powtórzyć - nigdy, w żadnym formacie.",
+ "rolki": [
+  {
+   "data": "2026-11-25 06:00",
+   "slug": "historie",
+   "status": "zaplanowana",
+   "teza": "Tanie drobiazgi sprzedali z zyskiem 2700%"
+  },
+  {
+   "data": "2026-11-25 10:00",
+   "slug": "bo",
+   "status": "zaplanowana",
+   "teza": "Jedno słowo i ludzie zgadzają się o 34% częściej"
+  },
+  {
+   "data": "2026-11-25 14:00",
+   "slug": "dzem",
+   "status": "zaplanowana",
+   "teza": "Więcej wyboru, a kupujących 10 razy mniej"
+  },
+  {
+   "data": "2026-11-25 18:00",
+   "slug": "czcionka",
+   "status": "zaplanowana",
+   "teza": "Trudna czcionka i 41% osób odkłada zakup"
+  },
+  {
+   "data": "2026-11-26 06:00",
+   "slug": "grupa",
+   "status": "zaplanowana",
+   "teza": "Dlaczego wybieramy to, co inni? W słynnym teście 75% osób choć raz podało błędną odpowiedź, bo cała grupa tak mówiła"
+  },
+  {
+   "data": "2026-11-26 10:00",
+   "slug": "zacznij",
+   "status": "zaplanowana",
+   "teza": "Jedno słowo na przycisku dało 2 razy więcej chętnych"
+  },
+  {
+   "data": "2026-11-26 14:00",
+   "slug": "zabawa",
+   "status": "zaplanowana",
+   "teza": "Jak sprawić, żeby ludzie chętniej coś robili? Kosz w parku wydawał dźwięk spadania w głęboką studnię"
+  },
+  {
+   "data": "2026-11-26 18:00",
+   "slug": "impuls",
+   "status": "zaplanowana",
+   "teza": "86% kupujących co miesiąc kupuje coś, czego nie planowało"
+  },
+  {
+   "data": "2026-11-27 06:00",
+   "slug": "turkus",
+   "status": "zaplanowana",
+   "teza": "Jak wyższa cena sprzedała towar? Właścicielka sklepu kazała przecenić biżuterię o połowę, a sprzedawczyni przez pomyłkę podwoiła cenę"
+  },
+  {
+   "data": "2026-11-27 10:00",
+   "slug": "luka",
+   "status": "zaplanowana",
+   "teza": "Nagłówek z niedopowiedzeniem dał 152% więcej polubień"
+  },
+  {
+   "data": "2026-11-27 14:00",
+   "slug": "aplikacja",
+   "status": "zaplanowana",
+   "teza": "72% ludzi instaluje aplikację sklepu dla jednej zniżki, a potem ją kasuje"
+  },
+  {
+   "data": "2026-11-27 18:00",
+   "slug": "polecenie",
+   "status": "zaplanowana",
+   "teza": "Klient przyszedł z polecenia, a strona go rozczarowała"
+  },
+  {
+   "data": "2026-11-28 06:00",
+   "slug": "dostawa",
+   "status": "zaplanowana",
+   "teza": "83% osób polujących na rabaty dołoży coś do koszyka, żeby mieć darmową dostawę"
+  },
+  {
+   "data": "2026-11-28 10:00",
+   "slug": "pola",
+   "status": "zaplanowana",
+   "teza": "Firma skróciła formularz z 9 pól do 5"
+  },
+  {
+   "data": "2026-11-28 14:00",
+   "slug": "jedna",
+   "status": "zaplanowana",
+   "teza": "225% więcej zapisów po usunięciu rzeczy ze strony"
+  },
+  {
+   "data": "2026-11-28 18:00",
+   "slug": "gwarancja",
+   "status": "zaplanowana",
+   "teza": "Gwarancja zwrotu pieniędzy dała 8% więcej zakupów, a opinie klientów tylko 2%"
+  },
+  {
+   "data": "2026-11-29 06:00",
+   "slug": "list",
+   "status": "zaplanowana",
+   "teza": "87% ludzi czyta list od firmy jeszcze tego samego dnia"
+  },
+  {
+   "data": "2026-11-29 10:00",
+   "slug": "tytul",
+   "status": "zaplanowana",
+   "teza": "Dopisek Kup teraz w tytule strony zabrał prawie 15% kliknięć z wyszukiwarki"
+  },
+  {
+   "data": "2026-11-29 14:00",
+   "slug": "zeszly",
+   "status": "zaplanowana",
+   "teza": "53% ludzi kupi prezenty tylko w sklepach, w których kupowało rok temu"
+  },
+  {
+   "data": "2026-11-29 18:00",
+   "slug": "wolna",
+   "status": "zaplanowana",
+   "teza": "12% więcej ucieczek przez kilka ukrytych zdjęć"
+  },
+  {
+   "data": "2026-11-30 06:00",
+   "slug": "cyber",
+   "status": "zaplanowana",
+   "teza": "Dziś Cyber Monday, największy dzień zakupów w sieci"
+  },
+  {
+   "data": "2026-11-30 10:00",
+   "slug": "znajomi",
+   "status": "zaplanowana",
+   "teza": "Rada od znajomego działa ponad 2 razy mocniej niż od influencera"
+  },
+  {
+   "data": "2026-11-30 14:00",
+   "slug": "tansze",
+   "status": "zaplanowana",
+   "teza": "40% ludzi przechodzi na tańsze marki"
+  },
+  {
+   "data": "2026-11-30 18:00",
+   "slug": "termin",
+   "status": "zaplanowana",
+   "teza": "20% ludzi porzuca koszyk, bo dostawa trwa za długo"
+  },
+  {
+   "data": "2026-12-01 06:00",
+   "slug": "cola",
+   "status": "zaplanowana",
+   "teza": "1 na 5 widzów przypisał reklamę napoju konkurencji"
+  },
+  {
+   "data": "2026-12-01 10:00",
+   "slug": "telefon",
+   "status": "zaplanowana",
+   "teza": "44% telefonów do firm nie odbiera człowiek"
+  },
+  {
+   "data": "2026-12-01 14:00",
+   "slug": "siebie",
+   "status": "zaplanowana",
+   "teza": "Nawet 57% kupujących w święta planuje prezent dla siebie"
+  },
+  {
+   "data": "2026-12-01 18:00",
+   "slug": "karty",
+   "status": "zaplanowana",
+   "teza": "Karta podarunkowa to najczęstszy plan na prezent"
+  },
+  {
+   "data": "2026-12-02 06:00",
+   "slug": "klik",
+   "status": "zaplanowana",
+   "teza": "68% wyszukiwań kończy się bez żadnego kliknięcia"
+  },
+  {
+   "data": "2026-12-02 10:00",
+   "slug": "wersje",
+   "status": "zaplanowana",
+   "teza": "Mniej więcej co 7"
+  },
+  {
+   "data": "2026-12-02 14:00",
+   "slug": "telewizor",
+   "status": "zaplanowana",
+   "teza": "Od 79 do 90% domów przegląda produkty przy włączonym telewizorze w święta"
+  },
+  {
+   "data": "2026-12-02 18:00",
+   "slug": "pozakupie",
+   "status": "szkic (powtórka: kontakt z dawnymi klientami jak zeszly)",
+   "teza": "Maile po zakupie podnoszą ponowne zakupy o 31%"
+  },
+  {
+   "data": "2026-12-02 18:00",
+   "slug": "piwo",
+   "status": "zaplanowana",
+   "teza": "cena zależy od miejsca sprzedaży (Thaler 1985)"
+  },
+  {
+   "data": "2026-12-03 10:00",
+   "slug": "bo-langer",
+   "status": "szkic - powtórka 25.11 bo",
+   "teza": "powód z 'bo' zwiększa zgodę"
+  },
+  {
+   "data": "2026-12-03 18:00",
+   "slug": "polecenia-88",
+   "status": "szkic - powtórka 27.11 polecenie i 30.11 znajomi",
+   "teza": "zaufanie do poleceń"
+  },
+  {
+   "data": "2026-12-05 06:00",
+   "slug": "ciastka-niedobor",
+   "status": "szkic - mechanizm niedoboru już był",
+   "teza": "ostatnie sztuki wydają się lepsze"
+  },
+  {
+   "data": "2026-12-05 10:00",
+   "slug": "imie-kelnerki",
+   "status": "szkic - drugi raz kelnerka/napiwki w tygodniu",
+   "teza": "przedstawienie się z imienia"
+  },
+  {
+   "data": "2026-12-06 14:00",
+   "slug": "reczniki-hotel",
+   "status": "szkic - powtórka 26.11 grupa (dowód społeczny)",
+   "teza": "rób to co podobni"
+  },
+  {
+   "data": "2026-12-06 18:00",
+   "slug": "mimikra-kelnerka",
+   "status": "szkic - kelnerka/napiwki znowu",
+   "teza": "powtarzanie słów klienta"
+  },
+  {
+   "data": "2026-12-07 18:00",
+   "slug": "karteczka-garner",
+   "status": "szkic - powtórka 29.11 list (papierowa kartka)",
+   "teza": "odręczna karteczka"
+  },
+  {
+   "data": "2026-12-06 06:00",
+   "slug": "koniec-uslugi",
+   "status": "zaplanowana",
+   "teza": "peak-end"
+  },
+  {
+   "data": "2026-12-06 10:00",
+   "slug": "kubek",
+   "status": "zaplanowana",
+   "teza": "efekt posiadania"
+  },
+  {
+   "data": "2026-12-07 06:00",
+   "slug": "teatr-przedplata",
+   "status": "zaplanowana",
+   "teza": "koszty utopione / przedpłata"
+  },
+  {
+   "data": "2026-12-07 10:00",
+   "slug": "kuchnia-kulisy",
+   "status": "zaplanowana",
+   "teza": "pokaż kulisy pracy"
+  },
+  {
+   "data": "2026-12-07 14:00",
+   "slug": "kotwica-dom",
+   "status": "zaplanowana",
+   "teza": "pierwsza cena = kotwica"
+  }
+ ]
+}
