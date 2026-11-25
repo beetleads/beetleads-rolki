@@ -35,6 +35,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#120e0b;font-fam
 .hdl{color:#fff;font-weight:900;font-size:66px;margin-top:22px}
 .btn{display:inline-block;margin-top:26px;padding:20px 64px;border-radius:999px;font-weight:900;font-size:48px}
 .sub{color:#D9CFC4;font-weight:700;font-size:34px;margin-top:30px}
+#wm{position:absolute;left:135px;top:1392px;width:810px;text-align:center;z-index:60;color:rgba(255,255,255,.62);font-weight:800;font-size:40px;letter-spacing:.5px;text-shadow:0 2px 10px rgba(0,0,0,.75)}
+#wm b{display:inline-block;width:14px;height:14px;border-radius:50%;background:#FF6A1F;margin-right:12px;vertical-align:middle;box-shadow:0 0 10px rgba(255,106,31,.7)}
 .src{position:absolute;left:135px;bottom:420px;width:810px;text-align:center;color:rgba(255,255,255,.55);font-weight:700;font-size:26px}
 </style></head><body>
 <div id="st">
@@ -44,6 +46,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#120e0b;font-fam
  <div id="cap"></div>
  <div class="src" id="src"></div>
  <div id="cta"><div class="cbox"><div class="logo"><img src="logo.png"></div><div class="hdl">@beetleads</div><div class="btn" id="btn">Obserwuj</div></div></div>
+ <div id="wm"><b></b>@beetleads</div>
  <div id="flash"></div><div id="wipe"></div>
 </div>
 <script src="icons.js"></script>
@@ -146,12 +149,12 @@ function render(t){
   document.getElementById('flash').style.opacity=(i>0&&tp<.12)?(.25*(1-tp/.12)):0;
   // CTA
   const cta=document.getElementById('cta');
-  if(t>=D.ctaS){cta.style.display='flex';document.getElementById('scene').style.opacity=0;cap.innerHTML='';
+  if(t>=D.ctaS){cta.style.display='flex';document.getElementById('wm').style.opacity=0;document.getElementById('scene').style.opacity=0;cap.innerHTML='';
     const p=pr(t,D.ctaS,.5);cta.style.opacity=cl(p*2);cta.style.transform=`translateY(${80*(1-E.out(p))}px) scale(${.92+.08*E.out(p)})`;
     const b=document.getElementById('btn'); const tapped=t>=D.ctaS+1.25;
     b.textContent=tapped?'Obserwujesz ✓':'Obserwuj'; b.style.background=tapped?'transparent':ORANGE; b.style.color='#fff';b.style.border=tapped?'3px solid #fff':'3px solid '+ORANGE;
     b.style.transform=`scale(${(t>D.ctaS+1.1&&t<D.ctaS+1.35)?.9:1})`;
-  } else {cta.style.display='none';document.getElementById('scene').style.opacity=1;}
+  } else {cta.style.display='none';document.getElementById('wm').style.opacity=1;document.getElementById('scene').style.opacity=1;}
 }
 window.render=render;
 </script></body></html>
