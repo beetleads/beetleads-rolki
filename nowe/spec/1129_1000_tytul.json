@@ -1,0 +1,57 @@
+{
+ "slot": "2026-11-29T10:00:00",
+ "seed": 18,
+ "photo": "https://images.unsplash.com/photo-1541560052-5e137f229371",
+ "text": "Dopisek Kup teraz w tytule strony zabrał prawie 15% kliknięć z wyszukiwarki. Tak wyszło w teście na prawdziwych stronach. Tytuł jak krzykliwa reklama odstrasza. Napisz w nim zwykłe zdanie o tym, co klient u Ciebie znajdzie.",
+ "kw": [
+  "15",
+  "Kup",
+  "reklama",
+  "zdanie"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 15,
+   "post": "%",
+   "label": "kliknięć z wyszukiwarki",
+   "icon": "search",
+   "pre": "-"
+  },
+  {
+   "type": "icon",
+   "at": "Tak wyszło",
+   "icon": "chart",
+   "label": "test na prawdziwych stronach",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "vs",
+   "at": "Tytuł jak",
+   "items": [
+    {
+     "icon": "megaphone",
+     "t": "KUP TERAZ!",
+     "good": false
+    },
+    {
+     "icon": "chat",
+     "t": "Zwykłe zdanie",
+     "good": true
+    }
+   ],
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Napisz w",
+   "head": "Tytuł strony",
+   "text": "„Remont łazienki w 10 dni - Warszawa”",
+   "fs": 52,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

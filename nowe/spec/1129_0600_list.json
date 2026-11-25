@@ -1,0 +1,56 @@
+{
+ "slot": "2026-11-29T06:00:00",
+ "seed": 17,
+ "photo": "https://images.unsplash.com/photo-1662037955115-3aed23bba6b1",
+ "text": "87% ludzi czyta list od firmy jeszcze tego samego dnia. Tak odpowiedziało 2000 dorosłych w ankiecie. Skrzynka mailowa jest zapchana, skrzynka na listy nie. Wyślij stałym klientom papierową kartkę świąteczną.",
+ "kw": [
+  "87",
+  "2000",
+  "zapchana",
+  "kartkę"
+ ],
+ "scenes": [
+  {
+   "type": "donut",
+   "value": 87,
+   "label": "czyta list tego samego dnia"
+  },
+  {
+   "type": "icon",
+   "at": "Tak odpowiedziało",
+   "icon": "people",
+   "label": "2000 dorosłych w ankiecie",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "vs",
+   "at": "Skrzynka mailowa",
+   "items": [
+    {
+     "icon": "mail",
+     "t": "Mail",
+     "s": "zapchany",
+     "good": false
+    },
+    {
+     "icon": "note",
+     "t": "List",
+     "s": "pusty",
+     "good": true
+    }
+   ],
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Wyślij stałym",
+   "head": "Grudzień",
+   "text": "Papierowa kartka świąteczna do stałych klientów",
+   "fs": 50,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

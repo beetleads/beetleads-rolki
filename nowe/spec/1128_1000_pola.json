@@ -1,0 +1,79 @@
+{
+ "slot": "2026-11-28T10:00:00",
+ "seed": 14,
+ "photo": "https://images.unsplash.com/photo-1523705480679-b5d0cc17a656",
+ "text": "Firma skróciła formularz z 9 pól do 5. Wypełnialność wzrosła z 10% do 13,4%. Każde pole to kolejny powód, żeby się zatrzymać. Zostaw imię, telefon i jedno pytanie, a resztę dopytaj w rozmowie.",
+ "kw": [
+  "9",
+  "5",
+  "13,4",
+  "telefon"
+ ],
+ "scenes": [
+  {
+   "type": "vs",
+   "items": [
+    {
+     "icon": "note",
+     "t": "9 pól",
+     "s": "10%",
+     "good": false
+    },
+    {
+     "icon": "check",
+     "t": "5 pól",
+     "s": "13,4%",
+     "good": true
+    }
+   ]
+  },
+  {
+   "type": "bars",
+   "at": "Wypełnialność wzrosła",
+   "title": "wypełniło formularz",
+   "bars": [
+    {
+     "l": "9 pól",
+     "v": 10,
+     "post": "%"
+    },
+    {
+     "l": "5 pól",
+     "v": 13.4,
+     "post": "%",
+     "hi": true,
+     "show": "13,4%"
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Każde pole",
+   "icon": "warning",
+   "label": "każde pole = powód, żeby przerwać",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "check",
+   "at": "Zostaw imię",
+   "title": "Formularz na leady",
+   "items": [
+    {
+     "t": "imię"
+    },
+    {
+     "t": "telefon"
+    },
+    {
+     "t": "jedno pytanie"
+    }
+   ],
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ],
+ "glos_zgoda": true
+}

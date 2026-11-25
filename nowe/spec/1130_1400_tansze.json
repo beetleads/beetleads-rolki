@@ -1,0 +1,44 @@
+{
+ "slot": "2026-11-30T14:00:00",
+ "seed": 23,
+ "photo": "https://images.unsplash.com/photo-1601600576337-c1d8a0d1373c",
+ "text": "40% ludzi przechodzi na tańsze marki. Tak wynika z ankiety wśród ponad 1100 dorosłych. Klient nie znika, tylko szuka tańszej wersji. Dodaj do oferty mały pakiet na start, zanim klient odejdzie do konkurencji.",
+ "kw": [
+  "40",
+  "1100",
+  "tańszej",
+  "start"
+ ],
+ "scenes": [
+  {
+   "type": "donut",
+   "value": 40,
+   "label": "przechodzi na tańsze marki"
+  },
+  {
+   "type": "icon",
+   "at": "Tak wynika",
+   "icon": "people",
+   "label": "ankieta wśród ponad 1100 osób",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Klient nie",
+   "icon": "search",
+   "label": "szuka tańszej wersji",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Dodaj do",
+   "head": "Nowy wariant",
+   "text": "Mały pakiet na start obok pełnej oferty",
+   "fs": 52,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

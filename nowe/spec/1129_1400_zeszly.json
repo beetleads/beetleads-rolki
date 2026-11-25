@@ -1,0 +1,56 @@
+{
+ "slot": "2026-11-29T14:00:00",
+ "seed": 19,
+ "photo": "https://images.unsplash.com/photo-1514377006585-6e7975371bd6",
+ "text": "53% ludzi kupi prezenty tylko w sklepach, w których kupowało rok temu. Tak wynika z ankiety wśród 648 osób. Znany sklep ma przewagę, nowy musi się przebić. Napisz dziś do klientów, którzy kupili u Ciebie rok temu.",
+ "kw": [
+  "53",
+  "648",
+  "przewagę",
+  "rok"
+ ],
+ "scenes": [
+  {
+   "type": "donut",
+   "value": 53,
+   "label": "kupi tam, gdzie rok temu"
+  },
+  {
+   "type": "icon",
+   "at": "Tak wynika",
+   "icon": "people",
+   "label": "ankieta wśród 648 osób",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "vs",
+   "at": "Znany sklep",
+   "items": [
+    {
+     "icon": "store",
+     "t": "Znany",
+     "s": "przewaga",
+     "good": true
+    },
+    {
+     "icon": "search",
+     "t": "Nowy",
+     "s": "musi się przebić",
+     "good": false
+    }
+   ],
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Napisz dziś",
+   "head": "Dziś",
+   "text": "Mail do klientów z zeszłego grudnia",
+   "fs": 54,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

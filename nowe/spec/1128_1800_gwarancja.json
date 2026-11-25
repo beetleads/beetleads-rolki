@@ -1,0 +1,69 @@
+{
+ "slot": "2026-11-28T18:00:00",
+ "seed": 16,
+ "photo": "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1",
+ "text": "Gwarancja zwrotu pieniędzy dała 8% więcej zakupów, a opinie klientów tylko 2%. Tak wyszło z testów na prawie 1,6 miliona wizyt. Gwarancja zdejmuje ryzyko z klienta. Pod przyciskiem napisz: 30 dni na zwrot pieniędzy.",
+ "kw": [
+  "8",
+  "2",
+  "ryzyko",
+  "30"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 8,
+   "post": "%",
+   "label": "więcej zakupów z gwarancją zwrotu",
+   "icon": "check"
+  },
+  {
+   "type": "bars",
+   "title": "więcej zakupów",
+   "bars": [
+    {
+     "l": "gwarancja",
+     "v": 8,
+     "post": "%",
+     "hi": true
+    },
+    {
+     "l": "opinie",
+     "v": 2,
+     "post": "%"
+    }
+   ],
+   "at": "a opinie",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "num",
+   "at": "Tak wyszło",
+   "value": 1.6,
+   "post": " mln",
+   "label": "wizyt w testach",
+   "icon": "people",
+   "bg": "#2f2015",
+   "count": false,
+   "text": "1,6 mln"
+  },
+  {
+   "type": "icon",
+   "at": "Gwarancja zdejmuje",
+   "icon": "hand",
+   "label": "ryzyko przechodzi na Ciebie",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Pod przyciskiem",
+   "head": "Pod przyciskiem",
+   "text": "„30 dni na zwrot pieniędzy”",
+   "fs": 58,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "slot": "2026-11-30T10:00:00",
+ "seed": 22,
+ "photo": "https://images.unsplash.com/photo-1582298538104-fe2e74c27f59",
+ "text": "Rada od znajomego działa ponad 2 razy mocniej niż od influencera. 26% kupujących szuka polecenia u znajomych, tylko 11% u influencerów. Ludzie ufają tym, których znają. Poproś dziś 3 zadowolonych klientów o polecenie.",
+ "kw": [
+  "2",
+  "26",
+  "11",
+  "polecenie"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 2,
+   "post": "x",
+   "label": "mocniej działa rada znajomego",
+   "icon": "people"
+  },
+  {
+   "type": "bars",
+   "at": "26%",
+   "title": "szuka polecenia u...",
+   "bars": [
+    {
+     "l": "znajomych",
+     "v": 26,
+     "post": "%",
+     "hi": true
+    },
+    {
+     "l": "influencerów",
+     "v": 11,
+     "post": "%"
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Ludzie ufają",
+   "icon": "heart",
+   "label": "ufamy tym, których znamy",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Poproś dziś",
+   "head": "Dziś",
+   "text": "Poproś 3 zadowolonych klientów o polecenie",
+   "fs": 52,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ],
+ "glos_zgoda": true
+}

@@ -1,0 +1,39 @@
+{
+ "slot": "2026-11-30T18:00:00",
+ "seed": 24,
+ "photo": "https://images.unsplash.com/photo-1481708426686-bad08e28e1c2",
+ "text": "20% ludzi porzuca koszyk, bo dostawa trwa za długo. Przed świętami liczy się każdy dzień, bo prezent musi zdążyć. Napisz przy produkcie wprost: Zamów do 18 grudnia, a dostaniesz przed Wigilią.",
+ "kw": [
+  "20",
+  "dostawa",
+  "18",
+  "Wigilią"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 20,
+   "post": "%",
+   "label": "porzuca koszyk przez długą dostawę",
+   "icon": "box"
+  },
+  {
+   "type": "icon",
+   "at": "Przed świętami",
+   "icon": "gift",
+   "label": "prezent musi zdążyć",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "card",
+   "at": "Napisz przy",
+   "head": "Przy produkcie",
+   "text": "„Zamów do 18 grudnia - dostaniesz przed Wigilią”",
+   "fs": 50,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "slot": "2026-11-30T06:00:00",
+ "seed": 21,
+ "photo": "https://images.unsplash.com/photo-1548393488-ae8f117cbc1c",
+ "text": "Dziś Cyber Monday, największy dzień zakupów w sieci. Według prognozy dla USA 5 dni od Święta Dziękczynienia do dziś to 17% całego sezonu. A rabaty nie są głębsze niż rok temu. Przedłuż ofertę do północy, zamiast podnosić rabat.",
+ "kw": [
+  "Cyber",
+  "17",
+  "głębsze",
+  "północy"
+ ],
+ "scenes": [
+  {
+   "type": "icon",
+   "icon": "cart",
+   "label": "największy dzień zakupów w sieci"
+  },
+  {
+   "type": "donut",
+   "at": "Według prognozy",
+   "value": 17,
+   "label": "sezonu w 5 dni",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "A rabaty",
+   "icon": "percent",
+   "label": "rabaty jak rok temu",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Przedłuż ofertę",
+   "head": "Dziś",
+   "text": "„Oferta trwa do północy”",
+   "fs": 58,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ],
+ "glos_zgoda": true
+}

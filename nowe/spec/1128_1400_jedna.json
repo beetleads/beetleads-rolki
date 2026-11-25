@@ -1,0 +1,58 @@
+{
+ "slot": "2026-11-28T14:00:00",
+ "seed": 15,
+ "photo": "https://images.unsplash.com/photo-1548266652-99cf27701ced",
+ "text": "225% więcej zapisów po usunięciu rzeczy ze strony. Serwis pogodowy uprościł stronę główną i zostawił jedną akcję. Gdy klient ma jeden wybór, nie musi myśleć, co kliknąć. Zostaw na stronie jeden główny przycisk.",
+ "kw": [
+  "225",
+  "jedną",
+  "wybór",
+  "przycisk"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 225,
+   "post": "%",
+   "label": "więcej zapisów",
+   "icon": "chart"
+  },
+  {
+   "type": "vs",
+   "at": "Serwis pogodowy",
+   "items": [
+    {
+     "icon": "app",
+     "t": "Przed",
+     "s": "dużo opcji",
+     "good": false
+    },
+    {
+     "icon": "hand",
+     "t": "Po",
+     "s": "1 akcja",
+     "good": true
+    }
+   ],
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Gdy klient",
+   "icon": "eye",
+   "label": "jeden wybór = zero myślenia",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Zostaw na",
+   "head": "Twoja strona",
+   "text": "Jeden duży przycisk: „Umów rozmowę”",
+   "fs": 54,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

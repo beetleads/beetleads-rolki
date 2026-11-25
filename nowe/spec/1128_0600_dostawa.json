@@ -1,0 +1,44 @@
+{
+ "slot": "2026-11-28T06:00:00",
+ "seed": 13,
+ "photo": "https://images.unsplash.com/photo-1624137527136-66e631bdaa0e",
+ "text": "83% osób polujących na rabaty dołoży coś do koszyka, żeby mieć darmową dostawę. Tak wynika z ankiety wśród 1000 kupujących. Próg działa jak cel do zdobycia. Ustaw darmową dostawę trochę powyżej średniego zamówienia.",
+ "kw": [
+  "83",
+  "dostawę",
+  "próg",
+  "średniego"
+ ],
+ "scenes": [
+  {
+   "type": "donut",
+   "value": 83,
+   "label": "dołoży coś dla darmowej dostawy"
+  },
+  {
+   "type": "icon",
+   "at": "Tak wynika",
+   "icon": "people",
+   "label": "ankieta wśród 1000 kupujących",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "icon",
+   "at": "Próg działa",
+   "icon": "trophy",
+   "label": "próg = cel do zdobycia",
+   "bg": "#2e1f12"
+  },
+  {
+   "type": "card",
+   "at": "Ustaw darmową",
+   "head": "Przy koszyku",
+   "text": "„Jeszcze 20 zł do darmowej dostawy”",
+   "fs": 54,
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}

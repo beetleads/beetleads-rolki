@@ -1,0 +1,48 @@
+{
+ "slot": "2026-11-29T18:00:00",
+ "seed": 20,
+ "photo": "https://images.unsplash.com/photo-1600856209923-34372e319a5d",
+ "text": "12% więcej ucieczek przez kilka ukrytych zdjęć. Duży sklep internetowy celowo spowolnił swoją stronę na telefonach i tyle osób więcej wyszło bez kliknięcia. Zanim wydasz na reklamę, zmniejsz zdjęcia na stronie.",
+ "kw": [
+  "12",
+  "ukrytych",
+  "zdjęcia",
+  "reklamę"
+ ],
+ "scenes": [
+  {
+   "type": "num",
+   "value": 12,
+   "post": "%",
+   "label": "więcej ucieczek ze strony",
+   "icon": "clock"
+  },
+  {
+   "type": "icon",
+   "at": "Duży sklep",
+   "icon": "phone",
+   "label": "celowo spowolniona strona",
+   "bg": "#2f2015"
+  },
+  {
+   "type": "check",
+   "at": "Zanim wydasz",
+   "title": "Zanim wydasz na reklamę",
+   "items": [
+    {
+     "t": "zmniejsz zdjęcia"
+    },
+    {
+     "t": "sprawdź stronę na telefonie"
+    },
+    {
+     "t": "dopiero puść reklamę"
+    }
+   ],
+   "bg": "#3d2613"
+  }
+ ],
+ "bgs": [
+  "bg1.jpg"
+ ]
+}
